@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bienvenido a Melipilla — Guía para recién llegados</title>
+  <meta name="description" content="Guía de servicios esenciales para personas que llegan a vivir a Melipilla: ferias libres, centros de salud, seguridad, farmacias y más.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --verde: #0F5E3F;
+      --verde-claro: #1D9E75;
+      --verde-suave: #E6F5EE;
+      --crema: #F7F3EC;
+      --crema-oscura: #EDE8DF;
+      --terracota: #C4572A;
+      --terracota-suave: #FAEEE8;
+      --azul: #1A5FA8;
+      --azul-suave: #EAF2FB;
+      --ambar: #A06A0A;
+      --ambar-suave: #FDF3DC;
+      --texto: #1E1E1E;
+      --texto-suave: #5A5A5A;
+      --borde: #D8D2C8;
+      --radio: 12px;
+      --radio-sm: 8px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--crema);
+      color: var(--texto);
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    /* ─── NAVEGACIÓN ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--verde);
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,.18);
+    }
+
+    .nav-brand {
+      font-family: 'Fraunces', serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: #fff;
+      padding: 14px 20px 14px 0;
+      margin-right: 8px;
+      border-right: 1px solid rgba(255,255,255,.2);
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+
+    .nav-links a {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,.8);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 14px 14px;
+      white-space: nowrap;
+      transition: color .15s, background .15s;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+      background: rgba(255,255,255,.08);
+    }
+
+    .nav-links a.active {
+      color: #fff;
+      border-bottom-color: #5DCAA5;
+    }
+
+    .nav-links svg { flex-shrink: 0; }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: var(--verde);
+      color: #fff;
+      padding: 4rem 1.5rem 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,.12);
+      color: #9FE1CB;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 600;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      font-weight: 300;
+      color: #9FE1CB;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,.78);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    /* ─── NÚMEROS DE EMERGENCIA ─── */
+    .emergency {
+      background: var(--terracota);
+      padding: 1rem 1.5rem;
+    }
+
+    .emergency-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem 2rem;
+      align-items: center;
+    }
+
+    .emg-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: rgba(255,255,255,.7);
+      margin-right: .5rem;
+    }
+
+    .emg-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,.15);
+      color: #fff;
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background .15s;
+    }
+
+    .chip:hover { background: rgba(255,255,255,.28); }
+
+    .chip span {
+      font-size: 11px;
+      font-weight: 400;
+      opacity: .8;
+    }
+
+    /* ─── LAYOUT PRINCIPAL ─── */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    /* ─── SECCIONES ─── */
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1.25rem;
+      padding-bottom: .75rem;
+      border-bottom: 2px solid var(--crema-oscura);
+    }
+
+    .section-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .ic-verde { background: var(--verde-suave); color: var(--verde); }
+    .ic-azul  { background: var(--azul-suave);  color: var(--azul); }
+    .ic-rojo  { background: var(--terracota-suave); color: var(--terracota); }
+    .ic-ambar { background: var(--ambar-suave);  color: var(--ambar); }
+
+    .section-title h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--texto);
+    }
+
+    .section-title p {
+      font-size: 13px;
+      color: var(--texto-suave);
+      margin-top: 1px;
+    }
+
+    section { margin-bottom: 3.5rem; }
+
+    /* ─── CARDS ─── */
+    .cards { display: grid; gap: .85rem; }
+    .cards-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--borde);
+      border-radius: var(--radio);
+      padding: 1.1rem 1.25rem;
+      transition: box-shadow .18s;
+    }
+
+    .card:hover { box-shadow: 0 4px 18px rgba(0,0,0,.07); }
+
+    .card-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: .65rem;
+    }
+
+    .card-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+    }
+
+    .card h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--texto);
+      line-height: 1.3;
+    }
+
+    .card .sub {
+      font-size: 12px;
+      color: var(--texto-suave);
+      margin-top: 2px;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--texto-suave);
+      padding: 5px 0;
+      border-top: 1px solid #F0EDE8;
+      line-height: 1.45;
+    }
+
+    .info-row svg { flex-shrink: 0; margin-top: 2px; }
+
+    .info-row a {
+      color: var(--verde-claro);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .info-row a:hover { text-decoration: underline; }
+
+    /* ─── BADGES DÍA ─── */
+    .dias { display: flex; flex-wrap: wrap; gap: 4px; }
+
+    .dia {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: var(--verde-suave);
+      color: var(--verde);
+      letter-spacing: .02em;
+    }
+
+    /* ─── BOTÓN MAPA ─── */
+    .btn-map {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--verde);
+      background: var(--verde-suave);
+      border: none;
+      border-radius: 6px;
+      padding: 5px 10px;
+      text-decoration: none;
+      margin-top: 8px;
+      cursor: pointer;
+      transition: background .15s;
+    }
+
+    .btn-map:hover { background: #C6EADB; }
+
+    /* ─── MAPA EMBEBIDO ─── */
+    .map-embed {
+      border-radius: var(--radio);
+      overflow: hidden;
+      border: 1px solid var(--borde);
+      margin-top: .5rem;
+    }
+
+    .map-embed iframe {
+      width: 100%;
+      height: 240px;
+      display: block;
+      border: none;
+    }
+
+    /* ─── NOTA INFO ─── */
+    .nota {
+      display: flex;
+      gap: 10px;
+      background: var(--ambar-suave);
+      border-left: 3px solid var(--ambar);
+      border-radius: 0 var(--radio-sm) var(--radio-sm) 0;
+      padding: .85rem 1rem;
+      font-size: 13px;
+      color: #6B4400;
+      margin-top: .5rem;
+      line-height: 1.55;
+    }
+
+    .nota svg { flex-shrink: 0; margin-top: 2px; }
+
+    .nota a { color: var(--ambar); font-weight: 600; }
+
+    /* ─── CARD EMERGENCIA GRANDE ─── */
+    .card-emg {
+      background: var(--terracota-suave);
+      border: 1px solid #F0C0A8;
+      border-radius: var(--radio);
+      padding: 1.1rem 1.25rem;
+    }
+
+    .card-emg h3 { color: var(--terracota); }
+
+    .emg-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: .6rem;
+      margin-top: .75rem;
+    }
+
+    .emg-item {
+      background: #fff;
+      border-radius: var(--radio-sm);
+      padding: .75rem;
+      text-align: center;
+      border: 1px solid #F0C0A8;
+    }
+
+    .emg-item .num {
+      font-family: 'Fraunces', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--terracota);
+      line-height: 1;
+      display: block;
+    }
+
+    .emg-item .name {
+      font-size: 11px;
+      color: var(--texto-suave);
+      margin-top: 3px;
+      display: block;
+    }
+
+    /* ─── FARMACIAS TURNO ─── */
+    .turno-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: .65rem;
+      margin-top: .5rem;
+    }
+
+    .turno-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      border: 1px solid var(--borde);
+      border-radius: var(--radio-sm);
+      padding: .75rem 1rem;
+      text-decoration: none;
+      color: var(--texto);
+      font-size: 13px;
+      font-weight: 500;
+      transition: border-color .15s, box-shadow .15s;
+    }
+
+    .turno-link:hover {
+      border-color: var(--verde-claro);
+      box-shadow: 0 2px 8px rgba(29,158,117,.12);
+    }
+
+    .turno-link svg { color: var(--verde-claro); flex-shrink: 0; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--verde);
+      color: rgba(255,255,255,.65);
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: 13px;
+    }
+
+    footer strong { color: #fff; }
+
+    footer a { color: #9FE1CB; text-decoration: none; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 600px) {
+      .hero { padding: 2.5rem 1rem 2rem; }
+      main { padding: 1.75rem 1rem 3rem; }
+      .emg-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAVEGACIÓN ─── -->
+<nav aria-label="Navegación principal">
+  <a href="#inicio" class="nav-brand">📍 Melipilla</a>
+  <ul class="nav-links">
+    <li><a href="#ferias">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      Ferias libres
+    </a></li>
+    <li><a href="#salud">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      Centros de salud
+    </a></li>
+    <li><a href="#seguridad">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Seguridad
+    </a></li>
+    <li><a href="#farmacias">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+      Farmacias
+    </a></li>
+    <li><a href="#mapa">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+      Mapa general
+    </a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ─── -->
+<header class="hero" id="inicio">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Región Metropolitana · Provincia de Melipilla
+    </div>
+    <h1>Bienvenido/a a<br><em>Melipilla</em></h1>
+    <p class="hero-desc">
+      Esta guía reúne los servicios más importantes para quienes están llegando a vivir a la comuna: dónde comprar, dónde atenderse, cómo contactar a Carabineros y dónde encontrar una farmacia abierta.
+    </p>
+  </div>
+</header>
+
+<!-- ─── EMERGENCIAS ─── -->
+<div class="emergency" role="complementary" aria-label="Números de emergencia">
+  <div class="emergency-inner">
+    <span class="emg-label">Emergencias:</span>
+    <div class="emg-chips">
+      <a class="chip" href="tel:133">133 <span>Carabineros</span></a>
+      <a class="chip" href="tel:131">131 <span>SAMU</span></a>
+      <a class="chip" href="tel:130">130 <span>Bomberos</span></a>
+      <a class="chip" href="tel:149">149 <span>Paz ciudadana</span></a>
+      <a class="chip" href="tel:1455">1455 <span>VIF / Mujer</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ─── CONTENIDO PRINCIPAL ─── -->
+<main>
+
+  <!-- ═══ FERIAS LIBRES ═══ -->
+  <section id="ferias" aria-labelledby="titulo-ferias">
+    <div class="section-title">
+      <div class="section-icon ic-verde">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      </div>
+      <div>
+        <h2 id="titulo-ferias">Ferias libres</h2>
+        <p>Frutas, verduras y productos frescos a buen precio</p>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon ic-verde">🛒</div>
+          <div>
+            <h3>Feria libre central de Melipilla</h3>
+            <div class="sub">La más grande de la comuna</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div>
+            <div class="dias">
+              <span class="dia">Martes</span>
+              <span class="dia">Jueves</span>
+              <span class="dia">Sábado</span>
+              <span class="dia">Domingo</span>
+            </div>
+            <div style="margin-top:4px">07:00 – 14:00 hrs aprox.</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Av. Chile esq. Alfonso Suárez, Melipilla centro</span>
+        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=Feria+libre+Melipilla+Av+Chile" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en Google Maps
+        </a>
+      </div>
+
+      <div class="cards cards-2" style="margin-top:.85rem">
+        <div class="card">
+          <div class="card-head">
+            <div class="card-icon ic-verde">🌿</div>
+            <div>
+              <h3>Feria de Pomaire</h3>
+              <div class="sub">Cerca de la artesanía en greda</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <div><div class="dias"><span class="dia">Viernes</span></div><div style="margin-top:4px">Mañanas</div></div>
+          </div>
+          <div class="info-row">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Pomaire, Melipilla</span>
+          </div>
+          <a class="btn-map" href="https://maps.google.com/?q=Pomaire+Melipilla+Chile" target="_blank" rel="noopener">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+            Ver en mapa
+          </a>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div class="card-icon ic-verde">🌾</div>
+            <div>
+              <h3>Feria de Bollenar y Carmen Bajo</h3>
+              <div class="sub">Sectores rurales</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <div><div class="dias"><span class="dia">Viernes</span></div><div style="margin-top:4px">Mañanas</div></div>
+          </div>
+          <div class="info-row">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>El Bollenar / Carmen Bajo, Melipilla</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="nota">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>Para ver todas las ferias libres de Chile con mapa interactivo, consulta el <a href="https://apps.odepa.gob.cl/powerBI/reporte_ferias_libres.html" target="_blank" rel="noopener">Localizador ODEPA</a> — incluye días, horarios y cantidad de puestos.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CENTROS DE SALUD ═══ -->
+  <section id="salud" aria-labelledby="titulo-salud">
+    <div class="section-title">
+      <div class="section-icon ic-azul">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <div>
+        <h2 id="titulo-salud">Centros de salud (CESFAM)</h2>
+        <p>Atención primaria gratuita con FONASA o tarjeta Vecino</p>
+      </div>
+    </div>
+
+    <div class="cards cards-2">
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon ic-azul">🏥</div>
+          <div>
+            <h3>CESFAM Dr. Edelberto Elgueta</h3>
+            <div class="sub">FONASA — atención familiar</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Arza 1576, Melipilla</span>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg>
+          <span><a href="tel:+56800432777">800 432 777</a></span>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Lun–Jue 08:00–20:00 · Vie 08:00–19:00 · Sáb 09:00–13:00</span>
+        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=Arza+1576+Melipilla" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon ic-azul">🏥</div>
+          <div>
+            <h3>CESFAM Dr. Francisco Boris Soler</h3>
+            <div class="sub">FONASA — atención familiar</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Silvia Chávez 1650, Melipilla</span>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg>
+          <span><a href="tel:+5622821835022">2 2821 8350</a></span>
+        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=Silvia+Chavez+1650+Melipilla" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon ic-azul">🏥</div>
+          <div>
+            <h3>CESFAM San Manuel</h3>
+            <div class="sub">Sector rural</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Camino San Manuel S/N, Melipilla</span>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg>
+          <span><a href="tel:+5622574550022">2 2574 5500</a></span>
+        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=Camino+San+Manuel+Melipilla" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon ic-azul">🏥</div>
+          <div>
+            <h3>CESFAM Alfarera Rosa Reyes Vilches</h3>
+            <div class="sub">Sector Pomaire</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Artesana Julita Vera 354, Melipilla</span>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg>
+          <span><a href="tel:+5622832496522">2 2832 4965</a></span>
+        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=Artesana+Julita+Vera+354+Melipilla" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon ic-azul">🏥</div>
+          <div>
+            <h3>CES Ignacio Carrera Pinto</h3>
+            <div class="sub">Centro de salud comunal</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Ignacio Carrera Pinto 606, Melipilla</span>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg>
+          <span><a href="tel:+5622800040122">2 2800 0401</a></span>
+        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=Ignacio+Carrera+Pinto+606+Melipilla" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
+      </div>
+    </div>
+
+    <div class="nota" style="margin-top:.85rem">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <span>Para inscribirte en un CESFAM necesitas RUT o documento de identidad y tu dirección de residencia. La inscripción corresponde al sector donde vives. Más info: <a href="https://corpomelipilla.cl/salud/" target="_blank" rel="noopener">CORPO Melipilla</a></span>
+    </div>
+  </section>
+
+  <!-- ═══ SEGURIDAD ═══ -->
+  <section id="seguridad" aria-labelledby="titulo-seguridad">
+    <div class="section-title">
+      <div class="section-icon ic-rojo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div>
+        <h2 id="titulo-seguridad">Seguridad y paz ciudadana</h2>
+        <p>Carabineros, PDI y líneas de apoyo</p>
+      </div>
+    </div>
+
+    <div class="card-emg" style="margin-bottom:.85rem">
+      <h3 style="font-family:'Fraunces',serif;font-size:1rem;font-weight:600;color:var(--terracota)">Números de emergencia — Melipilla</h3>
+      <div class="emg-grid">
+        <div class="emg-item">
+          <a href="tel:133" style="text-decoration:none"><span class="num">133</span></a>
+          <span class="name">Carabineros</span>
+        </div>
+        <div class="emg-item">
+          <a href="tel:131" style="text-decoration:none"><span class="num">131</span></a>
+          <span class="name">SAMU</span>
+        </div>
+        <div class="emg-item">
+          <a href="tel:130" style="text-decoration:none"><span class="num">130</span></a>
+          <span class="name">Bomberos</span>
+        </div>
+        <div class="emg-item">
+          <a href="tel:149" style="text-decoration:none"><span class="num">149</span></a>
+          <span class="name">Paz ciudadana</span>
+        </div>
+        <div class="emg-item">
+          <a href="tel:1455" style="text-decoration:none"><span class="num">1455</span></a>
+          <span class="name">VIF — gratuito 24h</span>
+        </div>
+        <div class="emg-item">
+          <a href="tel:800730800" style="text-decoration:none"><span class="num" style="font-size:1.4rem">800 730 800</span></a>
+          <span class="name">Sename — niñez</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cards cards-2">
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon ic-rojo">🚔</div>
+          <div>
+            <h3>24ª Comisaría de Melipilla</h3>
+            <div class="sub">Carabineros de Chile</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Ortúzar 675, Melipilla centro</span>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg>
+          <span><a href="tel:+5622922437022">2 2922 4370</a> · Emergencias: <a href="tel:133" style="color:var(--terracota);font-weight:700">133</a></span>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          <span><a href="https://www.carabineros.cl" target="_blank" rel="noopener">carabineros.cl</a></span>
+        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=Ortuzar+675+Melipilla" target="_blank" rel="noopener" style="background:var(--terracota-suave);color:var(--terracota)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon ic-rojo">🚔</div>
+          <div>
+            <h3>Tenencia Carreteras Melipilla</h3>
+            <div class="sub">Carabineros de Chile</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Autopista El Sol S/N, Km. 50</span>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg>
+          <span><a href="tel:+5622922441422">2 2922 4414</a></span>
+        </div>
+      </div>
+
+      <div class="card" style="grid-column: 1 / -1">
+        <div class="card-head">
+          <div class="card-icon" style="background:#EEF0FE;color:#534AB7;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;">🤝</div>
+          <div>
+            <h3>Servicios de apoyo y paz ciudadana</h3>
+            <div class="sub">Líneas directas para situaciones de vulnerabilidad</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.4rem">
+          <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span>PDI Melipilla: <a href="tel:+5622838900022">2 2838 9000</a></span></div>
+          <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span>Previene Melipilla: <a href="tel:+5622832575422">2 2832 5754</a></span></div>
+          <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span>Centro de la Mujer: <a href="tel:+5622831280622">2 2831 2806</a></span></div>
+          <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span>Fono Drogas (SENDA): <a href="tel:1412">1412</a> gratuito</span></div>
+          <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span>Violencia intrafamiliar: <a href="tel:1455" style="color:var(--terracota);font-weight:700">1455</a></span></div>
+          <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span>Niñez en riesgo Sename: <a href="tel:800730800">800 730 800</a></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FARMACIAS ═══ -->
+  <section id="farmacias" aria-labelledby="titulo-farmacias">
+    <div class="section-title">
+      <div class="section-icon ic-ambar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+      </div>
+      <div>
+        <h2 id="titulo-farmacias">Farmacias</h2>
+        <p>Turno rotativo diario — verifica siempre antes de salir</p>
+      </div>
+    </div>
+
+    <div class="nota" style="margin-bottom:1rem">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <span>Melipilla tiene <strong>turnos de farmacia 24 horas</strong> según resolución ISP. El turno cambia cada día — consulta los links de abajo para saber cuál está abierta hoy.</span>
+    </div>
+
+    <div class="turno-links">
+      <a class="turno-link" href="https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-melipilla" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        farmaciashoy.cl — turno de hoy
+      </a>
+      <a class="turno-link" href="https://www.ispch.gob.cl/farmacias-de-turno/" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        ISP Chile — fuente oficial
+      </a>
+      <a class="turno-link" href="https://farmaciasabiertas.cl/farmacias-de-turno-en-melipilla/" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+        farmaciasabiertas.cl — con mapa
+      </a>
+    </div>
+
+    <div class="card" style="margin-top:.85rem">
+      <div class="card-head">
+        <div class="card-icon ic-ambar">💊</div>
+        <div>
+          <h3>Farmacias en el centro de Melipilla</h3>
+          <div class="sub">Horario comercial habitual · llama para confirmar</div>
+        </div>
+      </div>
+      <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Vicuña Mackenna 153 — <a href="tel:+560228327526">+56 2 2832 7526</a></span></div>
+      <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Plaza de Armas 561 — <a href="tel:+560228323888">+56 2 2832 3888</a></span></div>
+      <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Serrano 501 — <a href="tel:+560228311552">+56 2 2831 1552</a></span></div>
+      <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Ortúzar 691 — <a href="tel:+560228323157">+56 2 2832 3157</a></span></div>
+      <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Plaza de Armas 468 — <a href="tel:+560228321955">+56 2 2832 1955</a></span></div>
+      <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>El Bollenar, Anselmo Alarcón 175 — <a href="tel:+560224080528">+56 2 2408 0528</a></span></div>
+    </div>
+  </section>
+
+  <!-- ═══ MAPA GENERAL ═══ -->
+  <section id="mapa" aria-labelledby="titulo-mapa">
+    <div class="section-title">
+      <div class="section-icon ic-verde">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+      </div>
+      <div>
+        <h2 id="titulo-mapa">Melipilla en el mapa</h2>
+        <p>Vista general de la ciudad</p>
+      </div>
+    </div>
+    <div class="map-embed">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26419.432!2d-71.2198!3d-33.6923!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9661e7e0b3b9e8b1%3A0x6d9b7a4e1c8a3d7f!2sMelipilla%2C+Regi%C3%B3n+Metropolitana!5e0!3m2!1ses!2scl!4v1"
+        allowfullscreen=""
+        loading="lazy"
+        title="Mapa de Melipilla"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <p style="font-size:12px;color:var(--texto-suave);margin-top:.5rem;text-align:center">
+      <a href="https://maps.google.com/?q=Melipilla+Chile" target="_blank" rel="noopener" style="color:var(--verde-claro)">Abrir en Google Maps ↗</a>
+    </p>
+  </section>
+
+  <!-- ═══ LINKS ÚTILES ═══ -->
+  <section aria-labelledby="titulo-links">
+    <div class="section-title">
+      <div class="section-icon" style="background:#F0EDE8;color:#5A5A5A">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+      </div>
+      <div>
+        <h2 id="titulo-links">Otros servicios útiles</h2>
+        <p>Sitios oficiales de la comuna</p>
+      </div>
+    </div>
+    <div class="turno-links">
+      <a class="turno-link" href="https://www.melipilla.cl" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        Municipalidad de Melipilla
+      </a>
+      <a class="turno-link" href="https://corpomelipilla.cl/salud/" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        CORPO Melipilla — Salud
+      </a>
+      <a class="turno-link" href="https://www.fonasa.cl" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        FONASA Chile
+      </a>
+      <a class="turno-link" href="https://apps.odepa.gob.cl/powerBI/reporte_ferias_libres.html" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        Localizador Ferias ODEPA
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <p><strong>Melipilla — Guía para recién llegados</strong></p>
+  <p style="margin-top:.4rem">Para emergencias siempre llama al <strong>133</strong> (Carabineros) · <strong>131</strong> (SAMU) · <strong>130</strong> (Bomberos)</p>
+  <p style="margin-top:.75rem">
+    <a href="https://www.melipilla.cl" target="_blank" rel="noopener">melipilla.cl</a> ·
+    <a href="https://corpomelipilla.cl" target="_blank" rel="noopener">corpomelipilla.cl</a>
+  </p>
+  <p style="margin-top:.75rem;font-size:11px">Información de carácter orientativo. Verifica horarios y datos directamente con cada institución. Última revisión: junio 2026.</p>
+</footer>
+
+<script>
+  // Navegación activa al hacer scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
