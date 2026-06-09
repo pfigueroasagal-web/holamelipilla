@@ -487,6 +487,87 @@
     @media (prefers-reduced-motion: reduce) {
       * { transition: none !important; }
     }
+
+    /* ─── DONACIONES ─── */
+    .donation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: .65rem;
+      margin-top: 1rem;
+    }
+    .don-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      background: #fff;
+      border: 2px solid var(--borde);
+      border-radius: var(--radio);
+      padding: .9rem .75rem;
+      text-decoration: none;
+      color: var(--texto);
+      font-weight: 600;
+      font-size: 1rem;
+      transition: border-color .15s, box-shadow .15s, background .15s;
+    }
+    .don-btn:hover {
+      border-color: #009EE3;
+      box-shadow: 0 4px 16px rgba(0,158,227,.15);
+      background: #F0F9FF;
+    }
+    .don-btn .don-label { font-size: 11px; font-weight: 500; color: var(--texto-suave); }
+    .don-btn .don-emoji { font-size: 1.3rem; }
+
+    /* ─── FORMULARIO ─── */
+    .form-group { margin-bottom: .85rem; }
+    .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--texto); margin-bottom: .35rem; }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: .65rem .85rem;
+      border: 1px solid var(--borde);
+      border-radius: var(--radio-sm);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--texto);
+      background: #fff;
+      transition: border-color .15s;
+      resize: vertical;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--verde-claro);
+      box-shadow: 0 0 0 3px rgba(29,158,117,.1);
+    }
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--verde);
+      color: #fff;
+      border: none;
+      border-radius: var(--radio-sm);
+      padding: .7rem 1.5rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .btn-submit:hover { background: var(--verde-claro); }
+    .form-msg {
+      display: none;
+      margin-top: .75rem;
+      padding: .75rem 1rem;
+      border-radius: var(--radio-sm);
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .form-msg.ok { background: var(--verde-suave); color: var(--verde); display: block; }
+    .form-msg.err { background: var(--terracota-suave); color: var(--terracota); display: block; }
   </style>
 </head>
 <body>
@@ -514,6 +595,14 @@
     <li><a href="#mapa">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
       Mapa general
+    </a></li>
+    <li><a href="#donaciones">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      Apoyar
+    </a></li>
+    <li><a href="#sugerencias">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      Sugerencias
     </a></li>
   </ul>
 </nav>
@@ -561,82 +650,216 @@
       </div>
     </div>
 
-    <div class="cards">
+    <div class="cards cards-2">
+
+      <!-- Avenida Chile -->
       <div class="card">
         <div class="card-head">
           <div class="card-icon ic-verde">🛒</div>
           <div>
-            <h3>Feria libre central de Melipilla</h3>
-            <div class="sub">La más grande de la comuna</div>
+            <h3>Feria Avenida Chile</h3>
+            <div class="sub">Melipilla centro</div>
           </div>
         </div>
         <div class="info-row">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <div>
-            <div class="dias">
-              <span class="dia">Martes</span>
-              <span class="dia">Jueves</span>
-              <span class="dia">Sábado</span>
-              <span class="dia">Domingo</span>
-            </div>
-            <div style="margin-top:4px">07:00 – 14:00 hrs aprox.</div>
-          </div>
+          <div><div class="dias"><span class="dia">Sábado</span></div><div style="margin-top:4px">07:00 – 14:00</div></div>
         </div>
         <div class="info-row">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>Av. Chile esq. Alfonso Suárez, Melipilla centro</span>
+          <span>Avda. Chile · desde Avda. Cementerio hasta Ninhue</span>
         </div>
-        <a class="btn-map" href="https://maps.google.com/?q=Feria+libre+Melipilla+Av+Chile" target="_blank" rel="noopener">
+        <a class="btn-map" href="https://maps.google.com/?q=Avenida+Chile+Melipilla" target="_blank" rel="noopener">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
-          Ver en Google Maps
+          Ver en mapa
         </a>
       </div>
 
-      <div class="cards cards-2" style="margin-top:.85rem">
-        <div class="card">
-          <div class="card-head">
-            <div class="card-icon ic-verde">🌿</div>
-            <div>
-              <h3>Feria de Pomaire</h3>
-              <div class="sub">Cerca de la artesanía en greda</div>
-            </div>
-          </div>
-          <div class="info-row">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <div><div class="dias"><span class="dia">Viernes</span></div><div style="margin-top:4px">Mañanas</div></div>
-          </div>
-          <div class="info-row">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>Pomaire, Melipilla</span>
-          </div>
-          <a class="btn-map" href="https://maps.google.com/?q=Pomaire+Melipilla+Chile" target="_blank" rel="noopener">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
-            Ver en mapa
-          </a>
-        </div>
-
-        <div class="card">
-          <div class="card-head">
-            <div class="card-icon ic-verde">🌾</div>
-            <div>
-              <h3>Feria de Bollenar y Carmen Bajo</h3>
-              <div class="sub">Sectores rurales</div>
-            </div>
-          </div>
-          <div class="info-row">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <div><div class="dias"><span class="dia">Viernes</span></div><div style="margin-top:4px">Mañanas</div></div>
-          </div>
-          <div class="info-row">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>El Bollenar / Carmen Bajo, Melipilla</span>
+      <!-- Bollenar Agricultores -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon ic-verde">🌾</div>
+          <div>
+            <h3>Feria Bollenar Agricultores</h3>
+            <div class="sub">Sector El Bollenar</div>
           </div>
         </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div><div class="dias"><span class="dia">Viernes</span><span class="dia">Domingo</span></div><div style="margin-top:4px">07:00 – 14:00</div></div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Plaza de Bollenar · desde Los Maquis</span>
+        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=Plaza+de+Bollenar+Melipilla" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
       </div>
 
-      <div class="nota">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <span>Para ver todas las ferias libres de Chile con mapa interactivo, consulta el <a href="https://apps.odepa.gob.cl/powerBI/reporte_ferias_libres.html" target="_blank" rel="noopener">Localizador ODEPA</a> — incluye días, horarios y cantidad de puestos.</span>
+      <!-- Codigua -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon ic-verde">🌿</div>
+          <div>
+            <h3>Feria Codigua</h3>
+            <div class="sub">Sector Codigua</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div><div class="dias"><span class="dia">Sábado</span></div><div style="margin-top:4px">07:00 – 14:00</div></div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Los Álamos, Codigua</span>
+        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=Codigua+Melipilla" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
+      </div>
+
+      <!-- Culipran -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon ic-verde">🌿</div>
+          <div>
+            <h3>Feria Culiprán</h3>
+            <div class="sub">Sector Culiprán</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div><div class="dias"><span class="dia">Sábado</span></div><div style="margin-top:4px">07:00 – 14:00</div></div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Las Palmeras de Culiprán</span>
+        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=Culipran+Melipilla" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
+      </div>
+
+      <!-- Manuel Rodriguez -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon ic-verde">🛒</div>
+          <div>
+            <h3>Feria Manuel Rodríguez</h3>
+            <div class="sub">Melipilla centro</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div><div class="dias"><span class="dia">Martes</span></div><div style="margin-top:4px">07:00 – 14:00</div></div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Manuel Rodríguez · desde Vicuña Mackenna hasta Ugalde</span>
+        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=Manuel+Rodriguez+Melipilla" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
+      </div>
+
+      <!-- Merced -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon ic-verde">🛒</div>
+          <div>
+            <h3>Feria Merced</h3>
+            <div class="sub">Melipilla centro</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div><div class="dias"><span class="dia">Domingo</span></div><div style="margin-top:4px">07:00 – 14:00</div></div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Merced · desde Lago Puyehue hasta 3 Poniente</span>
+        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=Calle+Merced+Melipilla" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
+      </div>
+
+      <!-- Pomaire -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon ic-verde">🏺</div>
+          <div>
+            <h3>Feria Pomaire</h3>
+            <div class="sub">Pueblo artesanal</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div><div class="dias"><span class="dia">Viernes</span></div><div style="margin-top:4px">07:00 – 14:00</div></div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Rafael Morandé · desde 18 de Septiembre hasta Caupolicán</span>
+        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=Pomaire+Melipilla+Chile" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
+      </div>
+
+      <!-- Villa Los Toros -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon ic-verde">🛒</div>
+          <div>
+            <h3>Feria Villa Los Toros</h3>
+            <div class="sub">Sector Villa Los Toros</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div><div class="dias"><span class="dia">Miércoles</span></div><div style="margin-top:4px">07:00 – 14:00</div></div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Policarpo Toro · desde Vicuña Mackenna hasta Merced</span>
+        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=Policarpo+Toro+Melipilla" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
+      </div>
+
+    </div>
+
+      <!-- Mapa ferias con Leaflet -->
+      <div style="margin-top:1.25rem">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:.6rem">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--verde);flex-shrink:0"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+          <span style="font-size:13px;font-weight:600;color:var(--texto)">Ferias libres en el mapa</span>
+          <span style="font-size:11px;color:var(--texto-suave);margin-left:4px">· haz clic en un pin para ver detalles</span>
+        </div>
+
+        <!-- Leyenda de días -->
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:.6rem;font-size:11px">
+          <span style="display:inline-flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:50%;background:#E53935;display:inline-block"></span>Domingo</span>
+          <span style="display:inline-flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:50%;background:#1E88E5;display:inline-block"></span>Sábado</span>
+          <span style="display:inline-flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:50%;background:#8E24AA;display:inline-block"></span>Viernes / Vie+Dom</span>
+          <span style="display:inline-flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:50%;background:#43A047;display:inline-block"></span>Martes</span>
+          <span style="display:inline-flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:50%;background:#F4511E;display:inline-block"></span>Miércoles</span>
+        </div>
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <div id="mapa-ferias" style="height:380px;border-radius:var(--radio);border:1px solid var(--borde);overflow:hidden;z-index:0"></div>
+        <p style="font-size:11px;color:var(--texto-suave);margin-top:.4rem;text-align:center">
+          Coordenadas aproximadas · <a href="https://apps.odepa.gob.cl/powerBI/reporte_ferias_libres.html" target="_blank" rel="noopener" style="color:var(--verde-claro)">Ver fuente ODEPA ↗</a>
+        </p>
       </div>
     </div>
   </section>
@@ -748,6 +971,50 @@
 
       <div class="card">
         <div class="card-head">
+          <div class="card-icon ic-azul">🚑</div>
+          <div>
+            <h3>SAR Elsa Romo Aravena</h3>
+            <div class="sub">SAPU de Alta Resolutividad · urgencias leves</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Melipilla</span>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Urgencias de baja complejidad las 24 hrs · sin necesidad de hora previa</span>
+        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=SAR+Elsa+Romo+Aravena+Melipilla" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon ic-azul">🏥</div>
+          <div>
+            <h3>CESFAM Florencia</h3>
+            <div class="sub">FONASA — atención familiar</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Melipilla</span>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          <span><a href="https://www.facebook.com/p/Cesfam-Florencia-100095248217085/" target="_blank" rel="noopener">Facebook CESFAM Florencia</a></span>
+        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=CESFAM+Florencia+Melipilla" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
           <div class="card-icon ic-azul">🏥</div>
           <div>
             <h3>CES Ignacio Carrera Pinto</h3>
@@ -767,6 +1034,47 @@
           Ver en mapa
         </a>
       </div>
+    </div>
+
+    <!-- Hospital -->
+    <div class="card" style="margin-top:.85rem;border-left:3px solid var(--azul)">
+      <div class="card-head">
+        <div class="card-icon ic-azul">🏨</div>
+        <div>
+          <h3>Hospital de Melipilla</h3>
+          <div class="sub">Urgencias y hospitalización · atención 24 hrs</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>O'Higgins 551, Melipilla</span>
+      </div>
+      <div class="info-row">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg>
+        <span><a href="tel:+56229581543">2 2958 1543</a> &middot; Urgencias: <a href="tel:131" style="color:var(--terracota);font-weight:700">131 SAMU</a></span>
+      </div>
+      <a class="btn-map" href="https://maps.google.com/?q=O+Higgins+551+Melipilla" target="_blank" rel="noopener">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+        Ver en mapa
+      </a>
+    </div>
+
+    <!-- Mapa centros de salud -->
+    <div style="margin-top:1.25rem">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:.6rem">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--azul);flex-shrink:0"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+        <span style="font-size:13px;font-weight:600;color:var(--texto)">Centros de salud en el mapa</span>
+        <span style="font-size:11px;color:var(--texto-suave);margin-left:4px">· haz clic en un pin para ver detalles</span>
+      </div>
+
+      <!-- Leyenda -->
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:.6rem;font-size:11px">
+        <span style="display:inline-flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:50%;background:#1A5FA8;display:inline-block"></span>CESFAM / CES</span>
+        <span style="display:inline-flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:50%;background:#C4572A;display:inline-block"></span>Hospital / Urgencias</span>
+        <span style="display:inline-flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:50%;background:#A06A0A;display:inline-block"></span>SAR (SAPU Alta Resolutividad)</span>
+      </div>
+
+      <div id="mapa-salud" style="height:380px;border-radius:var(--radio);border:1px solid var(--borde);overflow:hidden;z-index:0"></div>
     </div>
 
     <div class="nota" style="margin-top:.85rem">
@@ -944,16 +1252,25 @@
     </div>
     <div class="map-embed">
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26419.432!2d-71.2198!3d-33.6923!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9661e7e0b3b9e8b1%3A0x6d9b7a4e1c8a3d7f!2sMelipilla%2C+Regi%C3%B3n+Metropolitana!5e0!3m2!1ses!2scl!4v1"
+        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13212.0!2d-71.2130!3d-33.6890!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2scl!4v1"
         allowfullscreen=""
         loading="lazy"
         title="Mapa de Melipilla"
         referrerpolicy="no-referrer-when-downgrade">
       </iframe>
     </div>
-    <p style="font-size:12px;color:var(--texto-suave);margin-top:.5rem;text-align:center">
-      <a href="https://maps.google.com/?q=Melipilla+Chile" target="_blank" rel="noopener" style="color:var(--verde-claro)">Abrir en Google Maps ↗</a>
-    </p>
+    <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.75rem;justify-content:center">
+      <a href="https://maps.google.com/?q=Melipilla+Chile" target="_blank" rel="noopener" style="font-size:12px;color:var(--verde-claro);text-decoration:none;display:inline-flex;align-items:center;gap:4px">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+        Abrir Melipilla ↗
+      </a>
+      <span style="color:var(--borde);font-size:12px">·</span>
+      <a href="https://maps.google.com/?q=CESFAM+Melipilla" target="_blank" rel="noopener" style="font-size:12px;color:var(--azul);text-decoration:none">Centros de salud ↗</a>
+      <span style="color:var(--borde);font-size:12px">·</span>
+      <a href="https://maps.google.com/?q=ferias+libres+Melipilla" target="_blank" rel="noopener" style="font-size:12px;color:var(--verde);text-decoration:none">Ferias libres ↗</a>
+      <span style="color:var(--borde);font-size:12px">·</span>
+      <a href="https://maps.google.com/?q=farmacia+Melipilla" target="_blank" rel="noopener" style="font-size:12px;color:var(--ambar);text-decoration:none">Farmacias ↗</a>
+    </div>
   </section>
 
   <!-- ═══ LINKS ÚTILES ═══ -->
@@ -987,6 +1304,96 @@
     </div>
   </section>
 
+
+  <!-- ═══ DONACIONES ═══ -->
+  <section id="donaciones" aria-labelledby="titulo-donaciones">
+    <div class="section-title">
+      <div class="section-icon" style="background:#FFF0F5;color:#C4457A">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      </div>
+      <div>
+        <h2 id="titulo-donaciones">Apoyar este proyecto</h2>
+        <p>Guía gratuita, mantenida con voluntad y café</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon" style="background:#FFF0F5;color:#C4457A;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;">💛</div>
+        <div>
+          <h3>Elige cuánto aportar</h3>
+          <div class="sub">Pago seguro con Mercado Pago — tarjeta, transferencia o billetera digital</div>
+        </div>
+      </div>
+      <div class="donation-grid">
+        <a class="don-btn" href="https://mpago.li/1uWDgRX" target="_blank" rel="noopener">
+          <span class="don-emoji">☕</span>
+          <span>$1.000</span>
+          <span class="don-label">Un café</span>
+        </a>
+        <a class="don-btn" href="https://mpago.li/1XLfJSj" target="_blank" rel="noopener">
+          <span class="don-emoji">👍</span>
+          <span>$2.500</span>
+          <span class="don-label">Apoyo</span>
+        </a>
+        <a class="don-btn" href="https://mpago.li/1ok8dw5" target="_blank" rel="noopener">
+          <span class="don-emoji">⭐</span>
+          <span>$5.000</span>
+          <span class="don-label">Gracias</span>
+        </a>
+        <a class="don-btn" href="https://mpago.li/1RhQ4tB" target="_blank" rel="noopener">
+          <span class="don-emoji">💎</span>
+          <span>$10.000</span>
+          <span class="don-label">Héroe</span>
+        </a>
+      </div>
+      <p style="font-size:12px;color:var(--texto-suave);margin-top:.85rem;text-align:center">
+        Cada aporte ayuda a mantener la información actualizada y el sitio en línea. ¡Gracias!
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══ SUGERENCIAS ═══ -->
+  <section id="sugerencias" aria-labelledby="titulo-sugerencias">
+    <div class="section-title">
+      <div class="section-icon" style="background:#EEF0FE;color:#534AB7">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      </div>
+      <div>
+        <h2 id="titulo-sugerencias">Sugerencias o correcciones</h2>
+        <p>¿Falta información o hay algo desactualizado?</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <form id="formSugerencia" action="https://formspree.io/f/mwpbqkbn" method="POST" novalidate>
+        <div class="form-group">
+          <label for="tipo">Tipo de sugerencia</label>
+          <select id="tipo" name="tipo" required>
+            <option value="">Selecciona una opción…</option>
+            <option value="dato-incorrecto">Dato incorrecto o desactualizado</option>
+            <option value="falta-informacion">Falta información importante</option>
+            <option value="nuevo-servicio">Agregar un nuevo servicio</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="4" placeholder="Descríbenos qué cambiar o agregar…" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="email">Tu correo (opcional, solo si quieres respuesta)</label>
+          <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.cl">
+        </div>
+        <button type="submit" class="btn-submit">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Enviar sugerencia
+        </button>
+        <div class="form-msg" id="formMsg"></div>
+      </form>
+    </div>
+  </section>
+
 </main>
 
 <!-- ─── FOOTER ─── -->
@@ -1016,6 +1423,131 @@
   }, { rootMargin: '-40% 0px -55% 0px' });
 
   sections.forEach(s => observer.observe(s));
+
+  // ── Mapa de ferias con Leaflet ──
+  (function() {
+    var script = document.createElement('script');
+    script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+    script.onload = function() {
+      var map = L.map('mapa-ferias', { scrollWheelZoom: false }).setView([-33.6890, -71.2130], 13);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        maxZoom: 18
+      }).addTo(map);
+
+      function pin(color) {
+        return L.divIcon({
+          className: '',
+          html: '<div style="width:14px;height:14px;border-radius:50%;background:' + color + ';border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4)"></div>',
+          iconSize: [14, 14],
+          iconAnchor: [7, 7],
+          popupAnchor: [0, -10]
+        });
+      }
+
+      var ferias = [
+        { lat: -33.6838, lng: -71.2178, nombre: 'Feria Avenida Chile',        dias: 'Sábado',             horario: '07:00 – 14:00', color: '#1E88E5' },
+        { lat: -33.6560, lng: -71.2560, nombre: 'Feria Bollenar Agricultores',dias: 'Viernes y Domingo',  horario: '07:00 – 14:00', color: '#8E24AA' },
+        { lat: -33.7100, lng: -71.1700, nombre: 'Feria Codigua',              dias: 'Sábado',             horario: '07:00 – 14:00', color: '#1E88E5' },
+        { lat: -33.7450, lng: -71.1350, nombre: 'Feria Culiprán',             dias: 'Sábado',             horario: '07:00 – 14:00', color: '#1E88E5' },
+        { lat: -33.6920, lng: -71.2095, nombre: 'Feria Manuel Rodríguez',     dias: 'Martes',             horario: '07:00 – 14:00', color: '#43A047' },
+        { lat: -33.6945, lng: -71.2060, nombre: 'Feria Merced',               dias: 'Domingo',            horario: '07:00 – 14:00', color: '#E53935' },
+        { lat: -33.6480, lng: -71.1600, nombre: 'Feria Pomaire',              dias: 'Viernes',            horario: '07:00 – 14:00', color: '#8E24AA' },
+        { lat: -33.6975, lng: -71.2110, nombre: 'Feria Villa Los Toros',      dias: 'Miércoles',          horario: '07:00 – 14:00', color: '#F4511E' }
+      ];
+
+      ferias.forEach(function(f) {
+        L.marker([f.lat, f.lng], { icon: pin(f.color) })
+          .addTo(map)
+          .bindPopup(
+            '<strong style="font-size:13px">' + f.nombre + '</strong><br>' +
+            '<span style="font-size:12px;color:#555">📅 ' + f.dias + '</span><br>' +
+            '<span style="font-size:12px;color:#555">🕖 ' + f.horario + '</span>'
+          );
+      });
+    };
+    document.head.appendChild(script);
+  })();
+
+  // ── Mapa de centros de salud con Leaflet ──
+  (function() {
+    function initMapaSalud() {
+      if (!window.L || !document.getElementById('mapa-salud')) {
+        setTimeout(initMapaSalud, 200);
+        return;
+      }
+      var map = L.map('mapa-salud', { scrollWheelZoom: false }).setView([-33.692, -71.213], 13);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        maxZoom: 18
+      }).addTo(map);
+
+      function pin(color, letra) {
+        return L.divIcon({
+          className: '',
+          html: '<div style="width:28px;height:28px;border-radius:50%;background:' + color + ';border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;font-weight:700">' + letra + '</div>',
+          iconSize: [28, 28],
+          iconAnchor: [14, 14],
+          popupAnchor: [0, -16]
+        });
+      }
+
+      var centros = [
+        { lat: -33.6842, lng: -71.2230, nombre: 'CESFAM Dr. Edelberto Elgueta',        tipo: 'CESFAM', dir: 'Arza 1576', tel: '800 432 777', color: '#1A5FA8', letra: '+' },
+        { lat: -33.6960, lng: -71.2050, nombre: 'CESFAM Dr. Francisco Boris Soler',    tipo: 'CESFAM', dir: 'Silvia Ch\u00e1vez 1650', tel: '2 2821 8350', color: '#1A5FA8', letra: '+' },
+        { lat: -33.7300, lng: -71.2500, nombre: 'CESFAM San Manuel',                   tipo: 'CESFAM rural', dir: 'Camino San Manuel S/N', tel: '2 2574 5500', color: '#1A5FA8', letra: '+' },
+        { lat: -33.6470, lng: -71.1590, nombre: 'CESFAM Alfarera Rosa Reyes Vilches',  tipo: 'CESFAM · Pomaire', dir: 'Artesana Julita Vera 354', tel: '2 2832 4965', color: '#1A5FA8', letra: '+' },
+        { lat: -33.6930, lng: -71.2140, nombre: 'SAR Elsa Romo Aravena',               tipo: 'SAPU Alta Resolutividad 24 hrs', dir: 'Melipilla', tel: '', color: '#A06A0A', letra: 'S' },
+        { lat: -33.6880, lng: -71.2160, nombre: 'CESFAM Florencia',                    tipo: 'CESFAM', dir: 'Melipilla', tel: '', color: '#1A5FA8', letra: '+' },
+        { lat: -33.6910, lng: -71.2080, nombre: 'CES Ignacio Carrera Pinto',           tipo: 'Centro de salud comunal', dir: 'Ignacio Carrera Pinto 606', tel: '2 2800 0401', color: '#1A5FA8', letra: '+' },
+        { lat: -33.6900, lng: -71.2115, nombre: 'Hospital de Melipilla',               tipo: 'Hospital · Urgencias 24 hrs', dir: "O'Higgins 551", tel: '2 2958 1543', color: '#C4572A', letra: 'H' }
+      ];
+
+      centros.forEach(function(c) {
+        var tel = c.tel ? '<br><span style="font-size:12px;color:#555">&#128222; ' + c.tel + '</span>' : '';
+        L.marker([c.lat, c.lng], { icon: pin(c.color, c.letra) })
+          .addTo(map)
+          .bindPopup(
+            '<strong style="font-size:13px">' + c.nombre + '</strong><br>' +
+            '<span style="font-size:12px;color:#555">&#127973; ' + c.tipo + '</span><br>' +
+            '<span style="font-size:12px;color:#555">&#128205; ' + c.dir + '</span>' + tel
+          );
+      });
+    }
+    initMapaSalud();
+  })();
+
+  // Formulario Formspree (AJAX)
+  const form = document.getElementById('formSugerencia');
+  const msg  = document.getElementById('formMsg');
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('.btn-submit');
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          msg.textContent = '✓ ¡Gracias! Tu sugerencia fue enviada.';
+          msg.className = 'form-msg ok';
+          form.reset();
+        } else {
+          throw new Error();
+        }
+      } catch {
+        msg.textContent = '✗ No se pudo enviar. Intenta de nuevo o escríbenos directamente.';
+        msg.className = 'form-msg err';
+      }
+      btn.disabled = false;
+      btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Enviar sugerencia';
+    });
+  }
 </script>
 
 </body>
