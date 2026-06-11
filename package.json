@@ -1,0 +1,23 @@
+{
+  "name": "holamelipilla",
+  "version": "1.0.0",
+  "description": "Guía completa de servicios para vivir en Melipilla",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"No tests configured\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pfigueroasagal-web/holamelipilla.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pfigueroasagal-web/holamelipilla/issues"
+  },
+  "homepage": "https://github.com/pfigueroasagal-web/holamelipilla#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
