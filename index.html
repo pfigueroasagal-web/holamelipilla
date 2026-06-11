@@ -1352,6 +1352,28 @@
           <span>Melipilla</span>
         </div>
       </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon" style="background:#FDF3DC;color:#A06A0A;">🏫</div>
+          <div>
+            <h3>Colegio Sayen de Melipilla</h3>
+            <div class="sub">Educación básica</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Santa Elena 946-998, Melipilla</span>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg>
+          <span><a href="tel:+56983274514">9 8327 4514</a></span>
+        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=Colegio+Sayen+Melipilla" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
+      </div>
     </div>
 
     <!-- Mapa colegios con Leaflet -->
@@ -1631,14 +1653,14 @@
       }
 
       var ferias = [
-        { lat: -33.6838, lng: -71.2178, nombre: 'Feria Avenida Chile',        dias: 'Sábado',             horario: '07:00 – 14:00', color: '#1E88E5' },
-        { lat: -33.6560, lng: -71.2560, nombre: 'Feria Bollenar Agricultores',dias: 'Viernes y Domingo',  horario: '07:00 – 14:00', color: '#8E24AA' },
-        { lat: -33.7100, lng: -71.1700, nombre: 'Feria Codigua',              dias: 'Sábado',             horario: '07:00 – 14:00', color: '#1E88E5' },
-        { lat: -33.7450, lng: -71.1350, nombre: 'Feria Culiprán',             dias: 'Sábado',             horario: '07:00 – 14:00', color: '#1E88E5' },
-        { lat: -33.6920, lng: -71.2095, nombre: 'Feria Manuel Rodríguez',     dias: 'Martes',             horario: '07:00 – 14:00', color: '#43A047' },
-        { lat: -33.6945, lng: -71.2060, nombre: 'Feria Merced',               dias: 'Domingo',            horario: '07:00 – 14:00', color: '#E53935' },
-        { lat: -33.6480, lng: -71.1600, nombre: 'Feria Pomaire',              dias: 'Viernes',            horario: '07:00 – 14:00', color: '#8E24AA' },
-        { lat: -33.6975, lng: -71.2110, nombre: 'Feria Villa Los Toros',      dias: 'Miércoles',          horario: '07:00 – 14:00', color: '#F4511E' }
+        { lat: -33.6973, lng: -71.2156, nombre: 'Feria Avenida Chile',        dias: 'Sábado',             horario: '07:00 – 14:00', color: '#1E88E5' },
+        { lat: -33.6782, lng: -71.1867, nombre: 'Feria Bollenar Agricultores',dias: 'Viernes y Domingo',  horario: '07:00 – 14:00', color: '#8E24AA' },
+        { lat: -33.7574, lng: -71.3258, nombre: 'Feria Codigua',              dias: 'Sábado',             horario: '07:00 – 14:00', color: '#1E88E5' },
+        { lat: -33.7913, lng: -71.2521, nombre: 'Feria Culiprán',             dias: 'Sábado',             horario: '07:00 – 14:00', color: '#1E88E5' },
+        { lat: -33.6816, lng: -71.2011, nombre: 'Feria Manuel Rodríguez',     dias: 'Martes',             horario: '07:00 – 14:00', color: '#43A047' },
+        { lat: -33.6815, lng: -71.2293, nombre: 'Feria Merced',               dias: 'Domingo',            horario: '07:00 – 14:00', color: '#E53935' },
+        { lat: -33.6514, lng: -71.1484, nombre: 'Feria Pomaire',              dias: 'Viernes',            horario: '07:00 – 14:00', color: '#8E24AA' },
+        { lat: -33.6825, lng: -71.2242, nombre: 'Feria Villa Los Toros',      dias: 'Miércoles',          horario: '07:00 – 14:00', color: '#F4511E' }
       ];
 
       ferias.forEach(function(f) {
@@ -1678,14 +1700,14 @@
       }
 
       var centros = [
-        { lat: -33.6842, lng: -71.2230, nombre: 'CESFAM Dr. Edelberto Elgueta',        tipo: 'CESFAM', dir: 'Arza 1576', tel: '800 432 777', color: '#1A5FA8', letra: '+' },
-        { lat: -33.6960, lng: -71.2050, nombre: 'CESFAM Dr. Francisco Boris Soler',    tipo: 'CESFAM', dir: 'Silvia Ch\u00e1vez 1650', tel: '2 2821 8350', color: '#1A5FA8', letra: '+' },
-        { lat: -33.7300, lng: -71.2500, nombre: 'CESFAM San Manuel',                   tipo: 'CESFAM rural', dir: 'Camino San Manuel S/N', tel: '2 2574 5500', color: '#1A5FA8', letra: '+' },
-        { lat: -33.6470, lng: -71.1590, nombre: 'CESFAM Alfarera Rosa Reyes Vilches',  tipo: 'CESFAM · Pomaire', dir: 'Artesana Julita Vera 354', tel: '2 2832 4965', color: '#1A5FA8', letra: '+' },
-        { lat: -33.6930, lng: -71.2140, nombre: 'SAR Elsa Romo Aravena',               tipo: 'SAPU Alta Resolutividad 24 hrs', dir: 'Melipilla', tel: '', color: '#A06A0A', letra: 'S' },
-        { lat: -33.6880, lng: -71.2160, nombre: 'CESFAM Florencia',                    tipo: 'CESFAM', dir: 'Melipilla', tel: '', color: '#1A5FA8', letra: '+' },
-        { lat: -33.6910, lng: -71.2080, nombre: 'CES Ignacio Carrera Pinto',           tipo: 'Centro de salud comunal', dir: 'Ignacio Carrera Pinto 606', tel: '2 2800 0401', color: '#1A5FA8', letra: '+' },
-        { lat: -33.6900, lng: -71.2115, nombre: 'Hospital de Melipilla',               tipo: 'Hospital · Urgencias 24 hrs', dir: "O'Higgins 551", tel: '2 2958 1543', color: '#C4572A', letra: 'H' }
+        { lat: -33.6816, lng: -71.2259, nombre: 'CESFAM Dr. Edelberto Elgueta',        tipo: 'CESFAM', dir: 'Arza 1576', tel: '800 432 777', color: '#1A5FA8', letra: '+' },
+        { lat: -33.7005, lng: -71.2178, nombre: 'CESFAM Dr. Francisco Boris Soler',    tipo: 'CESFAM', dir: 'Silva Chávez 1650', tel: '2 2821 8350', color: '#1A5FA8', letra: '+' },
+        { lat: -33.7733, lng: -71.2577, nombre: 'CESFAM San Manuel',                   tipo: 'CESFAM rural', dir: 'G-668 604, Melipilla', tel: '2 2574 5500', color: '#1A5FA8', letra: '+' },
+        { lat: -33.6498, lng: -71.1505, nombre: 'CESFAM Alfarera Rosa Reyes Vilches',  tipo: 'CESFAM · Pomaire', dir: 'Artesana Julieta Vera, Pomaire', tel: '2 2832 4965', color: '#1A5FA8', letra: '+' },
+        { lat: -33.6924, lng: -71.2231, nombre: 'SAR Elsa Romo Aravena',               tipo: 'SAPU Alta Resolutividad 24 hrs', dir: 'Real Audiencia 980', tel: '', color: '#A06A0A', letra: 'S' },
+        { lat: -33.6823, lng: -71.2342, nombre: 'CESFAM Florencia',                    tipo: 'CESFAM', dir: 'Av. Libertad 1923', tel: '2 2568 8141', color: '#1A5FA8', letra: '+' },
+        { lat: -33.6789, lng: -71.2069, nombre: 'CECOSF Padre Demetrio',               tipo: 'Centro comunitario de salud familiar', dir: 'Ignacio Carrera Pinto 606', tel: '2 2800 0401', color: '#1A5FA8', letra: '+' },
+        { lat: -33.6952, lng: -71.2152, nombre: 'Hospital San José de Melipilla',      tipo: 'Hospital · Urgencias 24 hrs', dir: "O'Higgins 551", tel: '2 2958 1543', color: '#C4572A', letra: 'H' }
       ];
 
       centros.forEach(function(c) {
@@ -1726,10 +1748,13 @@
       }
 
       var colegios = [
-        { lat: -33.6920, lng: -71.2095, nombre: 'Liceo Enrique Comptois Müller',  tipo: 'Municipal · Enseñanza media', dir: 'Av. Manuel Rodríguez 560', tel: '2 2831 4400', color: '#1A5FA8', letra: 'L' },
-        { lat: -33.6890, lng: -71.2160, nombre: 'Escuela Básica Gabriela Mistral', tipo: 'Municipal · Pre-kínder a 8° básico', dir: 'Melipilla', tel: '', color: '#1A5FA8', letra: 'E' },
-        { lat: -33.6870, lng: -71.2100, nombre: 'Colegio San Francisco de Asís',   tipo: 'Part. subvencionado · Prebásica a media', dir: 'Melipilla', tel: '', color: '#A06A0A', letra: 'C' },
-        { lat: -33.6950, lng: -71.2080, nombre: 'Colegio Santa Filomena',          tipo: 'Part. subvencionado · Básica y media', dir: 'Melipilla', tel: '', color: '#A06A0A', letra: 'C' }
+        { lat: -33.6810, lng: -71.2003, nombre: 'Liceo Politécnico Municipal Melipilla', tipo: 'Municipal · Enseñanza media técnico-profesional', dir: 'Av. Vicuña Mackenna 0383', tel: '2 2831 2143', color: '#1A5FA8', letra: 'L' },
+        { lat: -33.6824, lng: -71.2134, nombre: 'Liceo Gabriela Mistral',                tipo: 'Municipal · Básica y media', dir: 'Serrano 101', tel: '9 5415 6915', color: '#1A5FA8', letra: 'L' },
+        { lat: -33.6851, lng: -71.2107, nombre: 'Liceo Politécnico Ntra. Sra. de la Presentación', tipo: 'Part. subvencionado · Media técnico-profesional', dir: 'Vargas 290', tel: '2 2832 3136', color: '#A06A0A', letra: 'L' },
+        { lat: -33.6889, lng: -71.2082, nombre: 'Colegio Santa Mónica',                  tipo: 'Part. subvencionado · Básica', dir: 'Pasaje Libertad 97', tel: '2 2832 4838', color: '#A06A0A', letra: 'C' },
+        { lat: -33.6803, lng: -71.1927, nombre: 'Colegio Balmaceda',                     tipo: 'Part. subvencionado · Básica y media', dir: 'Av. Vicuña Mackenna 777', tel: '2 2832 4610', color: '#A06A0A', letra: 'C' },
+        { lat: -33.6818, lng: -71.2134, nombre: 'Escuela Ignacio Serrano Montaner',      tipo: 'Municipal · Educación básica', dir: 'Serrano 121', tel: '', color: '#1A5FA8', letra: 'E' },
+        { lat: -33.6785, lng: -71.1890, nombre: 'Colegio Sayen de Melipilla',             tipo: 'Educación básica', dir: 'Santa Elena 946-998', tel: '9 8327 4514', color: '#A06A0A', letra: 'C' }
       ];
 
       colegios.forEach(function(c) {
