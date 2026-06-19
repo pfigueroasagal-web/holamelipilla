@@ -20,6 +20,7 @@
   <meta name="twitter:description" content="Farmacia de turno hoy en Melipilla, CESFAM, colegios, ferias libres y emergencias.">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"Hola Melipilla","url":"https://holamelipilla.cl/","description":"Guía de servicios esenciales para personas que llegan a vivir a Melipilla, Chile. Farmacia de turno hoy, CESFAM, colegios y emergencias.","inLanguage":"es-CL","about":{"@type":"Place","name":"Melipilla","address":{"@type":"PostalAddress","addressLocality":"Melipilla","addressRegion":"Región Metropolitana","addressCountry":"CL"}}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cuál es la farmacia de turno en Melipilla hoy?","acceptedAnswer":{"@type":"Answer","text":"El turno de farmacia en Melipilla cambia cada día. Consulta farmaciashoy.cl o farmaciasabiertas.cl para saber cuál está abierta hoy en Melipilla."}},{"@type":"Question","name":"¿Dónde está la Farmacia Cariño en Melipilla?","acceptedAnswer":{"@type":"Answer","text":"Farmacia Cariño se ubica en Ortúzar 399, Melipilla. Teléfono: 2 2831 5050."}}]}]}</script>
   <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💊</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -66,6 +67,23 @@
       align-items: center;
       gap: 0;
       box-shadow: 0 2px 8px rgba(0,0,0,.18);
+    }
+
+    .nav-scroll-wrapper {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .nav-scroll-wrapper::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 32px;
+      background: linear-gradient(to right, transparent, var(--verde));
+      pointer-events: none;
     }
 
     .nav-brand {
@@ -134,9 +152,9 @@
 
     /* ─── HERO ─── */
     .hero {
-      background: var(--verde);
+      background: linear-gradient(145deg, #0a4a30 0%, var(--verde) 55%, #1a7a52 100%);
       color: #fff;
-      padding: 4rem 1.5rem 3.5rem;
+      padding: 4.5rem 1.5rem 4rem;
       position: relative;
       overflow: hidden;
     }
@@ -146,6 +164,17 @@
       position: absolute;
       inset: 0;
       background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      right: -60px;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(255,255,255,.05) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -248,16 +277,16 @@
     main {
       max-width: 900px;
       margin: 0 auto;
-      padding: 2.5rem 1.5rem 4rem;
+      padding: 0 0 4rem;
     }
 
-    /* ─── SECCIONES ─── */
+    /* ─── SECCIONES con fondo alternado ─── */
     .section-title {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 1.25rem;
-      padding-bottom: .75rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: .85rem;
       border-bottom: 2px solid var(--crema-oscura);
     }
 
@@ -289,21 +318,36 @@
       margin-top: 1px;
     }
 
-    section { margin-bottom: 3.5rem; }
+    section {
+      padding: 3rem 1.5rem;
+      margin: 0;
+    }
+
+    section:nth-child(even) {
+      background: #fff;
+    }
+
+    section:nth-child(odd) {
+      background: var(--crema);
+    }
 
     /* ─── CARDS ─── */
-    .cards { display: grid; gap: .85rem; }
+    .cards { display: grid; gap: 1.1rem; }
     .cards-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
 
     .card {
       background: #fff;
       border: 1px solid var(--borde);
       border-radius: var(--radio);
-      padding: 1.1rem 1.25rem;
-      transition: box-shadow .18s;
+      padding: 1.4rem 1.5rem;
+      transition: box-shadow .2s, transform .2s, border-color .2s;
     }
 
-    .card:hover { box-shadow: 0 4px 18px rgba(0,0,0,.07); }
+    .card:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,.09);
+      transform: translateY(-2px);
+      border-color: #C8C2B8;
+    }
 
     .card-head {
       display: flex;
@@ -567,10 +611,14 @@
       background: #fff;
       border: 1px solid var(--borde);
       border-radius: var(--radio);
-      padding: 1rem 1.15rem;
-      transition: box-shadow .18s;
+      padding: 1.2rem 1.4rem;
+      transition: box-shadow .2s, transform .2s, border-color .2s;
     }
-    .farmacia-card:hover { box-shadow: 0 4px 18px rgba(0,0,0,.07); }
+    .farmacia-card:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,.09);
+      transform: translateY(-2px);
+      border-color: #C8C2B8;
+    }
     .farmacia-card h3 {
       font-family: 'Fraunces', serif;
       font-size: .95rem;
@@ -613,12 +661,17 @@
     /* ─── RESPONSIVE ─── */
     @media (max-width: 600px) {
       .hero { padding: 2.5rem 1rem 2rem; }
-      main { padding: 1.75rem 1rem 3rem; }
+      section { padding: 2rem 1rem; }
       .emg-grid { grid-template-columns: repeat(3, 1fr); }
     }
 
     @media (prefers-reduced-motion: reduce) {
       * { transition: none !important; }
+    }
+
+    .section-inner {
+      max-width: 900px;
+      margin: 0 auto;
     }
 
     /* ─── DONACIONES ─── */
@@ -650,6 +703,76 @@
     }
     .don-btn .don-label { font-size: 11px; font-weight: 500; color: var(--texto-suave); }
     .don-btn .don-emoji { font-size: 1.3rem; }
+
+    /* ─── TURNO DINÁMICO ─── */
+    .turno-resultado {
+      margin-top: .85rem;
+      padding: .85rem 1rem;
+      border-radius: var(--radio-sm);
+      border: 1px solid #E8D88A;
+      background: #FFFBEE;
+      font-size: 13.5px;
+      color: #5A3800;
+      display: none;
+    }
+    .turno-resultado.visible { display: block; }
+    .turno-resultado strong { font-size: 15px; color: #3D2500; display: block; margin-bottom: 3px; }
+    .turno-resultado .turno-dir { font-size: 12px; color: #7A5200; margin-top: 4px; }
+    .turno-loading {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12.5px;
+      color: #8B5E00;
+      margin-top: .85rem;
+    }
+    .turno-loading .spinner {
+      width: 14px; height: 14px;
+      border: 2px solid rgba(139,94,0,.25);
+      border-top-color: #8B5E00;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .badge-abierto {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      background: #D4F5E4;
+      color: #0A5C35;
+      border-radius: 10px;
+      padding: 2px 8px;
+      margin-left: 6px;
+    }
+    .badge-abierto::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+      animation: pulse-dot 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(.75); }
+    }
+    .badge-cerrado {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      background: #FAEEE8;
+      color: #C4572A;
+      border-radius: 10px;
+      padding: 2px 8px;
+      margin-left: 6px;
+    }
 
     /* ─── FORMULARIO ─── */
     .form-group { margin-bottom: .85rem; }
@@ -708,6 +831,7 @@
 <!-- ─── NAVEGACIÓN ─── -->
 <nav aria-label="Navegación principal">
   <a href="#inicio" class="nav-brand">📍 Melipilla</a>
+  <div class="nav-scroll-wrapper">
   <ul class="nav-links">
     <li><a href="#ferias">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
@@ -742,6 +866,7 @@
       Sugerencias
     </a></li>
   </ul>
+  </div>
 </nav>
 
 <!-- ─── HERO ─── -->
@@ -751,9 +876,9 @@
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       Región Metropolitana · Provincia de Melipilla
     </div>
-    <h1>Bienvenido/a a<br><em>Melipilla</em></h1>
+    <h1>Farmacia de turno hoy en <em>Melipilla</em></h1>
     <p class="hero-desc">
-      Farmacia de turno hoy, CESFAM, colegios, ferias libres y emergencias — todo lo que necesitas para vivir en Melipilla en un solo lugar.
+      CESFAM, colegios, ferias libres y emergencias — todo lo que necesitas para vivir en Melipilla en un solo lugar.
     </p>
   </div>
 </header>
@@ -778,6 +903,7 @@
 
   <!-- ═══ FARMACIAS (PRIMERO por SEO y demanda) ═══ -->
   <section id="farmacias" aria-labelledby="titulo-farmacias">
+  <div class="section-inner">
     <div class="section-title">
       <div class="section-icon ic-ambar">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
@@ -788,14 +914,22 @@
       </div>
     </div>
 
-    <!-- Caja destacada turno hoy -->
+    <!-- Caja destacada turno hoy — DINÁMICA -->
+    <p style="font-size:14px;color:var(--texto-suave);margin-bottom:1rem;line-height:1.65">
+      En Melipilla el turno de farmacia funciona bajo resolución del ISP: cada día una o más farmacias de la comuna deben mantenerse abiertas las 24 horas. El turno rota diariamente entre los establecimientos inscritos. A continuación puedes consultar cuál está de turno hoy.
+    </p>
     <div class="turno-hoy-box">
-      <h3>💊 ¿Cuál es la farmacia de turno hoy en Melipilla?</h3>
-      <p>El turno cambia cada día. Usa los botones de abajo para ver en tiempo real cuál farmacia está de turno hoy en Melipilla — con dirección y teléfono actualizado.</p>
-      <div class="turno-hoy-btns">
+      <h3>💊 Farmacia de turno hoy en Melipilla</h3>
+      <p id="turno-subtexto">Consultando en tiempo real…</p>
+      <div class="turno-loading" id="turno-loading">
+        <div class="spinner"></div>
+        Buscando la farmacia de turno de hoy…
+      </div>
+      <div class="turno-resultado" id="turno-resultado"></div>
+      <div class="turno-hoy-btns" style="margin-top:.85rem">
         <a class="btn-turno-primary" href="https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-melipilla" target="_blank" rel="noopener">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          Ver turno de hoy — farmaciashoy.cl
+          Ver en farmaciashoy.cl
         </a>
         <a class="btn-turno-sec" href="https://farmaciasabiertas.cl/farmacias-de-turno-en-melipilla/" target="_blank" rel="noopener">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
@@ -815,7 +949,7 @@
       <!-- Farmacia Cariño -->
       <div class="farmacia-card" style="border-left:3px solid var(--verde-claro)">
         <span class="fc-badge badge-independiente">Independiente</span>
-        <h3>Farmacia Cariño</h3>
+        <h3>Farmacia Cariño <span class="badge-abierto">Abierta ahora</span></h3>
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Ortúzar 399, Melipilla</span></div>
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+5622831505022">2 2831 5050</a></span></div>
         <a class="btn-map" href="https://maps.google.com/?q=Farmacia+Cariño+Ortuzar+399+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
@@ -1064,10 +1198,12 @@
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       <span>Melipilla tiene <strong>turnos de farmacia 24 horas</strong> según resolución ISP. El turno cambia cada día — verifica siempre antes de salir. <a href="https://www.ispch.gob.cl/farmacias-de-turno/" target="_blank" rel="noopener">Fuente oficial ISP</a></span>
     </div>
+  </div>
   </section>
 
   <!-- ═══ FERIAS LIBRES ═══ -->
   <section id="ferias" aria-labelledby="titulo-ferias">
+  <div class="section-inner">
     <div class="section-title">
       <div class="section-icon ic-verde">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
@@ -1290,10 +1426,12 @@
         </p>
       </div>
     </div>
+  </div>
   </section>
 
   <!-- ═══ CENTROS DE SALUD ═══ -->
   <section id="salud" aria-labelledby="titulo-salud">
+  <div class="section-inner">
     <div class="section-title">
       <div class="section-icon ic-azul">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
@@ -1509,10 +1647,12 @@
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       <span>Para inscribirte en un CESFAM necesitas RUT o documento de identidad y tu dirección de residencia. La inscripción corresponde al sector donde vives. Más info: <a href="https://corpomelipilla.cl/salud/" target="_blank" rel="noopener">CORPO Melipilla</a></span>
     </div>
+  </div>
   </section>
 
   <!-- ═══ SEGURIDAD ═══ -->
   <section id="seguridad" aria-labelledby="titulo-seguridad">
+  <div class="section-inner">
     <div class="section-title">
       <div class="section-icon ic-rojo">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -1620,68 +1760,12 @@
         </div>
       </div>
     </div>
+  </div>
   </section>
-
-    <!-- Servicios básicos urgentes -->
-    <div class="cards cards-2" style="margin-top:.85rem">
-      <div class="card">
-        <div class="card-head">
-          <div class="card-icon" style="background:#FDECEA;color:#C4572A;">🚒</div>
-          <div>
-            <h3>Central de Bomberos Melipilla</h3>
-            <div class="sub">Emergencias de incendio y rescate</div>
-          </div>
-        </div>
-        <div class="info-row">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg>
-          <span>Emergencias: <a href="tel:132" style="color:var(--terracota);font-weight:700">132</a> · Central: <a href="tel:228323466">2283 23466</a></span>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-head">
-          <div class="card-icon" style="background:#F3EBF8;color:#6B3FA0;">⚡</div>
-          <div>
-            <h3>Corte de luz — Empresa CGE</h3>
-            <div class="sub">Averías eléctricas domiciliarias · 24 hrs</div>
-          </div>
-        </div>
-        <div class="info-row">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg>
-          <span><a href="tel:800800767">800 800 767</a> — gratuito</span>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-head">
-          <div class="card-icon" style="background:#E8F4FB;color:#1A5FA8;">💧</div>
-          <div>
-            <h3>Aguas Andinas</h3>
-            <div class="sub">Emergencias después de 18:00 · sáb, dom y festivos</div>
-          </div>
-        </div>
-        <div class="info-row">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg>
-          <span><a href="tel:*8000">*8000</a> · <a href="tel:227312400">2273 12400</a></span>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-head">
-          <div class="card-icon" style="background:#E8F4FB;color:#1A5FA8;">💧</div>
-          <div>
-            <h3>Aguas Norte — EAPSA</h3>
-            <div class="sub">Lun–Jue 09:00–17:00 · Vie 09:00–14:30</div>
-          </div>
-        </div>
-        <div class="info-row">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg>
-          <span><a href="tel:264658750">2646 58750</a> · <a href="tel:264658752">2646 58752</a></span>
-        </div>
-      </div>
-    </div>
-
-  <!-- ═══ FARMACIAS ═══ -->
 
   <!-- ═══ COLEGIOS ═══ -->
   <section id="colegios" aria-labelledby="titulo-colegios">
+  <div class="section-inner">
     <div class="section-title">
       <div class="section-icon ic-azul">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
@@ -1804,10 +1888,12 @@
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       <span>¿Falta un colegio o hay datos incorrectos? Usa el formulario de <a href="#sugerencias">sugerencias</a> al final de la página y lo actualizamos.</span>
     </div>
+  </div>
   </section>
 
   <!-- ═══ MAPA GENERAL ═══ -->
   <section id="mapa" aria-labelledby="titulo-mapa">
+  <div class="section-inner">
     <div class="section-title">
       <div class="section-icon ic-verde">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
@@ -1838,10 +1924,12 @@
       <span style="color:var(--borde);font-size:12px">·</span>
       <a href="https://maps.google.com/?q=farmacia+Melipilla" target="_blank" rel="noopener" style="font-size:12px;color:var(--ambar);text-decoration:none">Farmacias ↗</a>
     </div>
+  </div>
   </section>
 
   <!-- ═══ LINKS ÚTILES ═══ -->
   <section aria-labelledby="titulo-links">
+  <div class="section-inner">
     <div class="section-title">
       <div class="section-icon" style="background:#F0EDE8;color:#5A5A5A">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
@@ -1869,11 +1957,13 @@
         Localizador Ferias ODEPA
       </a>
     </div>
+  </div>
   </section>
 
 
   <!-- ═══ DONACIONES ═══ -->
   <section id="donaciones" aria-labelledby="titulo-donaciones">
+  <div class="section-inner">
     <div class="section-title">
       <div class="section-icon" style="background:#FFF0F5;color:#C4457A">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
@@ -1918,10 +2008,12 @@
         Cada aporte ayuda a mantener la información actualizada y el sitio en línea. ¡Gracias!
       </p>
     </div>
+  </div>
   </section>
 
   <!-- ═══ SUGERENCIAS ═══ -->
   <section id="sugerencias" aria-labelledby="titulo-sugerencias">
+  <div class="section-inner">
     <div class="section-title">
       <div class="section-icon" style="background:#EEF0FE;color:#534AB7">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
@@ -1959,20 +2051,32 @@
         <div class="form-msg" id="formMsg"></div>
       </form>
     </div>
+  </div>
   </section>
 
 </main>
 
 <!-- ─── FOOTER ─── -->
 <footer>
-  <p><strong>Melipilla — Guía para recién llegados</strong></p>
+  <p><strong>Hola Melipilla — Guía para recién llegados</strong></p>
   <p style="margin-top:.4rem">Para emergencias siempre llama al <strong>133</strong> (Carabineros) · <strong>131</strong> (SAMU) · <strong>132</strong> (Bomberos)</p>
   <p style="margin-top:.75rem">
     <a href="https://www.melipilla.cl" target="_blank" rel="noopener">melipilla.cl</a> ·
-    <a href="https://corpomelipilla.cl" target="_blank" rel="noopener">corpomelipilla.cl</a>
+    <a href="https://corpomelipilla.cl" target="_blank" rel="noopener">corpomelipilla.cl</a> ·
+    <a href="https://www.ispch.gob.cl/farmacias-de-turno/" target="_blank" rel="noopener">ISP Farmacias de turno</a>
   </p>
-  <p style="margin-top:.75rem;font-size:11px">Información de carácter orientativo. Verifica horarios y datos directamente con cada institución. Última revisión: junio 2026.</p>
+  <p style="margin-top:.75rem;font-size:11px">Información de carácter orientativo. Verifica horarios y datos directamente con cada institución.</p>
+  <p style="margin-top:.4rem;font-size:11px;opacity:.6" id="footer-fecha"></p>
 </footer>
+
+<script>
+  // Fecha dinámica en footer
+  const fechaEl = document.getElementById('footer-fecha');
+  if (fechaEl) {
+    const f = new Date().toLocaleDateString('es-CL', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'America/Santiago' });
+    fechaEl.textContent = 'Última actualización: ' + f;
+  }
+</script>
 
 <script>
   // Navegación activa al hacer scroll
@@ -2178,7 +2282,108 @@
     initMapaColegios();
   })();
 
-  // Formulario Formspree (AJAX)
+  // ── Farmacia de turno dinámica ──
+  (async function() {
+    const loadingEl  = document.getElementById('turno-loading');
+    const resultEl   = document.getElementById('turno-resultado');
+    const subEl      = document.getElementById('turno-subtexto');
+
+    // Horarios de cada farmacia [open, close] en horas locales (24h)
+    const farmacias = [
+      { nombre: 'Farmacia Ahumada (Plaza de Armas)',   open: 8.5,  close: 22   },
+      { nombre: 'Farmacia Ahumada (Vicuña Mackenna)',  open: 8.5,  close: 22   },
+      { nombre: 'Farmacia Cruz Verde',                  open: 8.5,  close: 22   },
+      { nombre: 'Farmacia Salcobrand',                  open: 9,    close: 21   },
+      { nombre: 'Farmacia Cariño',                      open: 0,    close: 24   },
+      { nombre: 'Farmacia Torres',                      open: 10,   close: 18.5 },
+      { nombre: 'Farmacia Solidaria',                   open: 9,    close: 17.5 },
+      { nombre: 'Farmacia Nueva Salud',                 open: 10,   close: 20   },
+      { nombre: 'Super Farma',                          open: 9,    close: 19.5 },
+      { nombre: 'Farmacia Ecuanaser (Pomaire)',          open: 9.5,  close: 20.5 },
+      { nombre: 'Farmacia Clínica Maitenes',            open: 11,   close: 20   },
+    ];
+
+    // Marca "abierta ahora" en todas las tarjetas según hora local
+    function marcaBadgesAbierto() {
+      const hora = new Date().toLocaleTimeString('es-CL', { timeZone: 'America/Santiago', hour12: false });
+      const [h, m] = hora.split(':').map(Number);
+      const ahora  = h + m / 60;
+
+      document.querySelectorAll('.farmacia-card').forEach(card => {
+        const titulo = card.querySelector('h3');
+        if (!titulo) return;
+        const txt    = titulo.textContent.trim();
+        const f      = farmacias.find(f => txt.startsWith(f.nombre.split(' ')[0]) || f.nombre.includes(txt.split(' ')[0]));
+        if (!f) return;
+        // Remove existing badges first
+        titulo.querySelectorAll('.badge-abierto, .badge-cerrado').forEach(b => b.remove());
+        const abierta = ahora >= f.open && ahora < f.close;
+        const badge   = document.createElement('span');
+        badge.className = abierta ? 'badge-abierto' : 'badge-cerrado';
+        badge.textContent = abierta ? 'Abierta' : 'Cerrada';
+        titulo.appendChild(badge);
+      });
+    }
+    marcaBadgesAbierto();
+
+    // Intenta obtener el turno via AllOrigins (proxy CORS libre)
+    try {
+      const url    = 'https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-melipilla';
+      const proxy  = 'https://api.allorigins.win/get?url=' + encodeURIComponent(url);
+      const res    = await fetch(proxy, { signal: AbortSignal.timeout(7000) });
+      const json   = await res.json();
+      const html   = json.contents || '';
+
+      // Extraer nombre de farmacia de turno del HTML
+      // farmaciashoy.cl usa <h2 class="farmacia-nombre"> o similar
+      const parser  = new DOMParser();
+      const doc     = parser.parseFromString(html, 'text/html');
+
+      // Intentar varios selectores posibles
+      let nombre = '';
+      let direccion = '';
+
+      const h2s = doc.querySelectorAll('h2, h3, .farmacia-nombre, .turno-nombre, [class*="nombre"]');
+      for (const el of h2s) {
+        const t = el.textContent.trim();
+        if (t.length > 5 && t.length < 80 && /farmacia|salcobrand|cruz|ahumada|cariño|torres|salud|farma/i.test(t)) {
+          nombre = t;
+          break;
+        }
+      }
+
+      // Buscar dirección cerca del nombre
+      if (nombre) {
+        const divs = doc.querySelectorAll('p, .direccion, [class*="dir"], [class*="address"]');
+        for (const el of divs) {
+          const t = el.textContent.trim();
+          if (/melipilla|ortúzar|vicuña|serrano|merced|mackenna/i.test(t) && t.length < 100) {
+            direccion = t;
+            break;
+          }
+        }
+      }
+
+      loadingEl.style.display = 'none';
+
+      if (nombre) {
+        const hoy = new Date().toLocaleDateString('es-CL', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'America/Santiago' });
+        resultEl.innerHTML =
+          '<strong>🟢 ' + nombre + '</strong>' +
+          (direccion ? '<div class="turno-dir">📍 ' + direccion + '</div>' : '') +
+          '<div class="turno-dir" style="margin-top:6px;color:#6B7280">Turno del ' + hoy + ' · Fuente: farmaciashoy.cl</div>';
+        resultEl.classList.add('visible');
+        subEl.textContent = 'Farmacia de turno hoy — actualizado automáticamente.';
+      } else {
+        throw new Error('No se pudo extraer el nombre');
+      }
+    } catch (err) {
+      loadingEl.style.display = 'none';
+      subEl.textContent = 'El turno cambia cada día. Usa los botones de abajo para ver cuál farmacia está abierta hoy.';
+    }
+  })();
+
+
   const form = document.getElementById('formSugerencia');
   const msg  = document.getElementById('formMsg');
   if (form) {
