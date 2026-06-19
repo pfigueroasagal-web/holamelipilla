@@ -53,7 +53,20 @@
       background: var(--crema);
       color: var(--texto);
       font-size: 16px;
-      line-height: 1.65;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Optimización móvil */
+    @media (max-width: 768px) {
+      body {
+        font-size: 15px;
+      }
+      
+      html {
+        scroll-behavior: auto;
+      }
     }
 
     /* ─── NAVEGACIÓN ─── */
@@ -62,17 +75,25 @@
       top: 0;
       z-index: 100;
       background: var(--verde);
-      padding: 0 1.5rem;
+      padding: 0.8rem 1rem;
       display: flex;
       align-items: center;
       gap: 0;
       box-shadow: 0 2px 8px rgba(0,0,0,.18);
     }
 
+    @media (max-width: 768px) {
+      nav {
+        padding: 0.75rem 0.75rem;
+      }
+    }
+
     .nav-scroll-wrapper {
       flex: 1;
-      overflow: hidden;
+      overflow-x: auto;
+      overflow-y: hidden;
       position: relative;
+      -webkit-overflow-scrolling: touch;
     }
 
     .nav-scroll-wrapper::after {
@@ -81,21 +102,22 @@
       right: 0;
       top: 0;
       bottom: 0;
-      width: 32px;
+      width: 20px;
       background: linear-gradient(to right, transparent, var(--verde));
       pointer-events: none;
     }
 
     .nav-brand {
       font-family: 'Fraunces', serif;
-      font-size: 17px;
+      font-size: clamp(14px, 4vw, 17px);
       font-weight: 600;
       color: #fff;
-      padding: 14px 20px 14px 0;
+      padding: 10px 12px 10px 0;
       margin-right: 8px;
       border-right: 1px solid rgba(255,255,255,.2);
       white-space: nowrap;
       text-decoration: none;
+      flex-shrink: 0;
     }
 
     .nav-links {
@@ -111,17 +133,27 @@
     .nav-links a {
       display: flex;
       align-items: center;
-      gap: 6px;
+      justify-content: center;
+      gap: 4px;
       color: rgba(255,255,255,.85);
       text-decoration: none;
-      font-size: 13px;
+      font-size: clamp(11px, 2.5vw, 13px);
       font-weight: 500;
-      padding: 10px 13px;
+      padding: 8px 10px;
       white-space: nowrap;
       transition: color .15s, background .15s, transform .1s;
-      border-radius: 8px;
-      margin: 6px 3px;
+      border-radius: 6px;
+      margin: 4px 2px;
       border: 1px solid transparent;
+      min-height: 40px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 480px) {
+      .nav-links a {
+        min-height: 44px;
+        padding: 8px 8px;
+      }
     }
 
     .nav-links a:hover {
@@ -154,9 +186,15 @@
     .hero {
       background: linear-gradient(145deg, #0a4a30 0%, var(--verde) 55%, #1a7a52 100%);
       color: #fff;
-      padding: 4.5rem 1.5rem 4rem;
+      padding: clamp(2.5rem, 8vw, 4.5rem) 1.25rem clamp(2rem, 6vw, 4rem);
       position: relative;
       overflow: hidden;
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding: 2rem 1rem 1.5rem;
+      }
     }
 
     .hero::before {
@@ -214,11 +252,17 @@
     }
 
     .hero-desc {
-      font-size: 1.05rem;
+      font-size: clamp(0.95rem, 3vw, 1.05rem);
       color: rgba(255,255,255,.78);
       max-width: 520px;
       line-height: 1.7;
-      margin-bottom: 2rem;
+      margin-bottom: clamp(1.5rem, 4vw, 2rem);
+    }
+
+    @media (max-width: 480px) {
+      .hero-desc {
+        margin-bottom: 1.5rem;
+      }
     }
 
     /* ─── NÚMEROS DE EMERGENCIA ─── */
@@ -319,8 +363,14 @@
     }
 
     section {
-      padding: 3rem 1.5rem;
+      padding: clamp(1.75rem, 5vw, 3rem) clamp(1rem, 4vw, 1.5rem);
       margin: 0;
+    }
+
+    @media (max-width: 480px) {
+      section {
+        padding: 1.5rem 1rem;
+      }
     }
 
     section:nth-child(even) {
@@ -332,15 +382,25 @@
     }
 
     /* ─── CARDS ─── */
-    .cards { display: grid; gap: 1.1rem; }
-    .cards-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .cards { display: grid; gap: clamp(0.8rem, 3vw, 1.1rem); }
+    .cards-2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
 
     .card {
       background: #fff;
       border: 1px solid var(--borde);
       border-radius: var(--radio);
-      padding: 1.4rem 1.5rem;
+      padding: clamp(1.2rem, 4vw, 1.5rem);
       transition: box-shadow .2s, transform .2s, border-color .2s;
+    }
+
+    @media (max-width: 480px) {
+      .cards-2 {
+        grid-template-columns: 1fr;
+      }
+      
+      .card {
+        padding: 1rem 1.2rem;
+      }
     }
 
     .card:hover {
@@ -419,18 +479,28 @@
     .btn-map {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      font-size: 12px;
+      justify-content: center;
+      gap: 6px;
+      font-size: clamp(11px, 2vw, 12px);
       font-weight: 600;
       color: var(--verde);
       background: var(--verde-suave);
       border: none;
       border-radius: 6px;
-      padding: 5px 10px;
+      padding: clamp(8px, 2vw, 10px) clamp(10px, 3vw, 15px);
       text-decoration: none;
       margin-top: 8px;
       cursor: pointer;
       transition: background .15s;
+      min-height: 40px;
+      flex: 1;
+    }
+
+    @media (max-width: 480px) {
+      .btn-map {
+        min-height: 44px;
+        padding: 10px 12px;
+      }
     }
 
     .btn-map:hover { background: #C6EADB; }
@@ -445,7 +515,7 @@
 
     .map-embed iframe {
       width: 100%;
-      height: 240px;
+      height: clamp(200px, 50vw, 300px);
       display: block;
       border: none;
     }
@@ -1224,12 +1294,19 @@
     <div class="cards cards-2">
 
       <!-- Farmacia Cariño -->
-      <div class="farmacia-card" style="border-left:3px solid var(--verde-claro)">
-        <span class="fc-badge badge-independiente">Independiente</span>
+      <div class="farmacia-card" style="border-left:3px solid var(--verde-claro);background:linear-gradient(135deg,#E6F5EE 0%,#f0fef9 100%)">
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px">
+          <span class="fc-badge badge-independiente">Independiente</span>
+          <span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:#FFF3C4;color:#92400E;border:1px solid #F0A500;border-radius:10px;padding:2px 8px">🌙 Cierra 23:00</span>
+        </div>
         <h3>Farmacia Cariño</h3>
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Ortúzar 399, Melipilla</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>10:00 – 23:00</span></div>
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+5622831505022">2 2831 5050</a></span></div>
-        <a class="btn-map" href="https://maps.google.com/?q=Farmacia+Cariño+Ortuzar+399+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <a class="btn-map" href="https://maps.google.com/?q=Farmacia+Cariño+Ortuzar+399+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Mapa</a>
+          <a class="btn-map" href="https://www.google.com/search?q=Farmacia+Cariño+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Google</a>
+        </div>
       </div>
 
       <!-- Farmacia Ahumada - Plaza de Armas 537 -->
@@ -1239,7 +1316,10 @@
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Plaza de Armas 537, Melipilla</span></div>
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>08:30 – 22:00</span></div>
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+560226313070">+56 2 2631 3070</a></span></div>
-        <a class="btn-map" href="https://maps.google.com/?q=Plaza+de+Armas+537+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <a class="btn-map" href="https://maps.google.com/?q=Plaza+de+Armas+537+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Mapa</a>
+          <a class="btn-map" href="https://www.google.com/search?q=Farmacia+Ahumada+Plaza+de+Armas+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Google</a>
+        </div>
       </div>
 
       <!-- Farmacia Ahumada - Vicuña Mackenna 153 -->
@@ -1249,7 +1329,10 @@
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Vicuña Mackenna 153, Melipilla</span></div>
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>09:00 – 22:30</span></div>
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+560228327526">+56 2 2832 7526</a></span></div>
-        <a class="btn-map" href="https://maps.google.com/?q=Vicuña+Mackenna+153+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <a class="btn-map" href="https://maps.google.com/?q=Ahumada+Vicuña+Mackenna+153+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Mapa</a>
+          <a class="btn-map" href="https://www.google.com/search?q=Farmacia+Ahumada+Vicuña+Mackenna+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Google</a>
+        </div>
       </div>
 
       <!-- Farmacia Ahumada - Serrano 395 -->
@@ -1258,7 +1341,10 @@
         <h3>Farmacia Ahumada — Serrano</h3>
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Serrano 395, Local 13, Melipilla</span></div>
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>09:00 – 21:00</span></div>
-        <a class="btn-map" href="https://maps.google.com/?q=Serrano+395+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <a class="btn-map" href="https://maps.google.com/?q=Ahumada+Serrano+395+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Mapa</a>
+          <a class="btn-map" href="https://www.google.com/search?q=Farmacia+Ahumada+Serrano+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Google</a>
+        </div>
       </div>
 
       <!-- Cruz Verde - Plaza de Armas 561 -->
@@ -1268,7 +1354,10 @@
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Plaza de Armas 561, Melipilla</span></div>
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>08:30 – 22:00</span></div>
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+560228323888">+56 2 2832 3888</a></span></div>
-        <a class="btn-map" href="https://maps.google.com/?q=Cruz+Verde+Plaza+de+Armas+561+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <a class="btn-map" href="https://maps.google.com/?q=Cruz+Verde+Plaza+de+Armas+561+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Mapa</a>
+          <a class="btn-map" href="https://www.google.com/search?q=Cruz+Verde+Plaza+de+Armas+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Google</a>
+        </div>
       </div>
 
       <!-- Cruz Verde - Serrano 501 -->
@@ -1278,7 +1367,10 @@
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Serrano 501, Melipilla</span></div>
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>08:30 – 22:00</span></div>
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+560228311552">+56 2 2831 1552</a></span></div>
-        <a class="btn-map" href="https://maps.google.com/?q=Cruz+Verde+Serrano+501+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <a class="btn-map" href="https://maps.google.com/?q=Cruz+Verde+Serrano+501+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Mapa</a>
+          <a class="btn-map" href="https://www.google.com/search?q=Cruz+Verde+Serrano+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Google</a>
+        </div>
       </div>
 
       <!-- Cruz Verde - Vicuña Mackenna 302 -->
@@ -1287,7 +1379,10 @@
         <h3>Cruz Verde — Mall Víctor Ávila</h3>
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Av. Vicuña Mackenna 302, Local 19, Melipilla</span></div>
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>09:00 – 22:00</span></div>
-        <a class="btn-map" href="https://maps.google.com/?q=Vicuña+Mackenna+302+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <a class="btn-map" href="https://maps.google.com/?q=Cruz+Verde+Mall+Victor+Avila+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Mapa</a>
+          <a class="btn-map" href="https://www.google.com/search?q=Cruz+Verde+Mall+Victor+Avila+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Google</a>
+        </div>
       </div>
 
       <!-- Salcobrand - Plaza de Armas 489 -->
@@ -1297,17 +1392,26 @@
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Plaza de Armas 489, Melipilla</span></div>
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>09:00 – 22:00</span></div>
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+560228318135">+56 2 2831 8135</a></span></div>
-        <a class="btn-map" href="https://maps.google.com/?q=Salcobrand+Plaza+de+Armas+489+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <a class="btn-map" href="https://maps.google.com/?q=Salcobrand+Plaza+de+Armas+489+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Mapa</a>
+          <a class="btn-map" href="https://www.google.com/search?q=Salcobrand+Plaza+de+Armas+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Google</a>
+        </div>
       </div>
 
       <!-- Salcobrand - Ortúzar 548 -->
-      <div class="farmacia-card">
-        <span class="fc-badge badge-cadena">Salcobrand</span>
+      <div class="farmacia-card" style="border-left:3px solid var(--ambar);background:linear-gradient(135deg,#FDF3DC 0%,#fffaf0 100%)">
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px">
+          <span class="fc-badge badge-cadena">Salcobrand</span>
+          <span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:#FFF3C4;color:#92400E;border:1px solid #F0A500;border-radius:10px;padding:2px 8px">🌙 Cierra 23:00</span>
+        </div>
         <h3>Salcobrand — Ortúzar 548</h3>
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Ortúzar 548, Melipilla</span></div>
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>09:00 – 23:00</span></div>
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+560228310328">+56 2 2831 0328</a></span></div>
-        <a class="btn-map" href="https://maps.google.com/?q=Salcobrand+Ortuzar+548+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <a class="btn-map" href="https://maps.google.com/?q=Salcobrand+Ortuzar+548+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Mapa</a>
+          <a class="btn-map" href="https://www.google.com/search?q=Salcobrand+Ortuzar+548+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Google</a>
+        </div>
       </div>
 
       <!-- Ekonofarma -->
@@ -1317,7 +1421,10 @@
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Plaza de Armas 468, Local A, Melipilla</span></div>
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>09:00 – 21:00</span></div>
         <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+560228321955">+56 2 2832 1955</a></span></div>
-        <a class="btn-map" href="https://maps.google.com/?q=Plaza+de+Armas+468+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <a class="btn-map" href="https://maps.google.com/?q=Ekonofarma+Plaza+de+Armas+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Mapa</a>
+          <a class="btn-map" href="https://www.google.com/search?q=Ekonofarma+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Google</a>
+        </div>
       </div>
 
       <!-- Farmacia Prieto Centro -->
@@ -2221,6 +2328,14 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
         Municipalidad de Melipilla
       </a>
+      <a class="turno-link" href="https://www.robocelularchile.cl/" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        Robo Celular Chile
+      </a>
+      <a class="turno-link" href="https://pomaire360.cl/" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        Pomaire 360
+      </a>
       <a class="turno-link" href="https://corpomelipilla.cl/salud/" target="_blank" rel="noopener">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
         CORPO Melipilla — Salud
@@ -2685,7 +2800,7 @@
             ? horaA + ' – ' + horaC + (abierta24 ? ' (24 hrs)' : '')
             : '24 hrs (turno)';
 
-          return '<div style="margin-bottom:.85rem;padding-bottom:.85rem;border-bottom:1px solid #F0E8C0;last-child:border-bottom:none">' +
+          return '<div style="margin-bottom:.85rem;padding-bottom:.85rem;border-bottom:1px solid #F0E8C0">' +
             '<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">' +
               '<strong style="font-size:15px;color:#3D2500">🟢 ' + nombre + '</strong>' +
               (abierta24
