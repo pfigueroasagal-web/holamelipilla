@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bienvenido a Melipilla — Guía para recién llegados | holamelipilla.cl</title>
-  <meta name="description" content="Guía completa de servicios para vivir en Melipilla: ferias libres, CESFAM, colegios, farmacias de turno, teléfonos de emergencia, Carabineros, Bomberos y más.">
-  <meta name="keywords" content="Melipilla, vivir en Melipilla, ferias libres Melipilla, CESFAM Melipilla, colegios Melipilla, farmacias Melipilla, emergencias Melipilla, Carabineros Melipilla, Bomberos Melipilla, Hospital Melipilla, recién llegados Melipilla">
+  <title>Farmacia de Turno Melipilla hoy — Guía de servicios | holamelipilla.cl</title>
+  <meta name="description" content="Farmacia de turno en Melipilla hoy, farmacias abiertas 24 horas, CESFAM, colegios, ferias libres y teléfonos de emergencia para vivir en Melipilla. Guía completa actualizada.">
+  <meta name="keywords" content="farmacia de turno Melipilla, farmacia turno Melipilla hoy, farmacias abiertas Melipilla, farmacia 24 horas Melipilla, Farmacia Cariño Melipilla, Melipilla, vivir en Melipilla, ferias libres Melipilla, CESFAM Melipilla, colegios Melipilla, emergencias Melipilla, Carabineros Melipilla, Bomberos Melipilla, Hospital Melipilla">
   <meta name="author" content="holamelipilla.cl">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://holamelipilla.cl/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://holamelipilla.cl/">
-  <meta property="og:title" content="Bienvenido a Melipilla — Guía para recién llegados">
-  <meta property="og:description" content="Ferias libres, CESFAM, colegios, farmacias de turno y teléfonos de emergencia para quienes llegan a vivir a Melipilla.">
+  <meta property="og:title" content="Farmacia de Turno Melipilla hoy — Guía de servicios">
+  <meta property="og:description" content="Farmacia de turno hoy en Melipilla, CESFAM, colegios, ferias libres y emergencias. Guía completa para vivir en Melipilla.">
   <meta property="og:locale" content="es_CL">
   <meta property="og:site_name" content="Hola Melipilla">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Bienvenido a Melipilla — Guía para recién llegados">
-  <meta name="twitter:description" content="Ferias libres, CESFAM, colegios, farmacias de turno y teléfonos de emergencia para quienes llegan a vivir a Melipilla.">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Hola Melipilla","url":"https://holamelipilla.cl/","description":"Guía de servicios esenciales para personas que llegan a vivir a Melipilla, Chile.","inLanguage":"es-CL","about":{"@type":"Place","name":"Melipilla","address":{"@type":"PostalAddress","addressLocality":"Melipilla","addressRegion":"Región Metropolitana","addressCountry":"CL"}}}</script>
+  <meta name="twitter:title" content="Farmacia de Turno Melipilla hoy — Guía de servicios">
+  <meta name="twitter:description" content="Farmacia de turno hoy en Melipilla, CESFAM, colegios, ferias libres y emergencias.">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"Hola Melipilla","url":"https://holamelipilla.cl/","description":"Guía de servicios esenciales para personas que llegan a vivir a Melipilla, Chile. Farmacia de turno hoy, CESFAM, colegios y emergencias.","inLanguage":"es-CL","about":{"@type":"Place","name":"Melipilla","address":{"@type":"PostalAddress","addressLocality":"Melipilla","addressRegion":"Región Metropolitana","addressCountry":"CL"}}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cuál es la farmacia de turno en Melipilla hoy?","acceptedAnswer":{"@type":"Answer","text":"El turno de farmacia en Melipilla cambia cada día. Consulta farmaciashoy.cl o farmaciasabiertas.cl para saber cuál está abierta hoy en Melipilla."}},{"@type":"Question","name":"¿Dónde está la Farmacia Cariño en Melipilla?","acceptedAnswer":{"@type":"Answer","text":"Farmacia Cariño se ubica en Ortúzar 399, Melipilla. Teléfono: 2 2831 5050."}}]}]}</script>
   <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -94,24 +94,40 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      color: rgba(255,255,255,.8);
+      color: rgba(255,255,255,.85);
       text-decoration: none;
       font-size: 13px;
       font-weight: 500;
-      padding: 14px 14px;
+      padding: 10px 13px;
       white-space: nowrap;
-      transition: color .15s, background .15s;
-      border-bottom: 2px solid transparent;
+      transition: color .15s, background .15s, transform .1s;
+      border-radius: 8px;
+      margin: 6px 3px;
+      border: 1px solid transparent;
     }
 
     .nav-links a:hover {
       color: #fff;
-      background: rgba(255,255,255,.08);
+      background: rgba(255,255,255,.15);
+      border-color: rgba(255,255,255,.2);
     }
 
     .nav-links a.active {
       color: #fff;
-      border-bottom-color: #5DCAA5;
+      background: rgba(93,202,165,.2);
+      border-color: #5DCAA5;
+    }
+
+    /* Botón farmacia destacado en nav */
+    .nav-links a.nav-farmacia {
+      background: rgba(255,200,50,.18);
+      color: #FFE07A;
+      border-color: rgba(255,200,50,.35);
+      font-weight: 600;
+    }
+    .nav-links a.nav-farmacia:hover {
+      background: rgba(255,200,50,.3);
+      border-color: rgba(255,200,50,.6);
     }
 
     .nav-links svg { flex-shrink: 0; }
@@ -479,7 +495,109 @@
 
     .turno-link svg { color: var(--verde-claro); flex-shrink: 0; }
 
-    /* ─── FOOTER ─── */
+    /* ─── FARMACIA TURNO DESTACADA ─── */
+    .turno-hoy-box {
+      background: linear-gradient(135deg, #FFF8E7 0%, #FFF3D0 100%);
+      border: 2px solid #F0A500;
+      border-radius: var(--radio);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .turno-hoy-box::before {
+      content: '💊';
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 3rem;
+      opacity: .12;
+    }
+    .turno-hoy-box h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #7A4800;
+      margin-bottom: .4rem;
+    }
+    .turno-hoy-box p {
+      font-size: 13px;
+      color: #8B5E00;
+      line-height: 1.55;
+    }
+    .turno-hoy-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: .85rem;
+    }
+    .btn-turno-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: #F0A500;
+      color: #fff;
+      border-radius: var(--radio-sm);
+      padding: .6rem 1.1rem;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background .15s;
+    }
+    .btn-turno-primary:hover { background: #D08F00; }
+    .btn-turno-sec {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: #fff;
+      color: #7A4800;
+      border: 1px solid #F0C060;
+      border-radius: var(--radio-sm);
+      padding: .6rem 1.1rem;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background .15s;
+    }
+    .btn-turno-sec:hover { background: #FFF3D0; }
+
+    /* ─── CARDS FARMACIAS ─── */
+    .farmacia-card {
+      background: #fff;
+      border: 1px solid var(--borde);
+      border-radius: var(--radio);
+      padding: 1rem 1.15rem;
+      transition: box-shadow .18s;
+    }
+    .farmacia-card:hover { box-shadow: 0 4px 18px rgba(0,0,0,.07); }
+    .farmacia-card h3 {
+      font-family: 'Fraunces', serif;
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--texto);
+      margin-bottom: .5rem;
+    }
+    .farmacia-card .fc-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-bottom: .5rem;
+    }
+    .badge-cadena { background: #E8F4FB; color: #1A5FA8; }
+    .badge-independiente { background: var(--verde-suave); color: var(--verde); }
+
+    /* ─── FOOTER MEJORADO ─── */
+
+    @media (max-width: 600px) {
+      .turno-hoy-btns { flex-direction: column; }
+      .btn-turno-primary, .btn-turno-sec { justify-content: center; }
+    }
+
     footer {
       background: var(--verde);
       color: rgba(255,255,255,.65);
@@ -603,7 +721,7 @@
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       Seguridad
     </a></li>
-    <li><a href="#farmacias">
+    <li><a href="#farmacias" class="nav-farmacia">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
       Farmacias
     </a></li>
@@ -635,7 +753,7 @@
     </div>
     <h1>Bienvenido/a a<br><em>Melipilla</em></h1>
     <p class="hero-desc">
-      Esta guía reúne los servicios más importantes para quienes están llegando a vivir a la comuna: dónde comprar, dónde atenderse, cómo contactar a Carabineros y dónde encontrar una farmacia abierta.
+      Farmacia de turno hoy, CESFAM, colegios, ferias libres y emergencias — todo lo que necesitas para vivir en Melipilla en un solo lugar.
     </p>
   </div>
 </header>
@@ -657,6 +775,296 @@
 
 <!-- ─── CONTENIDO PRINCIPAL ─── -->
 <main>
+
+  <!-- ═══ FARMACIAS (PRIMERO por SEO y demanda) ═══ -->
+  <section id="farmacias" aria-labelledby="titulo-farmacias">
+    <div class="section-title">
+      <div class="section-icon ic-ambar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+      </div>
+      <div>
+        <h2 id="titulo-farmacias">Farmacia de turno en Melipilla</h2>
+        <p>Turno rotativo diario 24 horas — verifica siempre antes de salir</p>
+      </div>
+    </div>
+
+    <!-- Caja destacada turno hoy -->
+    <div class="turno-hoy-box">
+      <h3>💊 ¿Cuál es la farmacia de turno hoy en Melipilla?</h3>
+      <p>El turno cambia cada día. Usa los botones de abajo para ver en tiempo real cuál farmacia está de turno hoy en Melipilla — con dirección y teléfono actualizado.</p>
+      <div class="turno-hoy-btns">
+        <a class="btn-turno-primary" href="https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-melipilla" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Ver turno de hoy — farmaciashoy.cl
+        </a>
+        <a class="btn-turno-sec" href="https://farmaciasabiertas.cl/farmacias-de-turno-en-melipilla/" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Con mapa — farmaciasabiertas.cl
+        </a>
+        <a class="btn-turno-sec" href="https://www.ispch.gob.cl/farmacias-de-turno/" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          ISP Chile — fuente oficial
+        </a>
+      </div>
+    </div>
+
+    <!-- Farmacias individuales en cards -->
+    <h3 style="font-family:'Fraunces',serif;font-size:1rem;font-weight:600;color:var(--texto);margin-bottom:.75rem;margin-top:1.5rem">Todas las farmacias de Melipilla</h3>
+    <div class="cards cards-2">
+
+      <!-- Farmacia Cariño -->
+      <div class="farmacia-card" style="border-left:3px solid var(--verde-claro)">
+        <span class="fc-badge badge-independiente">Independiente</span>
+        <h3>Farmacia Cariño</h3>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Ortúzar 399, Melipilla</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+5622831505022">2 2831 5050</a></span></div>
+        <a class="btn-map" href="https://maps.google.com/?q=Farmacia+Cariño+Ortuzar+399+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+      </div>
+
+      <!-- Farmacia Ahumada - Plaza de Armas 537 -->
+      <div class="farmacia-card">
+        <span class="fc-badge badge-cadena">Ahumada</span>
+        <h3>Farmacia Ahumada</h3>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Plaza de Armas 537, Melipilla</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>08:30 – 22:00</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+560226313070">+56 2 2631 3070</a></span></div>
+        <a class="btn-map" href="https://maps.google.com/?q=Plaza+de+Armas+537+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+      </div>
+
+      <!-- Farmacia Ahumada - Vicuña Mackenna 153 -->
+      <div class="farmacia-card">
+        <span class="fc-badge badge-cadena">Ahumada</span>
+        <h3>Farmacia Ahumada — Vicuña Mackenna</h3>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Vicuña Mackenna 153, Melipilla</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>09:00 – 22:30</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+560228327526">+56 2 2832 7526</a></span></div>
+        <a class="btn-map" href="https://maps.google.com/?q=Vicuña+Mackenna+153+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+      </div>
+
+      <!-- Farmacia Ahumada - Serrano 395 -->
+      <div class="farmacia-card">
+        <span class="fc-badge badge-cadena">Ahumada</span>
+        <h3>Farmacia Ahumada — Serrano</h3>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Serrano 395, Local 13, Melipilla</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>09:00 – 21:00</span></div>
+        <a class="btn-map" href="https://maps.google.com/?q=Serrano+395+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+      </div>
+
+      <!-- Cruz Verde - Plaza de Armas 561 -->
+      <div class="farmacia-card">
+        <span class="fc-badge badge-cadena">Cruz Verde</span>
+        <h3>Cruz Verde — Plaza de Armas</h3>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Plaza de Armas 561, Melipilla</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>08:30 – 22:00</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+560228323888">+56 2 2832 3888</a></span></div>
+        <a class="btn-map" href="https://maps.google.com/?q=Cruz+Verde+Plaza+de+Armas+561+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+      </div>
+
+      <!-- Cruz Verde - Serrano 501 -->
+      <div class="farmacia-card">
+        <span class="fc-badge badge-cadena">Cruz Verde</span>
+        <h3>Cruz Verde — Serrano</h3>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Serrano 501, Melipilla</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>08:30 – 22:00</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+560228311552">+56 2 2831 1552</a></span></div>
+        <a class="btn-map" href="https://maps.google.com/?q=Cruz+Verde+Serrano+501+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+      </div>
+
+      <!-- Cruz Verde - Vicuña Mackenna 302 -->
+      <div class="farmacia-card">
+        <span class="fc-badge badge-cadena">Cruz Verde</span>
+        <h3>Cruz Verde — Mall Víctor Ávila</h3>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Av. Vicuña Mackenna 302, Local 19, Melipilla</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>09:00 – 22:00</span></div>
+        <a class="btn-map" href="https://maps.google.com/?q=Vicuña+Mackenna+302+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+      </div>
+
+      <!-- Salcobrand - Plaza de Armas 489 -->
+      <div class="farmacia-card">
+        <span class="fc-badge badge-cadena">Salcobrand</span>
+        <h3>Salcobrand — Plaza de Armas</h3>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Plaza de Armas 489, Melipilla</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>09:00 – 22:00</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+560228318135">+56 2 2831 8135</a></span></div>
+        <a class="btn-map" href="https://maps.google.com/?q=Salcobrand+Plaza+de+Armas+489+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+      </div>
+
+      <!-- Salcobrand - Ortúzar 548 -->
+      <div class="farmacia-card">
+        <span class="fc-badge badge-cadena">Salcobrand</span>
+        <h3>Salcobrand — Ortúzar 548</h3>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Ortúzar 548, Melipilla</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>09:00 – 23:00</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+560228310328">+56 2 2831 0328</a></span></div>
+        <a class="btn-map" href="https://maps.google.com/?q=Salcobrand+Ortuzar+548+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+      </div>
+
+      <!-- Ekonofarma -->
+      <div class="farmacia-card">
+        <span class="fc-badge badge-independiente">Independiente</span>
+        <h3>Ekonofarma</h3>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Plaza de Armas 468, Local A, Melipilla</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>09:00 – 21:00</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+560228321955">+56 2 2832 1955</a></span></div>
+        <a class="btn-map" href="https://maps.google.com/?q=Plaza+de+Armas+468+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+      </div>
+
+      <!-- Farmacia Prieto Centro -->
+      <div class="farmacia-card">
+        <span class="fc-badge badge-independiente">Independiente</span>
+        <h3>Farmacia Prieto Centro</h3>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Ortúzar 691, Melipilla</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>09:00 – 21:00</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+560228323157">+56 2 2832 3157</a></span></div>
+        <a class="btn-map" href="https://maps.google.com/?q=Ortuzar+691+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+      </div>
+
+      <!-- Farmacia Redondo -->
+      <div class="farmacia-card">
+        <span class="fc-badge badge-independiente">Independiente</span>
+        <h3>Farmacia Redondo</h3>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Ortúzar 857, Melipilla</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>09:00 – 20:30</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+560228326984">+56 2 2832 6984</a></span></div>
+        <a class="btn-map" href="https://maps.google.com/?q=Ortuzar+857+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+      </div>
+
+      <!-- Dr. Simi -->
+      <div class="farmacia-card">
+        <span class="fc-badge badge-cadena">Dr. Simi</span>
+        <h3>Farmacia Del Dr. Simi</h3>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Ortúzar 602, Melipilla</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>09:00 – 20:00</span></div>
+        <a class="btn-map" href="https://maps.google.com/?q=Ortuzar+602+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+      </div>
+
+      <!-- Farmacia Uno -->
+      <div class="farmacia-card">
+        <span class="fc-badge badge-independiente">Independiente</span>
+        <h3>Farmacia Uno</h3>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Ortúzar 852, Melipilla</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>10:00 – 20:00</span></div>
+        <a class="btn-map" href="https://maps.google.com/?q=Ortuzar+852+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+      </div>
+
+      <!-- Ecuafarma -->
+      <div class="farmacia-card">
+        <span class="fc-badge badge-independiente">Independiente</span>
+        <h3>Farmacia Ecuafarma</h3>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Ortúzar 801, Melipilla</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>10:00 – 20:00</span></div>
+        <a class="btn-map" href="https://maps.google.com/?q=Ortuzar+801+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+      </div>
+
+      <!-- Conde de Manzo -->
+      <div class="farmacia-card">
+        <span class="fc-badge badge-independiente">Independiente</span>
+        <h3>Farmacia Conde de Manzo</h3>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Conde de Manso 567, Melipilla</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>09:00 – 18:00</span></div>
+        <a class="btn-map" href="https://maps.google.com/?q=Conde+de+Manso+567+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+      </div>
+
+      <!-- Farmacia Torres -->
+      <div class="farmacia-card">
+        <span class="fc-badge badge-independiente">Independiente</span>
+        <h3>Farmacia Torres</h3>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Vicuña Mackenna 831, Melipilla</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>10:00 – 18:30</span></div>
+        <a class="btn-map" href="https://maps.google.com/?q=Vicuña+Mackenna+831+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+      </div>
+
+      <!-- Farmacia Solidaria -->
+      <div class="farmacia-card">
+        <span class="fc-badge badge-independiente">Independiente</span>
+        <h3>Farmacia Solidaria</h3>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Merced 727, Melipilla</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>09:00 – 17:30</span></div>
+        <a class="btn-map" href="https://maps.google.com/?q=Merced+727+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+      </div>
+
+      <!-- Nueva Salud -->
+      <div class="farmacia-card">
+        <span class="fc-badge badge-independiente">Independiente</span>
+        <h3>Farmacia Nueva Salud</h3>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Serrano 510, Melipilla</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>10:00 – 20:00</span></div>
+        <a class="btn-map" href="https://maps.google.com/?q=Serrano+510+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+      </div>
+
+      <!-- Super Farma -->
+      <div class="farmacia-card">
+        <span class="fc-badge badge-independiente">Independiente</span>
+        <h3>Super Farma</h3>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Av. Vicuña Mackenna 1412, Local 1, Melipilla</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>09:00 – 19:30</span></div>
+        <a class="btn-map" href="https://maps.google.com/?q=Vicuña+Mackenna+1412+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+      </div>
+
+      <!-- Ecuanaser (Pomaire) -->
+      <div class="farmacia-card">
+        <span class="fc-badge" style="background:#FDF3DC;color:#7A4800">Pomaire</span>
+        <h3>Farmacia Ecuanaser</h3>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>San Antonio 140, Pomaire</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>09:30 – 20:30</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+560228199380">+56 2 2819 9380</a></span></div>
+        <a class="btn-map" href="https://maps.google.com/?q=San+Antonio+140+Pomaire+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+      </div>
+
+      <!-- Farmacia Serrano (Bollenar) -->
+      <div class="farmacia-card">
+        <span class="fc-badge" style="background:#E8F4FB;color:#1A5FA8">Bollenar</span>
+        <h3>Farmacia Serrano — El Bollenar</h3>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Anselmo Alarcón 175, El Bollenar</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>10:30 – 20:30</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+560224080528">+56 2 2408 0528</a></span></div>
+        <a class="btn-map" href="https://maps.google.com/?q=Anselmo+Alarcon+175+El+Bollenar+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+      </div>
+
+      <!-- Plaza Bollenar -->
+      <div class="farmacia-card">
+        <span class="fc-badge" style="background:#E8F4FB;color:#1A5FA8">Bollenar</span>
+        <h3>Farmacia Plaza Bollenar</h3>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Los Boldos 219, El Bollenar</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>10:30 – 20:00</span></div>
+        <a class="btn-map" href="https://maps.google.com/?q=Los+Boldos+219+El+Bollenar+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+      </div>
+
+      <!-- NG Salud (Culiprán) -->
+      <div class="farmacia-card">
+        <span class="fc-badge" style="background:#E6F5EE;color:#0F5E3F">Culiprán</span>
+        <h3>Farmacia NG Salud</h3>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Parcela 26, El Dibujo, Culiprán</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>10:00 – 20:00</span></div>
+        <a class="btn-map" href="https://maps.google.com/?q=Culipran+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+      </div>
+
+      <!-- Clínica Maitenes -->
+      <div class="farmacia-card">
+        <span class="fc-badge" style="background:#FAEEE8;color:#C4572A">Autopista</span>
+        <h3>Farmacia Clínica Maitenes</h3>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Caletera Norte Autopista del Sol 2882</span></div>
+        <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>11:00 – 20:00</span></div>
+        <a class="btn-map" href="https://maps.google.com/?q=Autopista+del+Sol+2882+Melipilla" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Ver en mapa</a>
+      </div>
+
+    </div>
+
+    <!-- Mapa farmacias -->
+    <div style="margin-top:1.25rem">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:.6rem">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--ambar);flex-shrink:0"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+        <span style="font-size:13px;font-weight:600;color:var(--texto)">Farmacias en el mapa</span>
+        <span style="font-size:11px;color:var(--texto-suave);margin-left:4px">· haz clic en un pin para ver detalles</span>
+      </div>
+      <div id="mapa-farmacias" style="height:340px;border-radius:var(--radio);border:1px solid var(--borde);overflow:hidden;z-index:0"></div>
+    </div>
+
+    <div class="nota" style="margin-top:.85rem">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <span>Melipilla tiene <strong>turnos de farmacia 24 horas</strong> según resolución ISP. El turno cambia cada día — verifica siempre antes de salir. <a href="https://www.ispch.gob.cl/farmacias-de-turno/" target="_blank" rel="noopener">Fuente oficial ISP</a></span>
+    </div>
+  </section>
 
   <!-- ═══ FERIAS LIBRES ═══ -->
   <section id="ferias" aria-labelledby="titulo-ferias">
@@ -1398,54 +1806,6 @@
     </div>
   </section>
 
-  <section id="farmacias" aria-labelledby="titulo-farmacias">
-    <div class="section-title">
-      <div class="section-icon ic-ambar">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
-      </div>
-      <div>
-        <h2 id="titulo-farmacias">Farmacias</h2>
-        <p>Turno rotativo diario — verifica siempre antes de salir</p>
-      </div>
-    </div>
-
-    <div class="nota" style="margin-bottom:1rem">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      <span>Melipilla tiene <strong>turnos de farmacia 24 horas</strong> según resolución ISP. El turno cambia cada día — consulta los links de abajo para saber cuál está abierta hoy.</span>
-    </div>
-
-    <div class="turno-links">
-      <a class="turno-link" href="https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-melipilla" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        farmaciashoy.cl — turno de hoy
-      </a>
-      <a class="turno-link" href="https://www.ispch.gob.cl/farmacias-de-turno/" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        ISP Chile — fuente oficial
-      </a>
-      <a class="turno-link" href="https://farmaciasabiertas.cl/farmacias-de-turno-en-melipilla/" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
-        farmaciasabiertas.cl — con mapa
-      </a>
-    </div>
-
-    <div class="card" style="margin-top:.85rem">
-      <div class="card-head">
-        <div class="card-icon ic-ambar">💊</div>
-        <div>
-          <h3>Farmacias en el centro de Melipilla</h3>
-          <div class="sub">Horario comercial habitual · llama para confirmar</div>
-        </div>
-      </div>
-      <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Vicuña Mackenna 153 — <a href="tel:+560228327526">+56 2 2832 7526</a></span></div>
-      <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Plaza de Armas 561 — <a href="tel:+560228323888">+56 2 2832 3888</a></span></div>
-      <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Serrano 501 — <a href="tel:+560228311552">+56 2 2831 1552</a></span></div>
-      <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Ortúzar 691 — <a href="tel:+560228323157">+56 2 2832 3157</a></span></div>
-      <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Plaza de Armas 468 — <a href="tel:+560228321955">+56 2 2832 1955</a></span></div>
-      <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>El Bollenar, Anselmo Alarcón 175 — <a href="tel:+560224080528">+56 2 2408 0528</a></span></div>
-    </div>
-  </section>
-
   <!-- ═══ MAPA GENERAL ═══ -->
   <section id="mapa" aria-labelledby="titulo-mapa">
     <div class="section-title">
@@ -1630,6 +1990,52 @@
   }, { rootMargin: '-40% 0px -55% 0px' });
 
   sections.forEach(s => observer.observe(s));
+
+  // ── Mapa de farmacias con Leaflet ──
+  (function() {
+    function initMapaFarmacias() {
+      if (!window.L || !document.getElementById('mapa-farmacias')) {
+        setTimeout(initMapaFarmacias, 200);
+        return;
+      }
+      var map = L.map('mapa-farmacias', { scrollWheelZoom: false }).setView([-33.6860, -71.2135], 14);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        maxZoom: 18
+      }).addTo(map);
+
+      function pin(color, letra) {
+        return L.divIcon({
+          className: '',
+          html: '<div style="width:28px;height:28px;border-radius:50%;background:' + color + ';border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;font-weight:700">' + letra + '</div>',
+          iconSize: [28, 28],
+          iconAnchor: [14, 14],
+          popupAnchor: [0, -16]
+        });
+      }
+
+      var farmacias = [
+        { lat: -33.6842, lng: -71.2151, nombre: 'Farmacia Cariño', dir: 'Ortúzar 399', tel: '2 2831 5050', color: '#1D9E75', letra: 'C' },
+        { lat: -33.6815, lng: -71.2076, nombre: 'Cruz Verde', dir: 'Vicuña Mackenna 153', tel: '+56 2 2832 7526', color: '#1A5FA8', letra: 'F' },
+        { lat: -33.6830, lng: -71.2142, nombre: 'Farmacia Plaza de Armas 561', dir: 'Plaza de Armas 561', tel: '+56 2 2832 3888', color: '#A06A0A', letra: 'F' },
+        { lat: -33.6820, lng: -71.2111, nombre: 'Farmacia Serrano', dir: 'Serrano 501', tel: '+56 2 2831 1552', color: '#A06A0A', letra: 'F' },
+        { lat: -33.6845, lng: -71.2162, nombre: 'Farmacia Ortúzar 691', dir: 'Ortúzar 691', tel: '+56 2 2832 3157', color: '#A06A0A', letra: 'F' },
+        { lat: -33.6835, lng: -71.2148, nombre: 'Farmacia Plaza de Armas 468', dir: 'Plaza de Armas 468', tel: '+56 2 2832 1955', color: '#A06A0A', letra: 'F' },
+        { lat: -33.6782, lng: -71.1878, nombre: 'Farmacia El Bollenar', dir: 'Anselmo Alarcón 175', tel: '+56 2 2408 0528', color: '#C4572A', letra: 'F' }
+      ];
+
+      farmacias.forEach(function(f) {
+        L.marker([f.lat, f.lng], { icon: pin(f.color, f.letra) })
+          .addTo(map)
+          .bindPopup(
+            '<strong style="font-size:13px">💊 ' + f.nombre + '</strong><br>' +
+            '<span style="font-size:12px;color:#555">📍 ' + f.dir + '</span><br>' +
+            '<span style="font-size:12px;color:#555">📞 ' + f.tel + '</span>'
+          );
+      });
+    }
+    initMapaFarmacias();
+  })();
 
   // ── Mapa de ferias con Leaflet ──
   (function() {
