@@ -774,6 +774,33 @@
       margin-left: 6px;
     }
 
+    /* ─── BADGE TURNO 24 HRS ─── */
+    .badge-turno-24 {
+      display: inline-flex !important;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px !important;
+      font-weight: 700 !important;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      background: #FFF3C4;
+      color: #92400E;
+      border: 1px solid #F0A500;
+      border-radius: 10px;
+      padding: 2px 8px !important;
+      margin-left: 6px;
+      vertical-align: middle;
+      animation: turno-glow 2.5s ease-in-out infinite;
+    }
+    @keyframes turno-glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(240,165,0,.3); }
+      50%       { box-shadow: 0 0 0 4px rgba(240,165,0,.0); }
+    }
+    .farmacia-card.es-turno {
+      border-left: 3px solid #F0A500 !important;
+      background: linear-gradient(135deg, #FFFBF0 0%, #fff 100%) !important;
+    }
+
     /* ─── FORMULARIO ─── */
     .form-group { margin-bottom: .85rem; }
     .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--texto); margin-bottom: .35rem; }
@@ -824,6 +851,245 @@
     }
     .form-msg.ok { background: var(--verde-suave); color: var(--verde); display: block; }
     .form-msg.err { background: var(--terracota-suave); color: var(--terracota); display: block; }
+
+    /* ═══════════════════════════════════════════════
+       REDISEÑO VISUAL — romper la pared de contenido
+       ═══════════════════════════════════════════════ */
+
+    /* ── Variables adicionales ── */
+    :root {
+      --radio: 16px;
+      --radio-sm: 10px;
+      --sombra: 0 1px 3px rgba(0,0,0,.05), 0 4px 18px rgba(0,0,0,.07);
+      --sombra-hover: 0 6px 12px rgba(0,0,0,.07), 0 16px 40px rgba(0,0,0,.11);
+    }
+
+    /* ── Hero más cinematográfico ── */
+    .hero {
+      padding: 5.5rem 1.5rem 5rem;
+      background: linear-gradient(155deg, #07392a 0%, #0e5438 45%, #1c7d54 100%);
+    }
+
+    /* Patrón diagonal tipo mosaico chileno */
+    .hero::before {
+      background: repeating-linear-gradient(
+        -55deg,
+        transparent,
+        transparent 36px,
+        rgba(255,255,255,.025) 36px,
+        rgba(255,255,255,.025) 38px
+      ) !important;
+    }
+
+    .hero-inner { max-width: 780px; }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,.72);
+      max-width: 500px;
+      line-height: 1.75;
+    }
+
+    /* ── Banda de emergencias más compacta y refinada ── */
+    .emergency {
+      background: var(--terracota);
+      padding: .9rem 1.5rem;
+    }
+
+    /* ── Main con más espacio lateral en desktop ── */
+    main { max-width: 960px; margin: 0 auto; padding: 0 0 5rem; }
+
+    /* ── Separadores de sección con color de acento ── */
+    section { padding: 3.5rem 1.75rem; margin: 0; }
+    section:nth-child(even) { background: #fff; }
+    section:nth-child(odd)  { background: var(--crema); }
+
+    /* Línea de color sobre cada sección alterna para romper la pared */
+    section:nth-child(even)::before {
+      content: '';
+      display: block;
+      height: 3px;
+      background: linear-gradient(90deg, var(--verde-claro), transparent);
+      margin: -3.5rem -1.75rem 3rem;
+    }
+
+    /* ── Títulos de sección más grandes y con más aire ── */
+    .section-title {
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--crema-oscura);
+      gap: 14px;
+    }
+
+    .section-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px; /* cuadrado redondeado en vez de círculo */
+    }
+
+    .section-title h2 {
+      font-size: 1.6rem;
+      letter-spacing: -.025em;
+    }
+
+    .section-title p { font-size: 14px; margin-top: 3px; }
+
+    /* ── Cards con más sombra y borde sutil ── */
+    .card {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.07);
+      border-radius: var(--radio);
+      padding: 1.5rem 1.6rem;
+      box-shadow: var(--sombra);
+      transition: box-shadow .22s, transform .22s;
+    }
+    section:nth-child(even) .card { background: var(--crema); }
+
+    .card:hover {
+      box-shadow: var(--sombra-hover);
+      transform: translateY(-3px);
+      border-color: rgba(0,0,0,.1);
+    }
+
+    /* ── Cards farmacia mejoradas ── */
+    .farmacia-card {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.07);
+      border-radius: var(--radio);
+      padding: 1.4rem 1.6rem;
+      box-shadow: var(--sombra);
+      transition: box-shadow .22s, transform .22s;
+      position: relative;
+    }
+    section:nth-child(even) .farmacia-card { background: var(--crema); }
+    .farmacia-card:hover {
+      box-shadow: var(--sombra-hover);
+      transform: translateY(-3px);
+      border-color: rgba(0,0,0,.1);
+    }
+
+    /* ── Caja de turno — más impactante ── */
+    .turno-hoy-box {
+      background: linear-gradient(135deg, #FFFCF0 0%, #FFF8DC 100%);
+      border: 2px solid #E8C040;
+      border-radius: var(--radio);
+      padding: 1.6rem 1.8rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 4px 24px rgba(240,165,0,.12);
+      position: relative;
+      overflow: hidden;
+    }
+    .turno-hoy-box::before { font-size: 3.5rem; opacity: .1; right: 1.25rem; }
+    .turno-hoy-box h3 { font-size: 1.15rem; margin-bottom: .5rem; }
+
+    /* Línea de color izquierda en la caja de turno */
+    .turno-hoy-box::after {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+      background: linear-gradient(to bottom, #F0A500, #FFD060);
+      border-radius: 4px 0 0 4px;
+    }
+
+    /* ── Fondo de secciones con acento de color izquierdo ── */
+    .section-inner { max-width: 960px; margin: 0 auto; }
+
+    /* ── Info rows con más espacio ── */
+    .info-row {
+      padding: 6px 0;
+      font-size: 13.5px;
+      gap: 9px;
+    }
+
+    /* ── Nota informativa más sutil ── */
+    .nota {
+      border-left: 4px solid var(--ambar);
+      border-radius: 0 var(--radio) var(--radio) 0;
+      padding: 1rem 1.1rem;
+      margin-top: .75rem;
+    }
+
+    /* ── Card de emergencias ── */
+    .card-emg {
+      border-radius: var(--radio);
+      border: 1px solid rgba(0,0,0,.07);
+      box-shadow: var(--sombra);
+    }
+
+    /* ── Grid de cards ── */
+    .cards-2 { gap: 1.25rem; }
+
+    /* ── Footer más premium ── */
+    footer {
+      background: linear-gradient(135deg, #0a3d28 0%, var(--verde) 100%);
+      padding: 2.5rem 1.5rem;
+      font-size: 13.5px;
+    }
+
+    /* ── Botones de turno mejorados ── */
+    .btn-turno-primary {
+      background: #D09000;
+      padding: .65rem 1.25rem;
+      font-size: 13.5px;
+      border-radius: var(--radio-sm);
+      box-shadow: 0 2px 8px rgba(208,144,0,.25);
+    }
+    .btn-turno-primary:hover {
+      background: #B87C00;
+      box-shadow: 0 4px 16px rgba(208,144,0,.35);
+    }
+    .btn-turno-sec {
+      border-radius: var(--radio-sm);
+      font-size: 13px;
+    }
+
+    /* ── Badges de día más visibles ── */
+    .dia {
+      font-size: 11.5px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      background: var(--verde-suave);
+      color: var(--verde);
+      font-weight: 600;
+    }
+
+    /* ── Badges de farmacia ── */
+    .fc-badge {
+      font-size: 10.5px;
+      padding: 3px 9px;
+      border-radius: 12px;
+      margin-bottom: .6rem;
+    }
+
+    /* ── Chips de emergencia ── */
+    .chip {
+      padding: 6px 16px;
+      font-size: 13.5px;
+      border-radius: 24px;
+    }
+
+    /* ── Responsive mejorado ── */
+    @media (max-width: 640px) {
+      .hero { padding: 3rem 1.1rem 2.5rem; }
+      section { padding: 2.5rem 1.1rem; }
+      section:nth-child(even)::before { margin: -2.5rem -1.1rem 2rem; }
+      .turno-hoy-box { padding: 1.2rem 1.1rem; }
+      .card, .farmacia-card { padding: 1.2rem 1.1rem; }
+      .turno-hoy-btns { flex-direction: column; }
+      .btn-turno-primary, .btn-turno-sec { justify-content: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
+    }
   </style>
 </head>
 <body>
@@ -878,8 +1144,15 @@
     </div>
     <h1>Farmacia de turno hoy en <em>Melipilla</em></h1>
     <p class="hero-desc">
-      CESFAM, colegios, ferias libres y emergencias — todo lo que necesitas para vivir en Melipilla en un solo lugar.
+      CESFAM, colegios, ferias libres y emergencias — todo lo que necesitas para vivir en Melipilla, en un solo lugar.
     </p>
+    <div style="display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.75rem">
+      <a href="#farmacias" style="display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);color:#fff;text-decoration:none;padding:.5rem 1rem;border-radius:10px;font-size:13px;font-weight:500;transition:background .15s">💊 Farmacias</a>
+      <a href="#salud" style="display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);color:#fff;text-decoration:none;padding:.5rem 1rem;border-radius:10px;font-size:13px;font-weight:500;transition:background .15s">🏥 Centros de salud</a>
+      <a href="#ferias" style="display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);color:#fff;text-decoration:none;padding:.5rem 1rem;border-radius:10px;font-size:13px;font-weight:500;transition:background .15s">🛒 Ferias libres</a>
+      <a href="#colegios" style="display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);color:#fff;text-decoration:none;padding:.5rem 1rem;border-radius:10px;font-size:13px;font-weight:500;transition:background .15s">🏫 Colegios</a>
+      <a href="#seguridad" style="display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);color:#fff;text-decoration:none;padding:.5rem 1rem;border-radius:10px;font-size:13px;font-weight:500;transition:background .15s">🚔 Seguridad</a>
+    </div>
   </div>
 </header>
 
@@ -900,6 +1173,9 @@
 
 <!-- ─── CONTENIDO PRINCIPAL ─── -->
 <main>
+
+  <!-- Divisor decorativo -->
+  <div style="height:4px;background:linear-gradient(90deg,var(--verde),var(--verde-claro),var(--ambar),var(--terracota));opacity:.6"></div>
 
   <!-- ═══ FARMACIAS (PRIMERO por SEO y demanda) ═══ -->
   <section id="farmacias" aria-labelledby="titulo-farmacias">
@@ -2293,37 +2569,98 @@
       return (s || '').toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
     }
 
-    // La API oficial de turnos de farmacia de MINSAL/FARMANET entrega un listado
-    // nacional en JSON, actualizado a diario. Filtramos por comuna = Melipilla.
     const API_URL = 'https://midas.minsal.cl/farmacia_v2/WS/getLocalesTurnos.php';
 
-    async function obtenerJSON(url, ms) {
-      const res = await fetch(url, { signal: AbortSignal.timeout(ms) });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      return res.json();
+    // Intenta obtener JSON desde una URL con timeout
+    async function tryFetch(url, ms) {
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), ms);
+      try {
+        const res = await fetch(url, { signal: ctrl.signal });
+        clearTimeout(timer);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return await res.json();
+      } catch(e) {
+        clearTimeout(timer);
+        throw e;
+      }
     }
 
     async function obtenerTurnosMelipilla() {
-      let data = null;
+      // Lista de estrategias ordenadas por prioridad
+      const estrategias = [
+        // 1) Llamada directa
+        () => tryFetch(API_URL, 6000),
+        // 2) allorigins (raw)
+        () => tryFetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(API_URL), 9000),
+        // 3) corsproxy.io
+        () => tryFetch('https://corsproxy.io/?' + encodeURIComponent(API_URL), 9000),
+        // 4) thingproxy
+        () => tryFetch('https://thingproxy.freeboard.io/fetch/' + API_URL, 9000),
+        // 5) allorigins (get JSON wrapper)
+        () => tryFetch('https://api.allorigins.win/get?url=' + encodeURIComponent(API_URL), 9000)
+              .then(d => typeof d.contents === 'string' ? JSON.parse(d.contents) : d.contents),
+      ];
 
-      // 1) Intento directo
-      try {
-        data = await obtenerJSON(API_URL, 6000);
-      } catch (e) { /* probamos con proxy */ }
-
-      // 2) Fallback vía proxy CORS, por si el navegador bloquea la llamada directa
-      if (!data) {
+      for (const estrategia of estrategias) {
         try {
-          const proxied = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(API_URL);
-          data = await obtenerJSON(proxied, 9000);
-        } catch (e) { /* sin datos */ }
+          const data = await estrategia();
+          if (Array.isArray(data) && data.length > 0) {
+            return data.filter(f => {
+              const comuna = quitarTildes(f.comuna_nombre || f.comuna || '');
+              return comuna.includes('melipilla');
+            });
+          }
+        } catch(e) { /* intentamos la siguiente */ }
       }
+      return [];
+    }
 
-      if (!Array.isArray(data)) return [];
+    // Determina si una farmacia está abierta 24 hrs según sus horas
+    function es24hrs(horaA, horaC) {
+      if (!horaA || !horaC) return false;
+      const aLow = horaA.toLowerCase().replace(/\s/g,'');
+      const cLow = horaC.toLowerCase().replace(/\s/g,'');
+      if (aLow.includes('00:00') && cLow.includes('00:00')) return true;
+      if (aLow.includes('00:00') && cLow.includes('23:59')) return true;
+      if (aLow.includes('0:00')  && cLow.includes('0:00'))  return true;
+      return false;
+    }
 
-      return data.filter(f => {
-        const comuna = quitarTildes(f.comuna_nombre || f.comuna || '');
-        return comuna.includes('melipilla');
+    // Resalta en las farmacia-cards aquellas que coinciden con el turno de hoy
+    function resaltarCardsConTurno(turnos) {
+      if (!turnos || !turnos.length) return;
+      const nombres = turnos.map(f =>
+        quitarTildes(f.local_nombre || f.nombre || '')
+      );
+
+      document.querySelectorAll('.farmacia-card').forEach(card => {
+        const h3 = card.querySelector('h3');
+        if (!h3) return;
+        const cardNombre = quitarTildes(h3.textContent);
+        const match = nombres.some(n => {
+          // Comprobación parcial: si el nombre del turno contiene parte del nombre de la card o viceversa
+          const palabrasClave = n.split(/\s+/).filter(p => p.length > 3);
+          return palabrasClave.some(p => cardNombre.includes(p));
+        });
+        if (match) {
+          card.style.borderLeft = '3px solid #F0A500';
+          card.style.background = 'linear-gradient(135deg,#FFFBF0 0%,#fff 100%)';
+          // Añadir badge si no existe ya
+          if (!card.querySelector('.badge-turno-24')) {
+            const badge = document.createElement('span');
+            badge.className = 'badge-turno-24';
+            badge.innerHTML = '🌙 24 hrs · TURNO HOY';
+            badge.style.cssText = [
+              'display:inline-flex','align-items:center','gap:4px',
+              'font-size:10px','font-weight:700','letter-spacing:.05em',
+              'text-transform:uppercase','background:#FFF3C4','color:#92400E',
+              'border:1px solid #F0A500','border-radius:10px',
+              'padding:2px 8px','margin-left:6px','vertical-align:middle'
+            ].join(';');
+            h3.appendChild(badge);
+          }
+        }
       });
     }
 
@@ -2332,23 +2669,42 @@
       loadingEl.style.display = 'none';
 
       if (turnos.length > 0) {
-        const hoy = new Date().toLocaleDateString('es-CL', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'America/Santiago' });
+        const hoy = new Date().toLocaleDateString('es-CL', {
+          weekday: 'long', day: 'numeric', month: 'long',
+          timeZone: 'America/Santiago'
+        });
+
         resultEl.innerHTML = turnos.map(f => {
           const nombre = f.local_nombre || f.nombre || 'Farmacia de turno';
           const dir    = f.local_direccion || f.direccion || '';
           const tel    = f.local_telefono || f.telefono || '';
           const horaA  = f.funcionamiento_hora_apertura || '';
-          const horaC  = f.funcionamiento_hora_cierre || '';
-          return '<div style="margin-bottom:.7rem">' +
-            '<strong>🟢 ' + nombre + '</strong>' +
-            (dir ? '<div class="turno-dir">📍 ' + dir + '</div>' : '') +
-            (tel ? '<div class="turno-dir">📞 ' + tel + '</div>' : '') +
-            (horaA && horaC ? '<div class="turno-dir">🕐 ' + horaA + ' – ' + horaC + '</div>' : '') +
+          const horaC  = f.funcionamiento_hora_cierre   || '';
+          const abierta24 = es24hrs(horaA, horaC);
+          const horarioTexto = (horaA && horaC)
+            ? horaA + ' – ' + horaC + (abierta24 ? ' (24 hrs)' : '')
+            : '24 hrs (turno)';
+
+          return '<div style="margin-bottom:.85rem;padding-bottom:.85rem;border-bottom:1px solid #F0E8C0;last-child:border-bottom:none">' +
+            '<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">' +
+              '<strong style="font-size:15px;color:#3D2500">🟢 ' + nombre + '</strong>' +
+              (abierta24
+                ? '<span style="display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:#FFF3C4;color:#92400E;border:1px solid #F0A500;border-radius:10px;padding:2px 8px">🌙 ABIERTA 24 HRS</span>'
+                : '') +
+            '</div>' +
+            (dir     ? '<div class="turno-dir">📍 ' + dir + '</div>' : '') +
+            (tel     ? '<div class="turno-dir">📞 ' + tel + '</div>' : '') +
+            '<div class="turno-dir">🕐 ' + horarioTexto + '</div>' +
             '</div>';
         }).join('') +
-        '<div class="turno-dir" style="margin-top:2px;color:#6B7280">Turno del ' + hoy + ' · Fuente oficial: MINSAL / FARMANET</div>';
+        '<div class="turno-dir" style="margin-top:4px;color:#6B7280">Turno del ' + hoy + ' · Fuente oficial: MINSAL / FARMANET</div>';
+
         resultEl.classList.add('visible');
         subEl.textContent = 'Farmacia(s) de turno hoy en Melipilla — dato oficial, actualizado a diario.';
+
+        // Resaltar las cards correspondientes abajo
+        resaltarCardsConTurno(turnos);
+
       } else {
         throw new Error('Sin datos para Melipilla hoy');
       }
