@@ -75,16 +75,17 @@
       top: 0;
       z-index: 100;
       background: var(--verde);
-      padding: 0.8rem 1rem;
+      padding: 1rem;
       display: flex;
       align-items: center;
-      gap: 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,.18);
+      gap: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,.25);
+      border-bottom: 3px solid var(--verde-claro);
     }
 
     @media (max-width: 768px) {
       nav {
-        padding: 0.75rem 0.75rem;
+        padding: 1rem 0.75rem;
       }
     }
 
@@ -102,28 +103,29 @@
       right: 0;
       top: 0;
       bottom: 0;
-      width: 20px;
+      width: 40px;
       background: linear-gradient(to right, transparent, var(--verde));
       pointer-events: none;
     }
 
     .nav-brand {
       font-family: 'Fraunces', serif;
-      font-size: clamp(14px, 4vw, 17px);
+      font-size: clamp(16px, 4vw, 20px);
       font-weight: 600;
       color: #fff;
-      padding: 10px 12px 10px 0;
-      margin-right: 8px;
-      border-right: 1px solid rgba(255,255,255,.2);
+      padding: 12px 16px 12px 8px;
+      margin-right: 12px;
+      border-right: 2px solid rgba(255,255,255,.3);
       white-space: nowrap;
       text-decoration: none;
       flex-shrink: 0;
+      text-shadow: 0 1px 2px rgba(0,0,0,.1);
     }
 
     .nav-links {
       display: flex;
       list-style: none;
-      gap: 0;
+      gap: 0.5rem;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
@@ -134,53 +136,71 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 4px;
-      color: rgba(255,255,255,.85);
+      gap: 6px;
+      color: rgba(255,255,255,.95);
       text-decoration: none;
-      font-size: clamp(11px, 2.5vw, 13px);
-      font-weight: 500;
-      padding: 8px 10px;
+      font-size: clamp(12px, 3vw, 14px);
+      font-weight: 600;
+      padding: 10px 14px;
       white-space: nowrap;
-      transition: color .15s, background .15s, transform .1s;
-      border-radius: 6px;
+      transition: all .2s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 8px;
       margin: 4px 2px;
-      border: 1px solid transparent;
-      min-height: 40px;
+      border: 2px solid transparent;
+      min-height: 44px;
       cursor: pointer;
+      background: rgba(255,255,255,.1);
+      box-shadow: 0 2px 4px rgba(0,0,0,.1);
     }
 
     @media (max-width: 480px) {
       .nav-links a {
-        min-height: 44px;
-        padding: 8px 8px;
+        min-height: 48px;
+        padding: 10px 12px;
+        font-size: 12px;
+        gap: 4px;
       }
     }
 
     .nav-links a:hover {
       color: #fff;
-      background: rgba(255,255,255,.15);
-      border-color: rgba(255,255,255,.2);
+      background: rgba(255,255,255,.2);
+      border-color: rgba(255,255,255,.4);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,.2);
+    }
+
+    .nav-links a:active {
+      transform: translateY(0px);
+      box-shadow: 0 2px 4px rgba(0,0,0,.1);
     }
 
     .nav-links a.active {
-      color: #fff;
-      background: rgba(93,202,165,.2);
-      border-color: #5DCAA5;
+      color: #0F5E3F;
+      background: #FFE07A;
+      border-color: #FFA500;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(255, 200, 50, .4);
     }
 
     /* Botón farmacia destacado en nav */
     .nav-links a.nav-farmacia {
-      background: rgba(255,200,50,.18);
+      background: linear-gradient(135deg, rgba(255,200,50,.25), rgba(255,160,0,.2));
       color: #FFE07A;
-      border-color: rgba(255,200,50,.35);
-      font-weight: 600;
+      border-color: rgba(255,200,50,.6);
+      font-weight: 700;
     }
     .nav-links a.nav-farmacia:hover {
-      background: rgba(255,200,50,.3);
-      border-color: rgba(255,200,50,.6);
+      background: linear-gradient(135deg, rgba(255,200,50,.4), rgba(255,160,0,.35));
+      border-color: rgba(255,200,50,.8);
+      box-shadow: 0 6px 16px rgba(255, 160, 0, .35);
     }
 
-    .nav-links svg { flex-shrink: 0; }
+    .nav-links svg { 
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+    }
 
     /* ─── HERO ─── */
     .hero {
@@ -298,23 +318,45 @@
     .chip {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 6px;
       background: rgba(255,255,255,.15);
       color: #fff;
-      border-radius: 20px;
-      padding: 5px 14px;
-      font-size: 13px;
-      font-weight: 600;
+      border: 2px solid rgba(255,255,255,.3);
+      border-radius: 24px;
+      padding: 8px 16px;
+      font-size: clamp(12px, 3vw, 14px);
+      font-weight: 700;
       text-decoration: none;
-      transition: background .15s;
+      transition: all .2s cubic-bezier(0.4, 0, 0.2, 1);
+      min-height: 44px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,.15);
     }
 
-    .chip:hover { background: rgba(255,255,255,.28); }
+    @media (max-width: 480px) {
+      .chip {
+        padding: 8px 14px;
+        font-size: 12px;
+      }
+    }
+
+    .chip:hover {
+      background: rgba(255,255,255,.25);
+      border-color: rgba(255,255,255,.5);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,.2);
+    }
+
+    .chip:active {
+      transform: translateY(0px);
+      box-shadow: 0 2px 6px rgba(0,0,0,.1);
+    }
 
     .chip span {
       font-size: 11px;
-      font-weight: 400;
-      opacity: .8;
+      font-weight: 500;
+      opacity: .9;
     }
 
     /* ─── LAYOUT PRINCIPAL ─── */
@@ -480,30 +522,43 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      font-size: clamp(11px, 2vw, 12px);
-      font-weight: 600;
+      gap: 8px;
+      font-size: clamp(12px, 3vw, 13px);
+      font-weight: 700;
       color: var(--verde);
       background: var(--verde-suave);
-      border: none;
-      border-radius: 6px;
-      padding: clamp(8px, 2vw, 10px) clamp(10px, 3vw, 15px);
+      border: 2px solid var(--verde-claro);
+      border-radius: var(--radio);
+      padding: 12px 16px;
       text-decoration: none;
       margin-top: 8px;
       cursor: pointer;
-      transition: background .15s;
-      min-height: 40px;
+      transition: all .2s cubic-bezier(0.4, 0, 0.2, 1);
+      min-height: 48px;
       flex: 1;
+      box-shadow: 0 2px 8px rgba(29, 158, 117, .15);
     }
 
     @media (max-width: 480px) {
       .btn-map {
         min-height: 44px;
-        padding: 10px 12px;
+        padding: 10px 14px;
+        font-size: 12px;
       }
     }
 
-    .btn-map:hover { background: #C6EADB; }
+    .btn-map:hover {
+      background: #B0E0D8;
+      border-color: var(--verde);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(29, 158, 117, .25);
+      color: #0a4a30;
+    }
+
+    .btn-map:active {
+      transform: translateY(0px);
+      box-shadow: 0 2px 6px rgba(29, 158, 117, .15);
+    }
 
     /* ─── MAPA EMBEBIDO ─── */
     .map-embed {
@@ -755,24 +810,53 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 4px;
+      justify-content: center;
+      gap: 6px;
       background: #fff;
       border: 2px solid var(--borde);
       border-radius: var(--radio);
-      padding: .9rem .75rem;
+      padding: 1.2rem 1rem;
       text-decoration: none;
       color: var(--texto);
-      font-weight: 600;
-      font-size: 1rem;
-      transition: border-color .15s, box-shadow .15s, background .15s;
+      font-weight: 700;
+      font-size: 1.05rem;
+      transition: all .2s cubic-bezier(0.4, 0, 0.2, 1);
+      min-height: 140px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.08);
+      cursor: pointer;
     }
+
+    @media (max-width: 480px) {
+      .don-btn {
+        padding: 1rem 0.85rem;
+        min-height: 130px;
+        font-size: 0.95rem;
+      }
+    }
+
     .don-btn:hover {
       border-color: #009EE3;
-      box-shadow: 0 4px 16px rgba(0,158,227,.15);
+      box-shadow: 0 8px 24px rgba(0,158,227,.25);
       background: #F0F9FF;
+      transform: translateY(-4px);
     }
-    .don-btn .don-label { font-size: 11px; font-weight: 500; color: var(--texto-suave); }
-    .don-btn .don-emoji { font-size: 1.3rem; }
+
+    .don-btn:active {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,158,227,.15);
+    }
+
+    .don-btn .don-label { 
+      font-size: 12px; 
+      font-weight: 600; 
+      color: var(--texto-suave);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    .don-btn .don-emoji { 
+      font-size: 2rem;
+    }
 
     /* ─── TURNO DINÁMICO ─── */
     .turno-resultado {
@@ -898,19 +982,47 @@
     .btn-submit {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
+      justify-content: center;
+      gap: 8px;
       background: var(--verde);
       color: #fff;
-      border: none;
-      border-radius: var(--radio-sm);
-      padding: .7rem 1.5rem;
+      border: 2px solid var(--verde);
+      border-radius: var(--radio);
+      padding: 12px 20px;
       font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
+      font-size: clamp(13px, 3vw, 15px);
+      font-weight: 700;
       cursor: pointer;
-      transition: background .15s;
+      transition: all .2s cubic-bezier(0.4, 0, 0.2, 1);
+      min-height: 48px;
+      box-shadow: 0 3px 12px rgba(15, 94, 63, .25);
     }
-    .btn-submit:hover { background: var(--verde-claro); }
+
+    @media (max-width: 480px) {
+      .btn-submit {
+        width: 100%;
+        padding: 12px 16px;
+        min-height: 48px;
+      }
+    }
+
+    .btn-submit:hover {
+      background: var(--verde-claro);
+      border-color: var(--verde-claro);
+      box-shadow: 0 6px 20px rgba(15, 94, 63, .35);
+      transform: translateY(-2px);
+    }
+
+    .btn-submit:active {
+      transform: translateY(0px);
+      box-shadow: 0 3px 8px rgba(15, 94, 63, .2);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
     .form-msg {
       display: none;
       margin-top: .75rem;
@@ -1160,6 +1272,189 @@
     @media (prefers-reduced-motion: reduce) {
       * { transition: none !important; animation: none !important; }
     }
+
+    /* ═══════════════════════════════════════════
+       MEJORAS MÓVIL — romper la monotonía vertical
+       ═══════════════════════════════════════════ */
+
+    @media (max-width: 640px) {
+
+      /* ── Hero más compacto y con más punch ── */
+      .hero {
+        padding: 2rem 1.1rem 1.75rem !important;
+      }
+      .hero h1 {
+        font-size: 2rem !important;
+        letter-spacing: -.02em;
+      }
+      .hero-desc {
+        font-size: .92rem !important;
+        color: rgba(255,255,255,.78);
+        line-height: 1.65;
+      }
+      /* Pill de accesos rápidos: scroll horizontal en vez de wrap */
+      .hero > .hero-inner > div[style] {
+        flex-wrap: nowrap !important;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 4px;
+        scrollbar-width: none;
+      }
+      .hero > .hero-inner > div[style]::-webkit-scrollbar { display: none; }
+
+      /* ── Banda de emergencias: scroll horizontal y más compacta ── */
+      .emergency { padding: .65rem 1rem !important; }
+      .emergency-inner { flex-wrap: nowrap !important; overflow-x: auto; gap: .5rem !important; }
+      .emg-chips { flex-wrap: nowrap !important; gap: .4rem !important; }
+      .chip { padding: 5px 12px !important; font-size: 12.5px !important; white-space: nowrap; }
+
+      /* ── Secciones: menos padding, más respiración visual ── */
+      section { padding: 1.6rem 1rem !important; }
+      section:nth-child(even)::before { margin: -1.6rem -1rem 1.4rem !important; }
+
+      /* ── Divisor arcoíris más visible en móvil ── */
+      main > div[style*="height:4px"] {
+        height: 3px !important;
+        opacity: .9 !important;
+      }
+
+      /* ── Títulos de sección más compactos ── */
+      .section-title {
+        margin-bottom: 1.25rem !important;
+        padding-bottom: .75rem !important;
+        gap: 10px !important;
+      }
+      .section-title h2 { font-size: 1.3rem !important; }
+      .section-icon { width: 40px !important; height: 40px !important; border-radius: 10px !important; }
+
+      /* ── Cards: 1 columna con más sombra para dar profundidad ── */
+      .cards-2 { grid-template-columns: 1fr !important; gap: .85rem !important; }
+      .card, .farmacia-card {
+        padding: 1rem 1.1rem !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,.08), 0 8px 24px rgba(0,0,0,.06) !important;
+        border-radius: 14px !important;
+      }
+      /* Línea de color izquierda en todas las cards para dar profundidad */
+      .card:not([style*="border-left"]),
+      .farmacia-card:not([style*="border-left"]) {
+        border-left: 3px solid var(--verde-claro) !important;
+      }
+
+      /* ── Turno hoy box: sin tanto padding lateral ── */
+      .turno-hoy-box {
+        padding: 1rem 1rem !important;
+        border-radius: 14px !important;
+      }
+      .turno-hoy-box h3 { font-size: 1rem !important; }
+      .turno-hoy-btns { flex-direction: column !important; gap: .5rem !important; }
+      .btn-turno-primary, .btn-turno-sec {
+        justify-content: center !important;
+        padding: .7rem 1rem !important;
+        font-size: 13px !important;
+      }
+
+      /* ── Nota informativa ── */
+      .nota { font-size: 12.5px !important; padding: .8rem .9rem !important; }
+
+      /* ── Info rows más compactos ── */
+      .info-row { font-size: 13px !important; padding: 4px 0 !important; }
+
+      /* ── Card emergencias: grid 2 columnas en móvil ── */
+      .emg-grid { grid-template-columns: repeat(3, 1fr) !important; gap: .5rem !important; }
+      .emg-item .num { font-size: 1.8rem !important; }
+
+      /* ── Ferias libres: badges de día más pequeños ── */
+      .dia { font-size: 11px !important; padding: 2px 8px !important; }
+
+      /* ── Separadores de sección con color visible ── */
+      section + section {
+        border-top: 1px solid var(--crema-oscura);
+      }
+
+      /* ── Botones de mapa: más tap-friendly ── */
+      .btn-map { min-height: 44px !important; font-size: 12px !important; }
+
+      /* ── Links turno: 1 columna en móvil ── */
+      .turno-links { grid-template-columns: 1fr !important; }
+
+      /* ── Footer más compacto ── */
+      footer { padding: 1.5rem 1rem !important; font-size: 12.5px !important; }
+
+      /* ── Mapas: altura reducida para no ocupar toda la pantalla ── */
+      .map-embed iframe { height: 200px !important; }
+
+      /* ── Donation grid: 2 columnas ── */
+      .donation-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+      /* ── Formulario: inputs más altos (facilidad táctil) ── */
+      .form-group input,
+      .form-group textarea,
+      .form-group select { font-size: 16px !important; /* evita zoom automático en iOS */ }
+    }
+
+    /* ─── BOTONES CATEGORÍA PRINCIPAL ─── */
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.75rem;
+    }
+
+    .hero-buttons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 18px;
+      font-size: clamp(13px, 3vw, 15px);
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 10px;
+      border: 2px solid rgba(255,255,255,.3);
+      background: rgba(255,255,255,.15);
+      color: #fff;
+      transition: all .25s cubic-bezier(0.4, 0, 0.2, 1);
+      min-height: 48px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,.15);
+      text-shadow: 0 1px 2px rgba(0,0,0,.1);
+    }
+
+    @media (max-width: 768px) {
+      .hero-buttons a {
+        padding: 12px 16px;
+        font-size: 13px;
+        min-height: 44px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-buttons {
+        gap: 0.6rem;
+      }
+      
+      .hero-buttons a {
+        flex: 1;
+        min-width: calc(50% - 0.3rem);
+        padding: 12px 12px;
+        font-size: 12px;
+      }
+    }
+
+    .hero-buttons a:hover {
+      background: rgba(255,255,255,.25);
+      border-color: rgba(255,255,255,.6);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0,0,0,.25);
+      color: #fff;
+    }
+
+    .hero-buttons a:active {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(0,0,0,.15);
+    }
+
+    /* ─── BOTONES CATEGORÍA PRINCIPAL ─── */
   </style>
 </head>
 <body>
@@ -1216,12 +1511,12 @@
     <p class="hero-desc">
       CESFAM, colegios, ferias libres y emergencias — todo lo que necesitas para vivir en Melipilla, en un solo lugar.
     </p>
-    <div style="display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.75rem">
-      <a href="#farmacias" style="display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);color:#fff;text-decoration:none;padding:.5rem 1rem;border-radius:10px;font-size:13px;font-weight:500;transition:background .15s">💊 Farmacias</a>
-      <a href="#salud" style="display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);color:#fff;text-decoration:none;padding:.5rem 1rem;border-radius:10px;font-size:13px;font-weight:500;transition:background .15s">🏥 Centros de salud</a>
-      <a href="#ferias" style="display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);color:#fff;text-decoration:none;padding:.5rem 1rem;border-radius:10px;font-size:13px;font-weight:500;transition:background .15s">🛒 Ferias libres</a>
-      <a href="#colegios" style="display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);color:#fff;text-decoration:none;padding:.5rem 1rem;border-radius:10px;font-size:13px;font-weight:500;transition:background .15s">🏫 Colegios</a>
-      <a href="#seguridad" style="display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);color:#fff;text-decoration:none;padding:.5rem 1rem;border-radius:10px;font-size:13px;font-weight:500;transition:background .15s">🚔 Seguridad</a>
+    <div class="hero-buttons">
+      <a href="#farmacias">💊 Farmacias</a>
+      <a href="#salud">🏥 Centros de salud</a>
+      <a href="#ferias">🛒 Ferias libres</a>
+      <a href="#colegios">🏫 Colegios</a>
+      <a href="#seguridad">🚔 Seguridad</a>
     </div>
   </div>
 </header>
