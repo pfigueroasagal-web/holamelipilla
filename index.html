@@ -78,7 +78,7 @@
 
     /* ─── NAVEGACIÓN ─── */
     nav {
-      position: sticky;
+      position: fixed;
       top: 0;
       z-index: 100;
       background: var(--verde);
@@ -1467,6 +1467,11 @@
 
     /* ─── VERSÍCULO DEL DÍA ─── */
     .votd-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 101;
       background: linear-gradient(135deg, var(--ambar-suave), #FFF7E0);
       border-bottom: 1px solid #F0D98C;
     }
@@ -1907,6 +1912,34 @@
   </style>
 </head>
 <body>
+<script>
+  // Ajusta la posición del nav y el padding del body según la altura del versículo
+  function ajustarLayout() {
+    var votd = document.getElementById('votdBar');
+    var nav = document.querySelector('nav');
+    if (!votd || !nav) return;
+    var votdVisible = !votd.classList.contains('oculto') && votd.style.display !== 'none';
+    var votdH = votdVisible ? votd.offsetHeight : 0;
+    nav.style.top = votdH + 'px';
+    document.body.style.paddingTop = (votdH + nav.offsetHeight) + 'px';
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    ajustarLayout();
+    // Cuando se cierra el versículo, reajusta el layout
+    var closeBtn = document.getElementById('votdClose');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function() {
+        setTimeout(ajustarLayout, 50);
+      });
+    }
+    // Observer por si el votd-bar cambia de visibilidad
+    var votd = document.getElementById('votdBar');
+    if (votd && window.MutationObserver) {
+      new MutationObserver(ajustarLayout).observe(votd, { attributes: true, attributeFilter: ['class', 'style'] });
+    }
+    window.addEventListener('resize', ajustarLayout);
+  });
+</script>
 
 <!-- ─── VERSÍCULO DEL DÍA ─── -->
 <div class="votd-bar" id="votdBar" role="complementary" aria-label="Versículo del día">
