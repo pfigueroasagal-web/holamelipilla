@@ -1,0 +1,64 @@
+name: Verificación mensual de información
+
+on:
+  # Corre el día 1 de cada mes a las 08:00 hora Chile (11:00 UTC)
+  schedule:
+    - cron: '0 11 1 * *'
+
+  # También se puede ejecutar manualmente desde GitHub
+  workflow_dispatch:
+    inputs:
+      motivo:
+        description: 'Motivo de la ejecución manual'
+        required: false
+        default: 'Verificación manual'
+
+jobs:
+  verificar-y-actualizar:
+    name: Verificar información del sitio
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Clonar el repositorio
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+
+      # 2. Configurar Python
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # 3. Ejecutar el script de verificación
+      - name: Ejecutar verificación de información
+        run: |
+          echo "🤖 Iniciando verificación mensual..."
+          python update_info.py
+          echo "✅ Verificación completada"
+
+      # 4. Configurar identidad de git para el commit
+      - name: Configurar git
+        run: |
+          git config user.name "HolaMelipilla Bot"
+          git config user.email "bot@holamelipilla.cl"
+
+      # 5. Hacer commit si hay cambios
+      - name: Commit de cambios
+        run: |
+          git add index.html verificacion_info.json
+          if git diff --staged --quiet; then
+            echo "No hay cambios nuevos para commitear."
+          else
+            FECHA=$(date '+%d/%m/%Y')
+            git commit -m "🤖 Verificación automática mensual — $FECHA"
+            git push
+            echo "✅ Cambios subidos al repositorio"
+          fi
+
+      # 6. Mostrar resumen en el log del workflow
+      - name: Mostrar reporte
+        run: |
+          echo "📄 Reporte de verificación:"
+          cat verificacion_info.json
