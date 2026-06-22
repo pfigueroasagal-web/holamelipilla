@@ -1,0 +1,43 @@
+{
+  "name": "Hola Melipilla — Guía de servicios",
+  "short_name": "Hola Melipilla",
+  "description": "Farmacia de turno, CESFAM, colegios, ferias libres y emergencias en Melipilla.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F7F3EC",
+  "theme_color": "#0F5E3F",
+  "lang": "es-CL",
+  "orientation": "portrait-primary",
+  "categories": ["utilities", "health", "lifestyle"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Farmacia de turno",
+      "url": "/#farmacias",
+      "description": "Ver farmacia de turno hoy"
+    },
+    {
+      "name": "Emergencias",
+      "url": "/#seguridad",
+      "description": "Números de emergencia"
+    },
+    {
+      "name": "Centros de salud",
+      "url": "/#salud",
+      "description": "CESFAM y hospital"
+    }
+  ]
+}
