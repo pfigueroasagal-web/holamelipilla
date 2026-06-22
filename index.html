@@ -1517,6 +1517,131 @@
 
     /* ─── BOTONES CATEGORÍA PRINCIPAL ─── */
 
+
+    /* ═══ BUSCADOR GLOBAL ═══ */
+    .buscador-global-wrap {
+      position: relative;
+      max-width: 560px;
+      margin: 1.5rem auto 0;
+      width: 100%;
+    }
+    .buscador-global-inner {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.18), 0 1px 4px rgba(0,0,0,.08);
+      padding: 0 14px;
+      gap: 10px;
+      border: 2px solid transparent;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .buscador-global-inner:focus-within {
+      border-color: rgba(255,255,255,.6);
+      box-shadow: 0 6px 32px rgba(0,0,0,.22), 0 0 0 3px rgba(255,255,255,.2);
+    }
+    .buscador-icono { color: #999; flex-shrink: 0; }
+    #buscador-global {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      font-family: inherit;
+      padding: 14px 0;
+      background: transparent;
+      color: var(--texto);
+    }
+    #buscador-global::placeholder { color: #aaa; }
+    .buscador-limpiar {
+      background: none;
+      border: none;
+      color: #aaa;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 4px 6px;
+      border-radius: 50%;
+      line-height: 1;
+      transition: background .15s, color .15s;
+    }
+    .buscador-limpiar:hover { background: #f0f0f0; color: #555; }
+
+    /* Resultados flotantes */
+    .buscador-resultados {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0; right: 0;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 8px 40px rgba(0,0,0,.18);
+      z-index: 500;
+      max-height: 420px;
+      overflow-y: auto;
+      border: 1px solid rgba(0,0,0,.08);
+    }
+    .buscador-resultados:not([hidden]) { display: block; }
+    .br-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 16px;
+      cursor: pointer;
+      border-bottom: 1px solid #f0f0f0;
+      text-decoration: none;
+      color: var(--texto);
+      transition: background .15s;
+    }
+    .br-item:last-child { border-bottom: none; }
+    .br-item:hover, .br-item:focus { background: #f7f7f7; outline: none; }
+    .br-emoji { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+    .br-info { flex: 1; min-width: 0; }
+    .br-nombre {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--texto);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .br-nombre mark {
+      background: #FEF08A;
+      color: inherit;
+      border-radius: 3px;
+      padding: 0 1px;
+    }
+    .br-detalle {
+      font-size: 12px;
+      color: var(--texto-suave);
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .br-badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      border-radius: 20px;
+      padding: 2px 8px;
+      flex-shrink: 0;
+      align-self: center;
+    }
+    .br-badge-farmacia  { background: #FEF3C7; color: #92400E; }
+    .br-badge-salud     { background: #DBEAFE; color: #1E40AF; }
+    .br-badge-seguridad { background: #FEE2E2; color: #991B1B; }
+    .br-badge-feria     { background: #D1FAE5; color: #065F46; }
+    .br-badge-colegio   { background: #EDE9FE; color: #5B21B6; }
+    .br-vacio {
+      padding: 20px 16px;
+      text-align: center;
+      color: var(--texto-suave);
+      font-size: 14px;
+    }
+    @media (max-width: 600px) {
+      .buscador-global-wrap { margin-top: 1.25rem; }
+      #buscador-global { font-size: 15px; padding: 12px 0; }
+    }
+
     /* ─── BOTÓN COPIAR NÚMERO ─── */
     .info-row-tel { justify-content: flex-start; gap: 8px; }
     .btn-copiar {
@@ -1569,6 +1694,209 @@
       }
       .chip span { font-size: 12px !important; }
     }
+
+    /* ╔══════════════════════════════════════════╗
+       ║   MEJORAS MÓVIL — VERSIÓN FINAL          ║
+       ╚══════════════════════════════════════════╝ */
+
+    @media (max-width: 640px) {
+
+      /* ── 1. BUSCADOR GLOBAL: ocupa todo el ancho ── */
+      .buscador-global-wrap { margin-top: 1rem !important; }
+      .buscador-global-inner { border-radius: 12px !important; }
+      #buscador-global { font-size: 16px !important; padding: 13px 0 !important; }
+      .buscador-resultados { border-radius: 12px !important; max-height: 60vh !important; }
+      .br-item { padding: 11px 14px !important; }
+      .br-nombre { font-size: 13.5px !important; }
+
+      /* ── 2. HERO: título más grande e impactante ── */
+      .hero h1 {
+        font-size: clamp(1.75rem, 8vw, 2.2rem) !important;
+        line-height: 1.15 !important;
+      }
+      .hero-eyebrow { font-size: 11px !important; }
+
+      /* ── 3. BOTONES HERO: 2 columnas perfectas ── */
+      .hero-buttons {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.5rem !important;
+        margin-top: 1.1rem !important;
+      }
+      .hero-buttons a {
+        min-width: unset !important;
+        flex: unset !important;
+        padding: 11px 10px !important;
+        font-size: 12.5px !important;
+        min-height: 46px !important;
+        justify-content: flex-start !important;
+        gap: 6px !important;
+      }
+      /* Botón Seguridad ocupa todo el ancho (es el 5to) */
+      .hero-buttons a:last-child {
+        grid-column: 1 / -1 !important;
+        justify-content: center !important;
+      }
+
+      /* ── 4. BANDA EMERGENCIAS: chips más grandes y visibles ── */
+      .emergency { padding: .8rem 1rem !important; }
+      .emg-label { display: none !important; } /* ahorra espacio */
+      .emg-chips { gap: .45rem !important; justify-content: center !important; flex-wrap: wrap !important; }
+      .chip {
+        padding: 9px 14px !important;
+        font-size: 13px !important;
+        min-height: 46px !important;
+        font-weight: 800 !important;
+        border-radius: 10px !important;
+      }
+      .chip span { font-size: 11px !important; }
+
+      /* ── 5. FARMACIA DE TURNO: box más legible ── */
+      .turno-hoy-box {
+        padding: 1.1rem !important;
+        margin-bottom: 1rem !important;
+      }
+      .turno-hoy-box h3 { font-size: 1rem !important; margin-bottom: .4rem !important; }
+      #turno-subtexto { font-size: 13px !important; }
+      .turno-hoy-btns {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: .4rem !important;
+        margin-top: .7rem !important;
+      }
+      .btn-turno-primary {
+        grid-column: 1 / -1 !important;
+        font-size: 13.5px !important;
+        padding: .75rem !important;
+        min-height: 48px !important;
+      }
+      .btn-turno-sec {
+        font-size: 12px !important;
+        padding: .6rem .5rem !important;
+        min-height: 44px !important;
+        justify-content: center !important;
+      }
+
+      /* ── 6. FARMACIA-CARDS: más compactas y escaneables ── */
+      .farmacia-card {
+        padding: .9rem 1rem !important;
+        border-radius: 14px !important;
+      }
+      .farmacia-card h3 {
+        font-size: .95rem !important;
+        margin: .3rem 0 .2rem !important;
+      }
+      .fc-badge {
+        font-size: 10px !important;
+        padding: 2px 8px !important;
+      }
+      /* Botones Mapa/Google: más altos y fáciles de tocar */
+      .farmacia-card .btn-map {
+        min-height: 46px !important;
+        font-size: 13px !important;
+        padding: 10px 12px !important;
+        font-weight: 700 !important;
+      }
+      /* Botón copiar: más compacto */
+      .btn-copiar {
+        font-size: 11px !important;
+        padding: 5px 8px !important;
+        min-height: 32px !important;
+      }
+      /* Número de teléfono más grande */
+      .info-row a[href^="tel:"] {
+        font-size: 14px !important;
+        font-weight: 700 !important;
+        color: var(--verde) !important;
+      }
+
+      /* ── 7. BUSCADOR DE FARMACIAS ── */
+      #buscador-farmacia { font-size: 16px !important; } /* evita zoom iOS */
+
+      /* ── 8. CARDS GENERALES (salud, colegios, ferias) ── */
+      .card { padding: 1rem 1.1rem !important; }
+      .card h3 { font-size: .95rem !important; }
+      .card-head { gap: 8px !important; margin-bottom: .5rem !important; }
+      .card-icon { width: 34px !important; height: 34px !important; font-size: 16px !important; }
+
+      /* ── 9. GRID EMERGENCIAS (números grandes) ── */
+      .emg-grid { grid-template-columns: repeat(2, 1fr) !important; gap: .6rem !important; }
+      .emg-item { padding: .8rem .6rem !important; border-radius: 12px !important; }
+      .emg-item .num { font-size: 2rem !important; }
+      .emg-item .name { font-size: 11px !important; }
+
+      /* ── 10. SECCIÓN TÍTULOS ── */
+      .section-title { gap: 10px !important; margin-bottom: 1.1rem !important; }
+      .section-title h2 { font-size: 1.2rem !important; }
+      .section-title p { font-size: 13px !important; }
+      .section-icon { width: 38px !important; height: 38px !important; }
+
+      /* ── 11. FERIAS: badges de días más visibles ── */
+      .dia {
+        font-size: 11.5px !important;
+        padding: 3px 10px !important;
+        font-weight: 700 !important;
+      }
+
+      /* ── 12. FORMULARIO SUGERENCIAS ── */
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        font-size: 16px !important;
+        padding: 12px !important;
+        border-radius: 10px !important;
+      }
+      .btn-submit {
+        width: 100% !important;
+        min-height: 50px !important;
+        font-size: 15px !important;
+        border-radius: 12px !important;
+      }
+
+      /* ── 13. DONACIONES: 2 columnas ── */
+      .donation-grid { grid-template-columns: repeat(2, 1fr) !important; gap: .6rem !important; }
+
+      /* ── 14. MAPA EMBED más bajo en móvil ── */
+      .map-embed iframe { height: 220px !important; border-radius: 12px !important; }
+
+      /* ── 15. FOOTER ── */
+      footer {
+        padding: 1.25rem 1rem !important;
+        font-size: 12.5px !important;
+        text-align: center !important;
+      }
+
+      /* ── 16. VERSÍCULO DEL DÍA: más compacto ── */
+      .votd-bar-inner { padding: .55rem .9rem !important; gap: .5rem !important; }
+      .votd-text { font-size: .82rem !important; }
+      .votd-icon { font-size: 1rem !important; }
+
+      /* ── 17. BADGE ACTUALIZACIÓN ── */
+      .update-badge { font-size: 10.5px !important; padding: 2px 8px !important; }
+
+      /* ── 18. NOTA INFORMATIVA ── */
+      .nota { font-size: 12.5px !important; padding: .75rem .9rem !important; line-height: 1.55 !important; }
+
+      /* ── 19. PWA BANNER ── */
+      #pwa-install-banner {
+        bottom: .75rem !important;
+        font-size: 13px !important;
+        padding: .65rem 1rem !important;
+        border-radius: 14px !important;
+      }
+
+      /* ── 20. SCROLL suave al ancla ── */
+      html { scroll-padding-top: 70px !important; }
+    }
+
+    /* Pantallas muy pequeñas (iPhone SE, 375px) */
+    @media (max-width: 390px) {
+      .hero h1 { font-size: 1.6rem !important; }
+      .chip { padding: 8px 11px !important; font-size: 12px !important; }
+      .hero-buttons a { font-size: 11.5px !important; padding: 10px 8px !important; }
+      .emg-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+
   </style>
 </head>
 <body>
@@ -1669,44 +1997,14 @@
     });
   }
 
-  async function cargarVersiculo() {
+  function cargarVersiculo() {
+    // Usar caché del día si existe
     const cache = localStorage.getItem(CACHE_KEY);
     if (cache) {
-      pintar(JSON.parse(cache));
-      return;
+      try { pintar(JSON.parse(cache)); return; } catch(e) {}
     }
-
-    // Sin App Key configurada todavía → usa el respaldo directo, sin pedirle nada a la API
-    if (!APP_KEY || APP_KEY === 'TU_APP_KEY_AQUI') {
-      usarRespaldo();
-      return;
-    }
-
-    try {
-      const headers = { 'X-YVP-App-Key': APP_KEY };
-
-      const votdRes = await fetch('https://api.youversion.com/v1/verse_of_the_days/' + diaDelAnio(), { headers });
-      if (!votdRes.ok) throw new Error('VOTD ' + votdRes.status);
-      const votd = await votdRes.json();
-
-      const passageRes = await fetch('https://api.youversion.com/v1/bibles/' + BIBLE_ID + '/passages/' + votd.passage_id, { headers });
-      if (!passageRes.ok) throw new Error('Passage ' + passageRes.status);
-      const passage = await passageRes.json();
-
-      const [libro, capitulo] = votd.passage_id.split('.');
-      const data = {
-        content: passage.content,
-        reference: passage.reference,
-        deepLink: 'https://www.bible.com/bible/' + BIBLE_ID + '/' + libro + '.' + capitulo
-      };
-
-      localStorage.setItem(CACHE_KEY, JSON.stringify(data));
-      pintar(data);
-    } catch (err) {
-      // Si la API real falla, no ocultamos la franja: mostramos el respaldo local
-      console.error('Versículo del día (API falló, usando respaldo):', err);
-      usarRespaldo();
-    }
+    // Usar respaldo local (rota diariamente, sin llamadas externas)
+    usarRespaldo();
   }
 
   cargarVersiculo();
@@ -1772,6 +2070,25 @@
       <a href="#colegios">🏫 Colegios</a>
       <a href="#seguridad">🚔 Seguridad</a>
     </div>
+
+    <!-- ─── BUSCADOR GLOBAL ─── -->
+    <div class="buscador-global-wrap" role="search" aria-label="Buscador general">
+      <div class="buscador-global-inner">
+        <svg class="buscador-icono" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input
+          id="buscador-global"
+          type="search"
+          placeholder="Buscar farmacia, CESFAM, colegio, feria…"
+          autocomplete="off"
+          aria-label="Buscar en toda la página"
+          aria-controls="buscador-resultados"
+          aria-expanded="false"
+        >
+        <button id="buscador-limpiar" class="buscador-limpiar" aria-label="Limpiar búsqueda" style="display:none">✕</button>
+      </div>
+      <div id="buscador-resultados" class="buscador-resultados" role="listbox" aria-label="Resultados de búsqueda" hidden></div>
+    </div>
+
   </div>
 </header>
 
@@ -3224,8 +3541,11 @@
       });
     }
 
+    // Intentar cargar en vivo, con timeout corto para no hacer esperar al usuario
+    loadingEl.innerHTML = '<div class="spinner"></div> Buscando la farmacia de turno de hoy…';
+    const turnoTimeout = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 8000));
     try {
-      const turnos = await obtenerTurnosMelipilla();
+      const turnos = await Promise.race([obtenerTurnosMelipilla(), turnoTimeout]);
       loadingEl.style.display = 'none';
 
       if (turnos.length > 0) {
@@ -3270,7 +3590,7 @@
       }
     } catch (err) {
       loadingEl.style.display = 'none';
-      subEl.innerHTML = 'No pudimos cargar el dato en vivo en este momento. Usa los botones de abajo para ver la farmacia de turno de hoy en las fuentes oficiales.';
+      subEl.innerHTML = '⚠️ El dato en vivo no está disponible ahora mismo. Consulta la farmacia de turno de hoy directamente en los botones de abajo — son las fuentes oficiales.';
     }
   })();
 
@@ -3303,6 +3623,251 @@
       btn.disabled = false;
       btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Enviar sugerencia';
     });
+  }
+</script>
+
+
+  <!-- ═══ BUSCADOR GLOBAL ═══ -->
+  <script>
+  (function() {
+    // Base de datos de todos los ítems
+    var ITEMS = [];
+
+    function initBuscador() {
+      // Recolectar datos de cada card y farmacia-card
+      document.querySelectorAll('.farmacia-card').forEach(function(el) {
+        var h3 = el.querySelector('h3');
+        if (!h3) return;
+        var rows = el.querySelectorAll('.info-row span');
+        var detalles = [];
+        rows.forEach(function(r) { if (r.textContent.trim()) detalles.push(r.textContent.trim()); });
+        var tel = el.querySelector('a[href^="tel:"]');
+        ITEMS.push({
+          nombre: h3.textContent.trim(),
+          detalle: detalles.slice(0, 2).join(' · '),
+          tipo: 'farmacia',
+          emoji: '💊',
+          badge: 'Farmacia',
+          anchor: '#farmacias',
+          el: el
+        });
+      });
+
+      // Secciones con .card
+      var secMap = {
+        'salud':     { emoji: '🏥', badge: 'Salud',     anchor: '#salud'     },
+        'seguridad': { emoji: '🚔', badge: 'Seguridad', anchor: '#seguridad' },
+        'ferias':    { emoji: '🛒', badge: 'Feria',     anchor: '#ferias'    },
+        'colegios':  { emoji: '🏫', badge: 'Colegio',   anchor: '#colegios'  }
+      };
+
+      Object.keys(secMap).forEach(function(secId) {
+        var sec = document.getElementById(secId);
+        if (!sec) return;
+        var meta = secMap[secId];
+        sec.querySelectorAll('.card').forEach(function(el) {
+          var h3 = el.querySelector('h3');
+          if (!h3) return;
+          var rows = el.querySelectorAll('.info-row span, p');
+          var detalles = [];
+          rows.forEach(function(r) { var t = r.textContent.trim(); if (t && t.length < 80) detalles.push(t); });
+          ITEMS.push({
+            nombre: h3.textContent.trim(),
+            detalle: detalles.slice(0, 2).join(' · '),
+            tipo: secId,
+            emoji: meta.emoji,
+            badge: meta.badge,
+            anchor: meta.anchor,
+            el: el
+          });
+        });
+      });
+    }
+
+    function normalizar(str) {
+      return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+
+    function resaltar(texto, q) {
+      if (!q) return texto;
+      var re = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+      return texto.replace(re, '<mark>$1</mark>');
+    }
+
+    function buscar(q) {
+      if (!q) return [];
+      var qn = normalizar(q);
+      var words = qn.split(/\s+/).filter(Boolean);
+      return ITEMS.filter(function(item) {
+        var haystack = normalizar(item.nombre + ' ' + item.detalle + ' ' + item.badge);
+        return words.every(function(w) { return haystack.includes(w); });
+      }).slice(0, 12);
+    }
+
+    function mostrarResultados(q, resultados) {
+      var caja = document.getElementById('buscador-resultados');
+      var input = document.getElementById('buscador-global');
+      if (!resultados.length) {
+        caja.innerHTML = '<div class="br-vacio">Sin resultados para "<strong>' + q + '</strong>"</div>';
+        caja.removeAttribute('hidden');
+        input.setAttribute('aria-expanded', 'true');
+        return;
+      }
+      var html = resultados.map(function(item) {
+        return '<a class="br-item" href="' + item.anchor + '" role="option" data-tipo="' + item.tipo + '">' +
+          '<span class="br-emoji">' + item.emoji + '</span>' +
+          '<span class="br-info">' +
+            '<span class="br-nombre">' + resaltar(item.nombre, q) + '</span>' +
+            (item.detalle ? '<span class="br-detalle">' + item.detalle + '</span>' : '') +
+          '</span>' +
+          '<span class="br-badge br-badge-' + item.tipo + '">' + item.badge + '</span>' +
+        '</a>';
+      }).join('');
+      caja.innerHTML = html;
+      caja.removeAttribute('hidden');
+      input.setAttribute('aria-expanded', 'true');
+
+      // Al hacer clic: scroll a la card y resaltar
+      caja.querySelectorAll('.br-item').forEach(function(link, i) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          var item = resultados[i];
+          cerrarResultados();
+          document.getElementById('buscador-global').value = '';
+          // Scroll suave a la sección
+          var target = document.querySelector(item.anchor);
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Resaltar la card brevemente
+          setTimeout(function() {
+            item.el.style.transition = 'box-shadow .3s, outline .3s';
+            item.el.style.outline = '3px solid var(--verde-claro)';
+            item.el.style.boxShadow = '0 0 0 6px rgba(29,158,117,.15)';
+            setTimeout(function() {
+              item.el.style.outline = '';
+              item.el.style.boxShadow = '';
+            }, 2200);
+          }, 400);
+        });
+      });
+    }
+
+    function cerrarResultados() {
+      var caja = document.getElementById('buscador-resultados');
+      var input = document.getElementById('buscador-global');
+      if (caja) { caja.innerHTML = ''; caja.setAttribute('hidden', ''); }
+      if (input) input.setAttribute('aria-expanded', 'false');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      initBuscador();
+      var input = document.getElementById('buscador-global');
+      var limpiar = document.getElementById('buscador-limpiar');
+      var timer;
+
+      input.addEventListener('input', function() {
+        var q = this.value.trim();
+        limpiar.style.display = q ? 'block' : 'none';
+        clearTimeout(timer);
+        if (!q) { cerrarResultados(); return; }
+        timer = setTimeout(function() {
+          mostrarResultados(q, buscar(q));
+        }, 180);
+      });
+
+      limpiar.addEventListener('click', function() {
+        input.value = '';
+        limpiar.style.display = 'none';
+        cerrarResultados();
+        input.focus();
+      });
+
+      // Cerrar al hacer clic fuera
+      document.addEventListener('click', function(e) {
+        var wrap = document.querySelector('.buscador-global-wrap');
+        if (wrap && !wrap.contains(e.target)) cerrarResultados();
+      });
+
+      // Navegación con teclado
+      input.addEventListener('keydown', function(e) {
+        var items = document.querySelectorAll('.br-item');
+        if (!items.length) return;
+        if (e.key === 'ArrowDown') { e.preventDefault(); items[0].focus(); }
+        if (e.key === 'Escape') { cerrarResultados(); input.blur(); }
+      });
+      document.getElementById('buscador-resultados').addEventListener('keydown', function(e) {
+        var items = Array.from(document.querySelectorAll('.br-item'));
+        var idx = items.indexOf(document.activeElement);
+        if (e.key === 'ArrowDown' && idx < items.length - 1) { e.preventDefault(); items[idx+1].focus(); }
+        if (e.key === 'ArrowUp') { e.preventDefault(); idx > 0 ? items[idx-1].focus() : input.focus(); }
+        if (e.key === 'Escape') { cerrarResultados(); input.focus(); }
+      });
+    });
+  })();
+  </script>
+
+  <!-- BUSCADOR + COPIAR NÚMERO -->
+<script>
+  // Buscador de farmacias — espera que el DOM esté listo
+  document.addEventListener('DOMContentLoaded', function() {
+    const buscador = document.getElementById('buscador-farmacia');
+    if (!buscador) return;
+    buscador.addEventListener('input', function() {
+      const q = this.value.trim().toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // quitar tildes
+      const cards = document.querySelectorAll('.farmacia-card');
+      let visibles = 0;
+      cards.forEach(card => {
+        const texto = card.textContent.toLowerCase()
+          .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        if (!q || texto.includes(q)) {
+          card.classList.remove('oculta');
+          visibles++;
+        } else {
+          card.classList.add('oculta');
+        }
+      });
+      const count = document.getElementById('buscador-resultado-count');
+      if (count) {
+        count.textContent = q
+          ? visibles + ' farmacia' + (visibles !== 1 ? 's' : '') + ' encontrada' + (visibles !== 1 ? 's' : '')
+          : '';
+      }
+    });
+  });
+
+  // Copiar número al portapapeles
+  function copiarTel(btn, numero) {
+    const numLimpio = numero.replace(/\s/g, '');
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(numLimpio).then(function() {
+        mostrarCopiado(btn);
+      }).catch(function() { fallbackCopy(btn, numLimpio); });
+    } else {
+      fallbackCopy(btn, numLimpio);
+    }
+  }
+
+  function fallbackCopy(btn, texto) {
+    var ta = document.createElement('textarea');
+    ta.value = texto;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try { document.execCommand('copy'); } catch(e) {}
+    document.body.removeChild(ta);
+    mostrarCopiado(btn);
+  }
+
+  function mostrarCopiado(btn) {
+    var orig = btn.innerHTML;
+    btn.textContent = '✓ Copiado';
+    btn.classList.add('copiado');
+    setTimeout(function() {
+      btn.innerHTML = orig;
+      btn.classList.remove('copiado');
+    }, 2000);
   }
 </script>
 
