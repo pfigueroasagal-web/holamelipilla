@@ -208,7 +208,7 @@
       color: #fff;
       padding: clamp(2.5rem, 8vw, 4.5rem) 1.25rem clamp(2rem, 6vw, 4rem);
       position: relative;
-      overflow: hidden;
+      overflow: visible;
     }
 
     @media (max-width: 480px) {
@@ -1524,6 +1524,7 @@
       max-width: 560px;
       margin: 1.5rem auto 0;
       width: 100%;
+      z-index: 9999;
     }
     .buscador-global-inner {
       display: flex;
@@ -1573,7 +1574,7 @@
       background: #fff;
       border-radius: 14px;
       box-shadow: 0 8px 40px rgba(0,0,0,.18);
-      z-index: 500;
+      z-index: 9999;
       max-height: 420px;
       overflow-y: auto;
       border: 1px solid rgba(0,0,0,.08);
@@ -1663,11 +1664,6 @@
     }
     .btn-copiar:hover { background: var(--verde); color: #fff; border-color: var(--verde); }
     .btn-copiar.copiado { background: #166534; color: #fff; border-color: #166534; }
-
-    /* ─── BUSCADOR FARMACIA ─── */
-    #buscador-farmacia:focus { border-color: var(--verde); box-shadow: 0 0 0 3px rgba(15,94,63,.12); }
-    #buscador-farmacia::placeholder { color: var(--texto-suave); opacity: .7; }
-    .farmacia-card.oculta { display: none !important; }
 
     /* ─── BADGE ACTUALIZACIÓN ─── */
     .update-badge {
@@ -2132,7 +2128,7 @@
     </p>
     <div class="turno-hoy-box">
       <h3>💊 Farmacia de turno hoy en Melipilla</h3>
-      <p id="turno-subtexto">Consultando en tiempo real…</p>
+      <p id="turno-subtexto" style="display:none">Consultando en tiempo real…</p>
       <div class="turno-loading" id="turno-loading">
         <div class="spinner"></div>
         Buscando la farmacia de turno de hoy…
@@ -2156,16 +2152,7 @@
 
     <!-- Farmacias individuales en cards -->
 
-    <!-- BUSCADOR DE FARMACIAS -->
-    <div style="margin:1.25rem 0 0.5rem;position:relative">
-      <label for="buscador-farmacia" style="display:block;font-size:13px;font-weight:600;color:var(--texto-suave);margin-bottom:6px;letter-spacing:.03em">🔍 Buscar farmacia por nombre o dirección</label>
-      <div style="position:relative">
-        <svg style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--texto-suave);pointer-events:none" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input id="buscador-farmacia" type="search" placeholder="Ej: Ahumada, Salcobrand, Ortúzar…" aria-label="Buscar farmacia por nombre o dirección"
-          style="width:100%;padding:10px 12px 10px 38px;border:2px solid var(--borde);border-radius:var(--radio);font-size:15px;font-family:inherit;background:#fff;color:var(--texto);outline:none;transition:border-color .2s">
-      </div>
-      <p id="buscador-resultado-count" style="font-size:12px;color:var(--texto-suave);margin-top:5px;min-height:18px"></p>
-    </div>
+
 
     <h3 style="font-family:'Fraunces',serif;font-size:1rem;font-weight:600;color:var(--texto);margin-bottom:.35rem;margin-top:1.5rem">Farmacias en horario habitual</h3>
     <p style="font-size:13px;color:var(--texto-suave);margin-bottom:.75rem">Este es el horario comercial normal de cada local (no aplica en días de turno). Para saber cuál está abierta <strong>ahora mismo</strong>, revisa el cuadro de arriba.</p>
@@ -3581,6 +3568,7 @@
 
         resultEl.classList.add('visible');
         subEl.textContent = 'Farmacia(s) de turno hoy en Melipilla — dato oficial, actualizado a diario.';
+        subEl.style.display = 'block';
 
         // Resaltar las cards correspondientes abajo
         resaltarCardsConTurno(turnos);
@@ -3590,7 +3578,7 @@
       }
     } catch (err) {
       loadingEl.style.display = 'none';
-      subEl.innerHTML = '⚠️ El dato en vivo no está disponible ahora mismo. Consulta la farmacia de turno de hoy directamente en los botones de abajo — son las fuentes oficiales.';
+      subEl.style.display = 'none';
     }
   })();
 
@@ -3734,11 +3722,16 @@
           var item = resultados[i];
           cerrarResultados();
           document.getElementById('buscador-global').value = '';
-          // Scroll suave a la sección
+          // Scroll suave a la sección compensando el nav sticky
+          var navH = (document.querySelector('nav') || {offsetHeight: 70}).offsetHeight;
           var target = document.querySelector(item.anchor);
-          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          if (target) {
+            var top = target.getBoundingClientRect().top + window.pageYOffset - navH - 16;
+            window.scrollTo({ top: top, behavior: 'smooth' });
+          }
           // Resaltar la card brevemente
           setTimeout(function() {
+            item.el.scrollIntoView({ behavior: 'smooth', block: 'center' });
             item.el.style.transition = 'box-shadow .3s, outline .3s';
             item.el.style.outline = '3px solid var(--verde-claro)';
             item.el.style.boxShadow = '0 0 0 6px rgba(29,158,117,.15)';
@@ -3807,34 +3800,6 @@
 
   <!-- BUSCADOR + COPIAR NÚMERO -->
 <script>
-  // Buscador de farmacias — espera que el DOM esté listo
-  document.addEventListener('DOMContentLoaded', function() {
-    const buscador = document.getElementById('buscador-farmacia');
-    if (!buscador) return;
-    buscador.addEventListener('input', function() {
-      const q = this.value.trim().toLowerCase()
-        .normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // quitar tildes
-      const cards = document.querySelectorAll('.farmacia-card');
-      let visibles = 0;
-      cards.forEach(card => {
-        const texto = card.textContent.toLowerCase()
-          .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-        if (!q || texto.includes(q)) {
-          card.classList.remove('oculta');
-          visibles++;
-        } else {
-          card.classList.add('oculta');
-        }
-      });
-      const count = document.getElementById('buscador-resultado-count');
-      if (count) {
-        count.textContent = q
-          ? visibles + ' farmacia' + (visibles !== 1 ? 's' : '') + ' encontrada' + (visibles !== 1 ? 's' : '')
-          : '';
-      }
-    });
-  });
-
   // Copiar número al portapapeles
   function copiarTel(btn, numero) {
     const numLimpio = numero.replace(/\s/g, '');
