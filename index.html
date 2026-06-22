@@ -20,6 +20,15 @@
   <meta name="twitter:description" content="Farmacia de turno hoy en Melipilla, CESFAM, colegios, ferias libres y emergencias.">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"Hola Melipilla","url":"https://holamelipilla.cl/","description":"Guía de servicios esenciales para personas que llegan a vivir a Melipilla, Chile. Farmacia de turno hoy, CESFAM, colegios y emergencias.","inLanguage":"es-CL","about":{"@type":"Place","name":"Melipilla","address":{"@type":"PostalAddress","addressLocality":"Melipilla","addressRegion":"Región Metropolitana","addressCountry":"CL"}}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cuál es la farmacia de turno en Melipilla hoy?","acceptedAnswer":{"@type":"Answer","text":"El turno de farmacia en Melipilla cambia cada día. Consulta farmaciashoy.cl o farmaciasabiertas.cl para saber cuál está abierta hoy en Melipilla."}},{"@type":"Question","name":"¿Dónde está la Farmacia Cariño en Melipilla?","acceptedAnswer":{"@type":"Answer","text":"Farmacia Cariño se ubica en Ortúzar 399, Melipilla. Teléfono: 2 2831 5050."}}]}]}</script>
   <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Hola Melipilla">
+  <meta name="theme-color" content="#0F5E3F">
+  <link rel="apple-touch-icon" href="/icon-192.png">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💊</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1519,6 +1528,13 @@
   </style>
 </head>
 <body>
+
+<!-- ─── BANNER INSTALACIÓN PWA ─── -->
+<div id="pwa-install-banner" style="display:none; position:fixed; bottom:1rem; left:50%; transform:translateX(-50%); z-index:9999; background:#0F5E3F; color:#fff; padding:0.75rem 1.25rem; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.3); align-items:center; gap:0.75rem; max-width:360px; width:calc(100% - 2rem); font-family:'Inter',sans-serif; font-size:14px;">
+  <span>📱 <strong>Instala la app</strong> para acceso rápido sin internet</span>
+  <button onclick="instalarApp()" style="background:#fff; color:#0F5E3F; border:none; border-radius:8px; padding:0.4rem 0.9rem; font-weight:600; cursor:pointer; white-space:nowrap; font-size:13px;">Instalar</button>
+  <button onclick="document.getElementById('pwa-install-banner').style.display='none'" style="background:transparent; border:none; color:rgba(255,255,255,0.7); cursor:pointer; font-size:18px; line-height:1; padding:0 0.2rem;">✕</button>
+</div>
 
 <!-- ─── VERSÍCULO DEL DÍA ─── -->
 <div class="votd-bar" id="votdBar" role="complementary" aria-label="Versículo del día">
@@ -3354,6 +3370,42 @@
       btn.disabled = false;
       btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Enviar sugerencia';
     });
+  }
+</script>
+
+<!-- PWA: Registro del Service Worker -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(reg => console.log('SW registrado:', reg.scope))
+        .catch(err => console.log('SW error:', err));
+    });
+  }
+
+  // Banner de instalación personalizado
+  let deferredPrompt;
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    const banner = document.getElementById('pwa-install-banner');
+    if (banner) banner.style.display = 'flex';
+  });
+
+  window.addEventListener('appinstalled', () => {
+    const banner = document.getElementById('pwa-install-banner');
+    if (banner) banner.style.display = 'none';
+    deferredPrompt = null;
+  });
+
+  function instalarApp() {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(choice => {
+        deferredPrompt = null;
+        document.getElementById('pwa-install-banner').style.display = 'none';
+      });
+    }
   }
 </script>
 
