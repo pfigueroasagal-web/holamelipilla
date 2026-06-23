@@ -1540,7 +1540,7 @@
       max-width: 560px;
       margin: 1.5rem auto 0;
       width: 100%;
-      z-index: 9999;
+      z-index: 50;
     }
     .buscador-global-inner {
       display: flex;
@@ -1590,7 +1590,7 @@
       background: #fff;
       border-radius: 14px;
       box-shadow: 0 8px 40px rgba(0,0,0,.18);
-      z-index: 9999;
+      z-index: 50;
       max-height: 420px;
       overflow-y: auto;
       border: 1px solid rgba(0,0,0,.08);
@@ -1658,6 +1658,30 @@
       .buscador-global-wrap { margin-top: 1.25rem; }
       #buscador-global { font-size: 15px; padding: 12px 0; }
     }
+
+    /* ─── BOTÓN COMPARTIR WHATSAPP ─── */
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: #25D366;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+      min-height: 36px;
+      white-space: nowrap;
+    }
+    .btn-whatsapp:hover { background: #1ebe5a; transform: translateY(-1px); }
+    .btn-whatsapp:active { transform: translateY(0); }
+    .btn-whatsapp svg { flex-shrink: 0; }
 
     /* ─── BOTÓN COPIAR NÚMERO ─── */
     .info-row-tel { justify-content: flex-start; gap: 8px; }
@@ -2210,8 +2234,9 @@
         </div>
         <h3>Farmacia Cariño</h3>
         <div class="info-row info-row-tel"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+5622831505022">2 2831 5050</a></span><button class="btn-copiar" onclick="copiarTel(this,'2 2831 5050')" aria-label="Copiar número 2 2831 5050" title="Copiar número"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button></div>
-        <div style="display:flex;gap:8px;margin-top:12px">
+        <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
           <a class="btn-map" href="https://maps.google.com/?q=Farmacia+Cariño+Ortuzar+399+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Mapa</a>
+          <button class="btn-whatsapp" onclick="compartirWsp('Farmacia Cariño','📍 Ortúzar 399, Melipilla\n📞 2 2831 5050\n🕐 10:00–23:00')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.054 23.5l5.849-1.533A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.813 9.813 0 01-5.001-1.371l-.359-.214-3.722.976.993-3.628-.234-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>Compartir</button>
           <a class="btn-map" href="https://www.google.com/search?q=Farmacia+Cariño+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Google</a>
         </div>
       </div>
@@ -2491,13 +2516,13 @@
         </div>
         <div class="info-row">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>Melipilla</span>
+          <span>Real Audiencia 980, Melipilla</span>
         </div>
         <div class="info-row">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           <span>Urgencias de baja complejidad las 24 hrs · sin necesidad de hora previa</span>
         </div>
-        <a class="btn-map" href="https://maps.google.com/?q=SAR+Elsa+Romo+Aravena+Melipilla" target="_blank" rel="noopener">
+        <a class="btn-map" href="https://maps.google.com/?q=Real+Audiencia+980+Melipilla" target="_blank" rel="noopener">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
           Ver en mapa
         </a>
@@ -2513,13 +2538,17 @@
         </div>
         <div class="info-row">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>Melipilla</span>
+          <span>Av. Libertad 1923, Melipilla</span>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg>
+          <span><a href="tel:+5622568814122">2 2568 8141</a></span>
         </div>
         <div class="info-row">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
           <span><a href="https://www.facebook.com/p/Cesfam-Florencia-100095248217085/" target="_blank" rel="noopener">Facebook CESFAM Florencia</a></span>
         </div>
-        <a class="btn-map" href="https://maps.google.com/?q=CESFAM+Florencia+Melipilla" target="_blank" rel="noopener">
+        <a class="btn-map" href="https://maps.google.com/?q=Av+Libertad+1923+Melipilla" target="_blank" rel="noopener">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
           Ver en mapa
         </a>
@@ -2565,10 +2594,13 @@
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg>
         <span><a href="tel:+56229581543">2 2958 1543</a> &middot; Urgencias: <a href="tel:131" style="color:var(--terracota);font-weight:700">131 SAMU</a></span>
       </div>
-      <a class="btn-map" href="https://maps.google.com/?q=O+Higgins+551+Melipilla" target="_blank" rel="noopener">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
-        Ver en mapa
-      </a>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <a class="btn-map" href="https://maps.google.com/?q=O+Higgins+551+Melipilla" target="_blank" rel="noopener" style="flex:1">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
+        <button class="btn-whatsapp" onclick="compartirWsp('Hospital de Melipilla','📍 O\'Higgins 551, Melipilla\n📞 2 2958 1543\n🚑 Urgencias: 131 SAMU\n⏰ 24 hrs')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.054 23.5l5.849-1.533A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.813 9.813 0 01-5.001-1.371l-.359-.214-3.722.976.993-3.628-.234-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>Compartir</button>
+      </div>
     </div>
 
     <!-- Mapa centros de salud -->
@@ -2665,10 +2697,13 @@
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
           <span><a href="https://www.carabineros.cl" target="_blank" rel="noopener">carabineros.cl</a></span>
         </div>
-        <a class="btn-map" href="https://maps.google.com/?q=Ortuzar+675+Melipilla" target="_blank" rel="noopener" style="background:var(--terracota-suave);color:var(--terracota)">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
-          Ver en mapa
-        </a>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <a class="btn-map" href="https://maps.google.com/?q=Ortuzar+675+Melipilla" target="_blank" rel="noopener" style="flex:1;background:var(--terracota-suave);color:var(--terracota)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+            Ver en mapa
+          </a>
+          <button class="btn-whatsapp" onclick="compartirWsp('24ª Comisaría de Melipilla','📍 Ortúzar 675, Melipilla\n📞 2 2922 4370\n🚨 Emergencias: 133')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.054 23.5l5.849-1.533A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.813 9.813 0 01-5.001-1.371l-.359-.214-3.722.976.993-3.628-.234-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>Compartir</button>
+        </div>
       </div>
 
       <div class="card">
@@ -2975,10 +3010,13 @@
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg>
           <span><a href="tel:+5622831440022">2 2831 4400</a></span>
         </div>
-        <a class="btn-map" href="https://maps.google.com/?q=Liceo+Enrique+Comptois+Melipilla" target="_blank" rel="noopener">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
-          Ver en mapa
-        </a>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <a class="btn-map" href="https://maps.google.com/?q=Liceo+Enrique+Comptois+Melipilla" target="_blank" rel="noopener" style="flex:1">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+            Ver en mapa
+          </a>
+          <button class="btn-whatsapp" onclick="compartirWsp('Liceo Enrique Comptois Müller','📍 Av. Manuel Rodríguez 560, Melipilla\n📞 2 2831 4400\n🏫 Municipal · Enseñanza media')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.054 23.5l5.849-1.533A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.813 9.813 0 01-5.001-1.371l-.359-.214-3.722.976.993-3.628-.234-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>Compartir</button>
+        </div>
       </div>
 
       <div class="card">
@@ -2990,9 +3028,21 @@
           </div>
         </div>
         <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Serrano 101, Melipilla</span>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg>
+          <span><a href="tel:+5695415691522">9 5415 6915</a></span>
+        </div>
+        <div class="info-row">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
           <span><a href="https://www.corpoeducmelipilla.cl" target="_blank" rel="noopener">corpoeducmelipilla.cl</a></span>
         </div>
+        <a class="btn-map" href="https://maps.google.com/?q=Serrano+101+Melipilla" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
       </div>
 
       <div class="card">
@@ -3005,8 +3055,16 @@
         </div>
         <div class="info-row">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>Melipilla</span>
+          <span>Los Copihues 1175, Melipilla</span>
         </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg>
+          <span><a href="tel:+5622832209922">2 2832 2099</a></span>
+        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=Los+Copihues+1175+Melipilla" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
       </div>
 
       <div class="card">
@@ -3019,8 +3077,16 @@
         </div>
         <div class="info-row">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>Melipilla</span>
+          <span>Balmaceda 555, Melipilla</span>
         </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg>
+          <span><a href="tel:+5622831278822">2 2831 2788</a></span>
+        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=Balmaceda+555+Melipilla" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
       </div>
 
       <div class="card">
@@ -3844,6 +3910,13 @@
 
   <!-- BUSCADOR + COPIAR NÚMERO -->
 <script>
+  // Compartir por WhatsApp
+  function compartirWsp(nombre, detalle) {
+    var texto = '📍 *' + nombre + '*\n' + detalle + '\n\nVía holamelipilla.cl';
+    var url = 'https://wa.me/?text=' + encodeURIComponent(texto);
+    window.open(url, '_blank');
+  }
+
   // Copiar número al portapapeles
   function copiarTel(btn, numero) {
     const numLimpio = numero.replace(/\s/g, '');
