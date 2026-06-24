@@ -1922,7 +1922,7 @@
       }
 
       /* ── 20. SCROLL suave al ancla ── */
-      html { scroll-padding-top: 70px !important; }
+      html { scroll-padding-top: 120px !important; }
     }
 
     /* Pantallas muy pequeñas (iPhone SE, 375px) */
@@ -1944,23 +1944,35 @@
     if (!votd || !nav) return;
     var votdVisible = !votd.classList.contains('oculto') && votd.style.display !== 'none';
     var votdH = votdVisible ? votd.offsetHeight : 0;
+    var navH = nav.offsetHeight;
     nav.style.top = votdH + 'px';
-    document.body.style.paddingTop = (votdH + nav.offsetHeight) + 'px';
+    document.body.style.paddingTop = (votdH + navH) + 'px';
+    // Actualizar scroll-padding-top dinámicamente
+    document.documentElement.style.scrollPaddingTop = (votdH + navH + 8) + 'px';
   }
+
   document.addEventListener('DOMContentLoaded', function() {
-    ajustarLayout();
-    // Cuando se cierra el versículo, reajusta el layout
+    // Primer ajuste: esperar a que los estilos y fuentes carguen
+    requestAnimationFrame(function() {
+      ajustarLayout();
+      // Segundo ajuste por si las fuentes cambiaron la altura
+      setTimeout(ajustarLayout, 300);
+    });
+
     var closeBtn = document.getElementById('votdClose');
     if (closeBtn) {
       closeBtn.addEventListener('click', function() {
         setTimeout(ajustarLayout, 50);
       });
     }
-    // Observer por si el votd-bar cambia de visibilidad
+
     var votd = document.getElementById('votdBar');
     if (votd && window.MutationObserver) {
-      new MutationObserver(ajustarLayout).observe(votd, { attributes: true, attributeFilter: ['class', 'style'] });
+      new MutationObserver(function() {
+        requestAnimationFrame(ajustarLayout);
+      }).observe(votd, { attributes: true, attributeFilter: ['class', 'style'] });
     }
+
     window.addEventListener('resize', ajustarLayout);
   });
 </script>
@@ -3442,6 +3454,7 @@
 
 <script>
   // Navegación activa al hacer scroll
+  // Los links pueden ser /farmacias o #farmacias — manejamos ambos
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
 
@@ -3449,7 +3462,11 @@
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         navLinks.forEach(l => l.classList.remove('active'));
-        const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+        // Buscar por href="#id" o href="/id" o href que termine en el id
+        const id = entry.target.id;
+        const active = document.querySelector(
+          `.nav-links a[href="#${id}"], .nav-links a[href="/${id}"], .nav-links a[href$="${id}"]`
+        );
         if (active) active.classList.add('active');
       }
     });
