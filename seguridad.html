@@ -63,6 +63,7 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
+      padding-top: 70px;
     }
 
     /* Optimización móvil */
@@ -2933,5 +2934,20 @@
   }
 </script>
 
+<script>
+  // Ajuste dinámico del padding-top según altura real de la nav
+  function ajustarNavFarmacias() {
+    var nav = document.querySelector('nav');
+    if (!nav) return;
+    document.body.style.paddingTop = nav.offsetHeight + 'px';
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    requestAnimationFrame(function() {
+      ajustarNavFarmacias();
+      setTimeout(ajustarNavFarmacias, 350);
+    });
+    window.addEventListener('resize', ajustarNavFarmacias);
+  });
+</script>
 </body>
 </html>
