@@ -1937,31 +1937,30 @@
 </head>
 <body>
 <script>
-  // Ajusta la posición del nav y el padding del body según la altura del versículo
   function ajustarLayout() {
-    var votd = document.getElementById('votdBar');
-    var nav = document.querySelector('nav');
+    var votd = document.getElementById("votdBar");
+    var nav = document.querySelector("nav");
     if (!votd || !nav) return;
-    var votdVisible = !votd.classList.contains('oculto') && votd.style.display !== 'none';
+    var votdVisible = !votd.classList.contains("oculto") && votd.style.display !== "none";
     var votdH = votdVisible ? votd.offsetHeight : 0;
-    nav.style.top = votdH + 'px';
-    document.body.style.paddingTop = (votdH + nav.offsetHeight) + 'px';
+    var navH = nav.offsetHeight;
+    nav.style.top = votdH + "px";
+    document.body.style.paddingTop = (votdH + navH) + "px";
+    document.documentElement.style.scrollPaddingTop = (votdH + navH + 8) + "px";
   }
-  document.addEventListener('DOMContentLoaded', function() {
-    ajustarLayout();
-    // Cuando se cierra el versículo, reajusta el layout
-    var closeBtn = document.getElementById('votdClose');
-    if (closeBtn) {
-      closeBtn.addEventListener('click', function() {
-        setTimeout(ajustarLayout, 50);
-      });
-    }
-    // Observer por si el votd-bar cambia de visibilidad
-    var votd = document.getElementById('votdBar');
+  document.addEventListener("DOMContentLoaded", function() {
+    requestAnimationFrame(function() {
+      ajustarLayout();
+      setTimeout(ajustarLayout, 350);
+    });
+    var closeBtn = document.getElementById("votdClose");
+    if (closeBtn) closeBtn.addEventListener("click", function() { setTimeout(ajustarLayout, 50); });
+    var votd = document.getElementById("votdBar");
     if (votd && window.MutationObserver) {
-      new MutationObserver(ajustarLayout).observe(votd, { attributes: true, attributeFilter: ['class', 'style'] });
+      new MutationObserver(function() { requestAnimationFrame(ajustarLayout); })
+        .observe(votd, { attributes: true, attributeFilter: ["class", "style"] });
     }
-    window.addEventListener('resize', ajustarLayout);
+    window.addEventListener("resize", ajustarLayout);
   });
 </script>
 
