@@ -2077,38 +2077,38 @@
 
 <!-- ─── NAVEGACIÓN ─── -->
 <nav aria-label="Navegación principal">
-  <a href="#inicio" class="nav-brand">📍 Melipilla</a>
+  <a href="/" class="nav-brand">📍 Melipilla</a>
   <div class="nav-scroll-wrapper">
   <ul class="nav-links">
-    <li><a href="#farmacias" class="nav-farmacia">
+    <li><a href="/farmacias" class="nav-farmacia">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
       Farmacias
     </a></li>
-    <li><a href="#salud">
+    <li><a href="/salud">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
       Centros de salud
     </a></li>
-    <li><a href="#seguridad">
+    <li><a href="/seguridad" class="active">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       Seguridad
     </a></li>
-    <li><a href="#ferias">
+    <li><a href="/ferias">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
       Ferias libres
     </a></li>
-    <li><a href="#colegios">
+    <li><a href="/colegios">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
       Colegios
     </a></li>
-    <li><a href="#mapa">
+    <li><a href="/#mapa">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
       Mapa general
     </a></li>
-    <li><a href="#donaciones">
+    <li><a href="/#donaciones">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
       Apoyar
     </a></li>
-    <li><a href="#sugerencias">
+    <li><a href="/#sugerencias">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
       Sugerencias
     </a></li>
@@ -2311,22 +2311,6 @@
 </script>
 
 <script>
-  // Navegación activa al hacer scroll
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navLinks.forEach(l => l.classList.remove('active'));
-        const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
-        if (active) active.classList.add('active');
-      }
-    });
-  }, { rootMargin: '-40% 0px -55% 0px' });
-
-  sections.forEach(s => observer.observe(s));
-
   // ── Mapa de farmacias con Leaflet ──
   (function() {
     function initMapaFarmacias() {
