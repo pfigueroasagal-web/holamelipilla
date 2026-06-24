@@ -2088,11 +2088,11 @@
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
       Centros de salud
     </a></li>
-    <li><a href="/seguridad" class="active">
+    <li><a href="/seguridad">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       Seguridad
     </a></li>
-    <li><a href="/ferias">
+    <li><a href="/ferias" class="active">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
       Ferias libres
     </a></li>
@@ -2172,117 +2172,229 @@
 </div>
 
 <!-- ─── CONTENIDO PRINCIPAL ─── -->
-<main><section id="seguridad" aria-labelledby="titulo-seguridad">
+<main><section id="ferias" aria-labelledby="titulo-ferias">
   <div class="section-inner">
     <div class="section-title">
-      <div class="section-icon ic-rojo">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <div class="section-icon ic-verde">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
       </div>
       <div>
-        <h2 id="titulo-seguridad">Seguridad y paz ciudadana</h2>
-        <p>Carabineros, PDI y líneas de apoyo</p>
+        <h2 id="titulo-ferias">Ferias libres</h2>
+        <p>Frutas, verduras y productos frescos a buen precio</p>
       <span class="update-badge" aria-label="Última actualización">📅 Actualizado Jun 2025</span>
       </div>
     </div>
 
-    <div class="card-emg" style="margin-bottom:.85rem">
-      <h3 style="font-family:'Fraunces',serif;font-size:1rem;font-weight:600;color:var(--terracota)">Números de emergencia — Melipilla</h3>
-      <div class="emg-grid">
-        <div class="emg-item">
-          <a href="tel:133" style="text-decoration:none"><span class="num">133</span></a>
-          <span class="name">Carabineros</span>
+    <div class="cards cards-2">
+
+      <!-- Avenida Chile -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon ic-verde">🛒</div>
+          <div>
+            <h3>Feria Avenida Chile</h3>
+            <div class="sub">Melipilla centro</div>
+          </div>
         </div>
-        <div class="emg-item">
-          <a href="tel:131" style="text-decoration:none"><span class="num">131</span></a>
-          <span class="name">SAMU</span>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div><div class="dias"><span class="dia">Sábado</span></div><div style="margin-top:4px">07:00 – 14:00</div></div>
         </div>
-        <div class="emg-item">
-          <a href="tel:132" style="text-decoration:none"><span class="num">132</span></a>
-          <span class="name">Bomberos</span>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Avda. Chile · desde Avda. Cementerio hasta Ninhue</span>
         </div>
-        <div class="emg-item">
-          <a href="tel:149" style="text-decoration:none"><span class="num">149</span></a>
-          <span class="name">Paz ciudadana</span>
-        </div>
-        <div class="emg-item">
-          <a href="tel:1452" style="text-decoration:none"><span class="num">1452</span></a>
-          <span class="name">Seguridad pública</span>
-        </div>
-        <div class="emg-item">
-          <a href="tel:1455" style="text-decoration:none"><span class="num">1455</span></a>
-          <span class="name">VIF — gratuito 24h</span>
-        </div>
-        <div class="emg-item">
-          <a href="tel:800730800" style="text-decoration:none"><span class="num" style="font-size:1.4rem">800 730 800</span></a>
-          <span class="name">Sename — niñez</span>
-        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=Avenida+Chile+Melipilla" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
       </div>
+
+      <!-- Bollenar Agricultores -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon ic-verde">🌾</div>
+          <div>
+            <h3>Feria Bollenar Agricultores</h3>
+            <div class="sub">Sector El Bollenar</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div><div class="dias"><span class="dia">Viernes</span><span class="dia">Domingo</span></div><div style="margin-top:4px">07:00 – 14:00</div></div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Plaza de Bollenar · desde Los Maquis</span>
+        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=Plaza+de+Bollenar+Melipilla" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
+      </div>
+
+      <!-- Codigua -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon ic-verde">🌿</div>
+          <div>
+            <h3>Feria Codigua</h3>
+            <div class="sub">Sector Codigua</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div><div class="dias"><span class="dia">Sábado</span></div><div style="margin-top:4px">07:00 – 14:00</div></div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Los Álamos, Codigua</span>
+        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=Codigua+Melipilla" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
+      </div>
+
+      <!-- Culipran -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon ic-verde">🌿</div>
+          <div>
+            <h3>Feria Culiprán</h3>
+            <div class="sub">Sector Culiprán</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div><div class="dias"><span class="dia">Sábado</span></div><div style="margin-top:4px">07:00 – 14:00</div></div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Las Palmeras de Culiprán</span>
+        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=Culipran+Melipilla" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
+      </div>
+
+      <!-- Manuel Rodriguez -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon ic-verde">🛒</div>
+          <div>
+            <h3>Feria Manuel Rodríguez</h3>
+            <div class="sub">Melipilla centro</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div><div class="dias"><span class="dia">Martes</span></div><div style="margin-top:4px">07:00 – 14:00</div></div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Manuel Rodríguez · desde Vicuña Mackenna hasta Ugalde</span>
+        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=Manuel+Rodriguez+Melipilla" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
+      </div>
+
+      <!-- Merced -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon ic-verde">🛒</div>
+          <div>
+            <h3>Feria Merced</h3>
+            <div class="sub">Melipilla centro</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div><div class="dias"><span class="dia">Domingo</span></div><div style="margin-top:4px">07:00 – 14:00</div></div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Merced · desde Lago Puyehue hasta 3 Poniente</span>
+        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=Calle+Merced+Melipilla" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
+      </div>
+
+      <!-- Pomaire -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon ic-verde">🏺</div>
+          <div>
+            <h3>Feria Pomaire</h3>
+            <div class="sub">Pueblo artesanal</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div><div class="dias"><span class="dia">Viernes</span></div><div style="margin-top:4px">07:00 – 14:00</div></div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Rafael Morandé · desde 18 de Septiembre hasta Caupolicán</span>
+        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=Pomaire+Melipilla+Chile" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
+      </div>
+
+      <!-- Villa Los Toros -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon ic-verde">🛒</div>
+          <div>
+            <h3>Feria Villa Los Toros</h3>
+            <div class="sub">Sector Villa Los Toros</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div><div class="dias"><span class="dia">Miércoles</span></div><div style="margin-top:4px">07:00 – 14:00</div></div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Policarpo Toro · desde Vicuña Mackenna hasta Merced</span>
+        </div>
+        <a class="btn-map" href="https://maps.google.com/?q=Policarpo+Toro+Melipilla" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+          Ver en mapa
+        </a>
+      </div>
+
     </div>
 
-    <div class="cards cards-2">
-      <div class="card">
-        <div class="card-head">
-          <div class="card-icon ic-rojo">🚔</div>
-          <div>
-            <h3>24ª Comisaría de Melipilla</h3>
-            <div class="sub">Carabineros de Chile</div>
-          </div>
+      <!-- Mapa ferias con Leaflet -->
+      <div style="margin-top:1.25rem">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:.6rem">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--verde);flex-shrink:0"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+          <span style="font-size:13px;font-weight:600;color:var(--texto)">Ferias libres en el mapa</span>
+          <span style="font-size:11px;color:var(--texto-suave);margin-left:4px">· haz clic en un pin para ver detalles</span>
         </div>
-        <div class="info-row">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>Ortúzar 675, Melipilla centro</span>
-        </div>
-        <div class="info-row">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg>
-          <span><a href="tel:+5622922437022">2 2922 4370</a> · Emergencias: <a href="tel:133" style="color:var(--terracota);font-weight:700">133</a></span>
-        </div>
-        <div class="info-row">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-          <span><a href="https://www.carabineros.cl" target="_blank" rel="noopener">carabineros.cl</a></span>
-        </div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <a class="btn-map" href="https://maps.google.com/?q=Ortuzar+675+Melipilla" target="_blank" rel="noopener" style="flex:1;background:var(--terracota-suave);color:var(--terracota)">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
-            Ver en mapa
-          </a>
-          <button class="btn-whatsapp" onclick="compartirWsp('24ª Comisaría de Melipilla','📍 Ortúzar 675, Melipilla\n📞 2 2922 4370\n🚨 Emergencias: 133')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.054 23.5l5.849-1.533A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.813 9.813 0 01-5.001-1.371l-.359-.214-3.722.976.993-3.628-.234-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>Compartir</button>
-        </div>
-      </div>
 
-      <div class="card">
-        <div class="card-head">
-          <div class="card-icon ic-rojo">🚔</div>
-          <div>
-            <h3>Tenencia Carreteras Melipilla</h3>
-            <div class="sub">Carabineros de Chile</div>
-          </div>
+        <!-- Leyenda de días -->
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:.6rem;font-size:11px">
+          <span style="display:inline-flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:50%;background:#E53935;display:inline-block"></span>Domingo</span>
+          <span style="display:inline-flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:50%;background:#1E88E5;display:inline-block"></span>Sábado</span>
+          <span style="display:inline-flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:50%;background:#8E24AA;display:inline-block"></span>Viernes / Vie+Dom</span>
+          <span style="display:inline-flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:50%;background:#43A047;display:inline-block"></span>Martes</span>
+          <span style="display:inline-flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:50%;background:#F4511E;display:inline-block"></span>Miércoles</span>
         </div>
-        <div class="info-row">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>Autopista El Sol S/N, Km. 50</span>
-        </div>
-        <div class="info-row">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg>
-          <span><a href="tel:+5622922441422">2 2922 4414</a></span>
-        </div>
-      </div>
 
-      <div class="card" style="grid-column: 1 / -1">
-        <div class="card-head">
-          <div class="card-icon" style="background:#EEF0FE;color:#534AB7;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;">🤝</div>
-          <div>
-            <h3>Servicios de apoyo y paz ciudadana</h3>
-            <div class="sub">Líneas directas para situaciones de vulnerabilidad</div>
-          </div>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.4rem">
-          <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span>PDI Melipilla: <a href="tel:+5622838900022">2 2838 9000</a></span></div>
-          <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span>Previene Melipilla: <a href="tel:+5622832575422">2 2832 5754</a></span></div>
-          <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span>Centro de la Mujer: <a href="tel:+5622831280622">2 2831 2806</a></span></div>
-          <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span>Fono Drogas (SENDA): <a href="tel:1412">1412</a> gratuito</span></div>
-          <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span>Violencia intrafamiliar: <a href="tel:1455" style="color:var(--terracota);font-weight:700">1455</a></span></div>
-          <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span>Niñez en riesgo Sename: <a href="tel:800730800">800 730 800</a></span></div>
-        </div>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <div id="mapa-ferias" style="height:380px;border-radius:var(--radio);border:1px solid var(--borde);overflow:hidden;z-index:0"></div>
+        <p style="font-size:11px;color:var(--texto-suave);margin-top:.4rem;text-align:center">
+          Coordenadas aproximadas · <a href="https://apps.odepa.gob.cl/powerBI/reporte_ferias_libres.html" target="_blank" rel="noopener" style="color:var(--verde-claro)">Ver fuente ODEPA ↗</a>
+        </p>
       </div>
     </div>
   </div>
