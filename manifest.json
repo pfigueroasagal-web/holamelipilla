@@ -25,19 +25,24 @@
   ],
   "shortcuts": [
     {
-      "name": "Farmacia de turno",
-      "url": "/#farmacias",
-      "description": "Ver farmacia de turno hoy"
+      "name": "Farmacias",
+      "url": "/farmacias",
+      "description": "Ver farmacias en Melipilla"
     },
     {
       "name": "Emergencias",
-      "url": "/#seguridad",
+      "url": "/seguridad",
       "description": "Números de emergencia"
     },
     {
       "name": "Centros de salud",
-      "url": "/#salud",
+      "url": "/salud",
       "description": "CESFAM y hospital"
+    },
+    {
+      "name": "Ferias libres",
+      "url": "/ferias",
+      "description": "Días y ubicaciones de ferias"
     }
   ]
 }

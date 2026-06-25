@@ -1,11 +1,21 @@
-// sw.js — Hola Melipilla Service Worker
-const CACHE_NAME = 'holamelipilla-v1';
+// sw.js — Hola Melipilla Service Worker v2
+const CACHE_NAME = 'holamelipilla-v2';
 
-// Archivos que se guardan para uso sin internet
+// Archivos esenciales para uso offline
 const ARCHIVOS_CACHE = [
   '/',
   '/index.html',
-  '/manifest.json'
+  '/farmacias.html',
+  '/salud.html',
+  '/seguridad.html',
+  '/ferias.html',
+  '/colegios.html',
+  '/css/styles.css',
+  '/js/data.js',
+  '/js/app.js',
+  '/manifest.json',
+  '/icon-192.png',
+  '/icon-512.png'
 ];
 
 // Instalación: guarda archivos en caché
@@ -30,12 +40,10 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Fetch: primero red, luego caché (para tener siempre datos frescos)
+// Fetch: red primero, caché como respaldo (datos frescos cuando hay conexión)
 self.addEventListener('fetch', event => {
-  // Solo manejar GET
   if (event.request.method !== 'GET') return;
 
-  // No interceptar peticiones externas (mapas, fuentes, etc.)
   const url = new URL(event.request.url);
   if (url.origin !== location.origin) return;
 
