@@ -4,36 +4,39 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/farmacias", "destination": "/farmacias.html" },
-    { "source": "/salud", "destination": "/salud.html" },
-    { "source": "/seguridad", "destination": "/seguridad.html" },
-    { "source": "/ferias", "destination": "/ferias.html" },
-    { "source": "/colegios", "destination": "/colegios.html" },
-    { "source": "/", "destination": "/index.html" }
+    {
+      "source": "/farmacias",
+      "destination": "/farmacias.html"
+    },
+    {
+      "source": "/salud",
+      "destination": "/salud.html"
+    },
+    {
+      "source": "/seguridad",
+      "destination": "/seguridad.html"
+    },
+    {
+      "source": "/ferias",
+      "destination": "/ferias.html"
+    },
+    {
+      "source": "/colegios",
+      "destination": "/colegios.html"
+    },
+    {
+      "source": "/",
+      "destination": "/index.html"
+    }
   ],
   "headers": [
     {
-      "source": "/css/(.*)",
+      "source": "/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400, must-revalidate" }
-      ]
-    },
-    {
-      "source": "/js/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=3600, must-revalidate" }
-      ]
-    },
-    {
-      "source": "/(.*).html",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=3600, must-revalidate" }
-      ]
-    },
-    {
-      "source": "/(.*).png",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=604800, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, must-revalidate"
+        }
       ]
     }
   ]
