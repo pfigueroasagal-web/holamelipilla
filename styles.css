@@ -1758,3 +1758,252 @@ main.index-main {
   max-width: 960px;
   margin: 0 auto;
 }
+
+
+
+/* ═══════════════════════════════════════════════════════════
+   ANIMACIONES DE ENTRADA 2025
+   ═══════════════════════════════════════════════════════════ */
+
+/* Fade + slide desde abajo */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+/* Fade simple */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+/* Escala de entrada */
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+/* Skeleton shimmer */
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+/* Cards de navegación: animación escalonada al cargar */
+.nav-card-2025 {
+  opacity: 0;
+  animation: fadeSlideUp .5s cubic-bezier(.25,.46,.45,.94) forwards;
+}
+.nav-card-2025:nth-child(1) { animation-delay: .08s; }
+.nav-card-2025:nth-child(2) { animation-delay: .15s; }
+.nav-card-2025:nth-child(3) { animation-delay: .22s; }
+.nav-card-2025:nth-child(4) { animation-delay: .29s; }
+.nav-card-2025:nth-child(5) { animation-delay: .36s; }
+.nav-pills-row-2025 {
+  opacity: 0;
+  animation: fadeIn .4s ease .5s forwards;
+}
+
+/* Cards de contenido (subpáginas) */
+.card {
+  opacity: 0;
+  animation: fadeSlideUp .45s cubic-bezier(.25,.46,.45,.94) forwards;
+}
+/* Escalonar las cards dentro de un grid */
+.cards .card:nth-child(1)  { animation-delay: .05s; }
+.cards .card:nth-child(2)  { animation-delay: .10s; }
+.cards .card:nth-child(3)  { animation-delay: .15s; }
+.cards .card:nth-child(4)  { animation-delay: .20s; }
+.cards .card:nth-child(5)  { animation-delay: .25s; }
+.cards .card:nth-child(6)  { animation-delay: .30s; }
+.cards .card:nth-child(7)  { animation-delay: .35s; }
+.cards .card:nth-child(8)  { animation-delay: .38s; }
+.cards .card:nth-child(n+9) { animation-delay: .40s; }
+
+/* Farmacia cards */
+.farmacia-card {
+  opacity: 0;
+  animation: scaleIn .4s cubic-bezier(.34,1.1,.64,1) forwards;
+}
+.farmacias-grid .farmacia-card:nth-child(1)  { animation-delay: .04s; }
+.farmacias-grid .farmacia-card:nth-child(2)  { animation-delay: .08s; }
+.farmacias-grid .farmacia-card:nth-child(3)  { animation-delay: .12s; }
+.farmacias-grid .farmacia-card:nth-child(4)  { animation-delay: .16s; }
+.farmacias-grid .farmacia-card:nth-child(5)  { animation-delay: .20s; }
+.farmacias-grid .farmacia-card:nth-child(6)  { animation-delay: .24s; }
+.farmacias-grid .farmacia-card:nth-child(n+7) { animation-delay: .28s; }
+
+/* Page header */
+.page-header-inner-2025 {
+  animation: fadeSlideUp .6s cubic-bezier(.25,.46,.45,.94) .05s both;
+}
+.hero-top {
+  animation: fadeSlideUp .55s cubic-bezier(.25,.46,.45,.94) .05s both;
+}
+.nav-grid-2025 {
+  animation: fadeIn .3s ease .1s both;
+}
+
+/* Skeleton loading para turno de farmacia */
+.turno-skeleton {
+  display: inline-block;
+  width: 120px;
+  height: 14px;
+  border-radius: 7px;
+  background: linear-gradient(90deg, rgba(255,255,255,.1) 25%, rgba(255,255,255,.2) 50%, rgba(255,255,255,.1) 75%);
+  background-size: 400px 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+/* Respetar preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  .nav-card-2025,
+  .card,
+  .farmacia-card,
+  .page-header-inner-2025,
+  .hero-top,
+  .nav-grid-2025,
+  .nav-pills-row-2025 {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   DARK MODE 2025
+   ═══════════════════════════════════════════════════════════ */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fondo:      #0F1117;
+    --fondo-card: #1A1D27;
+    --texto:      #E8ECF0;
+    --texto-suave:#8B9099;
+    --borde:      #2A2D38;
+    --verde-suave:#0D2B1A;
+    --azul-suave: #0A1628;
+    --ambar-suave:#1A1200;
+    --acento-suave:#1A0E00;
+    --terracota-suave:#1A0808;
+    --sombra: 0 1px 3px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.3);
+    --sombra-hover: 0 6px 12px rgba(0,0,0,.4), 0 16px 40px rgba(0,0,0,.4);
+  }
+
+  /* Fondo y cuerpo */
+  body { background: #0F1117; color: #E8ECF0; }
+
+  /* Nav */
+  nav {
+    background: linear-gradient(135deg, #0a1a11 0%, #0d2318 100%);
+    border-bottom-color: #1a4a2e;
+    box-shadow: 0 2px 16px rgba(0,0,0,.5);
+  }
+  .nav-scroll-wrapper::after {
+    background: linear-gradient(to right, transparent, #0d2318);
+  }
+
+  /* Cards */
+  .card {
+    background: #1A1D27;
+    border-color: #2A2D38;
+  }
+  .card:hover { border-color: rgba(82,183,136,.3); }
+  section:nth-child(even) { background: #151820; }
+  section:nth-child(even) .card { background: #0F1117; }
+
+  /* Farmacia cards */
+  .farmacia-card { background: #1A1D27; border-color: #2A2D38; }
+  .farmacia-card:hover { border-color: rgba(82,183,136,.3); }
+
+  /* Info rows */
+  .info-row { border-top-color: #2A2D38; }
+  .info-row a { color: #52B788; }
+
+  /* Botones */
+  .btn-map {
+    background: #0D2B1A;
+    border-color: #1a4a2e;
+    color: #52B788;
+  }
+  .btn-map:hover { background: #52B788; color: #fff; border-color: #52B788; }
+  .btn-copiar, .btn-tel {
+    background: #0D2B1A;
+    border-color: #1a4a2e;
+    color: #52B788;
+  }
+
+  /* Filtros farmacia */
+  .filtro-btn { background: #1A1D27; border-color: #2A2D38; color: #E8ECF0; }
+  .filtro-btn.activo { background: #1B4332; border-color: #1B4332; color: #fff; }
+  .filtro-btn:hover { border-color: #52B788; color: #52B788; }
+
+  /* Intro box */
+  .intro { background: #0D2B1A; border-left-color: #52B788; }
+
+  /* Nota */
+  .nota { background: #1A1200; color: #D4A800; }
+  .nota a { color: #F0C040; }
+
+  /* Card emergencia */
+  .card-emg { background: #1A0808; border-color: #4A1010; }
+  .emg-item { background: #1A0808; border-color: #4A1010; }
+
+  /* Turno hoy */
+  .turno-hoy-box {
+    background: linear-gradient(135deg, #1A1200, #1A0E00);
+    border-color: rgba(247,127,0,.4);
+  }
+
+  /* Formulario */
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: #1A1D27;
+    border-color: #2A2D38;
+    color: #E8ECF0;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: #52B788;
+    box-shadow: 0 0 0 3px rgba(82,183,136,.15);
+  }
+
+  /* Section before gradient */
+  section:nth-child(even)::before {
+    background: linear-gradient(90deg, #1a4a2e, transparent);
+  }
+
+  /* Footer */
+  .site-footer {
+    background: linear-gradient(135deg, #070f0a 0%, #0d1f14 100%);
+  }
+
+  /* Badges */
+  .badge-cadena { background: #0A1628; color: #60A5FA; }
+  .badge-independiente { background: #0D2B1A; color: #52B788; }
+  .dia { background: #0D2B1A; color: #52B788; }
+  .update-badge { background: #1A1D27; color: #8B9099; }
+  .fc-badge { background: #1A1D27; }
+
+  /* Donaciones */
+  .don-btn { background: #1A1D27; border-color: #2A2D38; color: #E8ECF0; }
+  .don-btn:hover { background: #0A1628; border-color: #3B82F6; }
+  .don-btn .don-label { color: #8B9099; }
+
+  /* Page headers dark: ajustar para que se vean bien */
+  .page-header-farmacia  { background: linear-gradient(160deg, #4A1F00 0%, #7A3A00 50%, #A05000 100%); }
+  .page-header-salud     { background: linear-gradient(160deg, #001A4A 0%, #002A7A 50%, #0A3EA8 100%); }
+  .page-header-seguridad { background: linear-gradient(160deg, #4A0008 0%, #7A0010 50%, #A80020 100%); }
+  .page-header-ferias    { background: linear-gradient(160deg, #080f07 0%, #0d1a0d 50%, #152615 100%); }
+  .page-header-colegios  { background: linear-gradient(160deg, #1E0038 0%, #3A0060 50%, #5A0088 100%); }
+
+  /* Nav cards hero dark */
+  .nav-card-2025 {
+    background: rgba(255,255,255,.06);
+    border-color: rgba(255,255,255,.09);
+  }
+  .nav-card-farmacia  { background: linear-gradient(135deg, rgba(247,127,0,.2), rgba(247,127,0,.08)); border-color: rgba(247,127,0,.25); }
+  .nav-card-salud     { background: linear-gradient(135deg, rgba(13,110,253,.18), rgba(13,110,253,.07)); border-color: rgba(13,110,253,.22); }
+  .nav-card-seguridad { background: linear-gradient(135deg, rgba(220,53,69,.18), rgba(220,53,69,.07)); border-color: rgba(220,53,69,.22); }
+  .nav-card-ferias    { background: linear-gradient(135deg, rgba(46,125,50,.22), rgba(46,125,50,.09)); border-color: rgba(82,183,136,.22); }
+  .nav-card-colegios  { background: linear-gradient(135deg, rgba(156,39,176,.18), rgba(156,39,176,.07)); border-color: rgba(156,39,176,.22); }
+}
