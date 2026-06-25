@@ -17,12 +17,12 @@
   <meta property="og:site_name" content="Hola Melipilla">
   <meta property="og:image" content="https://holamelipilla.cl/og-image.svg">
   <meta name="twitter:image" content="https://holamelipilla.cl/og-image.svg">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Farmacias de Melipilla">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Farmacias de Melipilla — Direcciones, Teléfonos y Horarios">
   <meta name="twitter:description" content="Listado de farmacias en Melipilla con contactos y horarios.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💊</text></svg>">
   <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#0F5E3F">
+  <meta name="theme-color" content="#1B4332">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Hola Melipilla">
@@ -31,506 +31,299 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=2">
-  <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
-</head>
+  <link rel="stylesheet" href="/styles.css?v=3">
   <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
 </head>
 <body>
 
-  <!-- Navegación -->
-  <nav>
-    <a href="/" class="nav-brand" title="Volver a Hola Melipilla">📍 Melipilla</a>
-    <div class="nav-scroll-wrapper">
-      <ul class="nav-links">
-        <li><a href="/farmacias" class="nav-farmacia active" title="Farmacias">💊 Farmacias</a></li>
-        <li><a href="/salud" title="Centros de salud">🏥 Centros de salud</a></li>
-        <li><a href="/seguridad" title="Seguridad">🚔 Seguridad</a></li>
-        <li><a href="/ferias" title="Ferias libres">🛒 Ferias libres</a></li>
-        <li><a href="/colegios" title="Colegios">🏫 Colegios</a></li>
-        <li><a href="/#mapa" title="Mapa general">🗺️ Mapa general</a></li>
-        <li><a href="/#donaciones" title="Apoyar">💛 Apoyar</a></li>
-        <li><a href="/#sugerencias" title="Sugerencias">💬 Sugerencias</a></li>
-      </ul>
+
+<!-- ─── NAVEGACIÓN ─── -->
+<nav aria-label="Navegación principal">
+  <a href="/" class="nav-brand" title="Volver a Hola Melipilla">📍 Hola Melipilla</a>
+  <div class="nav-scroll-wrapper">
+    <ul class="nav-links">
+      <li><a href="/farmacias" class="nav-farmacia active">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+        Farmacias
+      </a></li>
+      <li><a href="/salud">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        Centros de salud
+      </a></li>
+      <li><a href="/seguridad">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Seguridad
+      </a></li>
+      <li><a href="/ferias">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        Ferias libres
+      </a></li>
+      <li><a href="/colegios">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Colegios
+      </a></li>
+      <li><a href="/#mapa">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+        Mapa general
+      </a></li>
+      <li><a href="/#donaciones">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        Apoyar
+      </a></li>
+    </ul>
+  </div>
+</nav>
+
+
+
+<main>
+<section id="farmacias" aria-labelledby="titulo-farmacias">
+<div class="section-inner">
+
+  <div class="section-title">
+    <div class="section-icon ic-ambar">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
     </div>
-  </nav>
-
-  <!-- Contenido Principal -->
-  <main>
-    <h1>💊 Farmacias en Melipilla</h1>
-    
-    <div class="intro">
-      <strong>Listado actualizado de farmacias</strong> en Melipilla con direcciones exactas, teléfonos y horarios de atención. 
-      Haz clic en "Teléfono" para copiar el número, o accede al mapa para ubicar la sucursal más cercana.
+    <div>
+      <h2 id="titulo-farmacias">Farmacias de Melipilla</h2>
+      <p>Direcciones, teléfonos y horarios de atención</p>
+      <span class="update-badge" aria-label="Última actualización">📅 Actualizado Jun 2025</span>
     </div>
+  </div>
 
-    <!-- Filtros -->
-    <div class="filtro-container">
-      <button class="filtro-btn activo" data-filtro="todas">Todas (9)</button>
-      <button class="filtro-btn" data-filtro="cruz-verde">Cruz Verde</button>
-      <button class="filtro-btn" data-filtro="salcobrand">Salcobrand</button>
-      <button class="filtro-btn" data-filtro="otro">Otras</button>
-    </div>
+  <div class="nota" style="margin-bottom:1.25rem">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <span><strong>Listado actualizado</strong> de farmacias en Melipilla. Haz clic en "Mapa" para ubicar la sucursal más cercana o en "Compartir" para enviar los datos por WhatsApp.</span>
+  </div>
 
-    <!-- Grid de Farmacias -->
-    <div class="farmacias-grid" id="farmacias-grid">
-      <!-- Farmacia Cariño -->
-      <div class="farmacia-card" data-farmacia="cario" data-filtro="otro">
-        <div class="farmacia-nombre">Farmacia Cariño</div>
-        
-        <div class="info-fila">
-          <div class="info-icono">📞</div>
-          <div class="info-contenido">
-            <div class="info-label">Teléfono</div>
-            <div class="info-valor">
-              <a href="tel:+56228315050">2 2831 5050</a>
-            </div>
-            <div class="acciones">
-              <button class="btn btn-tel" onclick="copiarTel(this, '2 2831 5050')">Copiar</button>
-            </div>
-          </div>
-        </div>
+  <!-- Filtros -->
+  <div class="filtro-container" role="group" aria-label="Filtrar farmacias">
+    <button class="filtro-btn activo" data-filtro="todas">Todas (9)</button>
+    <button class="filtro-btn" data-filtro="cruz-verde">Cruz Verde</button>
+    <button class="filtro-btn" data-filtro="salcobrand">Salcobrand</button>
+    <button class="filtro-btn" data-filtro="otro">Otras</button>
+  </div>
 
-        <div class="info-fila">
-          <div class="info-icono">📍</div>
-          <div class="info-contenido">
-            <div class="info-label">Dirección</div>
-            <div class="info-valor">Ortúzar 399</div>
-            <div class="acciones">
-              <button class="btn btn-mapa" onclick="abrirMapa('Farmacia Cariño, Ortúzar 399, Melipilla')">📍 Ver mapa</button>
-            </div>
-          </div>
-        </div>
+  <div class="cards cards-2" id="farmacias-grid">
 
-        <div class="info-fila">
-          <div class="info-icono">🕐</div>
-          <div class="info-contenido">
-            <div class="info-label">Horario</div>
-            <div class="info-valor">10:00 – 23:00</div>
-          </div>
-        </div>
-
-        <button class="btn btn-wsp" onclick="compartirWsp('Farmacia Cariño', '📍 Ortúzar 399\n📞 2 2831 5050\n⏰ 10:00 – 23:00')">📲 Compartir</button>
+    <!-- Farmacia Cariño -->
+    <div class="farmacia-card" data-filtro="otro">
+      <span class="fc-badge badge-independiente">Independiente</span>
+      <h3>Farmacia Cariño</h3>
+      <div class="info-row">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Ortúzar 399, Melipilla</span>
       </div>
-
-      <!-- Farmacia Independencia -->
-      <div class="farmacia-card" data-farmacia="independencia" data-filtro="otro">
-        <div class="farmacia-nombre">Farmacia Independencia</div>
-        
-        <div class="info-fila">
-          <div class="info-icono">📞</div>
-          <div class="info-contenido">
-            <div class="info-label">Teléfono</div>
-            <div class="info-valor">
-              <a href="tel:+56226313070">+56 2 2631 3070</a>
-            </div>
-            <div class="acciones">
-              <button class="btn btn-tel" onclick="copiarTel(this, '+56 2 2631 3070')">Copiar</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="info-fila">
-          <div class="info-icono">📍</div>
-          <div class="info-contenido">
-            <div class="info-label">Dirección</div>
-            <div class="info-valor">Independencia</div>
-            <div class="acciones">
-              <button class="btn btn-mapa" onclick="abrirMapa('Farmacia Independencia, Independencia, Melipilla')">📍 Ver mapa</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="info-fila">
-          <div class="info-icono">🕐</div>
-          <div class="info-contenido">
-            <div class="info-label">Horario</div>
-            <div class="info-valor">08:30 – 22:00</div>
-          </div>
-        </div>
-
-        <button class="btn btn-wsp" onclick="compartirWsp('Farmacia Independencia', '📍 Independencia\n📞 +56 2 2631 3070\n⏰ 08:30 – 22:00')">📲 Compartir</button>
+      <div class="info-row">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>10:00 – 23:00</span>
       </div>
-
-      <!-- Cruz Verde Independencia -->
-      <div class="farmacia-card" data-farmacia="cv-indep" data-filtro="cruz-verde">
-        <div class="farmacia-nombre">Cruz Verde Independencia</div>
-        
-        <div class="info-fila">
-          <div class="info-icono">📞</div>
-          <div class="info-contenido">
-            <div class="info-label">Teléfono</div>
-            <div class="info-valor">
-              <a href="tel:+56228327526">+56 2 2832 7526</a>
-            </div>
-            <div class="acciones">
-              <button class="btn btn-tel" onclick="copiarTel(this, '+56 2 2832 7526')">Copiar</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="info-fila">
-          <div class="info-icono">📍</div>
-          <div class="info-contenido">
-            <div class="info-label">Dirección</div>
-            <div class="info-valor">Independencia</div>
-            <div class="acciones">
-              <button class="btn btn-mapa" onclick="abrirMapa('Cruz Verde Independencia, Independencia, Melipilla')">📍 Ver mapa</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="info-fila">
-          <div class="info-icono">🕐</div>
-          <div class="info-contenido">
-            <div class="info-label">Horario</div>
-            <div class="info-valor">09:00 – 22:30</div>
-          </div>
-        </div>
-
-        <button class="btn btn-wsp" onclick="compartirWsp('Cruz Verde Independencia', '📍 Independencia\n📞 +56 2 2832 7526\n⏰ 09:00 – 22:30')">📲 Compartir</button>
+      <div class="info-row info-row-tel">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg>
+        <span><a href="tel:+56228315050">2 2831 5050</a></span>
+        <button class="btn-copiar" onclick="copiarTel(this,'2 2831 5050')" title="Copiar número"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
       </div>
-
-      <!-- Cruz Verde Plaza de Armas -->
-      <div class="farmacia-card" data-farmacia="cv-plaza" data-filtro="cruz-verde">
-        <div class="farmacia-nombre">Cruz Verde Plaza de Armas</div>
-        
-        <div class="info-fila">
-          <div class="info-icono">📞</div>
-          <div class="info-contenido">
-            <div class="info-label">Teléfono</div>
-            <div class="info-valor">
-              <a href="tel:+56228323888">+56 2 2832 3888</a>
-            </div>
-            <div class="acciones">
-              <button class="btn btn-tel" onclick="copiarTel(this, '+56 2 2832 3888')">Copiar</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="info-fila">
-          <div class="info-icono">📍</div>
-          <div class="info-contenido">
-            <div class="info-label">Dirección</div>
-            <div class="info-valor">Plaza de Armas 561</div>
-            <div class="acciones">
-              <button class="btn btn-mapa" onclick="abrirMapa('Cruz Verde Plaza de Armas, Plaza de Armas 561, Melipilla')">📍 Ver mapa</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="info-fila">
-          <div class="info-icono">🕐</div>
-          <div class="info-contenido">
-            <div class="info-label">Horario</div>
-            <div class="info-valor">09:00 – 21:00</div>
-          </div>
-        </div>
-
-        <button class="btn btn-wsp" onclick="compartirWsp('Cruz Verde Plaza de Armas', '📍 Plaza de Armas 561\n📞 +56 2 2832 3888\n⏰ 09:00 – 21:00')">📲 Compartir</button>
-      </div>
-
-      <!-- Cruz Verde Serrano -->
-      <div class="farmacia-card" data-farmacia="cv-serrano" data-filtro="cruz-verde">
-        <div class="farmacia-nombre">Cruz Verde Serrano</div>
-        
-        <div class="info-fila">
-          <div class="info-icono">📞</div>
-          <div class="info-contenido">
-            <div class="info-label">Teléfono</div>
-            <div class="info-valor">
-              <a href="tel:+56228311552">+56 2 2831 1552</a>
-            </div>
-            <div class="acciones">
-              <button class="btn btn-tel" onclick="copiarTel(this, '+56 2 2831 1552')">Copiar</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="info-fila">
-          <div class="info-icono">📍</div>
-          <div class="info-contenido">
-            <div class="info-label">Dirección</div>
-            <div class="info-valor">Serrano 501</div>
-            <div class="acciones">
-              <button class="btn btn-mapa" onclick="abrirMapa('Cruz Verde Serrano, Serrano 501, Melipilla')">📍 Ver mapa</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="info-fila">
-          <div class="info-icono">🕐</div>
-          <div class="info-contenido">
-            <div class="info-label">Horario</div>
-            <div class="info-valor">08:30 – 22:00</div>
-          </div>
-        </div>
-
-        <button class="btn btn-wsp" onclick="compartirWsp('Cruz Verde Serrano', '📍 Serrano 501\n📞 +56 2 2831 1552\n⏰ 08:30 – 22:00')">📲 Compartir</button>
-      </div>
-
-      <!-- Farmacia Ahumada Serrano -->
-      <div class="farmacia-card" data-farmacia="ahumada" data-filtro="otro">
-        <div class="farmacia-nombre">Farmacia Ahumada Serrano</div>
-        
-        <div class="info-fila">
-          <div class="info-icono">📞</div>
-          <div class="info-contenido">
-            <div class="info-label">Teléfono</div>
-            <div class="info-valor">
-              <a href="tel:+56228318135">+56 2 2831 8135</a>
-            </div>
-            <div class="acciones">
-              <button class="btn btn-tel" onclick="copiarTel(this, '+56 2 2831 8135')">Copiar</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="info-fila">
-          <div class="info-icono">📍</div>
-          <div class="info-contenido">
-            <div class="info-label">Dirección</div>
-            <div class="info-valor">Serrano 395</div>
-            <div class="acciones">
-              <button class="btn btn-mapa" onclick="abrirMapa('Farmacia Ahumada Serrano, Serrano 395, Melipilla')">📍 Ver mapa</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="info-fila">
-          <div class="info-icono">🕐</div>
-          <div class="info-contenido">
-            <div class="info-label">Horario</div>
-            <div class="info-valor">09:00 – 21:00</div>
-          </div>
-        </div>
-
-        <button class="btn btn-wsp" onclick="compartirWsp('Farmacia Ahumada Serrano', '📍 Serrano 395\n📞 +56 2 2831 8135\n⏰ 09:00 – 21:00')">📲 Compartir</button>
-      </div>
-
-      <!-- Salcobrand Ortúzar 548 -->
-      <div class="farmacia-card" data-farmacia="salco-548" data-filtro="salcobrand">
-        <div class="farmacia-nombre">Salcobrand Ortúzar 548</div>
-        
-        <div class="info-fila">
-          <div class="info-icono">📞</div>
-          <div class="info-contenido">
-            <div class="info-label">Teléfono</div>
-            <div class="info-valor">
-              <a href="tel:+56228310328">+56 2 2831 0328</a>
-            </div>
-            <div class="acciones">
-              <button class="btn btn-tel" onclick="copiarTel(this, '+56 2 2831 0328')">Copiar</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="info-fila">
-          <div class="info-icono">📍</div>
-          <div class="info-contenido">
-            <div class="info-label">Dirección</div>
-            <div class="info-valor">Ortúzar 548</div>
-            <div class="acciones">
-              <button class="btn btn-mapa" onclick="abrirMapa('Salcobrand Ortúzar 548, Ortúzar 548, Melipilla')">📍 Ver mapa</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="info-fila">
-          <div class="info-icono">🕐</div>
-          <div class="info-contenido">
-            <div class="info-label">Horario</div>
-            <div class="info-valor">09:00 – 23:00</div>
-          </div>
-        </div>
-
-        <button class="btn btn-wsp" onclick="compartirWsp('Salcobrand Ortúzar 548', '📍 Ortúzar 548\n📞 +56 2 2831 0328\n⏰ 09:00 – 23:00')">📲 Compartir</button>
-      </div>
-
-      <!-- Salcobrand Ortúzar 691 -->
-      <div class="farmacia-card" data-farmacia="salco-691" data-filtro="salcobrand">
-        <div class="farmacia-nombre">Salcobrand Ortúzar 691</div>
-        
-        <div class="info-fila">
-          <div class="info-icono">📞</div>
-          <div class="info-contenido">
-            <div class="info-label">Teléfono</div>
-            <div class="info-valor">
-              <a href="tel:+56228321955">+56 2 2832 1955</a>
-            </div>
-            <div class="acciones">
-              <button class="btn btn-tel" onclick="copiarTel(this, '+56 2 2832 1955')">Copiar</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="info-fila">
-          <div class="info-icono">📍</div>
-          <div class="info-contenido">
-            <div class="info-label">Dirección</div>
-            <div class="info-valor">Ortúzar 691</div>
-            <div class="acciones">
-              <button class="btn btn-mapa" onclick="abrirMapa('Salcobrand Ortúzar 691, Ortúzar 691, Melipilla')">📍 Ver mapa</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="info-fila">
-          <div class="info-icono">🕐</div>
-          <div class="info-contenido">
-            <div class="info-label">Horario</div>
-            <div class="info-valor">09:00 – 21:00</div>
-          </div>
-        </div>
-
-        <button class="btn btn-wsp" onclick="compartirWsp('Salcobrand Ortúzar 691', '📍 Ortúzar 691\n📞 +56 2 2832 1955\n⏰ 09:00 – 21:00')">📲 Compartir</button>
-      </div>
-
-      <!-- Salcobrand Ortúzar 857 -->
-      <div class="farmacia-card" data-farmacia="salco-857" data-filtro="salcobrand">
-        <div class="farmacia-nombre">Salcobrand Ortúzar 857</div>
-        
-        <div class="info-fila">
-          <div class="info-icono">📞</div>
-          <div class="info-contenido">
-            <div class="info-label">Teléfono</div>
-            <div class="info-valor">
-              <a href="tel:+56228323157">+56 2 2832 3157</a>
-            </div>
-            <div class="acciones">
-              <button class="btn btn-tel" onclick="copiarTel(this, '+56 2 2832 3157')">Copiar</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="info-fila">
-          <div class="info-icono">📍</div>
-          <div class="info-contenido">
-            <div class="info-label">Dirección</div>
-            <div class="info-valor">Ortúzar 857</div>
-            <div class="acciones">
-              <button class="btn btn-mapa" onclick="abrirMapa('Salcobrand Ortúzar 857, Ortúzar 857, Melipilla')">📍 Ver mapa</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="info-fila">
-          <div class="info-icono">🕐</div>
-          <div class="info-contenido">
-            <div class="info-label">Horario</div>
-            <div class="info-valor">09:00 – 21:00</div>
-          </div>
-        </div>
-
-        <button class="btn btn-wsp" onclick="compartirWsp('Salcobrand Ortúzar 857', '📍 Ortúzar 857\n📞 +56 2 2832 3157\n⏰ 09:00 – 21:00')">📲 Compartir</button>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+        <a class="btn-map" href="https://maps.google.com/?q=Ortuzar+399+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Mapa</a>
+        <button class="btn-whatsapp" onclick="compartirWsp('Farmacia Cariño','📍 Ortúzar 399, Melipilla\n📞 2 2831 5050\n⏰ 10:00 – 23:00')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.054 23.5l5.849-1.533A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.813 9.813 0 01-5.001-1.371l-.359-.214-3.722.976.993-3.628-.234-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>Compartir</button>
       </div>
     </div>
 
-  </main>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <p class="footer-brand">📍 Hola Melipilla</p>
-      <p class="footer-links">
-        <a href="/">Inicio</a> · <a href="/farmacias">Farmacias</a> · <a href="/salud">Salud</a> · <a href="/ferias">Ferias</a> · <a href="/colegios">Colegios</a> · <a href="/seguridad">Seguridad</a>
-      </p>
-      <p class="footer-copy">Guía de servicios para vivir en Melipilla, Chile · <a href="/#sugerencias">Sugerencias</a></p>
+    <!-- Farmacia Independencia -->
+    <div class="farmacia-card" data-filtro="otro">
+      <span class="fc-badge badge-independiente">Independiente</span>
+      <h3>Farmacia Independencia</h3>
+      <div class="info-row">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Independencia, Melipilla</span>
+      </div>
+      <div class="info-row">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>08:30 – 22:00</span>
+      </div>
+      <div class="info-row info-row-tel">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg>
+        <span><a href="tel:+56226313070">+56 2 2631 3070</a></span>
+        <button class="btn-copiar" onclick="copiarTel(this,'+56 2 2631 3070')" title="Copiar número"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+        <a class="btn-map" href="https://maps.google.com/?q=Farmacia+Independencia+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Mapa</a>
+        <button class="btn-whatsapp" onclick="compartirWsp('Farmacia Independencia','📍 Independencia, Melipilla\n📞 +56 2 2631 3070\n⏰ 08:30 – 22:00')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.054 23.5l5.849-1.533A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.813 9.813 0 01-5.001-1.371l-.359-.214-3.722.976.993-3.628-.234-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>Compartir</button>
+      </div>
     </div>
-  </footer>
 
-  <script>
-    // ─── FUNCIONALIDAD DE COPIAR NÚMERO ───
-    function copiarTel(btn, numero) {
-      const numLimpio = numero.replace(/\s/g, '');
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(numLimpio).then(function() {
-          mostrarCopiado(btn);
-        }).catch(function() {
-          fallbackCopy(btn, numLimpio);
-        });
-      } else {
-        fallbackCopy(btn, numLimpio);
-      }
-    }
 
-    function fallbackCopy(btn, texto) {
-      var ta = document.createElement('textarea');
-      ta.value = texto;
-      ta.style.position = 'fixed';
-      ta.style.opacity = '0';
-      document.body.appendChild(ta);
-      ta.focus();
-      ta.select();
-      try {
-        document.execCommand('copy');
-      } catch(e) {}
-      document.body.removeChild(ta);
-      mostrarCopiado(btn);
-    }
+    <!-- Cruz Verde Independencia -->
+    <div class="farmacia-card" data-filtro="cruz-verde">
+      <span class="fc-badge badge-cadena">Cruz Verde</span>
+      <h3>Cruz Verde Independencia</h3>
+      <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Independencia, Melipilla</span></div>
+      <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>09:00 – 22:30</span></div>
+      <div class="info-row info-row-tel"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+56228327526">+56 2 2832 7526</a></span>
+        <button class="btn-copiar" onclick="copiarTel(this,'+56 2 2832 7526')" title="Copiar número"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+        <a class="btn-map" href="https://maps.google.com/?q=Cruz+Verde+Independencia+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Mapa</a>
+        <button class="btn-whatsapp" onclick="compartirWsp('Cruz Verde Independencia','📍 Independencia, Melipilla\n📞 +56 2 2832 7526\n⏰ 09:00 – 22:30')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.054 23.5l5.849-1.533A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.813 9.813 0 01-5.001-1.371l-.359-.214-3.722.976.993-3.628-.234-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>Compartir</button>
+      </div>
+    </div>
 
-    function mostrarCopiado(btn) {
-      var orig = btn.innerHTML;
-      btn.textContent = '✓ Copiado';
-      btn.classList.add('copiado');
-      setTimeout(function() {
-        btn.innerHTML = orig;
-        btn.classList.remove('copiado');
-      }, 2000);
-    }
+    <!-- Cruz Verde Plaza de Armas -->
+    <div class="farmacia-card" data-filtro="cruz-verde">
+      <span class="fc-badge badge-cadena">Cruz Verde</span>
+      <h3>Cruz Verde Plaza de Armas</h3>
+      <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Plaza de Armas 561, Melipilla</span></div>
+      <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>09:00 – 21:00</span></div>
+      <div class="info-row info-row-tel"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+56228323888">+56 2 2832 3888</a></span>
+        <button class="btn-copiar" onclick="copiarTel(this,'+56 2 2832 3888')" title="Copiar número"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+        <a class="btn-map" href="https://maps.google.com/?q=Cruz+Verde+Plaza+de+Armas+561+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Mapa</a>
+        <button class="btn-whatsapp" onclick="compartirWsp('Cruz Verde Plaza de Armas','📍 Plaza de Armas 561, Melipilla\n📞 +56 2 2832 3888\n⏰ 09:00 – 21:00')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.054 23.5l5.849-1.533A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.813 9.813 0 01-5.001-1.371l-.359-.214-3.722.976.993-3.628-.234-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>Compartir</button>
+      </div>
+    </div>
 
-    // ─── ABRIR MAPA ───
-    function abrirMapa(ubicacion) {
-      const googleMapsUrl = 'https://www.google.com/maps/search/' + encodeURIComponent(ubicacion);
-      window.open(googleMapsUrl, '_blank');
-    }
+    <!-- Cruz Verde Serrano -->
+    <div class="farmacia-card" data-filtro="cruz-verde">
+      <span class="fc-badge badge-cadena">Cruz Verde</span>
+      <h3>Cruz Verde Serrano</h3>
+      <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Serrano 501, Melipilla</span></div>
+      <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>08:30 – 22:00</span></div>
+      <div class="info-row info-row-tel"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+56228311552">+56 2 2831 1552</a></span>
+        <button class="btn-copiar" onclick="copiarTel(this,'+56 2 2831 1552')" title="Copiar número"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+        <a class="btn-map" href="https://maps.google.com/?q=Cruz+Verde+Serrano+501+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Mapa</a>
+        <button class="btn-whatsapp" onclick="compartirWsp('Cruz Verde Serrano','📍 Serrano 501, Melipilla\n📞 +56 2 2831 1552\n⏰ 08:30 – 22:00')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.054 23.5l5.849-1.533A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.813 9.813 0 01-5.001-1.371l-.359-.214-3.722.976.993-3.628-.234-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>Compartir</button>
+      </div>
+    </div>
 
-    // ─── COMPARTIR POR WHATSAPP ───
-    function compartirWsp(nombre, detalle) {
-      var texto = '📍 *' + nombre + '*\n' + detalle + '\n\nVía holamelipilla.cl';
-      var url = 'https://wa.me/?text=' + encodeURIComponent(texto);
-      window.open(url, '_blank');
-    }
+    <!-- Farmacia Ahumada Serrano -->
+    <div class="farmacia-card" data-filtro="otro">
+      <span class="fc-badge badge-cadena">Ahumada</span>
+      <h3>Farmacia Ahumada Serrano</h3>
+      <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Serrano 395, Melipilla</span></div>
+      <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>09:00 – 21:00</span></div>
+      <div class="info-row info-row-tel"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+56228318135">+56 2 2831 8135</a></span>
+        <button class="btn-copiar" onclick="copiarTel(this,'+56 2 2831 8135')" title="Copiar número"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+        <a class="btn-map" href="https://maps.google.com/?q=Farmacia+Ahumada+Serrano+395+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Mapa</a>
+        <button class="btn-whatsapp" onclick="compartirWsp('Farmacia Ahumada Serrano','📍 Serrano 395, Melipilla\n📞 +56 2 2831 8135\n⏰ 09:00 – 21:00')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.054 23.5l5.849-1.533A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.813 9.813 0 01-5.001-1.371l-.359-.214-3.722.976.993-3.628-.234-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>Compartir</button>
+      </div>
+    </div>
 
-    // ─── FILTRADO ───
-    document.querySelectorAll('.filtro-btn').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
-        this.classList.add('activo');
-        
-        const filtro = this.getAttribute('data-filtro');
-        document.querySelectorAll('.farmacia-card').forEach(function(card) {
-          if (filtro === 'todas' || card.getAttribute('data-filtro') === filtro) {
-            card.style.display = '';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-    });
+    <!-- Salcobrand Ortúzar 548 -->
+    <div class="farmacia-card" data-filtro="salcobrand">
+      <span class="fc-badge badge-cadena">Salcobrand</span>
+      <h3>Salcobrand Ortúzar 548</h3>
+      <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Ortúzar 548, Melipilla</span></div>
+      <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>09:00 – 23:00</span></div>
+      <div class="info-row info-row-tel"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+56228310328">+56 2 2831 0328</a></span>
+        <button class="btn-copiar" onclick="copiarTel(this,'+56 2 2831 0328')" title="Copiar número"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+        <a class="btn-map" href="https://maps.google.com/?q=Salcobrand+Ortuzar+548+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Mapa</a>
+        <button class="btn-whatsapp" onclick="compartirWsp('Salcobrand Ortúzar 548','📍 Ortúzar 548, Melipilla\n📞 +56 2 2831 0328\n⏰ 09:00 – 23:00')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.054 23.5l5.849-1.533A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.813 9.813 0 01-5.001-1.371l-.359-.214-3.722.976.993-3.628-.234-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>Compartir</button>
+      </div>
+    </div>
 
-    // ─── SERVICE WORKER ───
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').catch(function(e) {
-        console.log('Service Worker no disponible:', e);
-      });
-    }
-  </script>
+    <!-- Salcobrand Ortúzar 691 -->
+    <div class="farmacia-card" data-filtro="salcobrand">
+      <span class="fc-badge badge-cadena">Salcobrand</span>
+      <h3>Salcobrand Ortúzar 691</h3>
+      <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Ortúzar 691, Melipilla</span></div>
+      <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>09:00 – 21:00</span></div>
+      <div class="info-row info-row-tel"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+56228321955">+56 2 2832 1955</a></span>
+        <button class="btn-copiar" onclick="copiarTel(this,'+56 2 2832 1955')" title="Copiar número"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+        <a class="btn-map" href="https://maps.google.com/?q=Salcobrand+Ortuzar+691+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Mapa</a>
+        <button class="btn-whatsapp" onclick="compartirWsp('Salcobrand Ortúzar 691','📍 Ortúzar 691, Melipilla\n📞 +56 2 2832 1955\n⏰ 09:00 – 21:00')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.054 23.5l5.849-1.533A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.813 9.813 0 01-5.001-1.371l-.359-.214-3.722.976.993-3.628-.234-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>Compartir</button>
+      </div>
+    </div>
+
+    <!-- Salcobrand Ortúzar 857 -->
+    <div class="farmacia-card" data-filtro="salcobrand">
+      <span class="fc-badge badge-cadena">Salcobrand</span>
+      <h3>Salcobrand Ortúzar 857</h3>
+      <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Ortúzar 857, Melipilla</span></div>
+      <div class="info-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>09:00 – 21:00</span></div>
+      <div class="info-row info-row-tel"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08v2.92z"/></svg><span><a href="tel:+56228323157">+56 2 2832 3157</a></span>
+        <button class="btn-copiar" onclick="copiarTel(this,'+56 2 2832 3157')" title="Copiar número"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+        <a class="btn-map" href="https://maps.google.com/?q=Salcobrand+Ortuzar+857+Melipilla" target="_blank" rel="noopener" style="flex:1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>Mapa</a>
+        <button class="btn-whatsapp" onclick="compartirWsp('Salcobrand Ortúzar 857','📍 Ortúzar 857, Melipilla\n📞 +56 2 2832 3157\n⏰ 09:00 – 21:00')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.054 23.5l5.849-1.533A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.813 9.813 0 01-5.001-1.371l-.359-.214-3.722.976.993-3.628-.234-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>Compartir</button>
+      </div>
+    </div>
+
+
+  </div><!-- /cards -->
+
+  <div class="nota" style="margin-top:1rem">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <span>Para la <strong>farmacia de turno 24 horas de hoy</strong>, visita <a href="/">la página principal</a> donde se muestra en tiempo real.</span>
+  </div>
+
+</div><!-- /section-inner -->
+</section>
+</main>
+
+<!-- ─── FOOTER ─── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-brand">📍 Hola Melipilla</p>
+    <p class="footer-links">
+      <a href="/">Inicio</a> · <a href="/farmacias">Farmacias</a> · <a href="/salud">Salud</a> · <a href="/ferias">Ferias</a> · <a href="/colegios">Colegios</a> · <a href="/seguridad">Seguridad</a>
+    </p>
+    <p class="footer-copy">Guía de servicios para vivir en Melipilla, Chile · <a href="/#sugerencias">Sugerencias</a></p>
+  </div>
+</footer>
 
 <script>
-  // Ajuste dinámico del padding-top según altura real de la nav
-  function ajustarNavFarmacias() {
-    var nav = document.querySelector('nav');
-    if (!nav) return;
-    document.body.style.paddingTop = nav.offsetHeight + 'px';
-  }
-  document.addEventListener('DOMContentLoaded', function() {
-    requestAnimationFrame(function() {
-      ajustarNavFarmacias();
-      setTimeout(ajustarNavFarmacias, 350);
+  // Filtrado de farmacias
+  document.querySelectorAll('.filtro-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
+      this.classList.add('activo');
+      var filtro = this.dataset.filtro;
+      document.querySelectorAll('#farmacias-grid .farmacia-card').forEach(function(card) {
+        if (filtro === 'todas' || card.dataset.filtro === filtro) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
     });
-    window.addEventListener('resize', ajustarNavFarmacias);
   });
+
+  // Copiar teléfono
+  function copiarTel(btn, numero) {
+    var numLimpio = numero.replace(/\s/g, '');
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(numLimpio).then(function() { mostrarCopiado(btn); }).catch(function() { fallbackCopy(btn, numLimpio); });
+    } else { fallbackCopy(btn, numLimpio); }
+  }
+  function fallbackCopy(btn, texto) {
+    var ta = document.createElement('textarea');
+    ta.value = texto; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    try { document.execCommand('copy'); } catch(e) {}
+    document.body.removeChild(ta); mostrarCopiado(btn);
+  }
+  function mostrarCopiado(btn) {
+    var orig = btn.innerHTML;
+    btn.textContent = '✓'; btn.style.color = 'var(--primario-claro)';
+    setTimeout(function() { btn.innerHTML = orig; btn.style.color = ''; }, 2000);
+  }
+
+  // Compartir por WhatsApp
+  function compartirWsp(nombre, detalle) {
+    var texto = '📍 *' + nombre + '*\n' + detalle + '\n\nVía holamelipilla.cl';
+    window.open('https://wa.me/?text=' + encodeURIComponent(texto), '_blank');
+  }
 </script>
+
 </body>
 </html>
