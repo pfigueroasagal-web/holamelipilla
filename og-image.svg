@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0F5E3F"/>
+      <stop offset="60%" style="stop-color:#1D9E75"/>
+      <stop offset="100%" style="stop-color:#0F5E3F"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.13"/>
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.05"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fondo degradado verde -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Círculos decorativos de fondo -->
+  <circle cx="1080" cy="80" r="220" fill="#ffffff" opacity="0.04"/>
+  <circle cx="120" cy="560" r="180" fill="#ffffff" opacity="0.04"/>
+  <circle cx="1150" cy="580" r="120" fill="#A06A0A" opacity="0.15"/>
+
+  <!-- Franja superior decorativa -->
+  <rect x="0" y="0" width="1200" height="6" fill="#F7F3EC" opacity="0.5"/>
+
+  <!-- Tarjeta central -->
+  <rect x="80" y="100" width="1040" height="430" rx="24" fill="url(#card)" stroke="#ffffff" stroke-opacity="0.15" stroke-width="1.5"/>
+
+  <!-- Ícono 💊 grande -->
+  <text x="130" y="230" font-size="90" font-family="Segoe UI Emoji, Apple Color Emoji, sans-serif">💊</text>
+
+  <!-- Título principal -->
+  <text x="130" y="310" font-family="Georgia, serif" font-size="64" font-weight="700" fill="#ffffff" letter-spacing="-1">Hola Melipilla</text>
+
+  <!-- Subtítulo -->
+  <text x="130" y="375" font-family="Arial, sans-serif" font-size="28" fill="#E6F5EE" opacity="0.9">Farmacia de turno · Salud · Ferias · Colegios · Seguridad</text>
+
+  <!-- URL -->
+  <text x="130" y="435" font-family="Arial, sans-serif" font-size="22" fill="#ffffff" opacity="0.65">holamelipilla.cl</text>
+
+  <!-- Línea divisoria izquierda decorativa -->
+  <rect x="80" y="460" width="1040" height="2" fill="#ffffff" opacity="0.1"/>
+
+  <!-- Tags de secciones -->
+  <!-- Farmacias -->
+  <rect x="130" y="480" width="155" height="36" rx="18" fill="#ffffff" opacity="0.12"/>
+  <text x="160" y="503" font-family="Arial, sans-serif" font-size="17" fill="#ffffff">💊 Farmacias</text>
+  <!-- Salud -->
+  <rect x="300" y="480" width="130" height="36" rx="18" fill="#ffffff" opacity="0.12"/>
+  <text x="326" y="503" font-family="Arial, sans-serif" font-size="17" fill="#ffffff">🏥 Salud</text>
+  <!-- Ferias -->
+  <rect x="445" y="480" width="135" height="36" rx="18" fill="#ffffff" opacity="0.12"/>
+  <text x="469" y="503" font-family="Arial, sans-serif" font-size="17" fill="#ffffff">🛒 Ferias</text>
+  <!-- Colegios -->
+  <rect x="595" y="480" width="150" height="36" rx="18" fill="#ffffff" opacity="0.12"/>
+  <text x="619" y="503" font-family="Arial, sans-serif" font-size="17" fill="#ffffff">🏫 Colegios</text>
+  <!-- Seguridad -->
+  <rect x="760" y="480" width="165" height="36" rx="18" fill="#ffffff" opacity="0.12"/>
+  <text x="783" y="503" font-family="Arial, sans-serif" font-size="17" fill="#ffffff">🚔 Seguridad</text>
+
+  <!-- Melipilla badge derecho -->
+  <rect x="940" y="480" width="180" height="36" rx="18" fill="#A06A0A" opacity="0.7"/>
+  <text x="966" y="503" font-family="Arial, sans-serif" font-size="17" fill="#ffffff">📍 Melipilla, Chile</text>
+</svg>

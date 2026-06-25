@@ -1,5 +1,5 @@
 // sw.js — Hola Melipilla Service Worker
-const CACHE_NAME = 'holamelipilla-v2';
+const CACHE_NAME = 'holamelipilla-v3';
 
 // Archivos que se guardan para uso sin internet
 const ARCHIVOS_CACHE = [
@@ -10,7 +10,9 @@ const ARCHIVOS_CACHE = [
   '/seguridad',
   '/ferias',
   '/colegios',
+  '/404.html',
   '/styles.css',
+  '/og-image.svg',
   '/manifest.json',
   '/icon-192.png',
   '/icon-512.png'
