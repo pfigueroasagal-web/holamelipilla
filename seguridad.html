@@ -33,7 +33,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=8">
+  <link rel="stylesheet" href="/styles.css?v=9">
 <!-- build:2025-06-25T19:00 -->
 </head>
 <body class="body-nav">
@@ -829,5 +829,130 @@
   }
 </script>
 
+<script>
+(function() {
+  var DATOS = [
+    {t:'Farmacia Cariño',d:'Ortúzar 399 · 10:00–23:00 · 2 2831 5050',url:'/farmacias',cat:'💊'},
+    {t:'Cruz Verde Serrano',d:'Serrano 501 · 08:30–22:00 · 2 2831 1552',url:'/farmacias',cat:'💊'},
+    {t:'Cruz Verde Plaza de Armas',d:'Plaza de Armas 561 · 09:00–21:00 · 2 2832 3888',url:'/farmacias',cat:'💊'},
+    {t:'Cruz Verde Independencia',d:'Independencia · 09:00–22:30 · 2 2832 7526',url:'/farmacias',cat:'💊'},
+    {t:'Cruz Verde Mall Víctor Ávila',d:'Mall Víctor Ávila · 2 2831 8135',url:'/farmacias',cat:'💊'},
+    {t:'Salcobrand Ortúzar 548',d:'Ortúzar 548 · 09:00–23:00 · 2 2831 0328',url:'/farmacias',cat:'💊'},
+    {t:'Salcobrand Ortúzar 691',d:'Ortúzar 691 · 09:00–21:00 · 2 2832 1955',url:'/farmacias',cat:'💊'},
+    {t:'Salcobrand Ortúzar 857',d:'Ortúzar 857 · 09:00–21:00 · 2 2832 3157',url:'/farmacias',cat:'💊'},
+    {t:'Farmacia Ahumada Serrano',d:'Serrano 395 · 09:00–21:00 · 2 2831 8135',url:'/farmacias',cat:'💊'},
+    {t:'Farmacia Independencia',d:'Independencia · 08:30–22:00 · 2 2631 3070',url:'/farmacias',cat:'💊'},
+    {t:'Farmacias Klan',d:'Ortúzar 315 · 09:00–22:00 · 2 2831 7799',url:'/farmacias',cat:'💊'},
+    {t:'Farmacia del Dr. Soto',d:'Balmaceda 267 · 09:00–20:30 · 2 2831 5866',url:'/farmacias',cat:'💊'},
+    {t:'Farmacia Salud y Vida',d:'Arturo Prat 156 · 08:30–20:00 · 2 2831 9456',url:'/farmacias',cat:'💊'},
+    {t:'Farmacia Prieto Centro',d:'Ortúzar 691 · 09:00–20:00 · 2 2832 3157',url:'/farmacias',cat:'💊'},
+    {t:'Farmacia Redondo',d:'Ortúzar 857 · 09:00–20:00 · 2 2832 6984',url:'/farmacias',cat:'💊'},
+    {t:'Farmacia del Dr. Simi',d:'San Antonio 140, Pomaire · 09:00–20:00 · 2 2819 9380',url:'/farmacias',cat:'💊'},
+    {t:'Farmacia Plaza Bollenar',d:'Los Boldos 219, El Bollenar · 10:30–20:00',url:'/farmacias',cat:'💊'},
+    {t:'Farmacia NG Salud',d:'Parcela 26, El Dibujo, Culiprán · 10:00–20:00',url:'/farmacias',cat:'💊'},
+    {t:'Farmacia Clínica Maitenes',d:'Autopista del Sol 2882 · 11:00–20:00',url:'/farmacias',cat:'💊'},
+    {t:'CESFAM Dr. Edelberto Elgueta',d:'Arza 1576 · Lun-Jue 08:00-20:00 · 800 432 777',url:'/salud',cat:'🏥'},
+    {t:'CESFAM Dr. Francisco Boris Soler',d:'Silvia Chávez 1650 · Lun-Vie 08:00-17:00 · 2 2821 8350',url:'/salud',cat:'🏥'},
+    {t:'CESFAM San Manuel',d:'Camino San Manuel S/N · Lun-Vie 08:00-17:00 · 2 2574 5500',url:'/salud',cat:'🏥'},
+    {t:'CESFAM Alfarera Rosa Reyes Vilches',d:'Artesana Julita Vera 354, Pomaire · 2 2832 4965',url:'/salud',cat:'🏥'},
+    {t:'SAR Elsa Romo Aravena',d:'Real Audiencia 980 · Urgencias 24 hrs',url:'/salud',cat:'🏥'},
+    {t:'CESFAM Florencia',d:'Av. Libertad 1923 · Lun-Vie 08:00-17:00 · 2 2568 8141',url:'/salud',cat:'🏥'},
+    {t:'CES Ignacio Carrera Pinto',d:'Ignacio Carrera Pinto 606 · Lun-Vie 08:00-17:00 · 2 2800 0401',url:'/salud',cat:'🏥'},
+    {t:'Hospital de Melipilla',d:"O'Higgins 551 · Urgencias 24 hrs · 2 2958 1543",url:'/salud',cat:'🏥'},
+    {t:'Carabineros',d:'Emergencia: 133 · 24ª Comisaría Ortúzar 675',url:'/seguridad',cat:'🚔'},
+    {t:'SAMU',d:'Emergencia médica: 131',url:'/seguridad',cat:'🚔'},
+    {t:'Bomberos',d:'Emergencia: 132 · Av. Ortúzar 521 · 2 2831 4946',url:'/seguridad',cat:'🚔'},
+    {t:'PDI Melipilla',d:'2 2838 9000',url:'/seguridad',cat:'🚔'},
+    {t:'VIF Violencia intrafamiliar',d:'Fono gratuito: 1455',url:'/seguridad',cat:'🚔'},
+    {t:'Feria Avenida Chile',d:'Sábado 07:00-14:00 · Avda. Chile',url:'/ferias',cat:'🛒'},
+    {t:'Feria Manuel Rodríguez',d:'Martes 07:00-14:00 · Manuel Rodríguez',url:'/ferias',cat:'🛒'},
+    {t:'Feria Merced',d:'Domingo 07:00-14:00 · Merced',url:'/ferias',cat:'🛒'},
+    {t:'Feria Pomaire',d:'Viernes 07:00-14:00 · Rafael Morandé',url:'/ferias',cat:'🛒'},
+    {t:'Feria Bollenar Agricultores',d:'Viernes y Domingo 07:00-14:00 · Plaza de Bollenar',url:'/ferias',cat:'🛒'},
+    {t:'Feria Villa Los Toros',d:'Miércoles 07:00-14:00 · Policarpo Toro',url:'/ferias',cat:'🛒'},
+    {t:'Feria Codigua',d:'Sábado 07:00-14:00 · Los Álamos, Codigua',url:'/ferias',cat:'🛒'},
+    {t:'Feria Culiprán',d:'Sábado 07:00-14:00 · Las Palmeras de Culiprán',url:'/ferias',cat:'🛒'},
+    {t:'Liceo Enrique Comptois Müller',d:'Av. Manuel Rodríguez 560 · 2 2831 4400',url:'/colegios',cat:'🏫'},
+    {t:'Escuela Básica Gabriela Mistral',d:'Serrano 101 · 9 5415 6915',url:'/colegios',cat:'🏫'},
+    {t:'Colegio San Francisco de Asís',d:'Los Copihues 1175 · 2 2832 2099',url:'/colegios',cat:'🏫'},
+    {t:'Colegio Santa Filomena',d:'Balmaceda 555 · 2 2831 2788',url:'/colegios',cat:'🏫'},
+    {t:'Colegio Sayen de Melipilla',d:'Santa Elena 946 · 9 8327 4514',url:'/colegios',cat:'🏫'},
+    {t:'Escuela Ricardo López Guevara',d:'Caupolicán 1055 · 2 2832 1079',url:'/colegios',cat:'🏫'},
+    {t:'Colegio Melipilla',d:'Los Copihues 1000 · 2 2832 1666',url:'/colegios',cat:'🏫'},
+    {t:'Liceo Politécnico de Melipilla',d:'Av. Vicuña Mackenna 1050 · 2 2831 4420',url:'/colegios',cat:'🏫'},
+    {t:'Escuela República del Brasil',d:'Riquelme 850 · 2 2832 3695',url:'/colegios',cat:'🏫'},
+    {t:'Colegio San Agustín',d:'Serrano 465 · 2 2831 5060',url:'/colegios',cat:'🏫'},
+    {t:'Colegio Politécnico NSP',d:'Vargas 290 · 2 2831 2540',url:'/colegios',cat:'🏫'},
+    {t:'Colegio Pomaire',d:'Rafael Morandé 160, Pomaire · 2 2832 1460',url:'/colegios',cat:'🏫'}
+  ];
+
+  function norm(s) {
+    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+  function render(items, caja) {
+    if (!items.length) {
+      caja.innerHTML = '<div style="padding:.75rem 1rem;font-size:.875rem;color:#6C757D">Sin resultados.</div>';
+      caja.removeAttribute('hidden');
+      return;
+    }
+    var html = items.slice(0, 8).map(function(r) {
+      var titulo = r.t.replace(/</g, '&lt;');
+      var desc   = r.d.replace(/</g, '&lt;');
+      return '<a href="' + r.url + '" style="display:flex;align-items:flex-start;gap:10px;padding:.65rem 1rem;text-decoration:none;color:#212529;border-bottom:1px solid #DEE2E6;transition:background .12s;font-family:Inter,sans-serif"'
+        + ' onmouseover="this.style.background=\'#D8F3DC\'" onmouseout="this.style.background=\'\'">'
+        + '<span style="font-size:1.1rem;flex-shrink:0;margin-top:1px">' + r.cat + '</span>'
+        + '<div><div style="font-size:.875rem;font-weight:600;color:#212529">' + titulo + '</div>'
+        + '<div style="font-size:.78rem;color:#6C757D;margin-top:1px">' + desc + '</div></div></a>';
+    }).join('');
+    caja.innerHTML = html;
+    caja.removeAttribute('hidden');
+  }
+
+  function init() {
+    var input   = document.getElementById('buscador-global');
+    var caja    = document.getElementById('buscador-resultados');
+    var limpiar = document.getElementById('buscador-limpiar');
+    if (!input || !caja) return;
+
+    input.addEventListener('input', function() {
+      var q = norm(this.value.trim());
+      if (limpiar) limpiar.style.display = q ? 'flex' : 'none';
+      if (!q) { caja.setAttribute('hidden', ''); return; }
+      render(DATOS.filter(function(r) {
+        return norm(r.t).includes(q) || norm(r.d).includes(q);
+      }), caja);
+    });
+
+    if (limpiar) {
+      limpiar.addEventListener('click', function() {
+        input.value = '';
+        limpiar.style.display = 'none';
+        caja.setAttribute('hidden', '');
+        input.focus();
+      });
+    }
+
+    document.addEventListener('click', function(e) {
+      if (e.target !== input && !caja.contains(e.target)) {
+        caja.setAttribute('hidden', '');
+      }
+    });
+
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        input.value = '';
+        caja.setAttribute('hidden', '');
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
 </body>
 </html>
