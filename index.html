@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Farmacia de Turno Melipilla hoy — Guía de servicios | holamelipilla.cl</title>
-  <meta name="description" content="Farmacia de turno en Melipilla hoy, farmacias abiertas 24 horas, CESFAM, colegios, ferias libres y teléfonos de emergencia para vivir en Melipilla. Guía completa actualizada.">
+  <title>Hola Melipilla — Guía de servicios de la ciudad | holamelipilla.cl</title>
+  <meta name="description" content="Guía completa de servicios para Melipilla: farmacias, centros de salud, colegios, ferias libres, emergencias y más. Todo en un solo lugar.">
   <meta name="keywords" content="farmacia de turno Melipilla, farmacia turno Melipilla hoy, farmacias abiertas Melipilla, farmacia 24 horas Melipilla, Farmacia Cariño Melipilla, Melipilla, vivir en Melipilla, ferias libres Melipilla, CESFAM Melipilla, colegios Melipilla, emergencias Melipilla, Carabineros Melipilla, Bomberos Melipilla, Hospital Melipilla">
   <meta name="author" content="holamelipilla.cl">
   <meta name="robots" content="index, follow">
@@ -286,6 +286,19 @@ body { padding-top: 0 !important; }
       </div>
 
     </div><!-- /burbujas-wrap -->
+    <!-- ─── TURNO DE HOY ─── -->
+    <div class="turno-hoy-box" style="margin-top:1.25rem;max-width:480px;margin-left:auto;margin-right:auto">
+      <h3 style="font-size:.95rem;margin-bottom:.5rem">💊 Farmacia de turno hoy en Melipilla</h3>
+      <div class="turno-loading" id="turno-loading" style="font-size:.85rem;color:var(--texto-suave)">
+        <div class="spinner" style="width:16px;height:16px"></div>
+        Buscando…
+      </div>
+      <div class="turno-resultado" id="turno-resultado" style="font-size:.9rem"></div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.6rem;justify-content:center">
+        <a class="burbuja-pill" href="https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-melipilla" target="_blank" rel="noopener" style="font-size:12px;padding:7px 14px">Ver turno completo ↗</a>
+        <a class="burbuja-pill" href="/farmacias" style="font-size:12px;padding:7px 14px">Todas las farmacias →</a>
+      </div>
+    </div>
 
     <!-- ─── BUSCADOR GLOBAL ─── -->
     <div class="buscador-global-wrap" role="search" aria-label="Buscador general">
@@ -610,5 +623,69 @@ body { padding-top: 0 !important; }
 
 </script>
 
+
+<script>
+// ── Turno dinámico MINSAL ──
+(async function() {
+  var loadEl = document.getElementById('turno-loading');
+  var resEl  = document.getElementById('turno-resultado');
+  if (!loadEl || !resEl) return;
+
+  function quitarTildes(s) {
+    return (s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+  }
+  var API = 'https://midas.minsal.cl/farmacia_v2/WS/getLocalesTurnos.php';
+
+  async function tryFetch(url, ms) {
+    var ctrl = new AbortController();
+    var t = setTimeout(function(){ ctrl.abort(); }, ms);
+    try {
+      var r = await fetch(url, { signal: ctrl.signal });
+      clearTimeout(t);
+      if (!r.ok) throw new Error();
+      return await r.json();
+    } catch(e) { clearTimeout(t); throw e; }
+  }
+
+  var estrategias = [
+    function(){ return tryFetch(API, 6000); },
+    function(){ return tryFetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(API), 9000); },
+    function(){ return tryFetch('https://corsproxy.io/?' + encodeURIComponent(API), 9000); }
+  ];
+
+  var turnos = [];
+  for (var i = 0; i < estrategias.length; i++) {
+    try {
+      var data = await estrategias[i]();
+      if (Array.isArray(data) && data.length > 0) {
+        turnos = data.filter(function(f) {
+          return quitarTildes(f.comuna_nombre || f.comuna || '').includes('melipilla');
+        });
+        break;
+      }
+    } catch(e) {}
+  }
+
+  loadEl.style.display = 'none';
+
+  if (turnos.length === 0) {
+    resEl.innerHTML = '<p style="font-size:.85rem;color:var(--texto-suave)">No se pudo obtener el turno en este momento.</p>';
+    return;
+  }
+
+  var html = turnos.map(function(f) {
+    var nombre = f.local_nombre || f.nombre || 'Farmacia';
+    var dir = f.local_direccion || f.direccion || '';
+    var tel = f.local_telefono || f.telefono || '';
+    return '<div style="background:rgba(255,255,255,.15);border-radius:10px;padding:.6rem .8rem;margin-bottom:.4rem;text-align:left">'
+      + '<strong style="font-size:.9rem">' + nombre + '</strong>'
+      + (dir ? '<br><span style="font-size:.8rem;opacity:.85">📍 ' + dir + '</span>' : '')
+      + (tel ? '<br><a href="tel:' + tel.replace(/\s/g,'') + '" style="font-size:.8rem;color:var(--primario-claro)">📞 ' + tel + '</a>' : '')
+      + '</div>';
+  }).join('');
+
+  resEl.innerHTML = html;
+})();
+</script>
 </body>
 </html>
