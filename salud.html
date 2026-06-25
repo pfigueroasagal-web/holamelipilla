@@ -498,7 +498,80 @@
       <span>Para inscribirte en un CESFAM necesitas RUT o documento de identidad y tu dirección de residencia. La inscripción corresponde al sector donde vives. Más info: <a href="https://corpomelipilla.cl/salud/" target="_blank" rel="noopener">CORPO Melipilla</a></span>
     </div>
   </div>
-  </section></main>
+  </section>
+  <!-- ═══ DONACIONES ═══ -->
+  <section id="donaciones" aria-labelledby="titulo-donaciones">
+  <div class="section-inner">
+    <div class="section-title">
+      <div class="section-icon" style="background:#FFF0F5;color:#C4457A">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      </div>
+      <div>
+        <h2 id="titulo-donaciones">Apoyar este proyecto</h2>
+        <p>Guía gratuita, mantenida con voluntad y café</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon" style="background:#FFF0F5;color:#C4457A;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;">💛</div>
+        <div>
+          <h3>Elige cuánto aportar</h3>
+          <div class="sub">Pago seguro con Mercado Pago — tarjeta, transferencia o billetera digital</div>
+        </div>
+      </div>
+      <div class="donation-grid">
+        <a class="don-btn" href="https://mpago.li/1uWDgRX" target="_blank" rel="noopener"><span class="don-emoji">☕</span><span>$1.000</span><span class="don-label">Un café</span></a>
+        <a class="don-btn" href="https://mpago.li/1XLfJSj" target="_blank" rel="noopener"><span class="don-emoji">👍</span><span>$2.500</span><span class="don-label">Apoyo</span></a>
+        <a class="don-btn" href="https://mpago.li/1ok8dw5" target="_blank" rel="noopener"><span class="don-emoji">⭐</span><span>$5.000</span><span class="don-label">Gracias</span></a>
+        <a class="don-btn" href="https://mpago.li/1RhQ4tB" target="_blank" rel="noopener"><span class="don-emoji">💎</span><span>$10.000</span><span class="don-label">Héroe</span></a>
+      </div>
+      <p style="font-size:12px;color:var(--texto-suave);margin-top:.85rem;text-align:center">Cada aporte ayuda a mantener la información actualizada y el sitio en línea. ¡Gracias!</p>
+    </div>
+  </div>
+  </section>
+
+  <!-- ═══ SUGERENCIAS ═══ -->
+  <section id="sugerencias" aria-labelledby="titulo-sugerencias">
+  <div class="section-inner">
+    <div class="section-title">
+      <div class="section-icon" style="background:#EEF0FE;color:#534AB7">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      </div>
+      <div>
+        <h2 id="titulo-sugerencias">Sugerencias o correcciones</h2>
+        <p>¿Falta información o hay algo desactualizado?</p>
+      </div>
+    </div>
+    <div class="card">
+      <form id="formSugerencia" action="https://formspree.io/f/mdavdoap" method="POST" novalidate>
+        <div class="form-group">
+          <label for="tipo">Tipo de sugerencia</label>
+          <select id="tipo" name="tipo" required>
+            <option value="">Selecciona una opción…</option>
+            <option value="dato-incorrecto">Dato incorrecto o desactualizado</option>
+            <option value="falta-informacion">Falta información importante</option>
+            <option value="nuevo-servicio">Agregar un nuevo servicio</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="4" placeholder="Descríbenos qué cambiar o agregar…" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="email">Tu correo (opcional, solo si quieres respuesta)</label>
+          <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.cl">
+        </div>
+        <button type="submit" class="btn-submit">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Enviar sugerencia
+        </button>
+        <div class="form-msg" id="formMsg"></div>
+      </form>
+    </div>
+  </div>
+  </section>
+</main>
 
 <!-- ─── FOOTER ─── -->
 <footer class="site-footer">
@@ -1128,20 +1201,5 @@
   }
 </script>
 
-<script>
-  // Ajuste dinámico del padding-top según altura real de la nav
-  function ajustarNavFarmacias() {
-    var nav = document.querySelector('nav');
-    if (!nav) return;
-    document.body.style.paddingTop = nav.offsetHeight + 'px';
-  }
-  document.addEventListener('DOMContentLoaded', function() {
-    requestAnimationFrame(function() {
-      ajustarNavFarmacias();
-      setTimeout(ajustarNavFarmacias, 350);
-    });
-    window.addEventListener('resize', ajustarNavFarmacias);
-  });
-</script>
 </body>
 </html>
