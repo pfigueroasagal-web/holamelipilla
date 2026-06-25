@@ -33,7 +33,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=3">
+  <link rel="stylesheet" href="/styles.css?v=4">
   <style>html{scroll-padding-top:120px !important;}</style>
 <!-- build:2025-06-25T19:00 -->
 </head>
@@ -229,24 +229,76 @@
   </div>
 </nav>
 
-<!-- ─── HERO ─── -->
+<!-- ─── HERO BURBUJAS ─── -->
 <header class="hero" id="inicio">
   <div class="hero-inner">
+
     <div class="hero-eyebrow">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       Región Metropolitana · Provincia de Melipilla
     </div>
-    <h1>Farmacia de turno hoy en <em>Melipilla</em></h1>
-    <p class="hero-desc">
-      CESFAM, colegios, ferias libres y emergencias — todo lo que necesitas para vivir en Melipilla, en un solo lugar.
-    </p>
-    <div class="hero-buttons">
-      <a href="/farmacias">💊 Farmacias</a>
-      <a href="/salud">🏥 Centros de salud</a>
-      <a href="/ferias">🛒 Ferias libres</a>
-      <a href="/colegios">🏫 Colegios</a>
-      <a href="/seguridad">🚔 Seguridad</a>
-    </div>
+    <h1>Guía de servicios en <em>Melipilla</em></h1>
+    <p class="hero-desc">Toca cualquier categoría para ver toda la información que necesitas</p>
+
+    <!-- ─── MENÚ DE BURBUJAS ─── -->
+    <div class="burbujas-wrap" aria-label="Menú de secciones">
+
+      <!-- Fila superior: Farmacia + Centros de salud -->
+      <div class="burbujas-fila">
+        <a href="/farmacias" class="burbuja burbuja-farmacia" aria-label="Ir a Farmacias">
+          <div class="burbuja-inner">
+            <span class="burbuja-emoji">💊</span>
+            <span class="burbuja-label">Farmacias</span>
+          </div>
+        </a>
+        <a href="/salud" class="burbuja burbuja-salud" aria-label="Ir a Centros de salud">
+          <div class="burbuja-inner">
+            <span class="burbuja-emoji">🏥</span>
+            <span class="burbuja-label">Centros<br>de salud</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Fila media: Seguridad (grande, central) -->
+      <div class="burbujas-fila burbujas-fila-centro">
+        <a href="/seguridad" class="burbuja burbuja-seguridad burbuja-grande" aria-label="Ir a Seguridad">
+          <div class="burbuja-inner">
+            <span class="burbuja-emoji">🚔</span>
+            <span class="burbuja-label">Seguridad</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Fila inferior izq: Colegios + Ferias -->
+      <div class="burbujas-fila">
+        <a href="/colegios" class="burbuja burbuja-colegios" aria-label="Ir a Colegios">
+          <div class="burbuja-inner">
+            <span class="burbuja-emoji">🏫</span>
+            <span class="burbuja-label">Colegios</span>
+          </div>
+        </a>
+        <a href="/ferias" class="burbuja burbuja-ferias" aria-label="Ir a Ferias libres">
+          <div class="burbuja-inner">
+            <span class="burbuja-emoji">🛒</span>
+            <span class="burbuja-label">Ferias<br>libres</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Fila inferior: Mapa + Apoyar + Sugerencias (píldoras) -->
+      <div class="burbujas-fila burbujas-fila-pills">
+        <a href="#mapa" class="burbuja-pill" aria-label="Ir a Mapa general">
+          <span>🗺️</span> Mapa general
+        </a>
+        <a href="#donaciones" class="burbuja-pill" aria-label="Ir a Apoyar">
+          <span>💛</span> Apoyar
+        </a>
+        <a href="#sugerencias" class="burbuja-pill" aria-label="Ir a Sugerencias">
+          <span>💬</span> Sugerencias
+        </a>
+      </div>
+
+    </div><!-- /burbujas-wrap -->
 
     <!-- ─── BUSCADOR GLOBAL ─── -->
     <div class="buscador-global-wrap" role="search" aria-label="Buscador general">

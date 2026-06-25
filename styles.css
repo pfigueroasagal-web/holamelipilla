@@ -1278,3 +1278,203 @@ main.index-main {
   max-width: 960px;
   padding: 0 0 5rem;
 }
+
+
+/* ═══════════════════════════════════════════════════════════
+   MENÚ DE BURBUJAS — Hero interactivo
+   ═══════════════════════════════════════════════════════════ */
+
+.burbujas-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0 1.75rem;
+  width: 100%;
+}
+
+.burbujas-fila {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.burbujas-fila-centro {
+  gap: 0;
+}
+
+/* ─── Burbuja base ─── */
+.burbuja {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease;
+  /* Efecto flotante suave */
+  animation: flotar 3s ease-in-out infinite;
+}
+
+.burbuja:nth-child(2) { animation-delay: .4s; }
+.burbuja:nth-child(3) { animation-delay: .8s; }
+
+@keyframes flotar {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+.burbuja:hover {
+  transform: translateY(-10px) scale(1.08);
+  animation: none;
+}
+.burbuja:active {
+  transform: translateY(-4px) scale(1.03);
+}
+
+.burbuja-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.burbuja-emoji {
+  font-size: 2.2rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.15));
+}
+
+.burbuja-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: .01em;
+}
+
+/* ─── Burbuja grande (Seguridad, central) ─── */
+.burbuja-grande {
+  width: 150px;
+  height: 150px;
+}
+.burbuja-grande .burbuja-emoji { font-size: 2.8rem; }
+.burbuja-grande .burbuja-label { font-size: 15px; }
+
+/* ─── Colores por categoría ─── */
+.burbuja-farmacia {
+  background: radial-gradient(circle at 35% 35%, #fff7e6, #F77F00);
+  color: #7A3A00;
+  box-shadow: 0 8px 24px rgba(247,127,0,.35), 0 2px 8px rgba(247,127,0,.2);
+  border: 3px solid rgba(255,255,255,.5);
+}
+.burbuja-farmacia:hover {
+  box-shadow: 0 16px 40px rgba(247,127,0,.5), 0 4px 12px rgba(247,127,0,.3);
+}
+
+.burbuja-salud {
+  background: radial-gradient(circle at 35% 35%, #e8f4ff, #0D6EFD);
+  color: #003380;
+  box-shadow: 0 8px 24px rgba(13,110,253,.35), 0 2px 8px rgba(13,110,253,.2);
+  border: 3px solid rgba(255,255,255,.5);
+}
+.burbuja-salud:hover {
+  box-shadow: 0 16px 40px rgba(13,110,253,.5), 0 4px 12px rgba(13,110,253,.3);
+}
+
+.burbuja-seguridad {
+  background: radial-gradient(circle at 35% 35%, #e6f5ee, #1B4332);
+  color: #fff;
+  box-shadow: 0 10px 32px rgba(27,67,50,.45), 0 4px 12px rgba(27,67,50,.25);
+  border: 4px solid rgba(255,255,255,.4);
+}
+.burbuja-seguridad:hover {
+  box-shadow: 0 20px 48px rgba(27,67,50,.6), 0 6px 16px rgba(27,67,50,.3);
+}
+.burbuja-seguridad .burbuja-label { color: #fff; }
+
+.burbuja-colegios {
+  background: radial-gradient(circle at 35% 35%, #fce4ff, #9C27B0);
+  color: #4a0060;
+  box-shadow: 0 8px 24px rgba(156,39,176,.35), 0 2px 8px rgba(156,39,176,.2);
+  border: 3px solid rgba(255,255,255,.5);
+}
+.burbuja-colegios:hover {
+  box-shadow: 0 16px 40px rgba(156,39,176,.5), 0 4px 12px rgba(156,39,176,.3);
+}
+
+.burbuja-ferias {
+  background: radial-gradient(circle at 35% 35%, #e8ffe8, #2E7D32);
+  color: #1a3d1a;
+  box-shadow: 0 8px 24px rgba(46,125,50,.35), 0 2px 8px rgba(46,125,50,.2);
+  border: 3px solid rgba(255,255,255,.5);
+}
+.burbuja-ferias:hover {
+  box-shadow: 0 16px 40px rgba(46,125,50,.5), 0 4px 12px rgba(46,125,50,.3);
+}
+
+/* ─── Píldoras inferiores ─── */
+.burbujas-fila-pills {
+  gap: .75rem;
+  flex-wrap: wrap;
+  margin-top: .25rem;
+}
+
+.burbuja-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border-radius: 100px;
+  background: rgba(255,255,255,.15);
+  border: 2px solid rgba(255,255,255,.35);
+  color: #fff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  transition: background .2s, transform .2s, box-shadow .2s;
+}
+.burbuja-pill:hover {
+  background: rgba(255,255,255,.28);
+  border-color: rgba(255,255,255,.6);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,.15);
+}
+.burbuja-pill span { font-size: 16px; }
+
+/* ─── Responsive ─── */
+@media (max-width: 480px) {
+  .burbuja {
+    width: 100px;
+    height: 100px;
+  }
+  .burbuja-emoji { font-size: 1.8rem; }
+  .burbuja-label { font-size: 11px; }
+
+  .burbuja-grande {
+    width: 120px;
+    height: 120px;
+  }
+  .burbuja-grande .burbuja-emoji { font-size: 2.2rem; }
+  .burbuja-grande .burbuja-label { font-size: 13px; }
+
+  .burbujas-fila { gap: 1rem; }
+
+  .burbuja-pill {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .burbuja { width: 88px; height: 88px; }
+  .burbuja-grande { width: 108px; height: 108px; }
+}
