@@ -1,11 +1,19 @@
 // sw.js — Hola Melipilla Service Worker
-const CACHE_NAME = 'holamelipilla-v1';
+const CACHE_NAME = 'holamelipilla-v2';
 
 // Archivos que se guardan para uso sin internet
 const ARCHIVOS_CACHE = [
   '/',
   '/index.html',
-  '/manifest.json'
+  '/farmacias',
+  '/salud',
+  '/seguridad',
+  '/ferias',
+  '/colegios',
+  '/styles.css',
+  '/manifest.json',
+  '/icon-192.png',
+  '/icon-512.png'
 ];
 
 // Instalación: guarda archivos en caché
