@@ -1478,3 +1478,30 @@ main.index-main {
   .burbuja { width: 88px; height: 88px; }
   .burbuja-grande { width: 108px; height: 108px; }
 }
+
+/* ── Hero compacto en subpáginas ── */
+.hero-subpage {
+  min-height: 0 !important;
+  padding: 2.5rem 1.5rem 2rem !important;
+}
+.hero-subpage .hero-inner {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.hero-subpage h1 {
+  font-size: clamp(1.5rem, 5vw, 2.2rem) !important;
+  margin-bottom: .4rem;
+}
+.hero-subpage .hero-desc {
+  font-size: .9rem;
+  opacity: .85;
+  margin-bottom: .75rem;
+}
+.hero-subpage .buscador-global-wrap {
+  max-width: 480px;
+}
+@media (max-width: 480px) {
+  .hero-subpage {
+    padding: 1.75rem 1rem 1.5rem !important;
+  }
+}

@@ -22,7 +22,7 @@
   <meta name="twitter:description" content="Farmacia de turno hoy en Melipilla, CESFAM, colegios, ferias libres y emergencias.">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"Hola Melipilla","url":"https://holamelipilla.cl/","description":"Guía de servicios esenciales para personas que llegan a vivir a Melipilla, Chile. Farmacia de turno hoy, CESFAM, colegios y emergencias.","inLanguage":"es-CL","about":{"@type":"Place","name":"Melipilla","address":{"@type":"PostalAddress","addressLocality":"Melipilla","addressRegion":"Región Metropolitana","addressCountry":"CL"}}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cuál es la farmacia de turno en Melipilla hoy?","acceptedAnswer":{"@type":"Answer","text":"El turno de farmacia en Melipilla cambia cada día. Consulta farmaciashoy.cl o farmaciasabiertas.cl para saber cuál está abierta hoy en Melipilla."}},{"@type":"Question","name":"¿Dónde está la Farmacia Cariño en Melipilla?","acceptedAnswer":{"@type":"Answer","text":"Farmacia Cariño se ubica en Ortúzar 399, Melipilla. Teléfono: 2 2831 5050."}}]}]}</script>
   <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💊</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📍</text></svg>">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#0F5E3F">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=4">
+  <link rel="stylesheet" href="/styles.css?v=5">
   <style>
 html{scroll-behavior:smooth}
 
@@ -106,114 +106,6 @@ body { padding-top: 0 !important; }
 </head>
 <body>
 
-<!-- ─── VERSÍCULO DEL DÍA ─── -->
-<div class="votd-bar" id="votdBar" role="complementary" aria-label="Versículo del día">
-  <div class="votd-bar-inner">
-    <span class="votd-icon" aria-hidden="true">📖</span>
-    <span class="votd-content">
-      <span class="votd-text" id="votdText">Cargando el versículo del día…</span>
-      <span class="votd-ref" id="votdRef"></span>
-    </span>
-    <a class="votd-bar-link" id="votdLink" href="https://www.bible.com" target="_blank" rel="noopener">Leer más →</a>
-    <button class="votd-close" id="votdClose" aria-label="Cerrar versículo del día">✕</button>
-  </div>
-</div>
-<script>
-(function () {
-  // API de versículo usa solo respaldo local rotativo (sin llamadas externas)
-  const hoyISO = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Santiago' }); // YYYY-MM-DD
-  const CACHE_KEY = 'votd-bar-' + hoyISO;
-  const CERRADO_KEY = 'votd-bar-cerrado-' + hoyISO;
-
-  const bar = document.getElementById('votdBar');
-  const textEl = document.getElementById('votdText');
-  const refEl = document.getElementById('votdRef');
-  const linkEl = document.getElementById('votdLink');
-  const closeBtn = document.getElementById('votdClose');
-
-  // Si ya lo cerró hoy, no lo mostramos de nuevo hasta mañana
-  if (sessionStorage.getItem(CERRADO_KEY) === '1') {
-    bar.classList.add('oculto');
-    return;
-  }
-
-  closeBtn.addEventListener('click', () => {
-    bar.classList.add('oculto');
-    sessionStorage.setItem(CERRADO_KEY, '1');
-  });
-
-  function diaDelAnio() {
-    const hoy = new Date();
-    const inicio = new Date(hoy.getFullYear(), 0, 0);
-    return Math.floor((hoy - inicio) / 86400000);
-  }
-
-  function pintar(data) {
-    textEl.textContent = '"' + data.content + '"';
-    refEl.textContent = '— ' + data.reference;
-    linkEl.href = data.deepLink || 'https://www.bible.com';
-  }
-
-  // ─── RESPALDO LOCAL ───
-  // Se usa mientras no haya App Key configurada, o si la API de YouVersion
-  // falla por cualquier motivo (sin internet, CORS, mantenimiento, etc).
-  // Rota un versículo distinto cada día del año, sin pedir nada a internet.
-  const RESPALDO = [
-    { content: 'Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree, no se pierda, mas tenga vida eterna.', reference: 'Juan 3:16' },
-    { content: 'Todo lo puedo en Cristo que me fortalece.', reference: 'Filipenses 4:13' },
-    { content: 'Jehová es mi pastor; nada me faltará.', reference: 'Salmos 23:1' },
-    { content: 'Confía en Jehová de todo tu corazón, y no te apoyes en tu propia prudencia.', reference: 'Proverbios 3:5' },
-    { content: 'No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te esfuerzo.', reference: 'Isaías 41:10' },
-    { content: 'Echando toda vuestra ansiedad sobre él, porque él tiene cuidado de vosotros.', reference: '1 Pedro 5:7' },
-    { content: 'El gozo de Jehová es vuestra fuerza.', reference: 'Nehemías 8:10' },
-    { content: 'Mas buscad primeramente el reino de Dios y su justicia, y todas estas cosas os serán añadidas.', reference: 'Mateo 6:33' },
-    { content: 'Porque yo sé los pensamientos que tengo acerca de vosotros, dice Jehová, pensamientos de paz, y no de mal, para daros el fin que esperáis.', reference: 'Jeremías 29:11' },
-    { content: 'Y sabemos que a los que aman a Dios, todas las cosas les ayudan a bien.', reference: 'Romanos 8:28' },
-    { content: 'Esfuérzate y sé valiente; no temas ni desmayes, porque Jehová tu Dios estará contigo.', reference: 'Josué 1:9' },
-    { content: 'Bástate mi gracia; porque mi poder se perfecciona en la debilidad.', reference: '2 Corintios 12:9' },
-    { content: 'Encomienda a Jehová tu camino, y confía en él; y él hará.', reference: 'Salmos 37:5' },
-    { content: 'Cercano está Jehová a los quebrantados de corazón, y salva a los contritos de espíritu.', reference: 'Salmos 34:18' },
-    { content: 'Velad, estad firmes en la fe; portaos varonilmente, y esforzaos.', reference: '1 Corintios 16:13' },
-    { content: 'Dad gracias en todo, porque esta es la voluntad de Dios para con vosotros en Cristo Jesús.', reference: '1 Tesalonicenses 5:18' },
-    { content: 'El amor es sufrido, es benigno; el amor no tiene envidia.', reference: '1 Corintios 13:4' },
-    { content: 'Clama a mí, y yo te responderé, y te enseñaré cosas grandes y ocultas que tú no conoces.', reference: 'Jeremías 33:3' },
-    { content: 'Día a día, Jehová, mi roca, sé exaltado.', reference: 'Salmos 18:46' },
-    { content: 'No os afanéis por nada; sino sean conocidas vuestras peticiones delante de Dios en toda oración y ruego.', reference: 'Filipenses 4:6' },
-    { content: 'En paz me acostaré, y asimismo dormiré; porque solo tú, Jehová, me haces vivir confiado.', reference: 'Salmos 4:8' },
-    { content: 'Y conoceréis la verdad, y la verdad os hará libres.', reference: 'Juan 8:32' },
-    { content: 'Como el padre tiene misericordia de los hijos, así tiene Jehová misericordia de los que le temen.', reference: 'Salmos 103:13' },
-    { content: 'Cada día trae su afán; basta a cada día su propio mal.', reference: 'Mateo 6:34' },
-    { content: 'Servid a Jehová con alegría; venid ante su presencia con regocijo.', reference: 'Salmos 100:2' },
-    { content: 'Mas los que esperan a Jehová tendrán nuevas fuerzas; levantarán alas como las águilas.', reference: 'Isaías 40:31' },
-    { content: 'El que habita al abrigo del Altísimo morará bajo la sombra del Omnipotente.', reference: 'Salmos 91:1' },
-    { content: 'Por nada estéis afanosos... y la paz de Dios, que sobrepasa todo entendimiento, guardará vuestros corazones.', reference: 'Filipenses 4:6-7' },
-    { content: 'Amados, amémonos unos a otros; porque el amor es de Dios.', reference: '1 Juan 4:7' },
-    { content: 'Jehová te bendiga, y te guarde; Jehová haga resplandecer su rostro sobre ti.', reference: 'Números 6:24-25' }
-  ];
-
-  function usarRespaldo() {
-    const idx = diaDelAnio() % RESPALDO.length;
-    const v = RESPALDO[idx];
-    pintar({
-      content: v.content,
-      reference: v.reference,
-      deepLink: 'https://www.bible.com/search/bible?q=' + encodeURIComponent(v.reference)
-    });
-  }
-
-  function cargarVersiculo() {
-    // Usar caché del día si existe
-    const cache = localStorage.getItem(CACHE_KEY);
-    if (cache) {
-      try { pintar(JSON.parse(cache)); return; } catch(e) {}
-    }
-    // Usar respaldo local (rota diariamente, sin llamadas externas)
-    usarRespaldo();
-  }
-
-  cargarVersiculo();
-})();
-</script>
 
 
 <!-- ─── HERO BURBUJAS ─── -->
@@ -225,7 +117,7 @@ body { padding-top: 0 !important; }
       Región Metropolitana · Provincia de Melipilla
     </div>
     <h1>Guía de servicios en <em>Melipilla</em></h1>
-    <p class="hero-desc">Toca cualquier categoría para ver toda la información que necesitas</p>
+    <p class="hero-desc">Elige una categoría para ver toda la información que necesitas</p>
 
     <!-- ─── MENÚ DE BURBUJAS ─── -->
     <div class="burbujas-wrap" aria-label="Menú de secciones">
@@ -274,9 +166,6 @@ body { padding-top: 0 !important; }
 
       <!-- Fila inferior: Mapa + Apoyar + Sugerencias (píldoras) -->
       <div class="burbujas-fila burbujas-fila-pills">
-        <a href="#mapa" class="burbuja-pill" aria-label="Ir a Mapa general">
-          <span>🗺️</span> Mapa general
-        </a>
         <a href="/apoyar" class="burbuja-pill" aria-label="Ir a Apoyar">
           <span>💛</span> Apoyar
         </a>
@@ -287,16 +176,19 @@ body { padding-top: 0 !important; }
 
     </div><!-- /burbujas-wrap -->
     <!-- ─── TURNO DE HOY ─── -->
-    <div class="turno-hoy-box" style="margin-top:1.25rem;max-width:480px;margin-left:auto;margin-right:auto">
-      <h3 style="font-size:.95rem;margin-bottom:.5rem">💊 Farmacia de turno hoy en Melipilla</h3>
-      <div class="turno-loading" id="turno-loading" style="font-size:.85rem;color:var(--texto-suave)">
-        <div class="spinner" style="width:16px;height:16px"></div>
-        Buscando…
+    <div id="turno-hero" style="margin-top:1.5rem;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.3);border-radius:16px;padding:1rem 1.25rem;max-width:500px;width:100%;margin-left:auto;margin-right:auto;backdrop-filter:blur(8px)">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:.5rem">
+        <span style="font-size:1.3rem">💊</span>
+        <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:.85rem;font-weight:700;color:rgba(255,255,255,.8);text-transform:uppercase;letter-spacing:.05em">Farmacia de turno hoy</span>
       </div>
-      <div class="turno-resultado" id="turno-resultado" style="font-size:.9rem"></div>
-      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.6rem;justify-content:center">
-        <a class="burbuja-pill" href="https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-melipilla" target="_blank" rel="noopener" style="font-size:12px;padding:7px 14px">Ver turno completo ↗</a>
-        <a class="burbuja-pill" href="/farmacias" style="font-size:12px;padding:7px 14px">Todas las farmacias →</a>
+      <div class="turno-loading" id="turno-loading" style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.7);font-size:.9rem">
+        <div class="spinner" style="width:14px;height:14px;border-color:rgba(255,255,255,.3);border-top-color:#fff"></div>
+        Consultando turno…
+      </div>
+      <div class="turno-resultado" id="turno-resultado" style="font-size:.95rem;color:#fff;font-weight:600"></div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.75rem">
+        <a href="https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-melipilla" target="_blank" rel="noopener" style="font-size:12px;color:rgba(255,255,255,.8);text-decoration:none;display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border:1px solid rgba(255,255,255,.3);border-radius:100px;transition:background .2s" onmouseover="this.style.background='rgba(255,255,255,.15)'" onmouseout="this.style.background='transparent'">Ver turno completo ↗</a>
+        <a href="/farmacias" style="font-size:12px;color:rgba(255,255,255,.8);text-decoration:none;display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border:1px solid rgba(255,255,255,.3);border-radius:100px;transition:background .2s" onmouseover="this.style.background='rgba(255,255,255,.15)'" onmouseout="this.style.background='transparent'">Todas las farmacias →</a>
       </div>
     </div>
 
@@ -330,6 +222,150 @@ body { padding-top: 0 !important; }
 
 
 
+
+
+  <!-- ═══ BIENVENIDA + PRIMEROS PASOS ═══ -->
+  <section id="primeros-pasos" aria-labelledby="titulo-bienvenida">
+  <div class="section-inner">
+
+    <!-- Bienvenida -->
+    <div style="background:linear-gradient(135deg,var(--primario),var(--primario-medio));border-radius:16px;padding:1.75rem;color:#fff;margin-bottom:1.5rem;position:relative;overflow:hidden">
+      <div style="position:absolute;right:-20px;top:-20px;font-size:5rem;opacity:.12;pointer-events:none">📍</div>
+      <div style="position:absolute;right:60px;bottom:-10px;font-size:4rem;opacity:.1;pointer-events:none">🏘️</div>
+      <h2 id="titulo-bienvenida" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1.4rem;font-weight:800;color:#fff;margin-bottom:.4rem">
+        ¿Recién llegaste a Melipilla?
+      </h2>
+      <p style="font-size:.95rem;color:rgba(255,255,255,.85);line-height:1.6;margin-bottom:1rem;max-width:520px">
+        Esta guía reúne todo lo que necesitas para instalarte: farmacias, centros de salud, colegios y ferias libres. Gratis, sin publicidad, hecha por vecinos.
+      </p>
+      <button onclick="var t='👋 Recién llegué a Melipilla y encontré esta guía con todo lo que necesitas saber: farmacias, CESFAM, colegios y ferias libres. ¡Muy útil! → holamelipilla.cl';window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank')"
+        style="display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;border:none;border-radius:100px;padding:10px 20px;font-size:.875rem;font-weight:700;cursor:pointer;transition:background .2s;font-family:'Plus Jakarta Sans',sans-serif"
+        onmouseover="this.style.background='#1ebe5d'" onmouseout="this.style.background='#25D366'">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.054 23.5l5.849-1.533A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.813 9.813 0 01-5.001-1.371l-.359-.214-3.722.976.993-3.628-.234-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
+        Compartir esta guía
+      </button>
+    </div>
+
+    <!-- Las 3 cosas que hace todo recién llegado -->
+    <div class="section-title">
+      <div class="section-icon ic-verde">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      </div>
+      <div>
+        <h2 style="font-size:1.1rem">Primeros pasos en Melipilla</h2>
+        <p>Las 3 gestiones que hace todo recién llegado</p>
+      </div>
+    </div>
+
+    <div class="cards cards-2" style="margin-top:.75rem">
+
+      <!-- Paso 1: Inscripción CESFAM -->
+      <div class="card" style="border-left:4px solid var(--primario-claro)">
+        <div class="card-head">
+          <div class="card-icon ic-azul" style="font-size:1.4rem;width:44px;height:44px">1️⃣</div>
+          <div>
+            <h3>Inscríbete en un CESFAM</h3>
+            <div class="sub">Atención primaria gratuita con FONASA</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span>Necesitas tu <strong>RUT o cédula</strong> y comprobante de domicilio en Melipilla</span>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Ve al CESFAM más cercano a tu domicilio</span>
+        </div>
+        <a class="btn-map" href="/salud" style="margin-top:8px;display:inline-flex;text-decoration:none">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          Ver centros de salud →
+        </a>
+      </div>
+
+      <!-- Paso 2: Matrícula escolar -->
+      <div class="card" style="border-left:4px solid #9C27B0">
+        <div class="card-head">
+          <div class="card-icon" style="background:#f3e8ff;color:#9C27B0;font-size:1.4rem;width:44px;height:44px">2️⃣</div>
+          <div>
+            <h3>Matricula a tus hijos</h3>
+            <div class="sub">Sistema de Admisión Escolar (SAE)</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span>Las matrículas se gestionan por el <strong>SAE</strong> del Ministerio de Educación</span>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>También puedes contactar directamente a cada establecimiento</span>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+          <a class="btn-map" href="/colegios" style="display:inline-flex;text-decoration:none">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Ver colegios →
+          </a>
+          <a class="btn-map" href="https://www.sistemadeadmisionescolar.cl/" target="_blank" rel="noopener" style="display:inline-flex;text-decoration:none;background:var(--acento-suave);color:var(--acento)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Ir al SAE ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Paso 3: Conoce la Municipalidad -->
+      <div class="card" style="border-left:4px solid var(--acento)">
+        <div class="card-head">
+          <div class="card-icon" style="background:var(--acento-suave);color:var(--acento);font-size:1.4rem;width:44px;height:44px">3️⃣</div>
+          <div>
+            <h3>Visita la Municipalidad</h3>
+            <div class="sub">Trámites, certificados y beneficios comunales</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Plaza de Armas s/n, Melipilla</span>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Lun–Vie 08:30–14:00 · 2 2598 9800</span>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+          <a class="btn-map" href="https://maps.google.com/?q=Municipalidad+de+Melipilla" target="_blank" rel="noopener" style="display:inline-flex;text-decoration:none">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+            Ver en mapa
+          </a>
+          <a class="btn-map" href="https://www.melipilla.cl" target="_blank" rel="noopener" style="display:inline-flex;text-decoration:none;background:var(--acento-suave);color:var(--acento)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Sitio municipal ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Dato extra: Ferias -->
+      <div class="card" style="border-left:4px solid var(--primario-claro)">
+        <div class="card-head">
+          <div class="card-icon ic-verde" style="font-size:1.4rem;width:44px;height:44px">🛒</div>
+          <div>
+            <h3>Conoce las ferias libres</h3>
+            <div class="sub">Frutas, verduras y más a buen precio</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Hay 8 ferias en la comuna · desde las 07:00 hrs</span>
+        </div>
+        <div class="info-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span>La más grande: <strong>Feria Avda. Chile</strong> — todos los sábados</span>
+        </div>
+        <a class="btn-map" href="/ferias" style="margin-top:8px;display:inline-flex;text-decoration:none">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          Ver todas las ferias →
+        </a>
+      </div>
+
+    </div>
+  </div>
+  </section>
 
   <!-- ═══ MAPA GENERAL ═══ -->
   <section id="mapa" aria-labelledby="titulo-mapa">
@@ -469,47 +505,6 @@ body { padding-top: 0 !important; }
   </div>
   </section>
 
-  <!-- ═══ LINKS ÚTILES ═══ -->
-  <section aria-labelledby="titulo-links">
-  <div class="section-inner">
-    <div class="section-title">
-      <div class="section-icon" style="background:#F0EDE8;color:#5A5A5A">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-      </div>
-      <div>
-        <h2 id="titulo-links">Otros servicios útiles</h2>
-        <p>Sitios oficiales de la comuna</p>
-      </div>
-    </div>
-    <div class="turno-links">
-      <a class="turno-link" href="https://www.melipilla.cl" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-        Municipalidad de Melipilla
-      </a>
-      <a class="turno-link" href="https://www.robocelularchile.cl/" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-        Robo Celular Chile
-      </a>
-      <a class="turno-link" href="https://pomaire360.cl/" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-        Pomaire 360
-      </a>
-      <a class="turno-link" href="https://corpomelipilla.cl/salud/" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-        CORPO Melipilla — Salud
-      </a>
-      <a class="turno-link" href="https://www.fonasa.cl" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-        FONASA Chile
-      </a>
-      <a class="turno-link" href="https://apps.odepa.gob.cl/powerBI/reporte_ferias_libres.html" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-        Localizador Ferias ODEPA
-      </a>
-          <button class="btn-whatsapp" onclick="compartirWsp('Colegio Santa Filomena','📍 Balmaceda 555, Melipilla\n📞 2 2831 2788\n🏫 Particular subvencionado')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.054 23.5l5.849-1.533A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.813 9.813 0 01-5.001-1.371l-.359-.214-3.722.976.993-3.628-.234-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>Compartir</button>
-          </div>
-  </div>
-  </section>
 
 
 
@@ -594,6 +589,104 @@ body { padding-top: 0 !important; }
   }).join('');
 
   resEl.innerHTML = html;
+})();
+</script><script>
+// ── Buscador global con DATOS_BUSCADOR ──
+var DATOS_BUSCADOR = [
+  {t:'Farmacia Cariño',d:'Ortúzar 399 · 10:00–23:00 · 2 2831 5050',url:'/farmacias',cat:'💊'},
+  {t:'Cruz Verde Serrano',d:'Serrano 501 · 08:30–22:00',url:'/farmacias',cat:'💊'},
+  {t:'Cruz Verde Plaza de Armas',d:'Plaza de Armas 561 · 09:00–21:00',url:'/farmacias',cat:'💊'},
+  {t:'Cruz Verde Independencia',d:'Independencia · 09:00–22:30',url:'/farmacias',cat:'💊'},
+  {t:'Salcobrand Ortúzar 548',d:'Ortúzar 548 · 09:00–23:00',url:'/farmacias',cat:'💊'},
+  {t:'Salcobrand Ortúzar 691',d:'Ortúzar 691 · 09:00–21:00',url:'/farmacias',cat:'💊'},
+  {t:'Farmacia Ahumada Serrano',d:'Serrano 395 · 09:00–21:00',url:'/farmacias',cat:'💊'},
+  {t:'Farmacias Klan',d:'Ortúzar 315 · 09:00–22:00',url:'/farmacias',cat:'💊'},
+  {t:'Farmacia del Dr. Soto',d:'Balmaceda 267 · 09:00–20:30',url:'/farmacias',cat:'💊'},
+  {t:'Farmacia Salud y Vida',d:'Arturo Prat 156 · 08:30–20:00',url:'/farmacias',cat:'💊'},
+  {t:'Farmacia del Dr. Simi',d:'San Antonio 140, Pomaire · 09:00–20:00',url:'/farmacias',cat:'💊'},
+  {t:'CESFAM Dr. Edelberto Elgueta',d:'Arza 1576 · 800 432 777',url:'/salud',cat:'🏥'},
+  {t:'CESFAM Dr. Francisco Boris Soler',d:'Silvia Chávez 1650 · 2 2821 8350',url:'/salud',cat:'🏥'},
+  {t:'CESFAM San Manuel',d:'Camino San Manuel S/N · 2 2574 5500',url:'/salud',cat:'🏥'},
+  {t:'CESFAM Alfarera Rosa Reyes Vilches',d:'Artesana Julita Vera 354, Pomaire',url:'/salud',cat:'🏥'},
+  {t:'SAR Elsa Romo Aravena',d:'Real Audiencia 980 · Urgencias 24 hrs',url:'/salud',cat:'🏥'},
+  {t:'CESFAM Florencia',d:'Av. Libertad 1923 · 2 2568 8141',url:'/salud',cat:'🏥'},
+  {t:'Hospital de Melipilla',d:"O'Higgins 551 · Urgencias 24 hrs",url:'/salud',cat:'🏥'},
+  {t:'Carabineros',d:'Emergencia: 133',url:'/seguridad',cat:'🚔'},
+  {t:'SAMU',d:'Emergencia médica: 131',url:'/seguridad',cat:'🚔'},
+  {t:'Bomberos',d:'Emergencia: 132',url:'/seguridad',cat:'🚔'},
+  {t:'24ª Comisaría Melipilla',d:'Ortúzar 675 · 2 2922 4370',url:'/seguridad',cat:'🚔'},
+  {t:'PDI Melipilla',d:'2 2838 9000',url:'/seguridad',cat:'🚔'},
+  {t:'Feria Avenida Chile',d:'Sábado 07:00–14:00 · Avda. Chile',url:'/ferias',cat:'🛒'},
+  {t:'Feria Manuel Rodríguez',d:'Martes 07:00–14:00 · Manuel Rodríguez',url:'/ferias',cat:'🛒'},
+  {t:'Feria Merced',d:'Domingo 07:00–14:00 · Merced',url:'/ferias',cat:'🛒'},
+  {t:'Feria Pomaire',d:'Viernes 07:00–14:00 · Rafael Morandé',url:'/ferias',cat:'🛒'},
+  {t:'Feria Bollenar',d:'Viernes y Domingo 07:00–14:00',url:'/ferias',cat:'🛒'},
+  {t:'Feria Villa Los Toros',d:'Miércoles 07:00–14:00',url:'/ferias',cat:'🛒'},
+  {t:'Liceo Enrique Comptois Müller',d:'Av. Manuel Rodríguez 560 · 2 2831 4400',url:'/colegios',cat:'🏫'},
+  {t:'Escuela Básica Gabriela Mistral',d:'Serrano 101 · 9 5415 6915',url:'/colegios',cat:'🏫'},
+  {t:'Colegio San Francisco de Asís',d:'Los Copihues 1175 · 2 2832 2099',url:'/colegios',cat:'🏫'},
+  {t:'Colegio Santa Filomena',d:'Balmaceda 555 · 2 2831 2788',url:'/colegios',cat:'🏫'},
+  {t:'Colegio Melipilla',d:'Los Copihues 1000 · 2 2832 1666',url:'/colegios',cat:'🏫'},
+  {t:'Liceo Politécnico de Melipilla',d:'Av. Vicuña Mackenna 1050',url:'/colegios',cat:'🏫'},
+  {t:'Colegio San Agustín',d:'Serrano 465 · 2 2831 5060',url:'/colegios',cat:'🏫'}
+];
+
+(function() {
+  var input = document.getElementById('buscador-global');
+  var caja  = document.getElementById('buscador-resultados');
+  var limpiar = document.getElementById('buscador-limpiar');
+  if (!input || !caja) return;
+
+  function norm(str) {
+    return (str||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  }
+
+  function mostrar(items) {
+    if (!items.length) {
+      caja.innerHTML = '<div style="padding:.75rem 1rem;font-size:.875rem;color:var(--texto-suave)">Sin resultados para esta búsqueda.</div>';
+      caja.removeAttribute('hidden');
+      return;
+    }
+    caja.innerHTML = items.slice(0,8).map(function(r) {
+      return '<a href="' + r.url + '" role="option" style="display:flex;align-items:flex-start;gap:10px;padding:.6rem 1rem;text-decoration:none;color:var(--texto);border-bottom:1px solid var(--borde);transition:background .15s" onmouseover="this.style.background='var(--verde-suave)'" onmouseout="this.style.background=''">'
+        + '<span style="font-size:1.1rem;flex-shrink:0;margin-top:1px">' + r.cat + '</span>'
+        + '<div><div style="font-size:.9rem;font-weight:600">' + r.t + '</div>'
+        + '<div style="font-size:.8rem;color:var(--texto-suave)">' + r.d + '</div></div></a>';
+    }).join('');
+    caja.removeAttribute('hidden');
+  }
+
+  input.addEventListener('input', function() {
+    var q = norm(this.value.trim());
+    if (limpiar) limpiar.style.display = q ? 'flex' : 'none';
+    if (!q) { caja.setAttribute('hidden',''); return; }
+    var res = DATOS_BUSCADOR.filter(function(r) {
+      return norm(r.t).includes(q) || norm(r.d).includes(q);
+    });
+    mostrar(res);
+  });
+
+  if (limpiar) {
+    limpiar.addEventListener('click', function() {
+      input.value = '';
+      limpiar.style.display = 'none';
+      caja.setAttribute('hidden','');
+      input.focus();
+    });
+  }
+
+  document.addEventListener('click', function(e) {
+    if (!caja.contains(e.target) && e.target !== input) {
+      caja.setAttribute('hidden','');
+    }
+  });
+
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      input.value = '';
+      caja.setAttribute('hidden','');
+    }
+  });
 })();
 </script>
 </body>

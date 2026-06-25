@@ -22,7 +22,7 @@
   <meta name="twitter:description" content="Teléfonos de emergencia en Melipilla: Carabineros, Bomberos, SAMU y comisarías. Números útiles para urgencias y seguridad ciudadana.">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"Hola Melipilla","url":"https://holamelipilla.cl/","description":"Guía de servicios esenciales para personas que llegan a vivir a Melipilla, Chile. Farmacia de turno hoy, CESFAM, colegios y emergencias.","inLanguage":"es-CL","about":{"@type":"Place","name":"Melipilla","address":{"@type":"PostalAddress","addressLocality":"Melipilla","addressRegion":"Región Metropolitana","addressCountry":"CL"}}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cuál es la farmacia de turno en Melipilla hoy?","acceptedAnswer":{"@type":"Answer","text":"El turno de farmacia en Melipilla cambia cada día. Consulta farmaciashoy.cl o farmaciasabiertas.cl para saber cuál está abierta hoy en Melipilla."}},{"@type":"Question","name":"¿Dónde está la Farmacia Cariño en Melipilla?","acceptedAnswer":{"@type":"Answer","text":"Farmacia Cariño se ubica en Ortúzar 399, Melipilla. Teléfono: 2 2831 5050."}}]}]}</script>
   <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💊</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📍</text></svg>">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#0F5E3F">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,147 +33,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=4">
+  <link rel="stylesheet" href="/styles.css?v=5">
 <!-- build:2025-06-25T19:00 -->
 </head>
 <body>
-<script>
-  function ajustarLayout() {
-    var votd = document.getElementById("votdBar");
-    var nav = document.querySelector("nav");
-    if (!votd || !nav) return;
-    var votdVisible = !votd.classList.contains("oculto") && votd.style.display !== "none";
-    var votdH = votdVisible ? votd.offsetHeight : 0;
-    var navH = nav.offsetHeight;
-    nav.style.top = votdH + "px";
-    document.body.style.paddingTop = (votdH + navH) + "px";
-    document.documentElement.style.scrollPaddingTop = (votdH + navH + 8) + "px";
-  }
-  document.addEventListener("DOMContentLoaded", function() {
-    requestAnimationFrame(function() {
-      ajustarLayout();
-      setTimeout(ajustarLayout, 350);
-    });
-    var closeBtn = document.getElementById("votdClose");
-    if (closeBtn) closeBtn.addEventListener("click", function() { setTimeout(ajustarLayout, 50); });
-    var votd = document.getElementById("votdBar");
-    if (votd && window.MutationObserver) {
-      new MutationObserver(function() { requestAnimationFrame(ajustarLayout); })
-        .observe(votd, { attributes: true, attributeFilter: ["class", "style"] });
-    }
-    window.addEventListener("resize", ajustarLayout);
-  });
-</script>
 
-<!-- ─── VERSÍCULO DEL DÍA ─── -->
-<div class="votd-bar" id="votdBar" role="complementary" aria-label="Versículo del día">
-  <div class="votd-bar-inner">
-    <span class="votd-icon" aria-hidden="true">📖</span>
-    <span class="votd-content">
-      <span class="votd-text" id="votdText">Cargando el versículo del día…</span>
-      <span class="votd-ref" id="votdRef"></span>
-    </span>
-    <a class="votd-bar-link" id="votdLink" href="https://www.bible.com" target="_blank" rel="noopener">Leer más →</a>
-    <button class="votd-close" id="votdClose" aria-label="Cerrar versículo del día">✕</button>
-  </div>
-</div>
-<script>
-(function () {
-  const APP_KEY = '6J6iDzUixGQANUx5rOtArK44biCI2Nn7d7JIaetG8jclQ5bj';
-  const BIBLE_ID = 149; // Reina-Valera 1960
-  const hoyISO = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Santiago' }); // YYYY-MM-DD
-  const CACHE_KEY = 'votd-bar-' + hoyISO;
-  const CERRADO_KEY = 'votd-bar-cerrado-' + hoyISO;
-
-  const bar = document.getElementById('votdBar');
-  const textEl = document.getElementById('votdText');
-  const refEl = document.getElementById('votdRef');
-  const linkEl = document.getElementById('votdLink');
-  const closeBtn = document.getElementById('votdClose');
-
-  // Si ya lo cerró hoy, no lo mostramos de nuevo hasta mañana
-  if (sessionStorage.getItem(CERRADO_KEY) === '1') {
-    bar.classList.add('oculto');
-    return;
-  }
-
-  closeBtn.addEventListener('click', () => {
-    bar.classList.add('oculto');
-    sessionStorage.setItem(CERRADO_KEY, '1');
-  });
-
-  function diaDelAnio() {
-    const hoy = new Date();
-    const inicio = new Date(hoy.getFullYear(), 0, 0);
-    return Math.floor((hoy - inicio) / 86400000);
-  }
-
-  function pintar(data) {
-    textEl.textContent = '"' + data.content + '"';
-    refEl.textContent = '— ' + data.reference;
-    linkEl.href = data.deepLink || 'https://www.bible.com';
-  }
-
-  // ─── RESPALDO LOCAL ───
-  // Se usa mientras no haya App Key configurada, o si la API de YouVersion
-  // falla por cualquier motivo (sin internet, CORS, mantenimiento, etc).
-  // Rota un versículo distinto cada día del año, sin pedir nada a internet.
-  const RESPALDO = [
-    { content: 'Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree, no se pierda, mas tenga vida eterna.', reference: 'Juan 3:16' },
-    { content: 'Todo lo puedo en Cristo que me fortalece.', reference: 'Filipenses 4:13' },
-    { content: 'Jehová es mi pastor; nada me faltará.', reference: 'Salmos 23:1' },
-    { content: 'Confía en Jehová de todo tu corazón, y no te apoyes en tu propia prudencia.', reference: 'Proverbios 3:5' },
-    { content: 'No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te esfuerzo.', reference: 'Isaías 41:10' },
-    { content: 'Echando toda vuestra ansiedad sobre él, porque él tiene cuidado de vosotros.', reference: '1 Pedro 5:7' },
-    { content: 'El gozo de Jehová es vuestra fuerza.', reference: 'Nehemías 8:10' },
-    { content: 'Mas buscad primeramente el reino de Dios y su justicia, y todas estas cosas os serán añadidas.', reference: 'Mateo 6:33' },
-    { content: 'Porque yo sé los pensamientos que tengo acerca de vosotros, dice Jehová, pensamientos de paz, y no de mal, para daros el fin que esperáis.', reference: 'Jeremías 29:11' },
-    { content: 'Y sabemos que a los que aman a Dios, todas las cosas les ayudan a bien.', reference: 'Romanos 8:28' },
-    { content: 'Esfuérzate y sé valiente; no temas ni desmayes, porque Jehová tu Dios estará contigo.', reference: 'Josué 1:9' },
-    { content: 'Bástate mi gracia; porque mi poder se perfecciona en la debilidad.', reference: '2 Corintios 12:9' },
-    { content: 'Encomienda a Jehová tu camino, y confía en él; y él hará.', reference: 'Salmos 37:5' },
-    { content: 'Cercano está Jehová a los quebrantados de corazón, y salva a los contritos de espíritu.', reference: 'Salmos 34:18' },
-    { content: 'Velad, estad firmes en la fe; portaos varonilmente, y esforzaos.', reference: '1 Corintios 16:13' },
-    { content: 'Dad gracias en todo, porque esta es la voluntad de Dios para con vosotros en Cristo Jesús.', reference: '1 Tesalonicenses 5:18' },
-    { content: 'El amor es sufrido, es benigno; el amor no tiene envidia.', reference: '1 Corintios 13:4' },
-    { content: 'Clama a mí, y yo te responderé, y te enseñaré cosas grandes y ocultas que tú no conoces.', reference: 'Jeremías 33:3' },
-    { content: 'Día a día, Jehová, mi roca, sé exaltado.', reference: 'Salmos 18:46' },
-    { content: 'No os afanéis por nada; sino sean conocidas vuestras peticiones delante de Dios en toda oración y ruego.', reference: 'Filipenses 4:6' },
-    { content: 'En paz me acostaré, y asimismo dormiré; porque solo tú, Jehová, me haces vivir confiado.', reference: 'Salmos 4:8' },
-    { content: 'Y conoceréis la verdad, y la verdad os hará libres.', reference: 'Juan 8:32' },
-    { content: 'Como el padre tiene misericordia de los hijos, así tiene Jehová misericordia de los que le temen.', reference: 'Salmos 103:13' },
-    { content: 'Cada día trae su afán; basta a cada día su propio mal.', reference: 'Mateo 6:34' },
-    { content: 'Servid a Jehová con alegría; venid ante su presencia con regocijo.', reference: 'Salmos 100:2' },
-    { content: 'Mas los que esperan a Jehová tendrán nuevas fuerzas; levantarán alas como las águilas.', reference: 'Isaías 40:31' },
-    { content: 'El que habita al abrigo del Altísimo morará bajo la sombra del Omnipotente.', reference: 'Salmos 91:1' },
-    { content: 'Por nada estéis afanosos... y la paz de Dios, que sobrepasa todo entendimiento, guardará vuestros corazones.', reference: 'Filipenses 4:6-7' },
-    { content: 'Amados, amémonos unos a otros; porque el amor es de Dios.', reference: '1 Juan 4:7' },
-    { content: 'Jehová te bendiga, y te guarde; Jehová haga resplandecer su rostro sobre ti.', reference: 'Números 6:24-25' }
-  ];
-
-  function usarRespaldo() {
-    const idx = diaDelAnio() % RESPALDO.length;
-    const v = RESPALDO[idx];
-    pintar({
-      content: v.content,
-      reference: v.reference,
-      deepLink: 'https://www.bible.com/search/bible?q=' + encodeURIComponent(v.reference)
-    });
-  }
-
-  function cargarVersiculo() {
-    // Usar caché del día si existe
-    const cache = localStorage.getItem(CACHE_KEY);
-    if (cache) {
-      try { pintar(JSON.parse(cache)); return; } catch(e) {}
-    }
-    // Usar respaldo local (rota diariamente, sin llamadas externas)
-    usarRespaldo();
-  }
-
-  cargarVersiculo();
-})();
-</script>
 
 <!-- ─── NAVEGACIÓN ─── -->
 <nav aria-label="Navegación principal">
@@ -200,10 +64,7 @@
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
       Colegios
     </a></li>
-    <li><a href="/#mapa">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
-      Mapa general
-    </a></li>
+
     <li><a href="/apoyar">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
       Apoyar
@@ -217,7 +78,7 @@
 </nav>
 
 <!-- ─── HERO ─── -->
-<header class="hero" id="inicio">
+<header class="hero hero-subpage" id="inicio">
   <div class="hero-inner">
     <div class="hero-eyebrow">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
