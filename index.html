@@ -33,7 +33,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=6">
+  <link rel="stylesheet" href="/styles.css?v=7">
   <style>
 /* index: sin padding-top (no hay nav fija) */
 body { padding-top: 0 !important; }
@@ -92,109 +92,94 @@ body { padding-top: 0 !important; }
 
 
 
-<!-- ─── HERO BURBUJAS ─── -->
-<header class="hero" id="inicio">
-  <div class="hero-inner">
+<!-- ─── HERO NUEVO 2025 ─── -->
+<header class="hero-2025" id="inicio">
 
-    <div class="hero-eyebrow">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+  <!-- Top: eyebrow + título -->
+  <div class="hero-top">
+    <div class="hero-eyebrow-2025">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       Región Metropolitana · Provincia de Melipilla
     </div>
-    <h1>Guía de servicios en <em>Melipilla</em></h1>
-    <p class="hero-desc">Elige una categoría para ver toda la información que necesitas</p>
-
-    <!-- ─── MENÚ DE BURBUJAS ─── -->
-    <div class="burbujas-wrap" aria-label="Menú de secciones">
-
-      <!-- Fila superior: Farmacia + Centros de salud -->
-      <div class="burbujas-fila">
-        <a href="/farmacias" class="burbuja burbuja-farmacia" aria-label="Ir a Farmacias">
-          <div class="burbuja-inner">
-            <span class="burbuja-emoji">💊</span>
-            <span class="burbuja-label">Farmacias</span>
-          </div>
-        </a>
-        <a href="/salud" class="burbuja burbuja-salud" aria-label="Ir a Centros de salud">
-          <div class="burbuja-inner">
-            <span class="burbuja-emoji">🏥</span>
-            <span class="burbuja-label">Centros<br>de salud</span>
-          </div>
-        </a>
-      </div>
-
-      <!-- Fila media: Seguridad (grande, central) -->
-      <div class="burbujas-fila burbujas-fila-centro">
-        <a href="/seguridad" class="burbuja burbuja-seguridad burbuja-grande" aria-label="Ir a Seguridad">
-          <div class="burbuja-inner">
-            <span class="burbuja-emoji">🚔</span>
-            <span class="burbuja-label">Seguridad</span>
-          </div>
-        </a>
-      </div>
-
-      <!-- Fila inferior izq: Colegios + Ferias -->
-      <div class="burbujas-fila">
-        <a href="/colegios" class="burbuja burbuja-colegios" aria-label="Ir a Colegios">
-          <div class="burbuja-inner">
-            <span class="burbuja-emoji">🏫</span>
-            <span class="burbuja-label">Colegios</span>
-          </div>
-        </a>
-        <a href="/ferias" class="burbuja burbuja-ferias" aria-label="Ir a Ferias libres">
-          <div class="burbuja-inner">
-            <span class="burbuja-emoji">🛒</span>
-            <span class="burbuja-label">Ferias<br>libres</span>
-          </div>
-        </a>
-      </div>
-
-      <!-- Fila inferior: Mapa + Apoyar + Sugerencias (píldoras) -->
-      <div class="burbujas-fila burbujas-fila-pills">
-        <a href="/apoyar" class="burbuja-pill" aria-label="Ir a Apoyar">
-          <span>💛</span> Apoyar
-        </a>
-        <a href="/sugerencias" class="burbuja-pill" aria-label="Ir a Sugerencias">
-          <span>💬</span> Sugerencias
-        </a>
-      </div>
-
-    </div><!-- /burbujas-wrap -->
-    <!-- ─── TURNO DE HOY ─── -->
-    <div id="turno-hero" style="margin-top:1.5rem;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.3);border-radius:16px;padding:1rem 1.25rem;max-width:500px;width:100%;margin-left:auto;margin-right:auto;backdrop-filter:blur(8px)">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:.5rem">
-        <span style="font-size:1.3rem">💊</span>
-        <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:.85rem;font-weight:700;color:rgba(255,255,255,.8);text-transform:uppercase;letter-spacing:.05em">Farmacia de turno hoy</span>
-      </div>
-      <div class="turno-loading" id="turno-loading" style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.7);font-size:.9rem">
-        <div class="spinner" style="width:14px;height:14px;border-color:rgba(255,255,255,.3);border-top-color:#fff"></div>
-        Consultando turno…
-      </div>
-      <div class="turno-resultado" id="turno-resultado" style="font-size:.95rem;color:#fff;font-weight:600"></div>
-      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.75rem">
-        <a href="https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-melipilla" target="_blank" rel="noopener" style="font-size:12px;color:rgba(255,255,255,.8);text-decoration:none;display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border:1px solid rgba(255,255,255,.3);border-radius:100px;transition:background .2s" onmouseover="this.style.background='rgba(255,255,255,.15)'" onmouseout="this.style.background='transparent'">Ver turno completo ↗</a>
-        <a href="/farmacias" style="font-size:12px;color:rgba(255,255,255,.8);text-decoration:none;display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border:1px solid rgba(255,255,255,.3);border-radius:100px;transition:background .2s" onmouseover="this.style.background='rgba(255,255,255,.15)'" onmouseout="this.style.background='transparent'">Todas las farmacias →</a>
-      </div>
-    </div>
-
-    <!-- ─── BUSCADOR GLOBAL ─── -->
-    <div class="buscador-global-wrap" role="search" aria-label="Buscador general">
-      <div class="buscador-global-inner">
-        <svg class="buscador-icono" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input
-          id="buscador-global"
-          type="search"
-          placeholder="Buscar farmacia, CESFAM, colegio, feria…"
-          autocomplete="off"
-          aria-label="Buscar en toda la página"
-          aria-controls="buscador-resultados"
-          aria-expanded="false"
-        >
-        <button id="buscador-limpiar" class="buscador-limpiar" aria-label="Limpiar búsqueda" style="display:none">✕</button>
-      </div>
-      <div id="buscador-resultados" class="buscador-resultados" role="listbox" aria-label="Resultados de búsqueda" hidden></div>
-    </div>
-
+    <h1 class="hero-title-2025">Hola,<br><em>Melipilla</em> 👋</h1>
+    <p class="hero-sub-2025">Tu guía de servicios esenciales</p>
   </div>
+
+  <!-- Buscador -->
+  <div class="buscador-global-wrap" role="search" aria-label="Buscador general" style="max-width:540px;margin:0 auto 1.5rem">
+    <div class="buscador-global-inner">
+      <svg class="buscador-icono" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="buscador-global" type="search" placeholder="Buscar farmacia, CESFAM, colegio…" autocomplete="off" aria-label="Buscar" aria-controls="buscador-resultados" aria-expanded="false">
+      <button id="buscador-limpiar" class="buscador-limpiar" aria-label="Limpiar" style="display:none">✕</button>
+    </div>
+    <div id="buscador-resultados" class="buscador-resultados" role="listbox" hidden></div>
+  </div>
+
+  <!-- Tarjeta farmacia de turno (destacada, ancho completo) -->
+  <div class="nav-grid-2025">
+
+    <!-- Tarjeta GRANDE: Farmacias (ocupa 2 columnas en desktop) -->
+    <a href="/farmacias" class="nav-card-2025 nav-card-farmacia" aria-label="Ver farmacias">
+      <div class="nav-card-icon-2025">💊</div>
+      <div class="nav-card-body-2025">
+        <div class="nav-card-title-2025">Farmacias</div>
+        <div class="nav-card-desc-2025">18 farmacias · Turno 24h en vivo</div>
+      </div>
+      <div class="nav-card-turno-2025">
+        <div style="font-size:10px;opacity:.7;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px">Turno hoy</div>
+        <div id="turno-loading" style="font-size:12px;opacity:.7">Cargando…</div>
+        <div id="turno-resultado" style="font-size:13px;font-weight:700"></div>
+      </div>
+      <div class="nav-card-arrow-2025">→</div>
+    </a>
+
+    <!-- Salud -->
+    <a href="/salud" class="nav-card-2025 nav-card-salud" aria-label="Ver centros de salud">
+      <div class="nav-card-icon-2025">🏥</div>
+      <div class="nav-card-body-2025">
+        <div class="nav-card-title-2025">Salud</div>
+        <div class="nav-card-desc-2025">8 centros · FONASA</div>
+      </div>
+      <div class="nav-card-arrow-2025">→</div>
+    </a>
+
+    <!-- Seguridad -->
+    <a href="/seguridad" class="nav-card-2025 nav-card-seguridad" aria-label="Ver seguridad">
+      <div class="nav-card-icon-2025">🚔</div>
+      <div class="nav-card-body-2025">
+        <div class="nav-card-title-2025">Seguridad</div>
+        <div class="nav-card-desc-2025">133 · 131 · 132</div>
+      </div>
+      <div class="nav-card-arrow-2025">→</div>
+    </a>
+
+    <!-- Ferias -->
+    <a href="/ferias" class="nav-card-2025 nav-card-ferias" aria-label="Ver ferias libres">
+      <div class="nav-card-icon-2025">🛒</div>
+      <div class="nav-card-body-2025">
+        <div class="nav-card-title-2025">Ferias libres</div>
+        <div class="nav-card-desc-2025">8 ferias · entrada gratis</div>
+      </div>
+      <div class="nav-card-arrow-2025">→</div>
+    </a>
+
+    <!-- Colegios -->
+    <a href="/colegios" class="nav-card-2025 nav-card-colegios" aria-label="Ver colegios">
+      <div class="nav-card-icon-2025">🏫</div>
+      <div class="nav-card-body-2025">
+        <div class="nav-card-title-2025">Colegios</div>
+        <div class="nav-card-desc-2025">14 establecimientos</div>
+      </div>
+      <div class="nav-card-arrow-2025">→</div>
+    </a>
+
+    <!-- Apoyar + Sugerencias (mini pills) -->
+    <div class="nav-pills-row-2025">
+      <a href="/apoyar" class="nav-pill-2025">💛 Apoyar</a>
+      <a href="/sugerencias" class="nav-pill-2025">💬 Sugerencias</a>
+    </div>
+
+  </div><!-- /nav-grid-2025 -->
 </header>
 
 

@@ -33,7 +33,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=6">
+  <link rel="stylesheet" href="/styles.css?v=7">
 <!-- build:2025-06-25T19:00 -->
 </head>
 <body class="body-nav">
@@ -78,35 +78,20 @@
 </nav>
 
 <!-- ─── HERO ─── -->
-<header class="hero hero-subpage" id="inicio">
-  <div class="hero-inner">
-    <div class="hero-eyebrow">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      Región Metropolitana · Provincia de Melipilla
-    </div>
-    <h1>Emergencias y seguridad en <em>Melipilla</em></h1>
-    <p class="hero-desc">
-      Carabineros, Bomberos, SAMU y servicios de apoyo ciudadano.
-    </p>
-
-    <!-- ─── BUSCADOR GLOBAL ─── -->
-    <div class="buscador-global-wrap" role="search" aria-label="Buscador general">
+<header class="page-header-2025 page-header-seguridad" id="inicio">
+  <div class="page-header-inner-2025">
+    <a href="/" class="page-header-back-2025">← Inicio</a>
+    <div class="page-header-icon-2025">🚔</div>
+    <h1 class="page-header-title-2025">Seguridad</h1>
+    <p class="page-header-desc-2025">Emergencias, Carabineros, Bomberos y servicios de apoyo</p>
+    <div class="buscador-global-wrap" role="search" aria-label="Buscador" style="max-width:480px;margin:1rem auto 0">
       <div class="buscador-global-inner">
-        <svg class="buscador-icono" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input
-          id="buscador-global"
-          type="search"
-          placeholder="Buscar farmacia, CESFAM, colegio, feria…"
-          autocomplete="off"
-          aria-label="Buscar en toda la página"
-          aria-controls="buscador-resultados"
-          aria-expanded="false"
-        >
-        <button id="buscador-limpiar" class="buscador-limpiar" aria-label="Limpiar búsqueda" style="display:none">✕</button>
+        <svg class="buscador-icono" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="buscador-global" type="search" placeholder="Buscar comisaría, bomberos…" autocomplete="off" aria-label="Buscar" aria-controls="buscador-resultados" aria-expanded="false">
+        <button id="buscador-limpiar" class="buscador-limpiar" aria-label="Limpiar" style="display:none">✕</button>
       </div>
-      <div id="buscador-resultados" class="buscador-resultados" role="listbox" aria-label="Resultados de búsqueda" hidden></div>
+      <div id="buscador-resultados" class="buscador-resultados" role="listbox" hidden></div>
     </div>
-
   </div>
 </header>
 
