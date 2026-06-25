@@ -33,7 +33,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=9">
+  <link rel="stylesheet" href="/styles.css?v=10">
 <!-- build:2025-06-25T19:00 -->
 </head>
 <body class="body-nav">
@@ -349,61 +349,58 @@
 </footer>
 
 <script>
-  // Fecha dinámica en footer
-  const fechaEl = document.getElementById('footer-fecha');
-  if (fechaEl) {
-    const f = new Date().toLocaleDateString('es-CL', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'America/Santiago' });
-    fechaEl.textContent = 'Última actualización: ' + f;
-  }
-</script>
-
-<script>
-// ── Mapa de centros de salud con Leaflet ──
-  (function() {
-    function initMapaSalud() {
-      if (!window.L || !document.getElementById('mapa-salud')) {
-        setTimeout(initMapaSalud, 200);
-        return;
-      }
-      var map = L.map('mapa-salud', { scrollWheelZoom: false }).setView([-33.692, -71.213], 13);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-        maxZoom: 18
-      }).addTo(map);
-
-      function pin(color, letra) {
-        return L.divIcon({
-          className: '',
-          html: '<div style="width:28px;height:28px;border-radius:50%;background:' + color + ';border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;font-weight:700">' + letra + '</div>',
-          iconSize: [28, 28],
-          iconAnchor: [14, 14],
-          popupAnchor: [0, -16]
-        });
-      }
-
-      var centros = [
-        { lat: -33.6816, lng: -71.2259, nombre: 'CESFAM Dr. Edelberto Elgueta',        tipo: 'CESFAM', dir: 'Arza 1576', tel: '800 432 777', color: '#1A5FA8', letra: '+' },
-        { lat: -33.7005, lng: -71.2178, nombre: 'CESFAM Dr. Francisco Boris Soler',    tipo: 'CESFAM', dir: 'Silva Chávez 1650', tel: '2 2821 8350', color: '#1A5FA8', letra: '+' },
-        { lat: -33.7733, lng: -71.2577, nombre: 'CESFAM San Manuel',                   tipo: 'CESFAM rural', dir: 'G-668 604, Melipilla', tel: '2 2574 5500', color: '#1A5FA8', letra: '+' },
-        { lat: -33.6498, lng: -71.1505, nombre: 'CESFAM Alfarera Rosa Reyes Vilches',  tipo: 'CESFAM · Pomaire', dir: 'Artesana Julieta Vera, Pomaire', tel: '2 2832 4965', color: '#1A5FA8', letra: '+' },
-        { lat: -33.6924, lng: -71.2231, nombre: 'SAR Elsa Romo Aravena',               tipo: 'SAPU Alta Resolutividad 24 hrs', dir: 'Real Audiencia 980', tel: '', color: '#A06A0A', letra: 'S' },
-        { lat: -33.6823, lng: -71.2342, nombre: 'CESFAM Florencia',                    tipo: 'CESFAM', dir: 'Av. Libertad 1923', tel: '2 2568 8141', color: '#1A5FA8', letra: '+' },
-        { lat: -33.6789, lng: -71.2069, nombre: 'CECOSF Padre Demetrio',               tipo: 'Centro comunitario de salud familiar', dir: 'Ignacio Carrera Pinto 606', tel: '2 2800 0401', color: '#1A5FA8', letra: '+' },
-        { lat: -33.6952, lng: -71.2152, nombre: 'Hospital San José de Melipilla',      tipo: 'Hospital · Urgencias 24 hrs', dir: "O'Higgins 551", tel: '2 2958 1543', color: '#C4572A', letra: 'H' }
-      ];
-
-      centros.forEach(function(c) {
-        var tel = c.tel ? '<br><span style="font-size:12px;color:#555">&#128222; ' + c.tel + '</span>' : '';
-        L.marker([c.lat, c.lng], { icon: pin(c.color, c.letra) })
-          .addTo(map)
-          .bindPopup(
-            '<strong style="font-size:13px">' + c.nombre + '</strong><br>' +
-            '<span style="font-size:12px;color:#555">&#127973; ' + c.tipo + '</span><br>' +
-            '<span style="font-size:12px;color:#555">&#128205; ' + c.dir + '</span>' + tel
-          );
-      });
+(function() {
+    // Cargar CSS de Leaflet
+    if (!document.querySelector('link[href*="leaflet"]')) {
+      var css = document.createElement('link');
+      css.rel = 'stylesheet';
+      css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+      document.head.appendChild(css);
     }
-    initMapaSalud();
+    // Cargar JS de Leaflet y luego inicializar el mapa
+    var script = document.createElement('script');
+    script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+    script.onload = function() {
+      var map = L.map('mapa-salud', { scrollWheelZoom: false }).setView([-33.692, -71.213], 13);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+              maxZoom: 18
+            }).addTo(map);
+      
+            function pin(color, letra) {
+              return L.divIcon({
+                className: '',
+                html: '<div style="width:28px;height:28px;border-radius:50%;background:' + color + ';border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;font-weight:700">' + letra + '</div>',
+                iconSize: [28, 28],
+                iconAnchor: [14, 14],
+                popupAnchor: [0, -16]
+              });
+            }
+      
+            var centros = [
+              { lat: -33.6816, lng: -71.2259, nombre: 'CESFAM Dr. Edelberto Elgueta',        tipo: 'CESFAM', dir: 'Arza 1576', tel: '800 432 777', color: '#1A5FA8', letra: '+' },
+              { lat: -33.7005, lng: -71.2178, nombre: 'CESFAM Dr. Francisco Boris Soler',    tipo: 'CESFAM', dir: 'Silva Chávez 1650', tel: '2 2821 8350', color: '#1A5FA8', letra: '+' },
+              { lat: -33.7733, lng: -71.2577, nombre: 'CESFAM San Manuel',                   tipo: 'CESFAM rural', dir: 'G-668 604, Melipilla', tel: '2 2574 5500', color: '#1A5FA8', letra: '+' },
+              { lat: -33.6498, lng: -71.1505, nombre: 'CESFAM Alfarera Rosa Reyes Vilches',  tipo: 'CESFAM · Pomaire', dir: 'Artesana Julieta Vera, Pomaire', tel: '2 2832 4965', color: '#1A5FA8', letra: '+' },
+              { lat: -33.6924, lng: -71.2231, nombre: 'SAR Elsa Romo Aravena',               tipo: 'SAPU Alta Resolutividad 24 hrs', dir: 'Real Audiencia 980', tel: '', color: '#A06A0A', letra: 'S' },
+              { lat: -33.6823, lng: -71.2342, nombre: 'CESFAM Florencia',                    tipo: 'CESFAM', dir: 'Av. Libertad 1923', tel: '2 2568 8141', color: '#1A5FA8', letra: '+' },
+              { lat: -33.6789, lng: -71.2069, nombre: 'CECOSF Padre Demetrio',               tipo: 'Centro comunitario de salud familiar', dir: 'Ignacio Carrera Pinto 606', tel: '2 2800 0401', color: '#1A5FA8', letra: '+' },
+              { lat: -33.6952, lng: -71.2152, nombre: 'Hospital San José de Melipilla',      tipo: 'Hospital · Urgencias 24 hrs', dir: "O'Higgins 551", tel: '2 2958 1543', color: '#C4572A', letra: 'H' }
+            ];
+      
+            centros.forEach(function(c) {
+              var tel = c.tel ? '<br><span style="font-size:12px;color:#555">&#128222; ' + c.tel + '</span>' : '';
+              L.marker([c.lat, c.lng], { icon: pin(c.color, c.letra) })
+                .addTo(map)
+                .bindPopup(
+                  '<strong style="font-size:13px">' + c.nombre + '</strong><br>' +
+                  '<span style="font-size:12px;color:#555">&#127973; ' + c.tipo + '</span><br>' +
+                  '<span style="font-size:12px;color:#555">&#128205; ' + c.dir + '</span>' + tel
+                );
+            });
+          }
+    };
+    document.head.appendChild(script);
   })();
 </script>
 

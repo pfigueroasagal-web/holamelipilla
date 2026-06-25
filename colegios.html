@@ -33,7 +33,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=9">
+  <link rel="stylesheet" href="/styles.css?v=10">
 <!-- build:2025-06-25T19:00 -->
 </head>
 <body class="body-nav">
@@ -454,60 +454,57 @@
 </footer>
 
 <script>
-  // Fecha dinámica en footer
-  const fechaEl = document.getElementById('footer-fecha');
-  if (fechaEl) {
-    const f = new Date().toLocaleDateString('es-CL', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'America/Santiago' });
-    fechaEl.textContent = 'Última actualización: ' + f;
-  }
-</script>
-
-<script>
-// ── Mapa de colegios con Leaflet ──
-  (function() {
-    function initMapaColegios() {
-      if (!window.L || !document.getElementById('mapa-colegios')) {
-        setTimeout(initMapaColegios, 200);
-        return;
-      }
-      var map = L.map('mapa-colegios', { scrollWheelZoom: false }).setView([-33.692, -71.213], 14);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-        maxZoom: 18
-      }).addTo(map);
-
-      function pin(color, letra) {
-        return L.divIcon({
-          className: '',
-          html: '<div style="width:28px;height:28px;border-radius:50%;background:' + color + ';border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;font-weight:700">' + letra + '</div>',
-          iconSize: [28, 28],
-          iconAnchor: [14, 14],
-          popupAnchor: [0, -16]
-        });
-      }
-
-      var colegios = [
-        { lat: -33.6810, lng: -71.2003, nombre: 'Liceo Politécnico Municipal Melipilla', tipo: 'Municipal · Enseñanza media técnico-profesional', dir: 'Av. Vicuña Mackenna 0383', tel: '2 2831 2143', color: '#1A5FA8', letra: 'L' },
-        { lat: -33.6824, lng: -71.2134, nombre: 'Liceo Gabriela Mistral',                tipo: 'Municipal · Básica y media', dir: 'Serrano 101', tel: '9 5415 6915', color: '#1A5FA8', letra: 'L' },
-        { lat: -33.6851, lng: -71.2107, nombre: 'Liceo Politécnico Ntra. Sra. de la Presentación', tipo: 'Part. subvencionado · Media técnico-profesional', dir: 'Vargas 290', tel: '2 2832 3136', color: '#A06A0A', letra: 'L' },
-        { lat: -33.6889, lng: -71.2082, nombre: 'Colegio Santa Mónica',                  tipo: 'Part. subvencionado · Básica', dir: 'Pasaje Libertad 97', tel: '2 2832 4838', color: '#A06A0A', letra: 'C' },
-        { lat: -33.6803, lng: -71.1927, nombre: 'Colegio Balmaceda',                     tipo: 'Part. subvencionado · Básica y media', dir: 'Av. Vicuña Mackenna 777', tel: '2 2832 4610', color: '#A06A0A', letra: 'C' },
-        { lat: -33.6818, lng: -71.2134, nombre: 'Escuela Ignacio Serrano Montaner',      tipo: 'Municipal · Educación básica', dir: 'Serrano 121', tel: '', color: '#1A5FA8', letra: 'E' },
-        { lat: -33.6785, lng: -71.1890, nombre: 'Colegio Sayen de Melipilla',             tipo: 'Educación básica', dir: 'Santa Elena 946-998', tel: '9 8327 4514', color: '#A06A0A', letra: 'C' }
-      ];
-
-      colegios.forEach(function(c) {
-        var tel = c.tel ? '<br><span style="font-size:12px;color:#555">&#128222; ' + c.tel + '</span>' : '';
-        L.marker([c.lat, c.lng], { icon: pin(c.color, c.letra) })
-          .addTo(map)
-          .bindPopup(
-            '<strong style="font-size:13px">' + c.nombre + '</strong><br>' +
-            '<span style="font-size:12px;color:#555">&#127979; ' + c.tipo + '</span><br>' +
-            '<span style="font-size:12px;color:#555">&#128205; ' + c.dir + '</span>' + tel
-          );
-      });
+(function() {
+    // Cargar CSS de Leaflet
+    if (!document.querySelector('link[href*="leaflet"]')) {
+      var css = document.createElement('link');
+      css.rel = 'stylesheet';
+      css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+      document.head.appendChild(css);
     }
-    initMapaColegios();
+    // Cargar JS de Leaflet y luego inicializar el mapa
+    var script = document.createElement('script');
+    script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+    script.onload = function() {
+      var map = L.map('mapa-colegios', { scrollWheelZoom: false }).setView([-33.692, -71.213], 14);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+              maxZoom: 18
+            }).addTo(map);
+      
+            function pin(color, letra) {
+              return L.divIcon({
+                className: '',
+                html: '<div style="width:28px;height:28px;border-radius:50%;background:' + color + ';border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;font-weight:700">' + letra + '</div>',
+                iconSize: [28, 28],
+                iconAnchor: [14, 14],
+                popupAnchor: [0, -16]
+              });
+            }
+      
+            var colegios = [
+              { lat: -33.6810, lng: -71.2003, nombre: 'Liceo Politécnico Municipal Melipilla', tipo: 'Municipal · Enseñanza media técnico-profesional', dir: 'Av. Vicuña Mackenna 0383', tel: '2 2831 2143', color: '#1A5FA8', letra: 'L' },
+              { lat: -33.6824, lng: -71.2134, nombre: 'Liceo Gabriela Mistral',                tipo: 'Municipal · Básica y media', dir: 'Serrano 101', tel: '9 5415 6915', color: '#1A5FA8', letra: 'L' },
+              { lat: -33.6851, lng: -71.2107, nombre: 'Liceo Politécnico Ntra. Sra. de la Presentación', tipo: 'Part. subvencionado · Media técnico-profesional', dir: 'Vargas 290', tel: '2 2832 3136', color: '#A06A0A', letra: 'L' },
+              { lat: -33.6889, lng: -71.2082, nombre: 'Colegio Santa Mónica',                  tipo: 'Part. subvencionado · Básica', dir: 'Pasaje Libertad 97', tel: '2 2832 4838', color: '#A06A0A', letra: 'C' },
+              { lat: -33.6803, lng: -71.1927, nombre: 'Colegio Balmaceda',                     tipo: 'Part. subvencionado · Básica y media', dir: 'Av. Vicuña Mackenna 777', tel: '2 2832 4610', color: '#A06A0A', letra: 'C' },
+              { lat: -33.6818, lng: -71.2134, nombre: 'Escuela Ignacio Serrano Montaner',      tipo: 'Municipal · Educación básica', dir: 'Serrano 121', tel: '', color: '#1A5FA8', letra: 'E' },
+              { lat: -33.6785, lng: -71.1890, nombre: 'Colegio Sayen de Melipilla',             tipo: 'Educación básica', dir: 'Santa Elena 946-998', tel: '9 8327 4514', color: '#A06A0A', letra: 'C' }
+            ];
+      
+            colegios.forEach(function(c) {
+              var tel = c.tel ? '<br><span style="font-size:12px;color:#555">&#128222; ' + c.tel + '</span>' : '';
+              L.marker([c.lat, c.lng], { icon: pin(c.color, c.letra) })
+                .addTo(map)
+                .bindPopup(
+                  '<strong style="font-size:13px">' + c.nombre + '</strong><br>' +
+                  '<span style="font-size:12px;color:#555">&#127979; ' + c.tipo + '</span><br>' +
+                  '<span style="font-size:12px;color:#555">&#128205; ' + c.dir + '</span>' + tel
+                );
+            });
+          }
+    };
+    document.head.appendChild(script);
   })();
 </script>
 
