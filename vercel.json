@@ -8,41 +8,9 @@
     { "source": "/salud",     "destination": "/salud.html" },
     { "source": "/seguridad", "destination": "/seguridad.html" },
     { "source": "/ferias",    "destination": "/ferias.html" },
-    { "source": "/colegios",  "destination": "/colegios.html" },
-    { "source": "/",          "destination": "/index.html" }
+    { "source": "/colegios",  "destination": "/colegios.html" }
   ],
-  "redirects": [],
   "headers": [
-    {
-      "source": "/styles.css",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=604800, stale-while-revalidate=86400" }
-      ]
-    },
-    {
-      "source": "/og-image.svg",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=604800, stale-while-revalidate=86400" }
-      ]
-    },
-    {
-      "source": "/icon-192.png",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=2592000, immutable" }
-      ]
-    },
-    {
-      "source": "/icon-512.png",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=2592000, immutable" }
-      ]
-    },
-    {
-      "source": "/manifest.json",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400" }
-      ]
-    },
     {
       "source": "/sw.js",
       "headers": [
@@ -50,19 +18,10 @@
       ]
     },
     {
-      "source": "/(.*\\.html)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=3600, stale-while-revalidate=3600" }
-      ]
-    },
-    {
       "source": "/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=3600, must-revalidate" }
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
     }
-  ],
-  "errorRoutes": [
-    { "statusCode": 404, "destination": "/404.html" }
   ]
 }
