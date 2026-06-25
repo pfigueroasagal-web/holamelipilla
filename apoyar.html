@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apoyar este proyecto — Hola Melipilla | holamelipilla.cl</title>
+  <meta name="description" content="Apoya holamelipilla.cl, la guía gratuita de servicios para Melipilla. Tu aporte mantiene la información actualizada.">
+  <meta name="author" content="holamelipilla.cl">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://holamelipilla.cl/apoyar">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://holamelipilla.cl/apoyar">
+  <meta property="og:title" content="Apoyar este proyecto — Hola Melipilla">
+  <meta property="og:description" content="Apoya holamelipilla.cl, la guía gratuita de servicios para Melipilla. Tu aporte mantiene la información actualizada.">
+  <meta property="og:locale" content="es_CL">
+  <meta property="og:site_name" content="Hola Melipilla">
+  <meta property="og:image" content="https://holamelipilla.cl/og-image.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://holamelipilla.cl/og-image.svg">
+  <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💛</text></svg>">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#1B4332">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Hola Melipilla">
+  <link rel="apple-touch-icon" href="/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css?v=4">
+</head>
+<body>
+<script>
+  function ajustarLayout() {
+    var votd = document.getElementById("votdBar");
+    var nav = document.querySelector("nav");
+    if (!votd || !nav) return;
+    var votdVisible = !votd.classList.contains("oculto") && votd.style.display !== "none";
+    var votdH = votdVisible ? votd.offsetHeight : 0;
+    var navH = nav.offsetHeight;
+    nav.style.top = votdH + "px";
+    document.body.style.paddingTop = (votdH + navH) + "px";
+    document.documentElement.style.scrollPaddingTop = (votdH + navH + 8) + "px";
+  }
+  document.addEventListener("DOMContentLoaded", function() {
+    requestAnimationFrame(function() {
+      ajustarLayout();
+      setTimeout(ajustarLayout, 350);
+    });
+    var closeBtn = document.getElementById("votdClose");
+    if (closeBtn) closeBtn.addEventListener("click", function() { setTimeout(ajustarLayout, 50); });
+    var votd = document.getElementById("votdBar");
+    if (votd && window.MutationObserver) {
+      new MutationObserver(function() { requestAnimationFrame(ajustarLayout); })
+        .observe(votd, { attributes: true, attributeFilter: ["class", "style"] });
+    }
+    window.addEventListener("resize", ajustarLayout);
+  });
+</script>
+
+<!-- ─── VERSÍCULO DEL DÍA ─── -->
+<div class="votd-bar" id="votdBar" role="complementary" aria-label="Versículo del día">
+  <div class="votd-bar-inner">
+    <span class="votd-icon" aria-hidden="true">📖</span>
+    <span class="votd-content">
+      <span class="votd-text" id="votdText">Cargando el versículo del día…</span>
+      <span class="votd-ref" id="votdRef"></span>
+    </span>
+    <a class="votd-bar-link" id="votdLink" href="https://www.bible.com" target="_blank" rel="noopener">Leer más →</a>
+    <button class="votd-close" id="votdClose" aria-label="Cerrar versículo del día">✕</button>
+  </div>
+</div>
+<script>
+(function () {
+  const APP_KEY = '6J6iDzUixGQANUx5rOtArK44biCI2Nn7d7JIaetG8jclQ5bj';
+  const BIBLE_ID = 149; // Reina-Valera 1960
+  const hoyISO = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Santiago' }); // YYYY-MM-DD
+  const CACHE_KEY = 'votd-bar-' + hoyISO;
+  const CERRADO_KEY = 'votd-bar-cerrado-' + hoyISO;
+
+  const bar = document.getElementById('votdBar');
+  const textEl = document.getElementById('votdText');
+  const refEl = document.getElementById('votdRef');
+  const linkEl = document.getElementById('votdLink');
+  const closeBtn = document.getElementById('votdClose');
+
+  // Si ya lo cerró hoy, no lo mostramos de nuevo hasta mañana
+  if (sessionStorage.getItem(CERRADO_KEY) === '1') {
+    bar.classList.add('oculto');
+    return;
+  }
+
+  closeBtn.addEventListener('click', () => {
+    bar.classList.add('oculto');
+    sessionStorage.setItem(CERRADO_KEY, '1');
+  });
+
+  function diaDelAnio() {
+    const hoy = new Date();
+    const inicio = new Date(hoy.getFullYear(), 0, 0);
+    return Math.floor((hoy - inicio) / 86400000);
+  }
+
+  function pintar(data) {
+    textEl.textContent = '"' + data.content + '"';
+    refEl.textContent = '— ' + data.reference;
+    linkEl.href = data.deepLink || 'https://www.bible.com';
+  }
+
+  // ─── RESPALDO LOCAL ───
+  // Se usa mientras no haya App Key configurada, o si la API de YouVersion
+  // falla por cualquier motivo (sin internet, CORS, mantenimiento, etc).
+  // Rota un versículo distinto cada día del año, sin pedir nada a internet.
+  const RESPALDO = [
+    { content: 'Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree, no se pierda, mas tenga vida eterna.', reference: 'Juan 3:16' },
+    { content: 'Todo lo puedo en Cristo que me fortalece.', reference: 'Filipenses 4:13' },
+    { content: 'Jehová es mi pastor; nada me faltará.', reference: 'Salmos 23:1' },
+    { content: 'Confía en Jehová de todo tu corazón, y no te apoyes en tu propia prudencia.', reference: 'Proverbios 3:5' },
+    { content: 'No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te esfuerzo.', reference: 'Isaías 41:10' },
+    { content: 'Echando toda vuestra ansiedad sobre él, porque él tiene cuidado de vosotros.', reference: '1 Pedro 5:7' },
+    { content: 'El gozo de Jehová es vuestra fuerza.', reference: 'Nehemías 8:10' },
+    { content: 'Mas buscad primeramente el reino de Dios y su justicia, y todas estas cosas os serán añadidas.', reference: 'Mateo 6:33' },
+    { content: 'Porque yo sé los pensamientos que tengo acerca de vosotros, dice Jehová, pensamientos de paz, y no de mal, para daros el fin que esperáis.', reference: 'Jeremías 29:11' },
+    { content: 'Y sabemos que a los que aman a Dios, todas las cosas les ayudan a bien.', reference: 'Romanos 8:28' },
+    { content: 'Esfuérzate y sé valiente; no temas ni desmayes, porque Jehová tu Dios estará contigo.', reference: 'Josué 1:9' },
+    { content: 'Bástate mi gracia; porque mi poder se perfecciona en la debilidad.', reference: '2 Corintios 12:9' },
+    { content: 'Encomienda a Jehová tu camino, y confía en él; y él hará.', reference: 'Salmos 37:5' },
+    { content: 'Cercano está Jehová a los quebrantados de corazón, y salva a los contritos de espíritu.', reference: 'Salmos 34:18' },
+    { content: 'Velad, estad firmes en la fe; portaos varonilmente, y esforzaos.', reference: '1 Corintios 16:13' },
+    { content: 'Dad gracias en todo, porque esta es la voluntad de Dios para con vosotros en Cristo Jesús.', reference: '1 Tesalonicenses 5:18' },
+    { content: 'El amor es sufrido, es benigno; el amor no tiene envidia.', reference: '1 Corintios 13:4' },
+    { content: 'Clama a mí, y yo te responderé, y te enseñaré cosas grandes y ocultas que tú no conoces.', reference: 'Jeremías 33:3' },
+    { content: 'Día a día, Jehová, mi roca, sé exaltado.', reference: 'Salmos 18:46' },
+    { content: 'No os afanéis por nada; sino sean conocidas vuestras peticiones delante de Dios en toda oración y ruego.', reference: 'Filipenses 4:6' },
+    { content: 'En paz me acostaré, y asimismo dormiré; porque solo tú, Jehová, me haces vivir confiado.', reference: 'Salmos 4:8' },
+    { content: 'Y conoceréis la verdad, y la verdad os hará libres.', reference: 'Juan 8:32' },
+    { content: 'Como el padre tiene misericordia de los hijos, así tiene Jehová misericordia de los que le temen.', reference: 'Salmos 103:13' },
+    { content: 'Cada día trae su afán; basta a cada día su propio mal.', reference: 'Mateo 6:34' },
+    { content: 'Servid a Jehová con alegría; venid ante su presencia con regocijo.', reference: 'Salmos 100:2' },
+    { content: 'Mas los que esperan a Jehová tendrán nuevas fuerzas; levantarán alas como las águilas.', reference: 'Isaías 40:31' },
+    { content: 'El que habita al abrigo del Altísimo morará bajo la sombra del Omnipotente.', reference: 'Salmos 91:1' },
+    { content: 'Por nada estéis afanosos... y la paz de Dios, que sobrepasa todo entendimiento, guardará vuestros corazones.', reference: 'Filipenses 4:6-7' },
+    { content: 'Amados, amémonos unos a otros; porque el amor es de Dios.', reference: '1 Juan 4:7' },
+    { content: 'Jehová te bendiga, y te guarde; Jehová haga resplandecer su rostro sobre ti.', reference: 'Números 6:24-25' }
+  ];
+
+  function usarRespaldo() {
+    const idx = diaDelAnio() % RESPALDO.length;
+    const v = RESPALDO[idx];
+    pintar({
+      content: v.content,
+      reference: v.reference,
+      deepLink: 'https://www.bible.com/search/bible?q=' + encodeURIComponent(v.reference)
+    });
+  }
+
+  function cargarVersiculo() {
+    // Usar caché del día si existe
+    const cache = localStorage.getItem(CACHE_KEY);
+    if (cache) {
+      try { pintar(JSON.parse(cache)); return; } catch(e) {}
+    }
+    // Usar respaldo local (rota diariamente, sin llamadas externas)
+    usarRespaldo();
+  }
+
+  cargarVersiculo();
+})();
+</script>
+
+<nav aria-label="Navegación principal">
+  <a href="/" class="nav-brand">📍 Melipilla</a>
+  <div class="nav-scroll-wrapper">
+  <ul class="nav-links">
+    <li><a href="/farmacias" class="nav-farmacia">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+      Farmacias
+    </a></li>
+    <li><a href="/salud" class="nav-farmacia active" title="Salud">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      Centros de salud
+    </a></li>
+    <li><a href="/seguridad">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Seguridad
+    </a></li>
+    <li><a href="/ferias">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      Ferias libres
+    </a></li>
+    <li><a href="/colegios">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Colegios
+    </a></li>
+    <li><a href="/#mapa">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+      Mapa general
+    </a></li>
+    <li><a href="/apoyar" class="active">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      Apoyar
+    </a></li>
+    <li><a href="/sugerencias">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      Sugerencias
+    </a></li>
+  </ul>
+  </div>
+</nav>
+
+<header class="hero" id="inicio">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Región Metropolitana · Provincia de Melipilla
+    </div>
+    <h1>Apoyar <em>Hola Melipilla</em></h1>
+    <p class="hero-desc">Guía gratuita de servicios para la comunidad de Melipilla, mantenida con voluntad y café ☕</p>
+  </div>
+</header>
+
+<main>
+  <!-- ═══ DONACIONES ═══ -->
+  <section id="donaciones" aria-labelledby="titulo-donaciones">
+  <div class="section-inner">
+    <div class="section-title">
+      <div class="section-icon" style="background:#FFF0F5;color:#C4457A">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      </div>
+      <div>
+        <h2 id="titulo-donaciones">Apoyar este proyecto</h2>
+        <p>Guía gratuita, mantenida con voluntad y café</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon" style="background:#FFF0F5;color:#C4457A;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;">💛</div>
+        <div>
+          <h3>Elige cuánto aportar</h3>
+          <div class="sub">Pago seguro con Mercado Pago — tarjeta, transferencia o billetera digital</div>
+        </div>
+      </div>
+      <div class="donation-grid">
+        <a class="don-btn" href="https://mpago.li/1uWDgRX" target="_blank" rel="noopener">
+          <span class="don-emoji">☕</span>
+          <span>$1.000</span>
+          <span class="don-label">Un café</span>
+        </a>
+        <a class="don-btn" href="https://mpago.li/1XLfJSj" target="_blank" rel="noopener">
+          <span class="don-emoji">👍</span>
+          <span>$2.500</span>
+          <span class="don-label">Apoyo</span>
+        </a>
+        <a class="don-btn" href="https://mpago.li/1ok8dw5" target="_blank" rel="noopener">
+          <span class="don-emoji">⭐</span>
+          <span>$5.000</span>
+          <span class="don-label">Gracias</span>
+        </a>
+        <a class="don-btn" href="https://mpago.li/1RhQ4tB" target="_blank" rel="noopener">
+          <span class="don-emoji">💎</span>
+          <span>$10.000</span>
+          <span class="don-label">Héroe</span>
+        </a>
+      </div>
+      <p style="font-size:12px;color:var(--texto-suave);margin-top:.85rem;text-align:center">
+        Cada aporte ayuda a mantener la información actualizada y el sitio en línea. ¡Gracias!
+      </p>
+    </div>
+  </div>
+  </section>
+
+  <!-- Sección: qué hace este sitio -->
+  <section aria-label="Acerca del proyecto">
+  <div class="section-inner">
+    <div class="section-title">
+      <div class="section-icon" style="background:#E8F4FF;color:#0D6EFD">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <div>
+        <h2>¿Para qué sirve este sitio?</h2>
+        <p>Una guía pensada para quienes viven en Melipilla</p>
+      </div>
+    </div>
+    <div class="cards cards-2">
+      <div class="card">
+        <div class="card-head"><div class="card-icon ic-ambar">💊</div><div><h3>Farmacia de turno</h3><div class="sub">Consulta en tiempo real la farmacia abierta 24 hrs hoy</div></div></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-icon ic-azul">🏥</div><div><h3>Centros de salud</h3><div class="sub">CESFAM, Hospital y SAR con teléfonos y horarios</div></div></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-icon" style="background:#f3e8ff;color:#9C27B0">🏫</div><div><h3>Colegios</h3><div class="sub">14 establecimientos con direcciones y contactos</div></div></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-icon ic-verde">🛒</div><div><h3>Ferias libres</h3><div class="sub">Días, horarios y ubicaciones de las ferias de la comuna</div></div></div>
+      </div>
+    </div>
+    <div class="nota" style="margin-top:1rem">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      <span>El sitio es <strong>100% gratuito</strong> y sin publicidad. Cualquier aporte ayuda a pagar el hosting y mantener la información actualizada.</span>
+    </div>
+  </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-brand">📍 Hola Melipilla</p>
+    <p class="footer-links">
+      <a href="/">Inicio</a> · <a href="/farmacias">Farmacias</a> · <a href="/salud">Salud</a> · <a href="/ferias">Ferias</a> · <a href="/colegios">Colegios</a> · <a href="/seguridad">Seguridad</a>
+    </p>
+    <p class="footer-copy">Guía de servicios para vivir en Melipilla, Chile</p>
+  </div>
+</footer>
+
+</body>
+</html>

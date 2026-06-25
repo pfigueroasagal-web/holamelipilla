@@ -4,11 +4,13 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/farmacias", "destination": "/farmacias.html" },
-    { "source": "/salud",     "destination": "/salud.html" },
-    { "source": "/seguridad", "destination": "/seguridad.html" },
-    { "source": "/ferias",    "destination": "/ferias.html" },
-    { "source": "/colegios",  "destination": "/colegios.html" }
+    { "source": "/farmacias",   "destination": "/farmacias.html" },
+    { "source": "/salud",       "destination": "/salud.html" },
+    { "source": "/seguridad",   "destination": "/seguridad.html" },
+    { "source": "/ferias",      "destination": "/ferias.html" },
+    { "source": "/colegios",    "destination": "/colegios.html" },
+    { "source": "/apoyar",      "destination": "/apoyar.html" },
+    { "source": "/sugerencias", "destination": "/sugerencias.html" }
   ],
   "headers": [
     {
