@@ -663,7 +663,7 @@
     items.slice(0, 8).forEach(function(r) {
       var titulo = r.t.replace(/</g, '&lt;');
       var desc   = r.d.replace(/</g, '&lt;');
-      var isSamePage = (r.url === pagePath);
+      var isSamePage = (r.url === PAGE_URL);
       var el = document.createElement(isSamePage ? 'button' : 'a');
       el.style.cssText = 'display:flex;align-items:flex-start;gap:10px;padding:.65rem 1rem;text-decoration:none;color:#212529;border-bottom:1px solid #DEE2E6;transition:background .12s;font-family:Inter,sans-serif;width:100%;background:none;border-left:none;border-right:none;border-top:none;text-align:left;cursor:pointer;box-sizing:border-box';
       if (!isSamePage) el.href = r.url;
