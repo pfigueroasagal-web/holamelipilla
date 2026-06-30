@@ -384,7 +384,7 @@ nav {
   border-radius: 12px;
   box-shadow: 0 8px 32px rgba(0,0,0,.14);
   overflow: hidden;
-  z-index: 200;
+  z-index: 9999;
   max-height: 360px;
   overflow-y: auto;
 }
@@ -1362,6 +1362,7 @@ main.index-main {
 .hero-subpage {
   min-height: 0 !important;
   padding: 2.5rem 1.5rem 2rem !important;
+  overflow: visible !important;
 }
 .hero-subpage .hero-inner {
   padding-top: 0;
@@ -1673,8 +1674,9 @@ main.index-main {
 .page-header-2025 {
   padding: 5rem 1.5rem 2.5rem; /* top: compensar nav fija */
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   text-align: center;
+  isolation: isolate;
 }
 .page-header-2025::before {
   content: '';
@@ -1682,10 +1684,13 @@ main.index-main {
   inset: 0;
   background: inherit;
   filter: brightness(.92);
+  z-index: -1;
+  pointer-events: none;
+  border-radius: inherit;
 }
 .page-header-inner-2025 {
   position: relative;
-  z-index: 1;
+  z-index: 10;
   max-width: 600px;
   margin: 0 auto;
 }
@@ -1744,6 +1749,7 @@ main.index-main {
   height: 32px;
   background: var(--fondo);
   border-radius: 24px 24px 0 0;
+  z-index: 0;
 }
 
 @media (max-width: 600px) {
