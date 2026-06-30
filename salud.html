@@ -510,22 +510,59 @@
     return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
 
-  function render(items, caja) {
+  // Selector de cards según la sección actual
+  var PAGE_URL = '/salud';
+  var CARD_SEL = '.card';
+
+  function scrollToCard(nombre, input, caja, limpiar) {
+    var q = norm(nombre);
+    var found = null;
+    document.querySelectorAll(CARD_SEL).forEach(function(card) {
+      var h3 = card.querySelector('h3');
+      if (!found && h3 && norm(h3.textContent).includes(q)) found = card;
+    });
+    caja.setAttribute('hidden', '');
+    input.value = '';
+    if (limpiar) limpiar.style.display = 'none';
+    if (!found) return;
+    found.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    var prev = found.style.outline;
+    var prevShadow = found.style.boxShadow;
+    found.style.outline = '2px solid #1A5FA8';
+    found.style.boxShadow = '0 0 0 4px rgba(26,95,168,.18)';
+    setTimeout(function() {
+      found.style.outline = prev;
+      found.style.boxShadow = prevShadow;
+    }, 1800);
+  }
+
+  function render(items, input, caja, limpiar) {
     if (!items.length) {
       caja.innerHTML = '<div style="padding:.75rem 1rem;font-size:.875rem;color:#6C757D">Sin resultados.</div>';
       caja.removeAttribute('hidden');
       return;
     }
-    var html = items.slice(0, 8).map(function(r) {
+    caja.innerHTML = '';
+    items.slice(0, 8).forEach(function(r) {
       var titulo = r.t.replace(/</g, '&lt;');
       var desc   = r.d.replace(/</g, '&lt;');
-      return '<a href="' + r.url + '" style="display:flex;align-items:flex-start;gap:10px;padding:.65rem 1rem;text-decoration:none;color:#212529;border-bottom:1px solid #DEE2E6;transition:background .12s;font-family:Inter,sans-serif"'
-        + ' onmouseover="this.style.background=\'#D8F3DC\'" onmouseout="this.style.background=\'\'">'
-        + '<span style="font-size:1.1rem;flex-shrink:0;margin-top:1px">' + r.cat + '</span>'
+      var isSamePage = (r.url === PAGE_URL);
+      var el = document.createElement(isSamePage ? 'button' : 'a');
+      el.style.cssText = 'display:flex;align-items:flex-start;gap:10px;padding:.65rem 1rem;text-decoration:none;color:#212529;border-bottom:1px solid #DEE2E6;transition:background .12s;font-family:Inter,sans-serif;width:100%;background:none;border-left:none;border-right:none;border-top:none;text-align:left;cursor:pointer;box-sizing:border-box';
+      if (!isSamePage) el.href = r.url;
+      el.innerHTML = '<span style="font-size:1.1rem;flex-shrink:0;margin-top:1px">' + r.cat + '</span>'
         + '<div><div style="font-size:.875rem;font-weight:600;color:#212529">' + titulo + '</div>'
-        + '<div style="font-size:.78rem;color:#6C757D;margin-top:1px">' + desc + '</div></div></a>';
-    }).join('');
-    caja.innerHTML = html;
+        + '<div style="font-size:.78rem;color:#6C757D;margin-top:1px">' + desc + '</div></div>';
+      el.addEventListener('mouseover', function() { this.style.background = '#D8F3DC'; });
+      el.addEventListener('mouseout',  function() { this.style.background = ''; });
+      if (isSamePage) {
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
+          scrollToCard(r.t, input, caja, limpiar);
+        });
+      }
+      caja.appendChild(el);
+    });
     caja.removeAttribute('hidden');
   }
 
@@ -541,7 +578,7 @@
       if (!q) { caja.setAttribute('hidden', ''); return; }
       render(DATOS.filter(function(r) {
         return norm(r.t).includes(q) || norm(r.d).includes(q);
-      }), caja);
+      }), input, caja, limpiar);
     });
 
     if (limpiar) {
