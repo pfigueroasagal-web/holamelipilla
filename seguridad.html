@@ -601,189 +601,6 @@
 
 
 
-  <!-- ═══ BUSCADOR GLOBAL ═══ -->
-  <script>
-  (function() {
-    // Base de datos de todos los ítems
-    var ITEMS = [];
-
-    function initBuscador() {
-      // Recolectar datos de cada card y farmacia-card
-      document.querySelectorAll('.farmacia-card').forEach(function(el) {
-        var h3 = el.querySelector('h3');
-        if (!h3) return;
-        var rows = el.querySelectorAll('.info-row span');
-        var detalles = [];
-        rows.forEach(function(r) { if (r.textContent.trim()) detalles.push(r.textContent.trim()); });
-        var tel = el.querySelector('a[href^="tel:"]');
-        ITEMS.push({
-          nombre: h3.textContent.trim(),
-          detalle: detalles.slice(0, 2).join(' · '),
-          tipo: 'farmacia',
-          emoji: '💊',
-          badge: 'Farmacia',
-          anchor: '#farmacias',
-          el: el
-        });
-      });
-
-      // Secciones con .card
-      var secMap = {
-        'salud':     { emoji: '🏥', badge: 'Salud',     anchor: '#salud'     },
-        'seguridad': { emoji: '🚔', badge: 'Seguridad', anchor: '#seguridad' },
-        'ferias':    { emoji: '🛒', badge: 'Feria',     anchor: '#ferias'    },
-        'colegios':  { emoji: '🏫', badge: 'Colegio',   anchor: '#colegios'  }
-      };
-
-      Object.keys(secMap).forEach(function(secId) {
-        var sec = document.getElementById(secId);
-        if (!sec) return;
-        var meta = secMap[secId];
-        sec.querySelectorAll('.card').forEach(function(el) {
-          var h3 = el.querySelector('h3');
-          if (!h3) return;
-          var rows = el.querySelectorAll('.info-row span, p');
-          var detalles = [];
-          rows.forEach(function(r) { var t = r.textContent.trim(); if (t && t.length < 80) detalles.push(t); });
-          ITEMS.push({
-            nombre: h3.textContent.trim(),
-            detalle: detalles.slice(0, 2).join(' · '),
-            tipo: secId,
-            emoji: meta.emoji,
-            badge: meta.badge,
-            anchor: meta.anchor,
-            el: el
-          });
-        });
-      });
-    }
-
-    function normalizar(str) {
-      return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-    }
-
-    function resaltar(texto, q) {
-      if (!q) return texto;
-      var re = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
-      return texto.replace(re, '<mark>$1</mark>');
-    }
-
-    function buscar(q) {
-      if (!q) return [];
-      var qn = normalizar(q);
-      var words = qn.split(/\s+/).filter(Boolean);
-      return ITEMS.filter(function(item) {
-        var haystack = normalizar(item.nombre + ' ' + item.detalle + ' ' + item.badge);
-        return words.every(function(w) { return haystack.includes(w); });
-      }).slice(0, 12);
-    }
-
-    function mostrarResultados(q, resultados) {
-      var caja = document.getElementById('buscador-resultados');
-      var input = document.getElementById('buscador-global');
-      if (!resultados.length) {
-        caja.innerHTML = '<div class="br-vacio">Sin resultados para "<strong>' + q + '</strong>"</div>';
-        caja.removeAttribute('hidden');
-        input.setAttribute('aria-expanded', 'true');
-        return;
-      }
-      var html = resultados.map(function(item) {
-        return '<a class="br-item" href="' + item.anchor + '" role="option" data-tipo="' + item.tipo + '">' +
-          '<span class="br-emoji">' + item.emoji + '</span>' +
-          '<span class="br-info">' +
-            '<span class="br-nombre">' + resaltar(item.nombre, q) + '</span>' +
-            (item.detalle ? '<span class="br-detalle">' + item.detalle + '</span>' : '') +
-          '</span>' +
-          '<span class="br-badge br-badge-' + item.tipo + '">' + item.badge + '</span>' +
-        '</a>';
-      }).join('');
-      caja.innerHTML = html;
-      caja.removeAttribute('hidden');
-      input.setAttribute('aria-expanded', 'true');
-
-      // Al hacer clic: scroll a la card y resaltar
-      caja.querySelectorAll('.br-item').forEach(function(link, i) {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          var item = resultados[i];
-          cerrarResultados();
-          document.getElementById('buscador-global').value = '';
-          // Scroll suave a la sección compensando el nav sticky
-          var navH = (document.querySelector('nav') || {offsetHeight: 70}).offsetHeight;
-          var target = document.querySelector(item.anchor);
-          if (target) {
-            var top = target.getBoundingClientRect().top + window.pageYOffset - navH - 16;
-            window.scrollTo({ top: top, behavior: 'smooth' });
-          }
-          // Resaltar la card brevemente
-          setTimeout(function() {
-            item.el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            item.el.style.transition = 'box-shadow .3s, outline .3s';
-            item.el.style.outline = '3px solid var(--verde-claro)';
-            item.el.style.boxShadow = '0 0 0 6px rgba(29,158,117,.15)';
-            setTimeout(function() {
-              item.el.style.outline = '';
-              item.el.style.boxShadow = '';
-            }, 2200);
-          }, 400);
-        });
-      });
-    }
-
-    function cerrarResultados() {
-      var caja = document.getElementById('buscador-resultados');
-      var input = document.getElementById('buscador-global');
-      if (caja) { caja.innerHTML = ''; caja.setAttribute('hidden', ''); }
-      if (input) input.setAttribute('aria-expanded', 'false');
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-      initBuscador();
-      var input = document.getElementById('buscador-global');
-      var limpiar = document.getElementById('buscador-limpiar');
-      var timer;
-
-      input.addEventListener('input', function() {
-        var q = this.value.trim();
-        limpiar.style.display = q ? 'block' : 'none';
-        clearTimeout(timer);
-        if (!q) { cerrarResultados(); return; }
-        timer = setTimeout(function() {
-          mostrarResultados(q, buscar(q));
-        }, 180);
-      });
-
-      limpiar.addEventListener('click', function() {
-        input.value = '';
-        limpiar.style.display = 'none';
-        cerrarResultados();
-        input.focus();
-      });
-
-      // Cerrar al hacer clic fuera
-      document.addEventListener('click', function(e) {
-        var wrap = document.querySelector('.buscador-global-wrap');
-        if (wrap && !wrap.contains(e.target)) cerrarResultados();
-      });
-
-      // Navegación con teclado
-      input.addEventListener('keydown', function(e) {
-        var items = document.querySelectorAll('.br-item');
-        if (!items.length) return;
-        if (e.key === 'ArrowDown') { e.preventDefault(); items[0].focus(); }
-        if (e.key === 'Escape') { cerrarResultados(); input.blur(); }
-      });
-      document.getElementById('buscador-resultados').addEventListener('keydown', function(e) {
-        var items = Array.from(document.querySelectorAll('.br-item'));
-        var idx = items.indexOf(document.activeElement);
-        if (e.key === 'ArrowDown' && idx < items.length - 1) { e.preventDefault(); items[idx+1].focus(); }
-        if (e.key === 'ArrowUp') { e.preventDefault(); idx > 0 ? items[idx-1].focus() : input.focus(); }
-        if (e.key === 'Escape') { cerrarResultados(); input.focus(); }
-      });
-    });
-  })();
-  </script>
-
   <!-- BUSCADOR + COPIAR NÚMERO -->
 <script>
   // Compartir por WhatsApp
@@ -890,22 +707,59 @@
     return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
 
-  function render(items, caja) {
+  // Selector de cards según la sección actual
+  var PAGE_URL = '/seguridad';
+  var CARD_SEL = '.card';
+
+  function scrollToCard(nombre, input, caja, limpiar) {
+    var q = norm(nombre);
+    var found = null;
+    document.querySelectorAll(CARD_SEL).forEach(function(card) {
+      var h3 = card.querySelector('h3');
+      if (!found && h3 && norm(h3.textContent).includes(q)) found = card;
+    });
+    caja.setAttribute('hidden', '');
+    input.value = '';
+    if (limpiar) limpiar.style.display = 'none';
+    if (!found) return;
+    found.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    var prev = found.style.outline;
+    var prevShadow = found.style.boxShadow;
+    found.style.outline = '2px solid #C4572A';
+    found.style.boxShadow = '0 0 0 4px rgba(196,87,42,.18)';
+    setTimeout(function() {
+      found.style.outline = prev;
+      found.style.boxShadow = prevShadow;
+    }, 1800);
+  }
+
+  function render(items, input, caja, limpiar) {
     if (!items.length) {
       caja.innerHTML = '<div style="padding:.75rem 1rem;font-size:.875rem;color:#6C757D">Sin resultados.</div>';
       caja.removeAttribute('hidden');
       return;
     }
-    var html = items.slice(0, 8).map(function(r) {
+    caja.innerHTML = '';
+    items.slice(0, 8).forEach(function(r) {
       var titulo = r.t.replace(/</g, '&lt;');
       var desc   = r.d.replace(/</g, '&lt;');
-      return '<a href="' + r.url + '" style="display:flex;align-items:flex-start;gap:10px;padding:.65rem 1rem;text-decoration:none;color:#212529;border-bottom:1px solid #DEE2E6;transition:background .12s;font-family:Inter,sans-serif"'
-        + ' onmouseover="this.style.background=\'#D8F3DC\'" onmouseout="this.style.background=\'\'">'
-        + '<span style="font-size:1.1rem;flex-shrink:0;margin-top:1px">' + r.cat + '</span>'
+      var isSamePage = (r.url === PAGE_URL);
+      var el = document.createElement(isSamePage ? 'button' : 'a');
+      el.style.cssText = 'display:flex;align-items:flex-start;gap:10px;padding:.65rem 1rem;text-decoration:none;color:#212529;border-bottom:1px solid #DEE2E6;transition:background .12s;font-family:Inter,sans-serif;width:100%;background:none;border-left:none;border-right:none;border-top:none;text-align:left;cursor:pointer;box-sizing:border-box';
+      if (!isSamePage) el.href = r.url;
+      el.innerHTML = '<span style="font-size:1.1rem;flex-shrink:0;margin-top:1px">' + r.cat + '</span>'
         + '<div><div style="font-size:.875rem;font-weight:600;color:#212529">' + titulo + '</div>'
-        + '<div style="font-size:.78rem;color:#6C757D;margin-top:1px">' + desc + '</div></div></a>';
-    }).join('');
-    caja.innerHTML = html;
+        + '<div style="font-size:.78rem;color:#6C757D;margin-top:1px">' + desc + '</div></div>';
+      el.addEventListener('mouseover', function() { this.style.background = '#D8F3DC'; });
+      el.addEventListener('mouseout',  function() { this.style.background = ''; });
+      if (isSamePage) {
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
+          scrollToCard(r.t, input, caja, limpiar);
+        });
+      }
+      caja.appendChild(el);
+    });
     caja.removeAttribute('hidden');
   }
 
@@ -921,7 +775,7 @@
       if (!q) { caja.setAttribute('hidden', ''); return; }
       render(DATOS.filter(function(r) {
         return norm(r.t).includes(q) || norm(r.d).includes(q);
-      }), caja);
+      }), input, caja, limpiar);
     });
 
     if (limpiar) {
