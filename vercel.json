@@ -10,7 +10,8 @@
     { "source": "/ferias",      "destination": "/ferias.html" },
     { "source": "/colegios",    "destination": "/colegios.html" },
     { "source": "/apoyar",      "destination": "/apoyar.html" },
-    { "source": "/sugerencias", "destination": "/sugerencias.html" }
+    { "source": "/sugerencias", "destination": "/sugerencias.html" },
+    { "source": "/juegos",      "destination": "/juegos.html" }
   ],
   "headers": [
     {

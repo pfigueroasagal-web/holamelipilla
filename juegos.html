@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juegos — Hola Melipilla</title>
+  <meta name="description" content="Juega Tetris clásico mientras esperas. Un pasatiempo de holamelipilla.cl">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#1B4332">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css?v=10">
+  <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+</head>
+<body class="body-nav">
+
+
+<!-- ─── NAVEGACIÓN ─── -->
+<nav aria-label="Navegación principal">
+  <a href="/" class="nav-brand" title="Volver a Hola Melipilla">📍 Hola Melipilla</a>
+  <div class="nav-scroll-wrapper">
+    <ul class="nav-links">
+      <li><a href="/farmacias">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+        Farmacias
+      </a></li>
+      <li><a href="/salud">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        Centros de salud
+      </a></li>
+      <li><a href="/seguridad">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Seguridad
+      </a></li>
+      <li><a href="/ferias">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        Ferias
+      </a></li>
+      <li><a href="/colegios">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Colegios
+      </a></li>
+      <li><a href="/juegos" class="active">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01M7 12h.01M17 12h.01M7 9v6M10 12H4M17 9v6M20 12h-6"/></svg>
+        Juegos
+      </a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<!-- ─── PAGE HEADER ─── -->
+<div class="page-header-2025 page-header-juegos" style="background:linear-gradient(160deg,#0d2b1e 0%,#1B4332 50%,#2D6A4F 100%)">
+  <div class="page-header-inner-2025">
+    <a href="/" class="page-header-back-2025">← Volver al inicio</a>
+    <div class="page-header-icon-2025">🎮</div>
+    <h1 class="page-header-title-2025">Juegos clásicos</h1>
+    <p class="page-header-desc-2025">¿Esperando en la farmacia? Mata el tiempo con Tetris 😄</p>
+  </div>
+</div>
+
+<!-- ─── CONTENIDO ─── -->
+<main>
+<div class="section-content-2025">
+
+  <!-- Contenedor del juego -->
+  <div id="tetris-wrapper" style="display:flex;gap:1.25rem;justify-content:center;align-items:flex-start;flex-wrap:wrap;padding:1rem 0">
+
+    <!-- Panel izquierdo: tablero -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:.5rem">
+      <canvas id="tetris-board" width="220" height="440"
+        style="border:3px solid #1B4332;border-radius:8px;background:#0a1a10;box-shadow:0 0 24px rgba(27,67,50,.5),inset 0 0 40px rgba(0,0,0,.5);display:block">
+      </canvas>
+      <!-- Controles táctiles -->
+      <div id="touch-controls" style="display:grid;grid-template-columns:repeat(3,52px);grid-template-rows:repeat(2,52px);gap:6px;margin-top:.5rem">
+        <button class="tc-btn" id="tc-left"  style="grid-column:1;grid-row:2">◀</button>
+        <button class="tc-btn" id="tc-down"  style="grid-column:2;grid-row:2">▼</button>
+        <button class="tc-btn" id="tc-right" style="grid-column:3;grid-row:2">▶</button>
+        <button class="tc-btn" id="tc-rotate" style="grid-column:2;grid-row:1;background:rgba(247,127,0,.35);border-color:rgba(247,127,0,.6)">↻</button>
+      </div>
+    </div>
+
+    <!-- Panel derecho: info -->
+    <div style="display:flex;flex-direction:column;gap:.85rem;min-width:130px;max-width:160px">
+
+      <!-- Score -->
+      <div class="tetris-panel">
+        <div class="tetris-panel-label">SCORE</div>
+        <div class="tetris-panel-value" id="score-val">0</div>
+      </div>
+
+      <!-- Líneas -->
+      <div class="tetris-panel">
+        <div class="tetris-panel-label">LÍNEAS</div>
+        <div class="tetris-panel-value" id="lines-val">0</div>
+      </div>
+
+      <!-- Nivel -->
+      <div class="tetris-panel">
+        <div class="tetris-panel-label">NIVEL</div>
+        <div class="tetris-panel-value" id="level-val">1</div>
+      </div>
+
+      <!-- Siguiente pieza -->
+      <div class="tetris-panel">
+        <div class="tetris-panel-label">SIGUIENTE</div>
+        <canvas id="next-canvas" width="88" height="88"
+          style="background:#0a1a10;border-radius:6px;display:block;margin-top:4px">
+        </canvas>
+      </div>
+
+      <!-- Speed / Level selector -->
+      <div class="tetris-panel">
+        <div class="tetris-panel-label">VELOCIDAD</div>
+        <div style="display:flex;flex-direction:column;gap:4px;margin-top:6px">
+          <button class="speed-btn active" data-speed="1">▶ Lenta</button>
+          <button class="speed-btn"        data-speed="2">▶▶ Normal</button>
+          <button class="speed-btn"        data-speed="3">▶▶▶ Rápida</button>
+        </div>
+      </div>
+
+      <!-- Botones acción -->
+      <button id="btn-start" class="tetris-action-btn">▶ Iniciar</button>
+      <button id="btn-pause" class="tetris-action-btn" style="display:none">⏸ Pausa</button>
+
+    </div>
+  </div>
+
+  <!-- Teclado hint -->
+  <p style="text-align:center;font-size:12px;color:var(--texto-suave);margin-top:.5rem">
+    ⌨️ <strong>←→</strong> mover · <strong>↑</strong> rotar · <strong>↓</strong> bajar · <strong>Espacio</strong> caída · <strong>P</strong> pausa
+  </p>
+
+</div>
+</main>
+
+
+<!-- ─── FOOTER ─── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">📍 Hola Melipilla</div>
+    <div class="footer-links">
+      <a href="/farmacias">Farmacias</a>
+      <a href="/salud">Salud</a>
+      <a href="/seguridad">Seguridad</a>
+      <a href="/ferias">Ferias</a>
+      <a href="/colegios">Colegios</a>
+      <a href="/juegos">Juegos</a>
+    </div>
+    <p class="footer-copy">Hecho con ❤️ para Melipilla · Sin publicidad · Gratis</p>
+  </div>
+</footer>
+
+<!-- ─── ESTILOS TETRIS ─── -->
+<style>
+.tetris-panel {
+  background: var(--fondo-card);
+  border: 1.5px solid var(--borde);
+  border-radius: 10px;
+  padding: .65rem .85rem;
+  box-shadow: var(--sombra);
+}
+.tetris-panel-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+  margin-bottom: 2px;
+}
+.tetris-panel-value {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--primario);
+  line-height: 1;
+}
+.speed-btn {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 8px;
+  border-radius: 6px;
+  border: 1.5px solid var(--borde);
+  background: var(--fondo);
+  color: var(--texto-suave);
+  cursor: pointer;
+  transition: all .15s;
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+}
+.speed-btn:hover { border-color: var(--primario-claro); color: var(--primario); }
+.speed-btn.active {
+  background: var(--primario);
+  border-color: var(--primario);
+  color: #fff;
+}
+.tetris-action-btn {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  padding: .6rem 1rem;
+  border-radius: 8px;
+  border: none;
+  background: var(--acento);
+  color: #fff;
+  cursor: pointer;
+  transition: background .15s, transform .15s;
+  box-shadow: 0 3px 10px rgba(247,127,0,.3);
+}
+.tetris-action-btn:hover { background: #E06500; transform: translateY(-1px); }
+.tc-btn {
+  font-size: 18px;
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  border: 2px solid rgba(82,183,136,.4);
+  background: rgba(27,67,50,.7);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .1s, transform .1s;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+.tc-btn:active { background: rgba(82,183,136,.5); transform: scale(.93); }
+@media (min-width: 600px) {
+  #touch-controls { display: none !important; }
+}
+@media (prefers-color-scheme: dark) {
+  .tetris-panel { background: #1A1D27; border-color: #2A2D38; }
+  .tetris-panel-value { color: #52B788; }
+  .speed-btn { background: #1A1D27; border-color: #2A2D38; color: #8B9099; }
+  .speed-btn.active { background: #1B4332; border-color: #52B788; color: #fff; }
+}
+</style>
+
+
+<!-- ─── MOTOR TETRIS ─── -->
+<script>
+(function() {
+  // ── Constantes ──────────────────────────────────────────
+  var COLS = 10, ROWS = 20;
+  var CELL = 22; // px por celda en el tablero principal
+  var SPEEDS = { 1: 800, 2: 450, 3: 200 }; // ms por tick
+  var SCORE_TABLE = { 1: 100, 2: 300, 3: 500, 4: 800 };
+
+  // Colores de las piezas (orden: I O T S Z J L)
+  var COLORS = [
+    null,
+    '#00CFCF', // I — cian
+    '#F7D000', // O — amarillo
+    '#A000F0', // T — morado
+    '#00D000', // S — verde
+    '#F00000', // Z — rojo
+    '#0000F0', // J — azul
+    '#F0A000'  // L — naranja
+  ];
+
+  // Piezas: cada pieza es un array de matrices de rotación
+  var PIECES = [
+    // I
+    [[[0,0,0,0],[1,1,1,1],[0,0,0,0],[0,0,0,0]],
+     [[0,0,1,0],[0,0,1,0],[0,0,1,0],[0,0,1,0]],
+     [[0,0,0,0],[0,0,0,0],[1,1,1,1],[0,0,0,0]],
+     [[0,1,0,0],[0,1,0,0],[0,1,0,0],[0,1,0,0]]],
+    // O
+    [[[0,1,1,0],[0,1,1,0],[0,0,0,0]]],
+    // T
+    [[[0,1,0],[1,1,1],[0,0,0]],
+     [[0,1,0],[0,1,1],[0,1,0]],
+     [[0,0,0],[1,1,1],[0,1,0]],
+     [[0,1,0],[1,1,0],[0,1,0]]],
+    // S
+    [[[0,1,1],[1,1,0],[0,0,0]],
+     [[0,1,0],[0,1,1],[0,0,1]]],
+    // Z
+    [[[1,1,0],[0,1,1],[0,0,0]],
+     [[0,0,1],[0,1,1],[0,1,0]]],
+    // J
+    [[[1,0,0],[1,1,1],[0,0,0]],
+     [[0,1,1],[0,1,0],[0,1,0]],
+     [[0,0,0],[1,1,1],[0,0,1]],
+     [[0,1,0],[0,1,0],[1,1,0]]],
+    // L
+    [[[0,0,1],[1,1,1],[0,0,0]],
+     [[0,1,0],[0,1,0],[0,1,1]],
+     [[0,0,0],[1,1,1],[1,0,0]],
+     [[1,1,0],[0,1,0],[0,1,0]]]
+  ];
+
+  // ── Estado del juego ────────────────────────────────────
+  var board = [];       // tablero 20×10, cada celda = colorIndex o 0
+  var current = null;   // pieza actual { matrix, x, y, colorIdx }
+  var next = null;
+  var score = 0;
+  var lines = 0;
+  var level = 1;
+  var speedLevel = 1;   // 1/2/3 elegido por el usuario
+  var running = false;
+  var paused = false;
+  var tickTimer = null;
+
+  // ── DOM ─────────────────────────────────────────────────
+  var canvas     = document.getElementById('tetris-board');
+  var ctx        = canvas.getContext('2d');
+  var nextCanvas = document.getElementById('next-canvas');
+  var nctx       = nextCanvas.getContext('2d');
+  var scoreEl    = document.getElementById('score-val');
+  var linesEl    = document.getElementById('lines-val');
+  var levelEl    = document.getElementById('level-val');
+  var btnStart   = document.getElementById('btn-start');
+  var btnPause   = document.getElementById('btn-pause');
+
+  // ── Helpers ─────────────────────────────────────────────
+  function initBoard() {
+    board = [];
+    for (var r = 0; r < ROWS; r++) {
+      board.push(new Array(COLS).fill(0));
+    }
+  }
+
+  function randPiece() {
+    var idx = Math.floor(Math.random() * PIECES.length);
+    var colorIdx = idx + 1;
+    var matrix = PIECES[idx][0];
+    var x = Math.floor((COLS - matrix[0].length) / 2);
+    return { pieceIdx: idx, rotIdx: 0, matrix: matrix, x: x, y: 0, colorIdx: colorIdx };
+  }
+
+  function rotate(piece) {
+    var rots = PIECES[piece.pieceIdx];
+    var nextRot = (piece.rotIdx + 1) % rots.length;
+    return { pieceIdx: piece.pieceIdx, rotIdx: nextRot, matrix: rots[nextRot],
+             x: piece.x, y: piece.y, colorIdx: piece.colorIdx };
+  }
+
+  function collides(p, bx, by) {
+    var mat = p.matrix;
+    for (var r = 0; r < mat.length; r++) {
+      for (var c = 0; c < mat[r].length; c++) {
+        if (!mat[r][c]) continue;
+        var nx = (bx !== undefined ? bx : p.x) + c;
+        var ny = (by !== undefined ? by : p.y) + r;
+        if (nx < 0 || nx >= COLS || ny >= ROWS) return true;
+        if (ny >= 0 && board[ny][nx]) return true;
+      }
+    }
+    return false;
+  }
+
+  function lock(p) {
+    var mat = p.matrix;
+    for (var r = 0; r < mat.length; r++) {
+      for (var c = 0; c < mat[r].length; c++) {
+        if (!mat[r][c]) continue;
+        var ny = p.y + r;
+        if (ny < 0) { gameOver(); return; }
+        board[ny][p.x + c] = p.colorIdx;
+      }
+    }
+    clearLines();
+  }
+
+  function clearLines() {
+    var cleared = 0;
+    for (var r = ROWS - 1; r >= 0; r--) {
+      if (board[r].every(function(c) { return c !== 0; })) {
+        board.splice(r, 1);
+        board.unshift(new Array(COLS).fill(0));
+        cleared++;
+        r++; // re-check same row index
+      }
+    }
+    if (cleared > 0) {
+      lines += cleared;
+      score += (SCORE_TABLE[cleared] || 0) * level;
+      level = Math.floor(lines / 10) + 1;
+      updateHUD();
+    }
+  }
+
+  function updateHUD() {
+    scoreEl.textContent = score.toLocaleString('es-CL');
+    linesEl.textContent = lines;
+    levelEl.textContent = level;
+  }
+
+  // ── Dibujo ──────────────────────────────────────────────
+  function drawCell(context, x, y, colorIdx, cellSize) {
+    var color = COLORS[colorIdx];
+    context.fillStyle = color;
+    context.fillRect(x * cellSize + 1, y * cellSize + 1, cellSize - 2, cellSize - 2);
+    // Brillo superior
+    context.fillStyle = 'rgba(255,255,255,0.25)';
+    context.fillRect(x * cellSize + 1, y * cellSize + 1, cellSize - 2, 4);
+    // Borde oscuro derecho/inferior
+    context.fillStyle = 'rgba(0,0,0,0.25)';
+    context.fillRect(x * cellSize + cellSize - 3, y * cellSize + 1, 2, cellSize - 2);
+    context.fillRect(x * cellSize + 1, y * cellSize + cellSize - 3, cellSize - 2, 2);
+  }
+
+  function drawGrid(context, cols, rows, cellSize) {
+    context.strokeStyle = 'rgba(82,183,136,0.08)';
+    context.lineWidth = 0.5;
+    for (var c = 0; c <= cols; c++) {
+      context.beginPath();
+      context.moveTo(c * cellSize, 0);
+      context.lineTo(c * cellSize, rows * cellSize);
+      context.stroke();
+    }
+    for (var r = 0; r <= rows; r++) {
+      context.beginPath();
+      context.moveTo(0, r * cellSize);
+      context.lineTo(cols * cellSize, r * cellSize);
+      context.stroke();
+    }
+  }
+
+  function drawGhost() {
+    if (!current) return;
+    var ghost = { matrix: current.matrix, x: current.x, y: current.y, colorIdx: current.colorIdx };
+    while (!collides(ghost, ghost.x, ghost.y + 1)) ghost.y++;
+    var mat = ghost.matrix;
+    ctx.globalAlpha = 0.18;
+    for (var r = 0; r < mat.length; r++) {
+      for (var c = 0; c < mat[r].length; c++) {
+        if (mat[r][c]) drawCell(ctx, ghost.x + c, ghost.y + r, ghost.colorIdx, CELL);
+      }
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  function render() {
+    // Fondo
+    ctx.fillStyle = '#0a1a10';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    drawGrid(ctx, COLS, ROWS, CELL);
+
+    // Tablero
+    for (var r = 0; r < ROWS; r++) {
+      for (var c = 0; c < COLS; c++) {
+        if (board[r][c]) drawCell(ctx, c, r, board[r][c], CELL);
+      }
+    }
+
+    // Ghost
+    if (running && !paused) drawGhost();
+
+    // Pieza actual
+    if (current) {
+      var mat = current.matrix;
+      for (var r2 = 0; r2 < mat.length; r2++) {
+        for (var c2 = 0; c2 < mat[r2].length; c2++) {
+          if (mat[r2][c2]) drawCell(ctx, current.x + c2, current.y + r2, current.colorIdx, CELL);
+        }
+      }
+    }
+
+    // Overlay pausa
+    if (paused) {
+      ctx.fillStyle = 'rgba(10,26,16,0.75)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#52B788';
+      ctx.font = 'bold 22px "Plus Jakarta Sans", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('⏸ PAUSA', canvas.width / 2, canvas.height / 2);
+    }
+
+    // Next piece
+    nctx.fillStyle = '#0a1a10';
+    nctx.fillRect(0, 0, nextCanvas.width, nextCanvas.height);
+    if (next) {
+      var nm = next.matrix;
+      var nc = 22; // tamaño celda next
+      var offX = Math.floor((nextCanvas.width  - nm[0].length * nc) / 2);
+      var offY = Math.floor((nextCanvas.height - nm.length    * nc) / 2);
+      for (var nr = 0; nr < nm.length; nr++) {
+        for (var nc2 = 0; nc2 < nm[nr].length; nc2++) {
+          if (nm[nr][nc2]) {
+            var px = Math.floor(offX / nc) + nc2;
+            var py = Math.floor(offY / nc) + nr;
+            nctx.fillStyle = COLORS[next.colorIdx];
+            nctx.fillRect(offX + nc2 * nc + 1, offY + nr * nc + 1, nc - 2, nc - 2);
+            nctx.fillStyle = 'rgba(255,255,255,0.22)';
+            nctx.fillRect(offX + nc2 * nc + 1, offY + nr * nc + 1, nc - 2, 3);
+          }
+        }
+      }
+    }
+  }
+
+  // ── Loop ────────────────────────────────────────────────
+  function calcInterval() {
+    // Velocidad base según speedLevel, acelerada por nivel del juego
+    var base = SPEEDS[speedLevel];
+    return Math.max(80, base - (level - 1) * 40);
+  }
+
+  function tick() {
+    if (!running || paused) return;
+    if (!collides(current, current.x, current.y + 1)) {
+      current.y++;
+    } else {
+      lock(current);
+      current = next;
+      next = randPiece();
+      if (collides(current, current.x, current.y)) {
+        gameOver();
+        return;
+      }
+    }
+    render();
+    tickTimer = setTimeout(tick, calcInterval());
+  }
+
+  function startGame() {
+    initBoard();
+    score = 0; lines = 0; level = 1;
+    updateHUD();
+    current = randPiece();
+    next = randPiece();
+    running = true;
+    paused = false;
+    btnStart.style.display = 'none';
+    btnPause.style.display = '';
+    btnPause.textContent = '⏸ Pausa';
+    clearTimeout(tickTimer);
+    tick();
+    render();
+  }
+
+  function togglePause() {
+    if (!running) return;
+    paused = !paused;
+    btnPause.textContent = paused ? '▶ Continuar' : '⏸ Pausa';
+    if (!paused) tick();
+    render();
+  }
+
+  function gameOver() {
+    running = false;
+    clearTimeout(tickTimer);
+    // Overlay game over
+    ctx.fillStyle = 'rgba(10,26,16,0.82)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#F77F00';
+    ctx.font = 'bold 20px "Plus Jakarta Sans", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2 - 18);
+    ctx.fillStyle = '#fff';
+    ctx.font = '14px Inter, sans-serif';
+    ctx.fillText('Score: ' + score.toLocaleString('es-CL'), canvas.width / 2, canvas.height / 2 + 10);
+    ctx.fillStyle = '#52B788';
+    ctx.font = '12px Inter, sans-serif';
+    ctx.fillText('Presiona Iniciar para jugar de nuevo', canvas.width / 2, canvas.height / 2 + 32);
+    btnStart.style.display = '';
+    btnStart.textContent = '▶ Jugar de nuevo';
+    btnPause.style.display = 'none';
+  }
+
+  // ── Controles teclado ───────────────────────────────────
+  document.addEventListener('keydown', function(e) {
+    if (!running || paused) {
+      if (e.code === 'KeyP') togglePause();
+      return;
+    }
+    switch (e.code) {
+      case 'ArrowLeft':
+        e.preventDefault();
+        if (!collides(current, current.x - 1, current.y)) { current.x--; render(); }
+        break;
+      case 'ArrowRight':
+        e.preventDefault();
+        if (!collides(current, current.x + 1, current.y)) { current.x++; render(); }
+        break;
+      case 'ArrowDown':
+        e.preventDefault();
+        if (!collides(current, current.x, current.y + 1)) { current.y++; render(); }
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        var rotated = rotate(current);
+        if (!collides(rotated, rotated.x, rotated.y)) {
+          current = rotated;
+        } else if (!collides(rotated, rotated.x - 1, rotated.y)) {
+          rotated.x--; current = rotated;
+        } else if (!collides(rotated, rotated.x + 1, rotated.y)) {
+          rotated.x++; current = rotated;
+        }
+        render();
+        break;
+      case 'Space':
+        e.preventDefault();
+        while (!collides(current, current.x, current.y + 1)) current.y++;
+        clearTimeout(tickTimer);
+        lock(current);
+        current = next;
+        next = randPiece();
+        if (collides(current, current.x, current.y)) { gameOver(); return; }
+        render();
+        tickTimer = setTimeout(tick, calcInterval());
+        break;
+      case 'KeyP':
+        e.preventDefault();
+        togglePause();
+        break;
+    }
+  });
+
+  // ── Controles táctiles ──────────────────────────────────
+  function bindTouch(id, fn) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('touchstart', function(e) { e.preventDefault(); fn(); }, { passive: false });
+    el.addEventListener('click', fn);
+  }
+
+  bindTouch('tc-left', function() {
+    if (!running || paused) return;
+    if (!collides(current, current.x - 1, current.y)) { current.x--; render(); }
+  });
+  bindTouch('tc-right', function() {
+    if (!running || paused) return;
+    if (!collides(current, current.x + 1, current.y)) { current.x++; render(); }
+  });
+  bindTouch('tc-down', function() {
+    if (!running || paused) return;
+    if (!collides(current, current.x, current.y + 1)) { current.y++; render(); }
+  });
+  bindTouch('tc-rotate', function() {
+    if (!running || paused) return;
+    var rotated = rotate(current);
+    if (!collides(rotated, rotated.x, rotated.y)) {
+      current = rotated;
+    } else if (!collides(rotated, rotated.x - 1, rotated.y)) {
+      rotated.x--; current = rotated;
+    } else if (!collides(rotated, rotated.x + 1, rotated.y)) {
+      rotated.x++; current = rotated;
+    }
+    render();
+  });
+
+  // ── Speed buttons ───────────────────────────────────────
+  document.querySelectorAll('.speed-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.speed-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      speedLevel = parseInt(btn.dataset.speed, 10);
+    });
+  });
+
+  // ── Start / Pause buttons ───────────────────────────────
+  btnStart.addEventListener('click', startGame);
+  btnPause.addEventListener('click', togglePause);
+
+  // ── Dibujo inicial (tablero vacío) ──────────────────────
+  initBoard();
+  render();
+
+  // ── Swipe táctil en canvas ──────────────────────────────
+  var touchStartX, touchStartY;
+  canvas.addEventListener('touchstart', function(e) {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  canvas.addEventListener('touchend', function(e) {
+    if (!running || paused) return;
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    var dy = e.changedTouches[0].clientY - touchStartY;
+    if (Math.abs(dx) > Math.abs(dy)) {
+      if (dx > 20 && !collides(current, current.x + 1, current.y)) { current.x++; render(); }
+      else if (dx < -20 && !collides(current, current.x - 1, current.y)) { current.x--; render(); }
+    } else {
+      if (dy > 20 && !collides(current, current.x, current.y + 1)) { current.y++; render(); }
+      else if (dy < -20) {
+        var rotated = rotate(current);
+        if (!collides(rotated, rotated.x, rotated.y)) { current = rotated; render(); }
+      }
+    }
+  }, { passive: true });
+
+})();
+</script>
+</body>
+</html>
