@@ -421,6 +421,7 @@ function sched(notes,t0,type,vol){
 
 function playTheme(){
   if(!musicOn||!ac)return;
+  clearTimeout(musicTimer); // evitar loops duplicados
   var t0=ac.currentTime+0.05;
   sched(THEME,t0,'square',0.08);
   sched(BASS,t0,'triangle',0.04);
@@ -429,9 +430,9 @@ function playTheme(){
 }
 
 function startMusic(){
-  // Solo la primera vez que se presiona ON/OFF
-  if(musicPlayed)return;
+  if(musicPlayed)return; // solo la primera vez
   initAC(); musicOn=true; musicPlayed=true;
+  clearTimeout(musicTimer);
   playTheme();
 }
 function stopMusic(){musicOn=false;clearTimeout(musicTimer);}
@@ -625,10 +626,15 @@ bind('btn-sp',    function(){
 });
 bind('btn-sound', function(){
   initAC();
-  if(musicOn){stopMusic();}else{musicOn=true;playTheme();}
-  document.getElementById('btn-sound').style.background=musicOn
-    ?'radial-gradient(circle at 35% 25%,#ccff88,#44cc00)'
-    :'radial-gradient(circle at 35% 25%,#fff9a0,#f5c000 60%,#d4a000)';
+  if(musicOn){
+    stopMusic();
+    document.getElementById('btn-sound').style.background='radial-gradient(circle at 35% 25%,#fff9a0,#f5c000 60%,#d4a000)';
+  } else {
+    musicOn=true;
+    clearTimeout(musicTimer); // evita doble loop
+    playTheme();
+    document.getElementById('btn-sound').style.background='radial-gradient(circle at 35% 25%,#ccff88,#44cc00)';
+  }
 });
 bind('btn-reset', reset);
 bind('tc-up',     function(){if(!running||paused)return;var rp=rotP(cur);if(!hit(rp,rp.x,rp.y))cur=rp;else if(!hit(rp,rp.x-1,rp.y)){rp.x--;cur=rp;}else if(!hit(rp,rp.x+1,rp.y)){rp.x++;cur=rp;}if(ac)sfxRotate();render();});
