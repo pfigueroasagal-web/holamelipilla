@@ -17,6 +17,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html, body {
   min-height: 100vh;
+  height: 100%;
   background: #1a1a2e;
   display: flex;
   flex-direction: column;
@@ -24,7 +25,7 @@ html, body {
   justify-content: flex-start;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
-  padding: 12px 8px 24px;
+  padding: 8px 6px 16px;
 }
 
 /* ── Botón Home ── */
@@ -53,13 +54,24 @@ html, body {
   border-radius: 24px 24px 40px 40px;
   padding: 14px 14px 28px;
   width: 100%;
-  max-width: 340px;
+  max-width: min(340px, 96vw);
   box-shadow:
     0 0 0 3px #880e00,
     0 8px 32px rgba(0,0,0,0.6),
     inset 0 2px 4px rgba(255,120,80,0.3);
   position: relative;
   user-select: none;
+}
+/* Escala toda la consola en pantallas grandes */
+@media (min-width: 600px) {
+  body { justify-content: center; }
+  .console {
+    max-width: 380px;
+    transform-origin: top center;
+  }
+}
+@media (min-width: 900px) {
+  .console { max-width: 420px; }
 }
 
 /* ── Label SUPER ── */
@@ -200,7 +212,7 @@ canvas#next-canvas {
   cursor: pointer;
 }
 .btn-small-circle {
-  width: 28px; height: 28px;
+  width: 34px; height: 34px;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, #ffe566, #f0c000);
   box-shadow: 0 3px 6px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,180,0.5);
@@ -208,6 +220,7 @@ canvas#next-canvas {
   cursor: pointer;
   transition: transform .1s, box-shadow .1s;
   -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 .btn-small-circle:active { transform: scale(0.92); box-shadow: 0 1px 3px rgba(0,0,0,0.4); }
 .btn-small-label {
@@ -246,6 +259,7 @@ canvas#next-canvas {
   font-size: 16px;
   transition: transform .1s, box-shadow .1s;
   -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 .btn-dpad:active { transform: scale(0.92); box-shadow: 0 1px 3px rgba(0,0,0,0.4); }
 .btn-dpad .btn-dpad-label {
@@ -260,7 +274,7 @@ canvas#next-canvas {
   gap: 4px;
 }
 .btn-rotate {
-  width: 54px; height: 54px;
+  width: 60px; height: 60px;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, #ffe566, #f0c000);
   box-shadow: 0 4px 8px rgba(0,0,0,0.4), inset 0 1px 3px rgba(255,255,180,0.5);
@@ -269,6 +283,7 @@ canvas#next-canvas {
   font-size: 22px;
   transition: transform .1s, box-shadow .1s;
   -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 .btn-rotate:active { transform: scale(0.92); box-shadow: 0 1px 4px rgba(0,0,0,0.4); }
 .btn-rotate-label {
@@ -413,7 +428,7 @@ canvas#next-canvas {
       <div class="dpad">
         <!-- fila 1: vacío, arriba, vacío -->
         <div></div>
-        <button class="btn-dpad" id="tc-rotate" style="grid-column:2;grid-row:1">↑<span class="btn-dpad-label">UP</span></button>
+        <button class="btn-dpad" id="tc-rotate" style="grid-column:2;grid-row:1">↻<span class="btn-dpad-label">ROTAR</span></button>
         <div></div>
         <!-- fila 2: izq, abajo, der -->
         <button class="btn-dpad" id="tc-left">◀<span class="btn-dpad-label">LEFT</span></button>
@@ -422,7 +437,7 @@ canvas#next-canvas {
       </div>
       <div class="btn-rotate-wrap">
         <button class="btn-rotate" id="tc-drop">⬇</button>
-        <span class="btn-rotate-label">ROTATE</span>
+        <span class="btn-rotate-label">DROP</span>
       </div>
     </div>
 
@@ -779,25 +794,31 @@ function toggleMusic() {
   initBoard(); render();
 
   // ── Controles botones físicos ──
-  document.getElementById('btn-onoff').addEventListener('click', function(){
+  function bindPhysical(id, fn) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('touchstart', function(e){ e.preventDefault(); fn(); }, { passive: false });
+    el.addEventListener('click', fn);
+  }
+
+  bindPhysical('btn-onoff', function(){
     if (!running) startGame(); else togglePause();
   });
-  document.getElementById('btn-sp').addEventListener('click', function(){
+  bindPhysical('btn-sp', function(){
     if (!running) return;
-    // Hard drop
     while (!collides(current,current.x,current.y+1)) current.y++;
     clearTimeout(tickTimer);
     lock(current); current=next; next=randPiece();
     if(collides(current,current.x,current.y)){gameOver();return;}
     render(); tickTimer=setTimeout(tick,calcInterval());
   });
-  document.getElementById('btn-sound').addEventListener('click', function(){
+  bindPhysical('btn-sound', function(){
     var on=toggleMusic();
     document.getElementById('btn-sound').style.background = on
       ? 'radial-gradient(circle at 35% 30%,#aaff66,#44cc00)'
       : 'radial-gradient(circle at 35% 30%,#ffe566,#f0c000)';
   });
-  document.getElementById('btn-reset').addEventListener('click', resetGame);
+  bindPhysical('btn-reset', resetGame);
 
   function bindBtn(id, fn) {
     var el=document.getElementById(id);
