@@ -144,8 +144,8 @@ var queryActual = 'Melipilla';
 
 // Proxies en orden de prioridad
 var PROXIES = [
-  { url: 'https://api.allorigins.win/get?url=', json: true  },
-  { url: 'https://corsproxy.io/?',              json: false }
+  { url: 'https://api.rss2json.com/v1/api.json?rss_url=', json: true, type: 'rss2json' },
+  { url: 'https://api.allorigins.win/get?url=',           json: true, type: 'allorigins' }
 ];
 
 function timeAgo(dateStr) {
@@ -171,6 +171,55 @@ function parsearRSS(text) {
   var parser = new DOMParser();
   var xml = parser.parseFromString(text, 'text/xml');
   return xml.querySelectorAll('item');
+}
+
+function renderNoticiasJSON(items) {
+  var grid = document.getElementById('noticias-grid');
+  if (!items.length) {
+    grid.innerHTML = '<div class="card" style="grid-column:1/-1;text-align:center;padding:2rem"><div style="font-size:2rem;margin-bottom:.5rem">😔</div><p style="color:var(--texto-suave);font-size:14px">No se encontraron noticias.</p></div>';
+    document.getElementById('update-time').textContent = 'Sin resultados';
+    return;
+  }
+  var html = '';
+  items.forEach(function(item) {
+    var title   = item.title   || '';
+    var link    = item.link    || '#';
+    var pubDate = item.pubDate || '';
+    var desc    = item.description || '';
+
+    var tmp = document.createElement('div');
+    tmp.innerHTML = desc;
+    var descText = (tmp.textContent || '').substring(0, 110);
+    if (descText.length === 110) descText += '…';
+
+    var src   = fuente(title);
+    var tit   = tituloLimpio(title);
+    var ago   = timeAgo(pubDate);
+    var srcL  = src.toLowerCase();
+    var emoji = '📰';
+    if (srcL.includes('labrador'))    emoji = '📄';
+    if (srcL.includes('comunicador')) emoji = '📡';
+    if (srcL.includes('biobio'))      emoji = '🎙️';
+    if (srcL.includes('emol'))        emoji = '🗞️';
+    if (srcL.includes('cooperativ'))  emoji = '📻';
+    if (srcL.includes('municipal') || srcL.includes('melipilla')) emoji = '📍';
+
+    html += '<a href="' + link + '" target="_blank" rel="noopener" class="card" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:.5rem">';
+    html += '<div style="display:flex;align-items:center;gap:7px">';
+    html += '<span style="font-size:1.1rem">' + emoji + '</span>';
+    if (src) html += '<span style="font-size:10px;font-weight:700;color:var(--primario-claro);text-transform:uppercase;letter-spacing:.04em;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + src + '</span>';
+    html += '<span style="font-size:11px;color:var(--texto-suave);flex-shrink:0">' + ago + '</span>';
+    html += '</div>';
+    html += '<h3 style="font-family:\'Plus Jakarta Sans\',sans-serif;font-size:.92rem;font-weight:700;color:var(--texto);line-height:1.35">' + tit + '</h3>';
+    if (descText) html += '<p style="font-size:12px;color:var(--texto-suave);line-height:1.5;flex:1">' + descText + '</p>';
+    html += '<span style="font-size:11px;color:var(--primario-claro);font-weight:600;margin-top:auto">Leer nota →</span>';
+    html += '</a>';
+  });
+  grid.innerHTML = html;
+  var now = new Date();
+  document.getElementById('update-time').textContent =
+    'Actualizado: ' + now.toLocaleTimeString('es-CL',{hour:'2-digit',minute:'2-digit'}) +
+    ' · ' + items.length + ' noticias';
 }
 
 function renderNoticias(items) {
@@ -226,7 +275,6 @@ function renderNoticias(items) {
 
 function cargarConProxy(query, proxyIndex) {
   if (proxyIndex >= PROXIES.length) {
-    // Todos los proxies fallaron
     document.getElementById('noticias-grid').innerHTML =
       '<div class="card" style="grid-column:1/-1;text-align:center;padding:2rem">' +
       '<div style="font-size:2rem;margin-bottom:.5rem">⚠️</div>' +
@@ -235,10 +283,9 @@ function cargarConProxy(query, proxyIndex) {
     document.getElementById('update-time').textContent = 'Error al cargar';
     return;
   }
-
-  var rssUrl = 'https://news.google.com/rss/search?q=' + encodeURIComponent(query) + '&hl=es-419&gl=CL&ceid=CL:es-419';
-  var proxy  = PROXIES[proxyIndex];
-  var url    = proxy.url + encodeURIComponent(rssUrl);
+  var proxy   = PROXIES[proxyIndex];
+  var rssUrl  = 'https://news.google.com/rss/search?q=' + encodeURIComponent(query) + '&hl=es-419&gl=CL&ceid=CL:es-419';
+  var url     = proxy.url + encodeURIComponent(rssUrl);
   var timeout = 6000;
 
   var done = false;
@@ -253,11 +300,21 @@ function cargarConProxy(query, proxyIndex) {
     .then(function(data) {
       if (done) return;
       done = true; clearTimeout(timer);
-      // allorigins devuelve {contents: "..."}, corsproxy devuelve texto XML directo
-      var text = proxy.json ? data.contents : data;
-      var items = parsearRSS(text);
-      if (!items.length) throw new Error('empty');
-      renderNoticias(items);
+
+      var items = [];
+
+      if (proxy.type === 'rss2json') {
+        // rss2json devuelve {items: [{title, link, pubDate, description}]}
+        if (data.status !== 'ok' || !data.items || !data.items.length) throw new Error('empty');
+        renderNoticiasJSON(data.items);
+        return;
+      } else {
+        // allorigins devuelve {contents: "xml..."}
+        var text = data.contents;
+        items = parsearRSS(text);
+        if (!items.length) throw new Error('empty');
+        renderNoticias(items);
+      }
     })
     .catch(function() {
       if (done) return;
