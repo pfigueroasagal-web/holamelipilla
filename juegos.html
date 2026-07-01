@@ -382,6 +382,7 @@ var PIECES=[
 
 // ── AUDIO ──
 var AC=window.AudioContext||window.webkitAudioContext, ac=null;
+var masterGain=null;
 var musicOn=false, musicTimer=null, musicPlayed=false, musicRunning=false;
 
 var THEME=[
@@ -401,7 +402,10 @@ var BASS=[
 ];
 var BPM=200, BEAT=60/BPM;
 
-function initAC(){if(!ac)ac=new AC();if(ac.state==='suspended')ac.resume();}
+function initAC(){
+  if(!ac){ac=new AC();masterGain=ac.createGain();masterGain.connect(ac.destination);}
+  if(ac.state==='suspended')ac.resume();
+}
 
 function sched(notes,t0,type,vol){
   var t=t0;
@@ -409,7 +413,7 @@ function sched(notes,t0,type,vol){
     var f=n[0],d=n[1]*BEAT;
     if(f>0){
       var o=ac.createOscillator(),g=ac.createGain();
-      o.connect(g);g.connect(ac.destination);
+      o.connect(g);g.connect(masterGain);
       o.type=type;o.frequency.setValueAtTime(f,t);
       g.gain.setValueAtTime(vol,t);
       g.gain.exponentialRampToValueAtTime(0.001,t+d*.85);
@@ -423,6 +427,7 @@ function playTheme(){
   if(!musicOn||!ac||musicRunning)return;
   musicRunning=true;
   clearTimeout(musicTimer);
+  masterGain.gain.setValueAtTime(1,ac.currentTime);
   var t0=ac.currentTime+0.05;
   sched(THEME,t0,'square',0.08);
   sched(BASS,t0,'triangle',0.04);
@@ -439,6 +444,8 @@ function startMusic(){
 function stopMusic(){
   musicOn=false; musicRunning=false;
   clearTimeout(musicTimer);
+  // Silenciar inmediatamente via masterGain para cortar cualquier oscilador en vuelo
+  if(masterGain)masterGain.gain.setValueAtTime(0,ac.currentTime);
 }
 
 // Efectos de sonido
@@ -644,8 +651,8 @@ bind('btn-sound', function(){
     stopMusic();
     document.getElementById('btn-sound').style.background='radial-gradient(circle at 35% 25%,#fff9a0,#f5c000 60%,#d4a000)';
   } else {
-    if(musicRunning)return; // ya está sonando, ignorar
-    musicOn=true;
+    musicOn=true; musicRunning=false;
+    masterGain.gain.setValueAtTime(1,ac.currentTime);
     playTheme();
     document.getElementById('btn-sound').style.background='radial-gradient(circle at 35% 25%,#ccff88,#44cc00)';
   }
