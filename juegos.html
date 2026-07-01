@@ -13,13 +13,15 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;min-height:100svh;background:#1a1a2e;display:flex;flex-direction:column;align-items:center;font-family:'Inter',sans-serif;overflow-x:hidden;padding:6px 4px 8px}
-.home-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);border-radius:100px;color:rgba(255,255,255,.8);font-size:11px;font-weight:700;padding:5px 12px;text-decoration:none;margin-bottom:6px;align-self:flex-start;flex-shrink:0}
-.console{background:linear-gradient(160deg,#e03010 0%,#cc2200 40%,#aa1800 100%);border-radius:20px 20px 36px 36px;padding:10px 10px 20px;width:100%;max-width:340px;box-shadow:0 0 0 3px #880e00,0 8px 32px rgba(0,0,0,.6);position:relative;user-select:none;display:flex;flex-direction:column}
-@media(max-width:599px){body{padding:4px};.console{max-width:100%;border-radius:16px 16px 28px 28px;height:calc(100svh - 50px)}.screen-shell{flex:1}.screen-inner{flex:1}.board-wrap{flex:1}canvas#tetris-board{width:100%!important;height:100%!important}}
-@media(min-width:600px){body{justify-content:center}.console{flex:none}}
-.console-label-top{text-align:center;font-family:'Press Start 2P',monospace;font-size:8px;color:#ffdd44;letter-spacing:4px;margin-bottom:8px}
-.screen-shell{background:#3a3020;border-radius:10px;padding:8px;box-shadow:inset 0 3px 8px rgba(0,0,0,.7);border:2px solid #222;display:flex;flex-direction:column}
+html,body{height:100%;min-height:100svh;background:#cc2200;display:flex;flex-direction:column;align-items:center;font-family:'Inter',sans-serif;overflow-x:hidden;padding:0}
+.home-btn{display:none}
+.console{background:linear-gradient(160deg,#e03010 0%,#cc2200 40%,#aa1800 100%);border-radius:0;padding:10px 10px 20px;width:100%;max-width:100%;height:100svh;box-shadow:none;position:relative;user-select:none;display:flex;flex-direction:column}
+@media(min-width:600px){body{background:#1a1a2e;padding:12px 0;align-items:center}.console{max-width:380px;height:auto;border-radius:20px 20px 36px 36px;box-shadow:0 0 0 3px #880e00,0 8px 32px rgba(0,0,0,.6)}}
+@media(min-width:900px){.console{max-width:420px}}
+.console-label-top{display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.btn-home-top{display:inline-flex;align-items:center;gap:6px;background:#880e00;border:2px solid #ff6644;border-radius:100px;color:#fff;font-family:'Press Start 2P',monospace;font-size:7px;padding:7px 14px;text-decoration:none;box-shadow:0 3px 8px rgba(0,0,0,.4),inset 0 1px 2px rgba(255,150,100,.3);transition:background .15s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.btn-home-top:active{background:#660a00;transform:scale(.96)}
+.screen-shell{background:#3a3020;border-radius:10px;padding:8px;box-shadow:inset 0 3px 8px rgba(0,0,0,.7);border:2px solid #222;display:flex;flex-direction:column;flex:1}
 .screen-inner{background:#8fa878;border-radius:6px;display:flex;gap:6px;padding:6px;flex:1}
 .board-wrap{flex:1;display:flex;flex-direction:column;position:relative}
 canvas#tetris-board{display:block;image-rendering:pixelated;border:1px solid #6a8455;width:100%;height:100%}
@@ -52,13 +54,10 @@ canvas#next-canvas{display:block;background:#7a9468;border:1px solid #5a7448;bor
 </style>
 
 
-<a href="/" class="home-btn">
-  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
-  Hola Melipilla
-</a>
-
 <div class="console">
-  <div class="console-label-top">✦ SUPER ✦</div>
+  <div class="console-label-top">
+    <a href="/" class="btn-home-top">📍 Hola Melipilla</a>
+  </div>
   <div class="screen-shell">
     <div class="screen-inner">
       <div class="board-wrap">
