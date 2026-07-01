@@ -58,20 +58,20 @@
     .screen-shell{
       background:#222;
       border-radius:8px;
-      padding:8px;
+      padding:6px;
       margin:0 2px;
       box-shadow:inset 0 4px 12px rgba(0,0,0,.8),0 2px 4px rgba(0,0,0,.5);
       border:2px solid #111;
       display:flex;
       flex-direction:row;
-      gap:6px;
+      gap:4px;
       flex:1;
       min-height:0;
     }
     .screen-lcd{
       background:#8fa878;
       border-radius:4px;
-      flex:1;
+      flex:3;
       display:flex;
       flex-direction:column;
       position:relative;
@@ -97,14 +97,14 @@
     /* Panel lateral derecho */
     .side-panel{
       display:flex;flex-direction:column;
-      gap:5px;width:48px;flex-shrink:0;
+      gap:4px;width:44px;flex-shrink:0;
     }
     .lcd-box{
       background:#7a9468;border:1px solid #5a7448;
-      border-radius:3px;padding:3px;text-align:center;
+      border-radius:3px;padding:2px 3px;text-align:center;
     }
-    .lcd-label{font-size:4px;color:#2a3a1a;text-transform:uppercase;letter-spacing:1px;}
-    .lcd-value{font-size:9px;color:#1a2a0a;margin-top:1px;}
+    .lcd-label{font-size:4px;color:#2a3a1a;text-transform:uppercase;letter-spacing:.5px;}
+    .lcd-value{font-size:8px;color:#1a2a0a;margin-top:1px;}
     canvas#next-canvas{
       display:block;background:#7a9468;
       border:1px solid #5a7448;border-radius:3px;
@@ -143,58 +143,65 @@
     .btn-sm:active{transform:translateY(3px);box-shadow:0 1px 0 #c49a00,0 2px 4px rgba(0,0,0,.3);}
     .btn-lbl{font-size:5px;color:#ffdd88;letter-spacing:.5px;}
 
-    /* D-Pad en cruz + ROTATE */
+    /* D-Pad en cruz real unida + ROTATE */
     .btn-row-main{
       display:flex;align-items:center;justify-content:space-between;
       padding:0 8px;
     }
     .dpad{
-      position:relative;width:120px;height:90px;
+      position:relative;width:130px;height:130px;
     }
-    .btn-dpad{
-      position:absolute;
-      width:36px;height:36px;
+    /* Brazos de la cruz */
+    .dpad::before{
+      content:'';position:absolute;
+      top:50%;left:0;width:100%;height:42px;
+      transform:translateY(-50%);
+      background:radial-gradient(circle at 50% 50%,#ffe566,#e8b800);
       border-radius:6px;
-      background:radial-gradient(circle at 35% 28%,#fff176,#f9c800);
-      border:none;cursor:pointer;
-      box-shadow:0 4px 0 #c49a00,0 5px 8px rgba(0,0,0,.4);
-      display:flex;align-items:center;justify-content:center;
-      flex-direction:column;gap:1px;
-      font-size:13px;color:#7a3a00;
-      -webkit-tap-highlight-color:transparent;touch-action:manipulation;
-      transition:transform .08s,box-shadow .08s;
+      box-shadow:0 4px 0 #b88800,0 5px 8px rgba(0,0,0,.4);
     }
-    .btn-dpad:active{transform:translateY(3px);box-shadow:0 1px 0 #c49a00,0 2px 4px rgba(0,0,0,.3);}
-    .btn-dpad-lbl{font-size:4px;color:#7a3a00;line-height:1;}
-    /* posiciones cruz */
-    #tc-up   {top:0;   left:50%;transform:translateX(-50%);}
-    #tc-up:active{transform:translateX(-50%) translateY(3px);}
-    #tc-left {top:50%; left:0;  transform:translateY(-50%);}
-    #tc-left:active{transform:translateY(-50%) translateY(3px);}
-    #tc-down {bottom:0;left:50%;transform:translateX(-50%);}
-    #tc-down:active{transform:translateX(-50%) translateY(3px);}
-    #tc-right{top:50%; right:0; transform:translateY(-50%);}
-    #tc-right:active{transform:translateY(-50%) translateY(3px);}
-    /* centro cruz decorativo */
+    .dpad::after{
+      content:'';position:absolute;
+      left:50%;top:0;height:100%;width:42px;
+      transform:translateX(-50%);
+      background:radial-gradient(circle at 50% 50%,#ffe566,#e8b800);
+      border-radius:6px;
+      box-shadow:0 4px 0 #b88800,0 5px 8px rgba(0,0,0,.4);
+    }
     .dpad-center{
       position:absolute;top:50%;left:50%;
       transform:translate(-50%,-50%);
-      width:18px;height:18px;border-radius:50%;
-      background:#c49a00;
-      box-shadow:inset 0 1px 3px rgba(0,0,0,.4);
+      width:44px;height:44px;
+      background:radial-gradient(circle at 40% 35%,#fff176,#d4a000);
+      border-radius:50%;
+      box-shadow:inset 0 2px 4px rgba(0,0,0,.3);
+      z-index:3;
     }
+    .btn-dpad{
+      position:absolute;z-index:4;
+      background:transparent;border:none;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      flex-direction:column;gap:1px;
+      -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+      color:#7a4400;font-size:12px;
+    }
+    .btn-dpad-lbl{font-size:4px;color:#7a4400;}
+    #tc-up   {top:2px;left:50%;transform:translateX(-50%);width:42px;height:42px;}
+    #tc-down {bottom:2px;left:50%;transform:translateX(-50%);width:42px;height:42px;}
+    #tc-left {top:50%;left:2px;transform:translateY(-50%);width:42px;height:42px;}
+    #tc-right{top:50%;right:2px;transform:translateY(-50%);width:42px;height:42px;}
 
     .btn-rotate-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;}
     .btn-rotate{
-      width:56px;height:56px;border-radius:50%;
+      width:58px;height:58px;border-radius:50%;
       background:radial-gradient(circle at 35% 28%,#fff176,#f9c800);
       border:none;cursor:pointer;
       box-shadow:0 5px 0 #c49a00,0 6px 10px rgba(0,0,0,.4);
-      font-size:20px;
+      font-size:22px;
       -webkit-tap-highlight-color:transparent;touch-action:manipulation;
       transition:transform .08s,box-shadow .08s;
     }
-    .btn-rotate:active{transform:translateY(4px);box-shadow:0 1px 0 #c49a00,0 2px 5px rgba(0,0,0,.3);}
+    .btn-rotate:active{transform:translateY(4px);box-shadow:0 1px 0 #c49a00;}
     .btn-rotate-lbl{font-size:5px;color:#ffdd88;}
 
     /* ── BRICK GAME texto ── */
