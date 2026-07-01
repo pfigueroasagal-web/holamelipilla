@@ -16,8 +16,8 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html, body {
-  min-height: 100vh;
   height: 100%;
+  min-height: 100svh;
   background: #1a1a2e;
   display: flex;
   flex-direction: column;
@@ -25,7 +25,7 @@ html, body {
   justify-content: flex-start;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
-  padding: 8px 6px 16px;
+  padding: 6px 4px 8px;
 }
 
 /* ── Botón Home ── */
@@ -37,22 +37,23 @@ html, body {
   border: 1.5px solid rgba(255,255,255,0.2);
   border-radius: 100px;
   color: rgba(255,255,255,0.8);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
-  padding: 7px 16px;
+  padding: 5px 12px;
   text-decoration: none;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   transition: background .2s;
   font-family: 'Inter', sans-serif;
   align-self: flex-start;
+  flex-shrink: 0;
 }
 .home-btn:hover { background: rgba(255,255,255,0.2); color:#fff; }
 
 /* ── Consola ── */
 .console {
   background: linear-gradient(160deg, #e03010 0%, #cc2200 40%, #aa1800 100%);
-  border-radius: 24px 24px 40px 40px;
-  padding: 14px 14px 28px;
+  border-radius: 20px 20px 36px 36px;
+  padding: 10px 10px 20px;
   width: 100%;
   max-width: min(340px, 96vw);
   box-shadow:
@@ -61,13 +62,57 @@ html, body {
     inset 0 2px 4px rgba(255,120,80,0.3);
   position: relative;
   user-select: none;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
-/* Escala toda la consola en pantallas grandes */
+
+/* Móvil: ocupa toda la altura disponible */
+@media (max-width: 599px) {
+  body {
+    padding: 4px 4px 4px;
+    justify-content: flex-start;
+  }
+  .console {
+    max-width: 100%;
+    border-radius: 16px 16px 28px 28px;
+    flex: 1;
+    height: calc(100svh - 50px); /* 50px = home-btn */
+  }
+  .screen-shell {
+    flex: 1;
+  }
+  .screen-inner {
+    flex: 1;
+    height: 100%;
+  }
+  .board-wrap {
+    flex: 1;
+  }
+  canvas#tetris-board {
+    flex: 1;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .buttons-zone {
+    padding: 6px 4px 0;
+    gap: 6px;
+  }
+  .dpad {
+    grid-template-columns: 48px 48px 48px;
+    grid-template-rows: 48px 48px;
+  }
+  .btn-rotate { width: 64px; height: 64px; }
+  .console-brand { font-size: 11px; margin-top: 6px; }
+  .console-brand-sub { font-size: 5px; }
+}
+
+/* Desktop/tablet */
 @media (min-width: 600px) {
   body { justify-content: center; }
   .console {
     max-width: 380px;
-    transform-origin: top center;
+    flex: none;
   }
 }
 @media (min-width: 900px) {
@@ -93,6 +138,8 @@ html, body {
   box-shadow: inset 0 3px 8px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.4);
   border: 2px solid #222;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 .screen-inner {
   background: #8fa878;
@@ -101,6 +148,7 @@ html, body {
   gap: 6px;
   padding: 6px;
   box-shadow: inset 0 2px 6px rgba(0,0,0,0.3);
+  flex: 1;
 }
 
 /* Tablero principal */
@@ -109,13 +157,15 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 1px;
+  position: relative;
 }
 canvas#tetris-board {
   display: block;
   image-rendering: pixelated;
   border: 1px solid #6a8455;
   width: 100%;
-  height: auto;
+  height: 100%;
+  flex: 1;
 }
 
 /* Panel lateral derecho */
@@ -452,77 +502,181 @@ canvas#next-canvas {
 
 <script>
 // ═══════════════════════════════════════════════
-//  MÚSICA — Korobeiniki (tema A del Tetris)
-//  Generada con Web Audio API, sin archivos externos
+//  MÚSICA Y SONIDOS — estilo Tetris clásico
+//  Generados con Web Audio API, sin archivos externos
 // ═══════════════════════════════════════════════
 var AudioCtx = window.AudioContext || window.webkitAudioContext;
 var audioCtx = null;
-var musicNodes = [];
 var musicOn = false;
-var musicScheduled = false;
-
-// Notas: [frecuencia Hz, duración en beats]
-var MELODY = [
-  [659,1],[494,0.5],[523,0.5],[587,1],[523,0.5],[494,0.5],
-  [440,1],[440,0.5],[523,0.5],[659,1],[587,0.5],[523,0.5],
-  [494,1.5],[523,0.5],[587,1],[659,1],[523,1],[440,1],[440,2],
-  [0,0.5],
-  [587,1],[698,0.5],[880,1],[784,0.5],[698,0.5],
-  [659,1.5],[523,0.5],[659,1],[587,0.5],[523,0.5],
-  [494,1],[494,0.5],[523,0.5],[587,1],[659,1],
-  [523,1],[440,1],[440,2]
-];
-var BPM = 200;
-var BEAT = 60 / BPM;
+var musicLoopTimer = null;
 
 function initAudio() {
   if (!audioCtx) audioCtx = new AudioCtx();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
 }
 
-function playMelody() {
-  if (!audioCtx || !musicOn) return;
-  var t = audioCtx.currentTime + 0.05;
-  MELODY.forEach(function(note) {
-    var freq = note[0], dur = note[1] * BEAT;
+// ── Korobeiniki (Tema A) — notas y duraciones ──
+// Frecuencias calculadas a partir de la escala temperada estándar
+var THEME_A = [
+  [659.3,1],[493.9,0.5],[523.3,0.5],[587.3,1],[523.3,0.5],[493.9,0.5],
+  [440.0,1],[440.0,0.5],[523.3,0.5],[659.3,1],[587.3,0.5],[523.3,0.5],
+  [493.9,1.5],[523.3,0.5],[587.3,1],[659.3,1],[523.3,1],[440.0,1],[440.0,2],
+  [0,0.5],
+  [587.3,1],[698.5,0.5],[880.0,1],[783.9,0.5],[698.5,0.5],
+  [659.3,1.5],[523.3,0.5],[659.3,1],[587.3,0.5],[523.3,0.5],
+  [493.9,1],[493.9,0.5],[523.3,0.5],[587.3,1],[659.3,1],
+  [523.3,1],[440.0,1],[440.0,2]
+];
+
+// ── Bajo (acompañamiento) ──
+var BASS_A = [
+  [164.8,2],[130.8,2],[164.8,2],[130.8,2],
+  [174.6,2],[130.8,2],[164.8,2],[130.8,2],
+  [164.8,2],[130.8,2],[174.6,2],[130.8,2],
+  [164.8,2],[130.8,2],[164.8,2],[130.8,2]
+];
+
+var BPM = 200;
+var BEAT = 60 / BPM;
+
+function scheduleNotes(notes, startT, type, gainVal, detune) {
+  var t = startT;
+  notes.forEach(function(n) {
+    var freq = n[0], dur = n[1] * BEAT;
     if (freq > 0) {
-      var osc = audioCtx.createOscillator();
+      var osc  = audioCtx.createOscillator();
       var gain = audioCtx.createGain();
       osc.connect(gain);
       gain.connect(audioCtx.destination);
-      osc.type = 'square';
+      osc.type = type || 'square';
       osc.frequency.setValueAtTime(freq, t);
-      gain.gain.setValueAtTime(0.08, t);
-      gain.gain.exponentialRampToValueAtTime(0.001, t + dur * 0.9);
+      if (detune) osc.detune.setValueAtTime(detune, t);
+      gain.gain.setValueAtTime(gainVal || 0.07, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + dur * 0.88);
       osc.start(t);
       osc.stop(t + dur);
-      musicNodes.push(osc);
     }
     t += dur;
   });
-  // Loop
-  var total = MELODY.reduce(function(s,n){ return s + n[1]*BEAT; }, 0);
-  setTimeout(function() {
-    if (musicOn) playMelody();
-  }, total * 1000 - 100);
+  return t;
+}
+
+function playTheme() {
+  if (!musicOn || !audioCtx) return;
+  var t0 = audioCtx.currentTime + 0.05;
+  var endMelody = scheduleNotes(THEME_A, t0, 'square', 0.07, 0);
+  scheduleNotes(BASS_A,   t0, 'triangle', 0.05, 0);
+  var total = THEME_A.reduce(function(s,n){ return s + n[1]*BEAT; }, 0);
+  musicLoopTimer = setTimeout(playTheme, total * 1000 - 80);
 }
 
 function startMusic() {
   initAudio();
-  if (audioCtx.state === 'suspended') audioCtx.resume();
   musicOn = true;
-  playMelody();
+  playTheme();
 }
 
 function stopMusic() {
   musicOn = false;
-  musicNodes.forEach(function(n){ try{ n.stop(); }catch(e){} });
-  musicNodes = [];
+  clearTimeout(musicLoopTimer);
 }
 
 function toggleMusic() {
   initAudio();
   if (musicOn) { stopMusic(); return false; }
   else { startMusic(); return true; }
+}
+
+// ── Efectos de sonido ──
+function sfxMove() {
+  if (!audioCtx) return;
+  var o = audioCtx.createOscillator();
+  var g = audioCtx.createGain();
+  o.connect(g); g.connect(audioCtx.destination);
+  o.type = 'square';
+  o.frequency.setValueAtTime(220, audioCtx.currentTime);
+  g.gain.setValueAtTime(0.04, audioCtx.currentTime);
+  g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
+  o.start(); o.stop(audioCtx.currentTime + 0.05);
+}
+
+function sfxRotate() {
+  if (!audioCtx) return;
+  var o = audioCtx.createOscillator();
+  var g = audioCtx.createGain();
+  o.connect(g); g.connect(audioCtx.destination);
+  o.type = 'square';
+  o.frequency.setValueAtTime(440, audioCtx.currentTime);
+  o.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.06);
+  g.gain.setValueAtTime(0.05, audioCtx.currentTime);
+  g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
+  o.start(); o.stop(audioCtx.currentTime + 0.08);
+}
+
+function sfxDrop() {
+  if (!audioCtx) return;
+  var o = audioCtx.createOscillator();
+  var g = audioCtx.createGain();
+  o.connect(g); g.connect(audioCtx.destination);
+  o.type = 'square';
+  o.frequency.setValueAtTime(660, audioCtx.currentTime);
+  o.frequency.exponentialRampToValueAtTime(110, audioCtx.currentTime + 0.12);
+  g.gain.setValueAtTime(0.08, audioCtx.currentTime);
+  g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.14);
+  o.start(); o.stop(audioCtx.currentTime + 0.14);
+}
+
+function sfxClear(numLines) {
+  if (!audioCtx) return;
+  // Arpeggio ascendente según cantidad de líneas
+  var freqs = [[330,415,523,659],[330,415,523,659,880],[330,523,659,880,1047],[330,523,880,1047,1319,1568]];
+  var seq = freqs[Math.min(numLines,4)-1] || freqs[0];
+  var t = audioCtx.currentTime;
+  seq.forEach(function(f, i) {
+    var o = audioCtx.createOscillator();
+    var g = audioCtx.createGain();
+    o.connect(g); g.connect(audioCtx.destination);
+    o.type = 'square';
+    o.frequency.setValueAtTime(f, t + i*0.055);
+    g.gain.setValueAtTime(0.1, t + i*0.055);
+    g.gain.exponentialRampToValueAtTime(0.001, t + i*0.055 + 0.12);
+    o.start(t + i*0.055);
+    o.stop(t + i*0.055 + 0.12);
+  });
+}
+
+function sfxGameOver() {
+  if (!audioCtx) return;
+  var freqs = [523,415,330,262,196,131];
+  var t = audioCtx.currentTime;
+  freqs.forEach(function(f, i) {
+    var o = audioCtx.createOscillator();
+    var g = audioCtx.createGain();
+    o.connect(g); g.connect(audioCtx.destination);
+    o.type = 'square';
+    o.frequency.setValueAtTime(f, t + i*0.12);
+    g.gain.setValueAtTime(0.08, t + i*0.12);
+    g.gain.exponentialRampToValueAtTime(0.001, t + i*0.12 + 0.18);
+    o.start(t + i*0.12);
+    o.stop(t + i*0.12 + 0.18);
+  });
+}
+
+function sfxLevelUp() {
+  if (!audioCtx) return;
+  var freqs = [523,659,784,1047];
+  var t = audioCtx.currentTime;
+  freqs.forEach(function(f, i) {
+    var o = audioCtx.createOscillator();
+    var g = audioCtx.createGain();
+    o.connect(g); g.connect(audioCtx.destination);
+    o.type = 'square';
+    o.frequency.setValueAtTime(f, t + i*0.08);
+    g.gain.setValueAtTime(0.09, t + i*0.08);
+    g.gain.exponentialRampToValueAtTime(0.001, t + i*0.08 + 0.12);
+    o.start(t + i*0.08);
+    o.stop(t + i*0.08 + 0.12);
+  });
 }
 </script>
 
@@ -537,7 +691,7 @@ function toggleMusic() {
   var ctx        = canvas.getContext('2d');
   var nextCanvas = document.getElementById('next-canvas');
   var nctx       = nextCanvas.getContext('2d');
-  var CELL       = canvas.width / COLS; // 10px
+  var CELL       = Math.floor(canvas.width / COLS); // dinámico
 
   // Colores LCD: ON=dark, OFF=light (monocromo)
   var LCD_ON  = '#1a2a0a';
@@ -624,8 +778,11 @@ function toggleMusic() {
       var pts=[0,100,300,500,800];
       score += (pts[cleared]||800)*level;
       lines += cleared;
+      var prevLevel = level;
       level = Math.floor(lines/10)+1;
       updateHUD();
+      sfxClear(cleared);
+      if (level > prevLevel) setTimeout(sfxLevelUp, 400);
       flashClear();
     }
   }
@@ -769,6 +926,7 @@ function toggleMusic() {
   function gameOver() {
     running=false; clearTimeout(tickTimer);
     stopMusic();
+    sfxGameOver();
     render();
     showOverlay('<p class="big">GAME</p><p class="big">OVER</p><p>SCORE</p><p>'+score+'</p><p>PRESIONA</p><p>ON/OFF</p>');
   }
@@ -826,8 +984,8 @@ function toggleMusic() {
     el.addEventListener('touchstart',function(e){e.preventDefault();fn();},{passive:false});
     el.addEventListener('click',fn);
   }
-  bindBtn('tc-left',  function(){if(!running||paused)return;if(!collides(current,current.x-1,current.y)){current.x--;render();}});
-  bindBtn('tc-right', function(){if(!running||paused)return;if(!collides(current,current.x+1,current.y)){current.x++;render();}});
+  bindBtn('tc-left',  function(){if(!running||paused)return;if(!collides(current,current.x-1,current.y)){current.x--;sfxMove();render();}});
+  bindBtn('tc-right', function(){if(!running||paused)return;if(!collides(current,current.x+1,current.y)){current.x++;sfxMove();render();}});
   bindBtn('tc-down',  function(){if(!running||paused)return;if(!collides(current,current.x,current.y+1)){current.y++;render();}});
   bindBtn('tc-rotate',function(){
     if(!running||paused)return;
@@ -835,11 +993,12 @@ function toggleMusic() {
     if(!collides(r,r.x,r.y)) current=r;
     else if(!collides(r,r.x-1,r.y)){r.x--;current=r;}
     else if(!collides(r,r.x+1,r.y)){r.x++;current=r;}
-    render();
+    sfxRotate(); render();
   });
   bindBtn('tc-drop', function(){
     if(!running||paused)return;
     while(!collides(current,current.x,current.y+1)) current.y++;
+    sfxDrop();
     clearTimeout(tickTimer);
     lock(current); current=next; next=randPiece();
     if(collides(current,current.x,current.y)){gameOver();return;}
@@ -850,8 +1009,8 @@ function toggleMusic() {
   document.addEventListener('keydown',function(e){
     if(!running||paused){if(e.code==='KeyP')togglePause();return;}
     switch(e.code){
-      case'ArrowLeft':  e.preventDefault();if(!collides(current,current.x-1,current.y)){current.x--;render();}break;
-      case'ArrowRight': e.preventDefault();if(!collides(current,current.x+1,current.y)){current.x++;render();}break;
+      case'ArrowLeft':  e.preventDefault();if(!collides(current,current.x-1,current.y)){current.x--;sfxMove();render();}break;
+      case'ArrowRight': e.preventDefault();if(!collides(current,current.x+1,current.y)){current.x++;sfxMove();render();}break;
       case'ArrowDown':  e.preventDefault();if(!collides(current,current.x,current.y+1)){current.y++;render();}break;
       case'ArrowUp':
         e.preventDefault();
@@ -859,10 +1018,11 @@ function toggleMusic() {
         if(!collides(rot,rot.x,rot.y)) current=rot;
         else if(!collides(rot,rot.x-1,rot.y)){rot.x--;current=rot;}
         else if(!collides(rot,rot.x+1,rot.y)){rot.x++;current=rot;}
-        render(); break;
+        sfxRotate(); render(); break;
       case'Space':
         e.preventDefault();
         while(!collides(current,current.x,current.y+1)) current.y++;
+        sfxDrop();
         clearTimeout(tickTimer);
         lock(current);current=next;next=randPiece();
         if(collides(current,current.x,current.y)){gameOver();return;}
@@ -886,6 +1046,32 @@ function toggleMusic() {
   }
   buildDeco('deco-left',12,2);
   buildDeco('deco-right',12,2);
+
+  // ── Resize: redibujar si cambia el tamaño del canvas ──
+  function resizeCanvas() {
+    var wrap = canvas.parentElement;
+    if (!wrap) return;
+    var w = wrap.clientWidth;
+    var h = wrap.clientHeight;
+    if (w < 1 || h < 1) return;
+    // Mantener relación 1:2 (10 cols × 20 rows)
+    var cellW = Math.floor(w / COLS);
+    var cellH = Math.floor(h / ROWS);
+    CELL = Math.min(cellW, cellH);
+    var newW = CELL * COLS;
+    var newH = CELL * ROWS;
+    if (canvas.width !== newW || canvas.height !== newH) {
+      canvas.width  = newW;
+      canvas.height = newH;
+    }
+    render();
+  }
+
+  if (window.ResizeObserver) {
+    new ResizeObserver(resizeCanvas).observe(canvas.parentElement);
+  }
+  window.addEventListener('resize', resizeCanvas);
+  setTimeout(resizeCanvas, 100);
 
 })();
 </script>
