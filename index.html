@@ -85,6 +85,15 @@ body { padding-top: 0 !important; }
   .burbuja{width:130px;height:130px} .burbuja-emoji{font-size:2.4rem}
   .burbuja-grande{width:160px;height:160px} .burbuja-grande .burbuja-emoji{font-size:3rem}
 }
+/* Tarjeta juegos */
+.nav-card-juegos {
+  background: linear-gradient(135deg, rgba(82,183,136,.22), rgba(82,183,136,.10));
+  border-color: rgba(82,183,136,.3);
+}
+.nav-card-juegos:hover { border-color: rgba(82,183,136,.6); box-shadow: 0 12px 32px rgba(82,183,136,.2); }
+@media (prefers-color-scheme: dark) {
+  .nav-card-juegos { background: linear-gradient(135deg, rgba(82,183,136,.18), rgba(82,183,136,.07)); border-color: rgba(82,183,136,.22); }
+}
 </style>
 <!-- build:2025-06-25T19:00 -->
 </head>
@@ -169,6 +178,16 @@ body { padding-top: 0 !important; }
       <div class="nav-card-body-2025">
         <div class="nav-card-title-2025">Colegios</div>
         <div class="nav-card-desc-2025">14 establecimientos</div>
+      </div>
+      <div class="nav-card-arrow-2025">→</div>
+    </a>
+
+    <!-- Juegos -->
+    <a href="/juegos" class="nav-card-2025 nav-card-juegos" aria-label="Jugar Tetris">
+      <div class="nav-card-icon-2025">🎮</div>
+      <div class="nav-card-body-2025">
+        <div class="nav-card-title-2025">Juegos</div>
+        <div class="nav-card-desc-2025">Tetris clásico · ¿Tienes tiempo?</div>
       </div>
       <div class="nav-card-arrow-2025">→</div>
     </a>
