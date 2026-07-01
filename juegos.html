@@ -382,7 +382,7 @@ var PIECES=[
 
 // ── AUDIO ──
 var AC=window.AudioContext||window.webkitAudioContext, ac=null;
-var musicOn=false, musicTimer=null, musicPlayed=false;
+var musicOn=false, musicTimer=null, musicPlayed=false, musicRunning=false;
 
 var THEME=[
   [659.3,1],[493.9,.5],[523.3,.5],[587.3,1],[523.3,.5],[493.9,.5],
@@ -420,22 +420,26 @@ function sched(notes,t0,type,vol){
 }
 
 function playTheme(){
-  if(!musicOn||!ac)return;
-  clearTimeout(musicTimer); // evitar loops duplicados
+  if(!musicOn||!ac||musicRunning)return;
+  musicRunning=true;
+  clearTimeout(musicTimer);
   var t0=ac.currentTime+0.05;
   sched(THEME,t0,'square',0.08);
   sched(BASS,t0,'triangle',0.04);
   var total=THEME.reduce(function(s,n){return s+n[1]*BEAT;},0);
-  musicTimer=setTimeout(playTheme,total*1000-100);
+  musicTimer=setTimeout(function(){ musicRunning=false; if(musicOn) playTheme(); },total*1000-100);
 }
 
 function startMusic(){
-  if(musicPlayed)return; // solo la primera vez
-  initAC(); musicOn=true; musicPlayed=true;
+  if(musicPlayed)return;
+  initAC(); musicOn=true; musicPlayed=true; musicRunning=false;
   clearTimeout(musicTimer);
   playTheme();
 }
-function stopMusic(){musicOn=false;clearTimeout(musicTimer);}
+function stopMusic(){
+  musicOn=false; musicRunning=false;
+  clearTimeout(musicTimer);
+}
 
 // Efectos de sonido
 function beep(f1,f2,d,v){
@@ -609,10 +613,20 @@ function reset(){
 }
 
 // ── BIND BOTONES ──
+// Usamos touchstart para respuesta inmediata, y prevenimos el click posterior en móvil
 function bind(id,fn){
   var el=document.getElementById(id);if(!el)return;
-  el.addEventListener('touchstart',function(e){e.preventDefault();fn();},{passive:false});
-  el.addEventListener('click',fn);
+  var touched=false;
+  el.addEventListener('touchstart',function(e){
+    e.preventDefault();
+    touched=true;
+    fn();
+    setTimeout(function(){touched=false;},400);
+  },{passive:false});
+  el.addEventListener('click',function(){
+    if(touched)return; // ya se ejecutó en touchstart
+    fn();
+  });
 }
 
 bind('btn-onoff', function(){if(!running)startGame();else togglePause();});
@@ -630,8 +644,8 @@ bind('btn-sound', function(){
     stopMusic();
     document.getElementById('btn-sound').style.background='radial-gradient(circle at 35% 25%,#fff9a0,#f5c000 60%,#d4a000)';
   } else {
+    if(musicRunning)return; // ya está sonando, ignorar
     musicOn=true;
-    clearTimeout(musicTimer); // evita doble loop
     playTheme();
     document.getElementById('btn-sound').style.background='radial-gradient(circle at 35% 25%,#ccff88,#44cc00)';
   }
