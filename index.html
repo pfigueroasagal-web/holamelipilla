@@ -91,8 +91,15 @@ body { padding-top: 0 !important; }
   border-color: rgba(82,183,136,.3);
 }
 .nav-card-juegos:hover { border-color: rgba(82,183,136,.6); box-shadow: 0 12px 32px rgba(82,183,136,.2); }
+/* Tarjeta noticias */
+.nav-card-noticias {
+  background: linear-gradient(135deg, rgba(13,110,253,.22), rgba(13,110,253,.10));
+  border-color: rgba(13,110,253,.3);
+}
+.nav-card-noticias:hover { border-color: rgba(13,110,253,.6); box-shadow: 0 12px 32px rgba(13,110,253,.2); }
 @media (prefers-color-scheme: dark) {
   .nav-card-juegos { background: linear-gradient(135deg, rgba(82,183,136,.18), rgba(82,183,136,.07)); border-color: rgba(82,183,136,.22); }
+  .nav-card-noticias { background: linear-gradient(135deg, rgba(13,110,253,.18), rgba(13,110,253,.07)); border-color: rgba(13,110,253,.22); }
 }
 </style>
 <!-- build:2025-06-25T19:00 -->
@@ -188,6 +195,16 @@ body { padding-top: 0 !important; }
       <div class="nav-card-body-2025">
         <div class="nav-card-title-2025">Juegos</div>
         <div class="nav-card-desc-2025">Tetris clásico · ¿Tienes tiempo?</div>
+      </div>
+      <div class="nav-card-arrow-2025">→</div>
+    </a>
+
+    <!-- Noticias -->
+    <a href="/noticias" class="nav-card-2025 nav-card-noticias" aria-label="Ver noticias de Melipilla">
+      <div class="nav-card-icon-2025">📰</div>
+      <div class="nav-card-body-2025">
+        <div class="nav-card-title-2025">Noticias</div>
+        <div class="nav-card-desc-2025">Últimas noticias · Se actualiza solo</div>
       </div>
       <div class="nav-card-arrow-2025">→</div>
     </a>
