@@ -97,9 +97,16 @@ body { padding-top: 0 !important; }
   border-color: rgba(13,110,253,.3);
 }
 .nav-card-noticias:hover { border-color: rgba(13,110,253,.6); box-shadow: 0 12px 32px rgba(13,110,253,.2); }
+/* Tarjeta trabajos */
+.nav-card-trabajos {
+  background: linear-gradient(135deg, rgba(46,125,50,.22), rgba(46,125,50,.10));
+  border-color: rgba(46,125,50,.3);
+}
+.nav-card-trabajos:hover { border-color: rgba(46,125,50,.6); box-shadow: 0 12px 32px rgba(46,125,50,.2); }
 @media (prefers-color-scheme: dark) {
-  .nav-card-juegos { background: linear-gradient(135deg, rgba(82,183,136,.18), rgba(82,183,136,.07)); border-color: rgba(82,183,136,.22); }
-  .nav-card-noticias { background: linear-gradient(135deg, rgba(13,110,253,.18), rgba(13,110,253,.07)); border-color: rgba(13,110,253,.22); }
+  .nav-card-juegos    { background: linear-gradient(135deg, rgba(82,183,136,.18), rgba(82,183,136,.07)); border-color: rgba(82,183,136,.22); }
+  .nav-card-noticias  { background: linear-gradient(135deg, rgba(13,110,253,.18), rgba(13,110,253,.07)); border-color: rgba(13,110,253,.22); }
+  .nav-card-trabajos  { background: linear-gradient(135deg, rgba(46,125,50,.18), rgba(46,125,50,.07)); border-color: rgba(46,125,50,.22); }
 }
 </style>
 <!-- build:2025-06-25T19:00 -->
@@ -205,6 +212,16 @@ body { padding-top: 0 !important; }
       <div class="nav-card-body-2025">
         <div class="nav-card-title-2025">Noticias</div>
         <div class="nav-card-desc-2025">Últimas noticias · Se actualiza solo</div>
+      </div>
+      <div class="nav-card-arrow-2025">→</div>
+    </a>
+
+    <!-- Trabajos -->
+    <a href="/trabajos" class="nav-card-2025 nav-card-trabajos" aria-label="Ver ofertas de trabajo en Melipilla">
+      <div class="nav-card-icon-2025">💼</div>
+      <div class="nav-card-body-2025">
+        <div class="nav-card-title-2025">Trabajos</div>
+        <div class="nav-card-desc-2025">Ofertas de empleo · BNE · Indeed</div>
       </div>
       <div class="nav-card-arrow-2025">→</div>
     </a>

@@ -12,7 +12,8 @@
     { "source": "/apoyar",      "destination": "/apoyar.html" },
     { "source": "/sugerencias", "destination": "/sugerencias.html" },
     { "source": "/juegos",      "destination": "/juegos.html" },
-    { "source": "/noticias",    "destination": "/noticias.html" }
+    { "source": "/noticias",    "destination": "/noticias.html" },
+    { "source": "/trabajos",    "destination": "/trabajos.html" }
   ],
   "headers": [
     {
