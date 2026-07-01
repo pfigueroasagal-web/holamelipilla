@@ -142,10 +142,10 @@
 <script>
 var queryActual = 'Melipilla';
 
-// Proxies en orden de prioridad (el primero que responda gana)
+// Proxies en orden de prioridad
 var PROXIES = [
-  'https://corsproxy.io/?',
-  'https://api.allorigins.win/get?url='
+  { url: 'https://api.allorigins.win/get?url=', json: true  },
+  { url: 'https://corsproxy.io/?',              json: false }
 ];
 
 function timeAgo(dateStr) {
@@ -238,8 +238,8 @@ function cargarConProxy(query, proxyIndex) {
 
   var rssUrl = 'https://news.google.com/rss/search?q=' + encodeURIComponent(query) + '&hl=es-419&gl=CL&ceid=CL:es-419';
   var proxy  = PROXIES[proxyIndex];
-  var url    = proxy + encodeURIComponent(rssUrl);
-  var timeout = 5000; // 5 segundos por proxy
+  var url    = proxy.url + encodeURIComponent(rssUrl);
+  var timeout = 6000;
 
   var done = false;
   var timer = setTimeout(function() {
@@ -247,12 +247,14 @@ function cargarConProxy(query, proxyIndex) {
   }, timeout);
 
   fetch(url)
-    .then(function(r) { return r.json(); })
+    .then(function(r) {
+      return proxy.json ? r.json() : r.text();
+    })
     .then(function(data) {
       if (done) return;
       done = true; clearTimeout(timer);
-      // allorigins devuelve data.contents, corsproxy devuelve el XML directo
-      var text = data.contents || (typeof data === 'string' ? data : JSON.stringify(data));
+      // allorigins devuelve {contents: "..."}, corsproxy devuelve texto XML directo
+      var text = proxy.json ? data.contents : data;
       var items = parsearRSS(text);
       if (!items.length) throw new Error('empty');
       renderNoticias(items);
