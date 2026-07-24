@@ -115,125 +115,98 @@ body { padding-top: 0 !important; }
 
 
 
-<!-- ─── HERO NUEVO 2025 ─── -->
-<header class="hero-2025" id="inicio">
+<!-- ─── HERO 2026 (QA) ─── -->
+<header class="hero-2026" id="inicio">
 
-  <!-- Top: eyebrow + título -->
-  <div class="hero-top">
-    <div class="hero-eyebrow-2025">
-      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      Región Metropolitana · Provincia de Melipilla
-    </div>
-    <h1 class="hero-title-2025">Hola,<br><em>Melipilla</em> 👋</h1>
-    <p class="hero-sub-2025">Tu guía de servicios esenciales</p>
+  <div class="hero-2026-topbar">
+    <a href="#inicio" class="hero-2026-brand"><span class="hero-2026-brand-dot"></span> Hola Melipilla</a>
+    <nav class="hero-2026-toplinks" aria-label="Navegación principal">
+      <a href="/farmacias">Farmacias</a>
+      <a href="/salud">Salud</a>
+      <a href="/colegios">Colegios</a>
+      <a href="/ferias">Ferias</a>
+      <a href="/noticias">Noticias</a>
+    </nav>
+    <a href="/sugerencias" class="hero-2026-topcta">Sugerencias →</a>
   </div>
 
-  <!-- Buscador -->
-  <div class="buscador-global-wrap" role="search" aria-label="Buscador general" style="max-width:540px;margin:0 auto 1.5rem">
-    <div class="buscador-global-inner">
-      <svg class="buscador-icono" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input id="buscador-global" type="search" placeholder="Buscar farmacia, CESFAM, colegio…" autocomplete="off" aria-label="Buscar" aria-controls="buscador-resultados" aria-expanded="false">
-      <button id="buscador-limpiar" class="buscador-limpiar" aria-label="Limpiar" style="display:none">✕</button>
+  <div class="hero-2026-main">
+    <div>
+      <div class="hero-2026-eyebrow">Región Metropolitana · Provincia de Melipilla</div>
+      <h1 class="hero-2026-title">Todo Melipilla,<span class="accent">en un lugar.</span></h1>
+      <p class="hero-2026-desc">Farmacia de turno en vivo, centros de salud, colegios, ferias libres y emergencias. Gratis, sin publicidad, hecho por vecinos.</p>
+
+      <!-- Buscador (misma funcionalidad que antes) -->
+      <div class="buscador-global-wrap" role="search" aria-label="Buscador general">
+        <div class="buscador-global-inner">
+          <svg class="buscador-icono" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input id="buscador-global" type="search" placeholder="Buscar farmacia, CESFAM, colegio…" autocomplete="off" aria-label="Buscar" aria-controls="buscador-resultados" aria-expanded="false">
+          <button id="buscador-limpiar" class="buscador-limpiar" aria-label="Limpiar" style="display:none">✕</button>
+        </div>
+        <div id="buscador-resultados" class="buscador-resultados" role="listbox" hidden></div>
+      </div>
+
+      <div class="hero-2026-tags">
+        <a class="hero-2026-tag" href="/seguridad">🚨 Emergencias</a>
+        <a class="hero-2026-tag" href="/farmacias">💊 Turno hoy</a>
+        <a class="hero-2026-tag" href="/ferias">🛒 Ferias</a>
+        <a class="hero-2026-tag" href="/trabajos">💼 Trabajos</a>
+      </div>
     </div>
-    <div id="buscador-resultados" class="buscador-resultados" role="listbox" hidden></div>
+
+    <div class="bento-2026">
+      <a href="/farmacias" class="bento-2026-card bento-2026-big" aria-label="Ver farmacias">
+        <div>
+          <div class="bento-2026-icon">💊</div>
+          <div class="bento-2026-title">Farmacia de turno</div>
+          <div class="bento-2026-sub">18 farmacias monitoreadas</div>
+        </div>
+        <div class="bento-2026-live">
+          <div class="bento-2026-live-label">Turno hoy</div>
+          <div id="turno-loading" class="bento-2026-live-value" style="opacity:.7;color:rgba(255,255,255,.7)">Cargando…</div>
+          <div id="turno-resultado" class="bento-2026-live-value"></div>
+        </div>
+      </a>
+
+      <a href="/salud" class="bento-2026-card bento-2026-salud" aria-label="Ver centros de salud">
+        <div class="bento-2026-icon">🏥</div>
+        <div class="bento-2026-title">Salud</div>
+        <div class="bento-2026-sub">8 centros · FONASA</div>
+      </a>
+
+      <a href="/seguridad" class="bento-2026-card bento-2026-seguridad" aria-label="Ver seguridad">
+        <div class="bento-2026-icon">🚔</div>
+        <div class="bento-2026-title">Seguridad</div>
+        <div class="bento-2026-sub">133 · 131 · 132</div>
+      </a>
+
+      <a href="/ferias" class="bento-2026-card bento-2026-ferias" aria-label="Ver ferias libres">
+        <div class="bento-2026-icon">🛒</div>
+        <div class="bento-2026-title">Ferias libres</div>
+        <div class="bento-2026-sub">8 ferias · gratis</div>
+      </a>
+
+      <a href="/colegios" class="bento-2026-card bento-2026-colegios" aria-label="Ver colegios">
+        <div class="bento-2026-icon">🏫</div>
+        <div class="bento-2026-title">Colegios</div>
+        <div class="bento-2026-sub">14 establecimientos</div>
+      </a>
+
+      <a href="/juegos" class="bento-2026-card" aria-label="Jugar Tetris">
+        <div class="bento-2026-icon">🎮</div>
+        <div class="bento-2026-title">Juegos</div>
+        <div class="bento-2026-sub">Tetris clásico</div>
+      </a>
+    </div>
   </div>
-
-  <!-- Tarjeta farmacia de turno (destacada, ancho completo) -->
-  <div class="nav-grid-2025">
-
-    <!-- Tarjeta GRANDE: Farmacias (ocupa 2 columnas en desktop) -->
-    <a href="/farmacias" class="nav-card-2025 nav-card-farmacia" aria-label="Ver farmacias">
-      <div class="nav-card-icon-2025">💊</div>
-      <div class="nav-card-body-2025">
-        <div class="nav-card-title-2025">Farmacias</div>
-        <div class="nav-card-desc-2025">18 farmacias · Turno 24h en vivo</div>
-      </div>
-      <div class="nav-card-turno-2025">
-        <div style="font-size:10px;opacity:.7;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px">Turno hoy</div>
-        <div id="turno-loading" style="font-size:12px;opacity:.7">Cargando…</div>
-        <div id="turno-resultado" style="font-size:13px;font-weight:700"></div>
-      </div>
-      <div class="nav-card-arrow-2025">→</div>
-    </a>
-
-    <!-- Salud -->
-    <a href="/salud" class="nav-card-2025 nav-card-salud" aria-label="Ver centros de salud">
-      <div class="nav-card-icon-2025">🏥</div>
-      <div class="nav-card-body-2025">
-        <div class="nav-card-title-2025">Salud</div>
-        <div class="nav-card-desc-2025">8 centros · FONASA</div>
-      </div>
-      <div class="nav-card-arrow-2025">→</div>
-    </a>
-
-    <!-- Seguridad -->
-    <a href="/seguridad" class="nav-card-2025 nav-card-seguridad" aria-label="Ver seguridad">
-      <div class="nav-card-icon-2025">🚔</div>
-      <div class="nav-card-body-2025">
-        <div class="nav-card-title-2025">Seguridad</div>
-        <div class="nav-card-desc-2025">133 · 131 · 132</div>
-      </div>
-      <div class="nav-card-arrow-2025">→</div>
-    </a>
-
-    <!-- Ferias -->
-    <a href="/ferias" class="nav-card-2025 nav-card-ferias" aria-label="Ver ferias libres">
-      <div class="nav-card-icon-2025">🛒</div>
-      <div class="nav-card-body-2025">
-        <div class="nav-card-title-2025">Ferias libres</div>
-        <div class="nav-card-desc-2025">8 ferias · entrada gratis</div>
-      </div>
-      <div class="nav-card-arrow-2025">→</div>
-    </a>
-
-    <!-- Colegios -->
-    <a href="/colegios" class="nav-card-2025 nav-card-colegios" aria-label="Ver colegios">
-      <div class="nav-card-icon-2025">🏫</div>
-      <div class="nav-card-body-2025">
-        <div class="nav-card-title-2025">Colegios</div>
-        <div class="nav-card-desc-2025">14 establecimientos</div>
-      </div>
-      <div class="nav-card-arrow-2025">→</div>
-    </a>
-
-    <!-- Juegos -->
-    <a href="/juegos" class="nav-card-2025 nav-card-juegos" aria-label="Jugar Tetris">
-      <div class="nav-card-icon-2025">🎮</div>
-      <div class="nav-card-body-2025">
-        <div class="nav-card-title-2025">Juegos</div>
-        <div class="nav-card-desc-2025">Tetris clásico · ¿Tienes tiempo?</div>
-      </div>
-      <div class="nav-card-arrow-2025">→</div>
-    </a>
-
-    <!-- Noticias -->
-    <a href="/noticias" class="nav-card-2025 nav-card-noticias" aria-label="Ver noticias de Melipilla">
-      <div class="nav-card-icon-2025">📰</div>
-      <div class="nav-card-body-2025">
-        <div class="nav-card-title-2025">Noticias</div>
-        <div class="nav-card-desc-2025">Últimas noticias · Se actualiza solo</div>
-      </div>
-      <div class="nav-card-arrow-2025">→</div>
-    </a>
-
-    <!-- Trabajos -->
-    <a href="/trabajos" class="nav-card-2025 nav-card-trabajos" aria-label="Ver ofertas de trabajo en Melipilla">
-      <div class="nav-card-icon-2025">💼</div>
-      <div class="nav-card-body-2025">
-        <div class="nav-card-title-2025">Trabajos</div>
-        <div class="nav-card-desc-2025">Ofertas de empleo · BNE · Indeed</div>
-      </div>
-      <div class="nav-card-arrow-2025">→</div>
-    </a>
-
-    <!-- Apoyar + Sugerencias (mini pills) -->
-    <div class="nav-pills-row-2025">
-      <a href="/apoyar" class="nav-pill-2025">💛 Apoyar</a>
-      <a href="/sugerencias" class="nav-pill-2025">💬 Sugerencias</a>
-    </div>
-
-  </div><!-- /nav-grid-2025 -->
 </header>
+
+<!-- Pills secundarias: noticias, trabajos, apoyar (mantienen accesos existentes) -->
+<div style="background:var(--ink-2026,#0B1F17);display:flex;justify-content:center;gap:.6rem;flex-wrap:wrap;padding:0 1rem 2.5rem;position:relative;z-index:1">
+  <a href="/noticias" class="hero-2026-tag" style="border-color:rgba(13,110,253,.35)">📰 Noticias</a>
+  <a href="/trabajos" class="hero-2026-tag" style="border-color:rgba(46,125,50,.4)">💼 Trabajos</a>
+  <a href="/apoyar" class="hero-2026-tag" style="border-color:rgba(255,214,0,.35)">💛 Apoyar</a>
+</div>
 
 
 <!-- ─── CONTENIDO PRINCIPAL ─── -->
