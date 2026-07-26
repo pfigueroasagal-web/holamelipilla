@@ -1021,7 +1021,19 @@ body { padding-top: 0 !important; }
       };
     }
 
-    // a) Archivo same-origin generado a diario
+    // a0) Función serverless de Vercel: consulta el MINSAL desde el servidor
+    //     (tiempo real, sin CORS, sin depender de GitHub Actions).
+    async function desdeServidor() {
+      try {
+        var d = await tryFetch('/api/turno', 8000);
+        if (d && Array.isArray(d.farmacias) && d.farmacias.length) {
+          return { farmacias: d.farmacias.map(normalizar), fecha: d.fecha || hoyISO() };
+        }
+      } catch(e) {}
+      return null;
+    }
+
+    // a) Archivo same-origin generado a diario (respaldo)
     async function desdeArchivo() {
       try {
         var d = await tryFetch('/turno.json?v=' + Math.floor(Date.now() / 3600000), 4000);
@@ -1103,7 +1115,11 @@ body { padding-top: 0 !important; }
 
     var hoy = hoyISO();
 
-    // 1) Archivo same-origin: rápido y confiable
+    // 1) Función serverless: lo más confiable (servidor, sin CORS)
+    var servidor = await desdeServidor();
+    if (servidor) { renderTurnos(servidor); return; }
+
+    // 2) Archivo same-origin generado a diario
     var archivo = await desdeArchivo();
     if (archivo) {
       renderTurnos(archivo);
@@ -1114,11 +1130,11 @@ body { padding-top: 0 !important; }
       return;
     }
 
-    // 2) Sin archivo: intentamos en vivo
+    // 3) Último recurso: API en vivo desde el navegador
     var vivo = await desdeVivo();
     if (vivo) { renderTurnos(vivo); return; }
 
-    // 3) Nada disponible: tarjeta útil
+    // 4) Nada disponible: tarjeta útil (no un error)
     renderFallback();
   })();
 
