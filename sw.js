@@ -1,6 +1,6 @@
-// sw.js — Hola Melipilla Service Worker v8
-// v8: capa de profundidad/armonía y pulido móvil (styles v12)
-const CACHE_NAME = 'holamelipilla-v8';
+// sw.js — Hola Melipilla Service Worker v9
+// v9: paleta 2026, armonía de portada, sin banner de instalación (styles v14)
+const CACHE_NAME = 'holamelipilla-v9';
 
 const ARCHIVOS_CACHE = [
   '/',
@@ -18,7 +18,7 @@ const ARCHIVOS_CACHE = [
   '/apoyar',
   '/sugerencias',
   '/404.html',
-  '/styles.css?v=11',
+  '/styles.css?v=14',
   '/og-image.svg',
   '/manifest.json',
   '/icon-192.png',
