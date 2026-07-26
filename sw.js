@@ -1,6 +1,6 @@
-// sw.js — Hola Melipilla Service Worker v7
-// v7: comunidad real (Supabase), push del turno, config.js y eventos.json
-const CACHE_NAME = 'holamelipilla-v7';
+// sw.js — Hola Melipilla Service Worker v8
+// v8: capa de profundidad/armonía y pulido móvil (styles v12)
+const CACHE_NAME = 'holamelipilla-v8';
 
 const ARCHIVOS_CACHE = [
   '/',

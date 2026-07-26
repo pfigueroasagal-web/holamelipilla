@@ -2597,3 +2597,156 @@ main.index-main {
   .footer-social-title { color: #E8ECF0; }
   .footer-social { border-bottom-color: rgba(255,255,255,.08); }
 }
+
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   v12 — PROFUNDIDAD, ARMONÍA Y PULIDO MÓVIL
+   Capa cohesiva que se aplica a TODO el sitio. Da relieve (no "plano"),
+   unifica sombras/relieve y afina la experiencia en celular.
+   Respeta el modo oscuro (overrides al final).
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Elevación en capas — dos sombras (contacto + difusa) = profundidad real */
+  --elev-1: 0 1px 2px rgba(16,40,28,.06), 0 3px 10px rgba(16,40,28,.06);
+  --elev-2: 0 2px 6px rgba(16,40,28,.07), 0 12px 28px rgba(16,40,28,.09);
+  --elev-3: 0 10px 22px rgba(16,40,28,.12), 0 26px 56px rgba(16,40,28,.14);
+  /* Brillo superior sutil, como luz cenital sobre la superficie */
+  --luz-top: inset 0 1px 0 rgba(255,255,255,.8);
+  --luz-top-btn: inset 0 1px 0 rgba(255,255,255,.28);
+  --ring-focus: 0 0 0 3px rgba(82,183,136,.45);
+}
+
+/* ── Base móvil: sin desbordes, texto estable, anclas visibles ── */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+img, svg, video, canvas { max-width: 100%; }
+:where([id]) { scroll-margin-top: 84px; }
+
+/* ── Fondo con profundidad (no plano): halo suave de marca ── */
+body {
+  background:
+    radial-gradient(1100px 540px at 50% -6%, rgba(82,183,136,.10), transparent 60%),
+    radial-gradient(760px 460px at 100% 2%, rgba(247,127,0,.055), transparent 55%),
+    var(--fondo);
+}
+.section-content-2025 {
+  background:
+    radial-gradient(720px 380px at 50% 0, rgba(82,183,136,.06), transparent 60%),
+    var(--fondo);
+}
+
+/* ── Superficies (tarjetas) con relieve y elevación al pasar el dedo ── */
+.card,
+.farmacia-card,
+.finde-card,
+.reporte-item,
+.emg-item,
+.turno-hoy-box,
+.mega-turno,
+.mega-clima,
+.avisos-card,
+.pulso-card {
+  box-shadow: var(--elev-2), var(--luz-top);
+  transition: transform .26s cubic-bezier(.34,1.28,.5,1),
+              box-shadow .26s ease, border-color .26s ease;
+}
+.card:hover,
+.farmacia-card:hover,
+.finde-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--elev-3), var(--luz-top);
+  border-color: rgba(82,183,136,.4);
+}
+.finde-card:active,
+.farmacia-card:active { transform: translateY(-1px); }
+
+/* ── Íconos de sección/tarjeta: tiles con relieve ── */
+.section-icon,
+.card-icon {
+  box-shadow: 0 4px 12px rgba(16,40,28,.12), inset 0 1px 0 rgba(255,255,255,.55);
+}
+
+/* ── Título de sección: subrayado con degradado (más vivo que la línea plana) ── */
+.section-title {
+  border-bottom: none;
+  position: relative;
+}
+.section-title::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--primario-claro), var(--acento) 45%, transparent 80%);
+  opacity: .55;
+}
+
+/* ── Botones con tacto (relieve + hundido al presionar) ── */
+.btn, .btn-map, .btn-mapa, .btn-whatsapp, .btn-wsp, .btn-tel, .btn-copiar,
+.btn-submit, .finde-cta-btn, .reporte-enviar-btn, .mt-btn, .don-btn,
+.filtro-btn, .encuesta-opt, .buscador-btn {
+  box-shadow: var(--elev-1);
+}
+.btn-whatsapp, .btn-wsp, .btn-submit, .reporte-enviar-btn, .finde-cta-btn,
+.don-btn, .mt-btn-primario, .btn-turno-primary {
+  box-shadow: var(--elev-1), var(--luz-top-btn);
+}
+.btn:active, .btn-map:active, .btn-mapa:active, .btn-whatsapp:active,
+.btn-wsp:active, .btn-tel:active, .btn-submit:active, .finde-cta-btn:active,
+.reporte-enviar-btn:active, .mt-btn:active, .don-btn:active, .filtro-btn:active,
+.encuesta-opt:active, .buscador-btn:active {
+  transform: translateY(1px) scale(.99);
+}
+
+/* ── Accesibilidad: foco visible y prolijo ── */
+a:focus-visible, button:focus-visible,
+input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: none;
+  box-shadow: var(--ring-focus);
+}
+
+/* ── Pulido móvil ── */
+nav { padding-top: max(.75rem, env(safe-area-inset-top)); }
+.body-nav { padding-top: calc(70px + env(safe-area-inset-top)); }
+.install-banner { bottom: max(12px, env(safe-area-inset-bottom)) !important; }
+
+@media (max-width: 768px) {
+  .body-nav { padding-top: calc(64px + env(safe-area-inset-top)); }
+}
+@media (max-width: 600px) {
+  .section-title h2 { font-size: 1.28rem; }
+  .section-title { margin-bottom: 1.35rem; }
+  /* Objetivos táctiles cómodos */
+  .btn, .btn-map, .btn-mapa, .btn-whatsapp, .btn-wsp, .btn-tel, .btn-submit,
+  .mt-btn, .filtro-btn, .finde-cta-btn, .don-btn, .nav-links a {
+    min-height: 46px;
+  }
+  /* Un poco más de aire entre tarjetas */
+  .cards { gap: 1rem; }
+  .finde-grid { gap: .9rem; }
+}
+
+/* ═══════════════ Overrides para MODO OSCURO (van al final para ganar) ═══════ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --elev-1: 0 1px 2px rgba(0,0,0,.45), 0 3px 10px rgba(0,0,0,.4);
+    --elev-2: 0 2px 6px rgba(0,0,0,.5),  0 12px 28px rgba(0,0,0,.55);
+    --elev-3: 0 10px 22px rgba(0,0,0,.6), 0 26px 56px rgba(0,0,0,.65);
+    --luz-top: inset 0 1px 0 rgba(255,255,255,.06);
+    --luz-top-btn: inset 0 1px 0 rgba(255,255,255,.10);
+  }
+  body {
+    background:
+      radial-gradient(1100px 540px at 50% -6%, rgba(82,183,136,.08), transparent 60%),
+      #0F1117;
+  }
+  .section-content-2025 {
+    background:
+      radial-gradient(720px 380px at 50% 0, rgba(82,183,136,.06), transparent 60%),
+      var(--fondo);
+  }
+  .section-icon, .card-icon {
+    box-shadow: 0 4px 12px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.05);
+  }
+}
