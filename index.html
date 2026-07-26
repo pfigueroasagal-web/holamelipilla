@@ -979,7 +979,12 @@ body { padding-top: 0 !important; }
   }
 
   /* ═══════════════════════════════════════════════════════════
-     1) FARMACIA DE TURNO — API MINSAL + fallback proxies
+     1) FARMACIA DE TURNO
+     Estrategia robusta:
+       a) /turno.json (mismo dominio, generado a diario por GitHub Actions
+          desde el MINSAL → instantáneo y sin CORS).
+       b) Si falta o está viejo, intentamos la API del MINSAL en vivo.
+       c) Si todo falla, mostramos una tarjeta útil (no un error feo).
      ═══════════════════════════════════════════════════════════ */
   (async function farmaciaTurno() {
     var body = document.getElementById('mega-turno-body');
@@ -988,6 +993,10 @@ body { padding-top: 0 !important; }
 
     function quitarTildes(s) {
       return (s || '').toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+    }
+    function hoyISO() {
+      var d = ahoraSantiago();
+      return d.getFullYear() + '-' + ('0'+(d.getMonth()+1)).slice(-2) + '-' + ('0'+d.getDate()).slice(-2);
     }
 
     async function tryFetch(url, ms) {
@@ -1001,14 +1010,36 @@ body { padding-top: 0 !important; }
       } catch(e) { clearTimeout(timer); throw e; }
     }
 
-    async function obtener() {
+    // Normaliza cualquier fuente al shape {nombre, direccion, telefono, apertura, cierre}
+    function normalizar(f) {
+      return {
+        nombre: f.nombre || f.local_nombre || 'Farmacia de turno',
+        direccion: f.direccion || f.local_direccion || '',
+        telefono: f.telefono || f.local_telefono || '',
+        apertura: f.apertura || f.funcionamiento_hora_apertura || '',
+        cierre: f.cierre || f.funcionamiento_hora_cierre || ''
+      };
+    }
+
+    // a) Archivo same-origin generado a diario
+    async function desdeArchivo() {
+      try {
+        var d = await tryFetch('/turno.json?v=' + Math.floor(Date.now() / 3600000), 4000);
+        if (d && Array.isArray(d.farmacias) && d.farmacias.length) {
+          return { farmacias: d.farmacias.map(normalizar), fecha: d.fecha || '' };
+        }
+      } catch(e) {}
+      return null;
+    }
+
+    // b) API del MINSAL en vivo (con proxies de respaldo)
+    async function desdeVivo() {
       var estrategias = [
-        function() { return tryFetch(API_URL, 6000); },
-        function() { return tryFetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(API_URL), 9000); },
-        function() { return tryFetch('https://corsproxy.io/?' + encodeURIComponent(API_URL), 9000); },
-        function() { return tryFetch('https://thingproxy.freeboard.io/fetch/' + API_URL, 9000); },
+        function() { return tryFetch(API_URL, 5000); },
+        function() { return tryFetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(API_URL), 8000); },
+        function() { return tryFetch('https://corsproxy.io/?url=' + encodeURIComponent(API_URL), 8000); },
         function() {
-          return tryFetch('https://api.allorigins.win/get?url=' + encodeURIComponent(API_URL), 9000)
+          return tryFetch('https://api.allorigins.win/get?url=' + encodeURIComponent(API_URL), 8000)
             .then(function(d) { return typeof d.contents === 'string' ? JSON.parse(d.contents) : d.contents; });
         }
       ];
@@ -1016,13 +1047,14 @@ body { padding-top: 0 !important; }
         try {
           var data = await estrategias[i]();
           if (Array.isArray(data) && data.length > 0) {
-            return data.filter(function(f) {
+            var mel = data.filter(function(f) {
               return quitarTildes(f.comuna_nombre || f.comuna || '').indexOf('melipilla') >= 0;
             });
+            if (mel.length) return { farmacias: mel.map(normalizar), fecha: hoyISO() };
           }
         } catch(e) { /* siguiente */ }
       }
-      return [];
+      return null;
     }
 
     function es24hrs(a, c) {
@@ -1030,54 +1062,64 @@ body { padding-top: 0 !important; }
       var aa = a.toLowerCase().replace(/\s/g,''), cc = c.toLowerCase().replace(/\s/g,'');
       return (aa.indexOf('00:00') >= 0 && (cc.indexOf('00:00') >= 0 || cc.indexOf('23:59') >= 0));
     }
+    function fechaLarga(iso) {
+      var d = iso ? new Date(iso + 'T12:00:00') : ahoraSantiago();
+      return d.toLocaleDateString('es-CL', { weekday: 'long', day: 'numeric', month: 'long' });
+    }
 
-    function renderTurnos(turnos) {
-      if (!turnos.length) return renderError();
-      var hoy = ahoraSantiago().toLocaleDateString('es-CL', {
-        weekday: 'long', day: 'numeric', month: 'long', timeZone: 'America/Santiago'
-      });
-
+    function renderTurnos(res) {
+      var turnos = res.farmacias;
       body.innerHTML = turnos.map(function(f) {
-        var nombre = f.local_nombre || f.nombre || 'Farmacia de turno';
-        var dir    = f.local_direccion || f.direccion || '';
-        var tel    = f.local_telefono || f.telefono || '';
-        var hA = f.funcionamiento_hora_apertura || '', hC = f.funcionamiento_hora_cierre || '';
-        var h24 = es24hrs(hA, hC);
-        var horario = (hA && hC) ? (hA + ' – ' + hC + (h24 ? ' (24 hrs)' : '')) : '24 hrs';
-        var telClean = (tel || '').replace(/\s/g,'');
-        var mapaUrl = 'https://maps.google.com/?q=' + encodeURIComponent(nombre + ' ' + dir + ' Melipilla');
-
+        var h24 = es24hrs(f.apertura, f.cierre);
+        var horario = (f.apertura && f.cierre) ? (f.apertura + ' – ' + f.cierre + (h24 ? ' (24 hrs)' : '')) : '24 hrs';
+        var telClean = (f.telefono || '').replace(/\s/g,'');
+        var mapaUrl = 'https://maps.google.com/?q=' + encodeURIComponent(f.nombre + ' ' + f.direccion + ' Melipilla');
         return '' +
           '<div class="mt-farm">' +
-            '<div class="mt-nombre">🟢 ' + nombre + (h24 ? ' <span class="mt-24">🌙 24 hrs</span>' : '') + '</div>' +
-            (dir ? '<div class="mt-linea">📍 ' + dir + '</div>' : '') +
+            '<div class="mt-nombre">🟢 ' + f.nombre + (h24 ? ' <span class="mt-24">🌙 24 hrs</span>' : '') + '</div>' +
+            (f.direccion ? '<div class="mt-linea">📍 ' + f.direccion + '</div>' : '') +
             '<div class="mt-linea">🕐 ' + horario + '</div>' +
             '<div class="mt-actions">' +
-              (tel ? '<a href="tel:' + telClean + '" class="mt-btn mt-btn-primario">📞 Llamar ' + tel + '</a>' : '') +
+              (f.telefono ? '<a href="tel:' + telClean + '" class="mt-btn mt-btn-primario">📞 Llamar ' + f.telefono + '</a>' : '') +
               '<a href="' + mapaUrl + '" target="_blank" rel="noopener" class="mt-btn">🗺️ Cómo llegar</a>' +
             '</div>' +
           '</div>';
       }).join('') +
-      '<div class="mt-fecha">Turno del ' + hoy + '</div>';
+      '<div class="mt-fecha">Turno del ' + fechaLarga(res.fecha) + '</div>';
     }
 
-    function renderError() {
+    // Tarjeta útil (no un "error"): el turno cambia a diario, la enviamos a la fuente
+    function renderFallback() {
       body.innerHTML = '' +
         '<div class="mt-fallback">' +
-          '<strong>No pudimos cargar el turno automáticamente 😕</strong>' +
-          '<p>Consulta la fuente oficial:</p>' +
+          '<strong>💊 El turno de farmacia cambia cada día</strong>' +
+          '<p>Consulta al instante cuál está de turno hoy en Melipilla:</p>' +
           '<div class="mt-actions">' +
-            '<a href="https://farmaciasabiertas.cl" target="_blank" rel="noopener" class="mt-btn mt-btn-primario">🌐 farmaciasabiertas.cl</a>' +
-            '<a href="/farmacias" class="mt-btn">💊 Ver todas</a>' +
+            '<a href="https://farmaciasabiertas.cl" target="_blank" rel="noopener" class="mt-btn mt-btn-primario">🌐 Ver turno de hoy</a>' +
+            '<a href="/farmacias" class="mt-btn">💊 Todas las farmacias</a>' +
           '</div>' +
         '</div>';
     }
 
-    try {
-      var timeoutP = new Promise(function(_, rej) { setTimeout(function() { rej(new Error('timeout')); }, 9000); });
-      var turnos = await Promise.race([obtener(), timeoutP]);
-      renderTurnos(turnos);
-    } catch(e) { renderError(); }
+    var hoy = hoyISO();
+
+    // 1) Archivo same-origin: rápido y confiable
+    var archivo = await desdeArchivo();
+    if (archivo) {
+      renderTurnos(archivo);
+      if (archivo.fecha === hoy) return;   // está al día, listo
+      // Está viejo: intentamos refrescar en vivo sin bloquear lo ya mostrado
+      var vivoBg = await desdeVivo();
+      if (vivoBg) renderTurnos(vivoBg);
+      return;
+    }
+
+    // 2) Sin archivo: intentamos en vivo
+    var vivo = await desdeVivo();
+    if (vivo) { renderTurnos(vivo); return; }
+
+    // 3) Nada disponible: tarjeta útil
+    renderFallback();
   })();
 
   /* ═══════════════════════════════════════════════════════════
