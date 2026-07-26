@@ -1,0 +1,15 @@
+{
+  "_ayuda": "Eventos ESPECIALES del fin de semana. Se muestran arriba de las ferias fijas en la sección 'Este fin de semana'. Borra los pasados y agrega los nuevos. 'fecha' en formato AAAA-MM-DD; el evento se muestra desde el lunes de esa semana hasta el domingo. Deja 'destacado': true para resaltarlo.",
+  "eventos": [
+    {
+      "fecha": "2026-08-01",
+      "dia": "Sábado",
+      "emoji": "🎭",
+      "titulo": "Ejemplo: Feria costumbrista en la Plaza",
+      "detalle": "12:00–20:00 · música en vivo, comida típica y artesanía",
+      "lugar": "Plaza de Armas",
+      "link": "https://maps.google.com/?q=Plaza+de+Armas+Melipilla",
+      "destacado": true
+    }
+  ]
+}

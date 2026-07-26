@@ -34,6 +34,7 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css?v=11">
+  <script src="/config.js?v=1"></script>
   <style>
 /* index: sin padding-top (no hay nav fija) */
 body { padding-top: 0 !important; }
@@ -108,6 +109,47 @@ body { padding-top: 0 !important; }
   .nav-card-noticias  { background: linear-gradient(135deg, rgba(13,110,253,.18), rgba(13,110,253,.07)); border-color: rgba(13,110,253,.22); }
   .nav-card-trabajos  { background: linear-gradient(135deg, rgba(46,125,50,.18), rgba(46,125,50,.07)); border-color: rgba(46,125,50,.22); }
 }
+
+/* ── Compartir turno (dentro de la mega-card) ── */
+.mega-turno-foot-acts{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.mega-turno-share{background:#25D366;color:#fff;border:none;border-radius:100px;padding:7px 14px;font-family:'Plus Jakarta Sans',sans-serif;font-size:12.5px;font-weight:700;cursor:pointer;transition:background .2s,transform .15s;white-space:nowrap}
+.mega-turno-share:hover{background:#1ebe5d;transform:translateY(-1px)}
+
+/* ── Sección Avisos + Comunidad ── */
+#avisos .section-inner{max-width:640px}
+.avisos-card{background:linear-gradient(135deg,var(--primario),var(--primario-medio));border-radius:20px;padding:2rem 1.5rem;color:#fff;text-align:center;position:relative;overflow:hidden;box-shadow:0 12px 40px rgba(15,94,63,.28)}
+.avisos-emoji{font-size:2.6rem;line-height:1;display:block;margin-bottom:.4rem}
+.avisos-titulo{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.35rem;font-weight:800;color:#fff;margin-bottom:.5rem;line-height:1.2}
+.avisos-desc{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.55;max-width:460px;margin:0 auto 1.25rem}
+.avisos-form{display:flex;gap:.5rem;max-width:440px;margin:0 auto;flex-wrap:wrap}
+.avisos-form input{flex:1 1 200px;min-width:0;border:none;border-radius:100px;padding:12px 18px;font-size:.95rem;font-family:Inter,sans-serif;color:#212529;outline:none}
+.avisos-form input:focus{box-shadow:0 0 0 3px rgba(255,255,255,.4)}
+.avisos-form button{background:#F77F00;color:#fff;border:none;border-radius:100px;padding:12px 22px;font-family:'Plus Jakarta Sans',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:background .2s,transform .15s;white-space:nowrap}
+.avisos-form button:hover{background:#e07200;transform:translateY(-1px)}
+.avisos-form button:disabled{opacity:.6;cursor:default;transform:none}
+.avisos-msg{font-size:.85rem;min-height:1.1em;margin-top:.6rem;color:rgba(255,255,255,.92);font-weight:600}
+.avisos-sep{display:flex;align-items:center;gap:.75rem;max-width:420px;margin:1.4rem auto .9rem;color:rgba(255,255,255,.55);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em}
+.avisos-sep::before,.avisos-sep::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.25)}
+.comunidad-cta{display:inline-flex;align-items:center;gap:9px;background:#25D366;color:#fff;text-decoration:none;border-radius:100px;padding:12px 24px;font-family:'Plus Jakarta Sans',sans-serif;font-size:.95rem;font-weight:700;transition:background .2s,transform .15s}
+.comunidad-cta:hover{background:#1ebe5d;transform:translateY(-2px)}
+
+/* ── Banner instalar PWA ── */
+.install-banner{position:fixed;left:12px;right:12px;bottom:12px;z-index:9999;background:#fff;color:#212529;border:1px solid var(--borde);border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.22);padding:.85rem 1rem;display:flex;align-items:center;gap:1rem;max-width:520px;margin:0 auto;animation:install-up .35s ease}
+@keyframes install-up{from{transform:translateY(120%);opacity:0}to{transform:translateY(0);opacity:1}}
+.install-banner-txt{display:flex;align-items:center;gap:.6rem;font-size:.85rem;line-height:1.35}
+.install-banner-emoji{font-size:1.5rem;flex-shrink:0}
+.install-banner-acts{display:flex;align-items:center;gap:.4rem;margin-left:auto}
+.install-yes{background:var(--primario);color:#fff;border:none;border-radius:100px;padding:9px 18px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer;white-space:nowrap}
+.install-yes:hover{background:var(--primario-medio)}
+.install-no{background:transparent;border:none;color:var(--texto-suave);font-size:1.1rem;cursor:pointer;padding:6px 8px;line-height:1}
+@media (prefers-color-scheme: dark){
+  .install-banner{background:#1a2b22;color:#e8f0eb;border-color:rgba(255,255,255,.12)}
+  .avisos-form input{background:#fff}
+}
+
+/* ── Evento especial destacado en el finde ── */
+.finde-card-destacada{position:relative;border:2px solid #F77F00;box-shadow:0 8px 24px rgba(247,127,0,.18)}
+.finde-badge{position:absolute;top:10px;right:10px;background:#F77F00;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:100px;letter-spacing:.02em}
 </style>
 <!-- build:2025-06-25T19:00 -->
 </head>
@@ -200,7 +242,10 @@ body { padding-top: 0 !important; }
       </div>
       <div class="mega-turno-foot">
         <span>Datos oficiales <strong>MINSAL / FARMANET</strong> · se actualiza a diario</span>
-        <a href="/farmacias" class="mega-turno-link">Ver todas las farmacias →</a>
+        <div class="mega-turno-foot-acts">
+          <button id="share-turno" class="mega-turno-share" type="button" aria-label="Compartir turno de hoy por WhatsApp">📲 Compartir turno</button>
+          <a href="/farmacias" class="mega-turno-link">Ver todas →</a>
+        </div>
       </div>
     </article>
 
@@ -431,6 +476,30 @@ body { padding-top: 0 !important; }
   </div>
   </section>
 
+  <!-- ═══ AVISOS + COMUNIDAD ═══ -->
+  <section id="avisos" aria-labelledby="titulo-avisos">
+  <div class="section-inner">
+    <div class="avisos-card">
+      <div class="avisos-emoji" aria-hidden="true">🔔</div>
+      <h2 id="titulo-avisos" class="avisos-titulo">No te pierdas el turno de farmacia</h2>
+      <p class="avisos-desc">Déjanos tu WhatsApp o correo y te avisamos cada día qué farmacia está de turno, más las novedades importantes de Melipilla. Gratis y sin spam.</p>
+
+      <form id="avisos-form" class="avisos-form" novalidate>
+        <input id="avisos-input" type="text" inputmode="email" autocomplete="off"
+               placeholder="tu WhatsApp (+569…) o correo" aria-label="WhatsApp o correo">
+        <button id="avisos-btn" type="submit">Avísenme</button>
+      </form>
+      <p id="avisos-msg" class="avisos-msg" aria-live="polite"></p>
+
+      <div class="avisos-sep"><span>o únete a la comunidad</span></div>
+
+      <a id="comunidad-cta" class="comunidad-cta" href="#" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.054 23.5l5.849-1.533A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+        Unirme al Canal de WhatsApp
+      </a>
+    </div>
+  </div>
+  </section>
 
 
 
@@ -849,6 +918,18 @@ body { padding-top: 0 !important; }
 
 </main>
 
+<!-- ═══ BANNER INSTALAR APP (PWA) ═══ -->
+<div id="install-banner" class="install-banner" hidden>
+  <div class="install-banner-txt">
+    <span class="install-banner-emoji" aria-hidden="true">📍</span>
+    <span>Instala <strong>Hola Melipilla</strong> en tu teléfono — acceso rápido al turno y emergencias.</span>
+  </div>
+  <div class="install-banner-acts">
+    <button id="install-yes" class="install-yes" type="button">Instalar</button>
+    <button id="install-no" class="install-no" type="button" aria-label="Ahora no">✕</button>
+  </div>
+</div>
+
 <!-- ═══ FOOTER RENOVADO ═══ -->
 <footer class="site-footer footer-2026">
   <div class="footer-inner">
@@ -857,15 +938,15 @@ body { padding-top: 0 !important; }
     <div class="footer-social">
       <p class="footer-social-title">Síguenos y compártelo</p>
       <div class="footer-social-icons">
-        <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram" class="fs-ig">
+        <a id="social-ig" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram" class="fs-ig">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           <span>Instagram</span>
         </a>
-        <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok" class="fs-tt">
+        <a id="social-tt" href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok" class="fs-tt">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005.8 20.1a6.34 6.34 0 0010.86-4.43V8.87a8.16 8.16 0 004.77 1.52V6.94a4.85 4.85 0 01-1.84-.25z"/></svg>
           <span>TikTok</span>
         </a>
-        <a href="https://chat.whatsapp.com/" target="_blank" rel="noopener" aria-label="Comunidad WhatsApp" class="fs-wa">
+        <a id="social-wa" href="https://chat.whatsapp.com/" target="_blank" rel="noopener" aria-label="Comunidad WhatsApp" class="fs-wa">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.054 23.5l5.849-1.533A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
           <span>Comunidad</span>
         </a>
@@ -898,7 +979,12 @@ body { padding-top: 0 !important; }
   }
 
   /* ═══════════════════════════════════════════════════════════
-     1) FARMACIA DE TURNO — API MINSAL + fallback proxies
+     1) FARMACIA DE TURNO
+     Estrategia robusta:
+       a) /turno.json (mismo dominio, generado a diario por GitHub Actions
+          desde el MINSAL → instantáneo y sin CORS).
+       b) Si falta o está viejo, intentamos la API del MINSAL en vivo.
+       c) Si todo falla, mostramos una tarjeta útil (no un error feo).
      ═══════════════════════════════════════════════════════════ */
   (async function farmaciaTurno() {
     var body = document.getElementById('mega-turno-body');
@@ -907,6 +993,10 @@ body { padding-top: 0 !important; }
 
     function quitarTildes(s) {
       return (s || '').toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+    }
+    function hoyISO() {
+      var d = ahoraSantiago();
+      return d.getFullYear() + '-' + ('0'+(d.getMonth()+1)).slice(-2) + '-' + ('0'+d.getDate()).slice(-2);
     }
 
     async function tryFetch(url, ms) {
@@ -920,14 +1010,36 @@ body { padding-top: 0 !important; }
       } catch(e) { clearTimeout(timer); throw e; }
     }
 
-    async function obtener() {
+    // Normaliza cualquier fuente al shape {nombre, direccion, telefono, apertura, cierre}
+    function normalizar(f) {
+      return {
+        nombre: f.nombre || f.local_nombre || 'Farmacia de turno',
+        direccion: f.direccion || f.local_direccion || '',
+        telefono: f.telefono || f.local_telefono || '',
+        apertura: f.apertura || f.funcionamiento_hora_apertura || '',
+        cierre: f.cierre || f.funcionamiento_hora_cierre || ''
+      };
+    }
+
+    // a) Archivo same-origin generado a diario
+    async function desdeArchivo() {
+      try {
+        var d = await tryFetch('/turno.json?v=' + Math.floor(Date.now() / 3600000), 4000);
+        if (d && Array.isArray(d.farmacias) && d.farmacias.length) {
+          return { farmacias: d.farmacias.map(normalizar), fecha: d.fecha || '' };
+        }
+      } catch(e) {}
+      return null;
+    }
+
+    // b) API del MINSAL en vivo (con proxies de respaldo)
+    async function desdeVivo() {
       var estrategias = [
-        function() { return tryFetch(API_URL, 6000); },
-        function() { return tryFetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(API_URL), 9000); },
-        function() { return tryFetch('https://corsproxy.io/?' + encodeURIComponent(API_URL), 9000); },
-        function() { return tryFetch('https://thingproxy.freeboard.io/fetch/' + API_URL, 9000); },
+        function() { return tryFetch(API_URL, 5000); },
+        function() { return tryFetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(API_URL), 8000); },
+        function() { return tryFetch('https://corsproxy.io/?url=' + encodeURIComponent(API_URL), 8000); },
         function() {
-          return tryFetch('https://api.allorigins.win/get?url=' + encodeURIComponent(API_URL), 9000)
+          return tryFetch('https://api.allorigins.win/get?url=' + encodeURIComponent(API_URL), 8000)
             .then(function(d) { return typeof d.contents === 'string' ? JSON.parse(d.contents) : d.contents; });
         }
       ];
@@ -935,13 +1047,14 @@ body { padding-top: 0 !important; }
         try {
           var data = await estrategias[i]();
           if (Array.isArray(data) && data.length > 0) {
-            return data.filter(function(f) {
+            var mel = data.filter(function(f) {
               return quitarTildes(f.comuna_nombre || f.comuna || '').indexOf('melipilla') >= 0;
             });
+            if (mel.length) return { farmacias: mel.map(normalizar), fecha: hoyISO() };
           }
         } catch(e) { /* siguiente */ }
       }
-      return [];
+      return null;
     }
 
     function es24hrs(a, c) {
@@ -949,54 +1062,64 @@ body { padding-top: 0 !important; }
       var aa = a.toLowerCase().replace(/\s/g,''), cc = c.toLowerCase().replace(/\s/g,'');
       return (aa.indexOf('00:00') >= 0 && (cc.indexOf('00:00') >= 0 || cc.indexOf('23:59') >= 0));
     }
+    function fechaLarga(iso) {
+      var d = iso ? new Date(iso + 'T12:00:00') : ahoraSantiago();
+      return d.toLocaleDateString('es-CL', { weekday: 'long', day: 'numeric', month: 'long' });
+    }
 
-    function renderTurnos(turnos) {
-      if (!turnos.length) return renderError();
-      var hoy = ahoraSantiago().toLocaleDateString('es-CL', {
-        weekday: 'long', day: 'numeric', month: 'long', timeZone: 'America/Santiago'
-      });
-
+    function renderTurnos(res) {
+      var turnos = res.farmacias;
       body.innerHTML = turnos.map(function(f) {
-        var nombre = f.local_nombre || f.nombre || 'Farmacia de turno';
-        var dir    = f.local_direccion || f.direccion || '';
-        var tel    = f.local_telefono || f.telefono || '';
-        var hA = f.funcionamiento_hora_apertura || '', hC = f.funcionamiento_hora_cierre || '';
-        var h24 = es24hrs(hA, hC);
-        var horario = (hA && hC) ? (hA + ' – ' + hC + (h24 ? ' (24 hrs)' : '')) : '24 hrs';
-        var telClean = (tel || '').replace(/\s/g,'');
-        var mapaUrl = 'https://maps.google.com/?q=' + encodeURIComponent(nombre + ' ' + dir + ' Melipilla');
-
+        var h24 = es24hrs(f.apertura, f.cierre);
+        var horario = (f.apertura && f.cierre) ? (f.apertura + ' – ' + f.cierre + (h24 ? ' (24 hrs)' : '')) : '24 hrs';
+        var telClean = (f.telefono || '').replace(/\s/g,'');
+        var mapaUrl = 'https://maps.google.com/?q=' + encodeURIComponent(f.nombre + ' ' + f.direccion + ' Melipilla');
         return '' +
           '<div class="mt-farm">' +
-            '<div class="mt-nombre">🟢 ' + nombre + (h24 ? ' <span class="mt-24">🌙 24 hrs</span>' : '') + '</div>' +
-            (dir ? '<div class="mt-linea">📍 ' + dir + '</div>' : '') +
+            '<div class="mt-nombre">🟢 ' + f.nombre + (h24 ? ' <span class="mt-24">🌙 24 hrs</span>' : '') + '</div>' +
+            (f.direccion ? '<div class="mt-linea">📍 ' + f.direccion + '</div>' : '') +
             '<div class="mt-linea">🕐 ' + horario + '</div>' +
             '<div class="mt-actions">' +
-              (tel ? '<a href="tel:' + telClean + '" class="mt-btn mt-btn-primario">📞 Llamar ' + tel + '</a>' : '') +
+              (f.telefono ? '<a href="tel:' + telClean + '" class="mt-btn mt-btn-primario">📞 Llamar ' + f.telefono + '</a>' : '') +
               '<a href="' + mapaUrl + '" target="_blank" rel="noopener" class="mt-btn">🗺️ Cómo llegar</a>' +
             '</div>' +
           '</div>';
       }).join('') +
-      '<div class="mt-fecha">Turno del ' + hoy + '</div>';
+      '<div class="mt-fecha">Turno del ' + fechaLarga(res.fecha) + '</div>';
     }
 
-    function renderError() {
+    // Tarjeta útil (no un "error"): el turno cambia a diario, la enviamos a la fuente
+    function renderFallback() {
       body.innerHTML = '' +
         '<div class="mt-fallback">' +
-          '<strong>No pudimos cargar el turno automáticamente 😕</strong>' +
-          '<p>Consulta la fuente oficial:</p>' +
+          '<strong>💊 El turno de farmacia cambia cada día</strong>' +
+          '<p>Consulta al instante cuál está de turno hoy en Melipilla:</p>' +
           '<div class="mt-actions">' +
-            '<a href="https://farmaciasabiertas.cl" target="_blank" rel="noopener" class="mt-btn mt-btn-primario">🌐 farmaciasabiertas.cl</a>' +
-            '<a href="/farmacias" class="mt-btn">💊 Ver todas</a>' +
+            '<a href="https://farmaciasabiertas.cl" target="_blank" rel="noopener" class="mt-btn mt-btn-primario">🌐 Ver turno de hoy</a>' +
+            '<a href="/farmacias" class="mt-btn">💊 Todas las farmacias</a>' +
           '</div>' +
         '</div>';
     }
 
-    try {
-      var timeoutP = new Promise(function(_, rej) { setTimeout(function() { rej(new Error('timeout')); }, 9000); });
-      var turnos = await Promise.race([obtener(), timeoutP]);
-      renderTurnos(turnos);
-    } catch(e) { renderError(); }
+    var hoy = hoyISO();
+
+    // 1) Archivo same-origin: rápido y confiable
+    var archivo = await desdeArchivo();
+    if (archivo) {
+      renderTurnos(archivo);
+      if (archivo.fecha === hoy) return;   // está al día, listo
+      // Está viejo: intentamos refrescar en vivo sin bloquear lo ya mostrado
+      var vivoBg = await desdeVivo();
+      if (vivoBg) renderTurnos(vivoBg);
+      return;
+    }
+
+    // 2) Sin archivo: intentamos en vivo
+    var vivo = await desdeVivo();
+    if (vivo) { renderTurnos(vivo); return; }
+
+    // 3) Nada disponible: tarjeta útil
+    renderFallback();
   })();
 
   /* ═══════════════════════════════════════════════════════════
@@ -1106,7 +1229,6 @@ body { padding-top: 0 !important; }
     rangoEl.textContent = fmtCorto(viernes) + ' – ' + fmtCorto(domingo);
 
     // Eventos base (cíclicos que se repiten todos los fines de semana)
-    // + huecos para eventos especiales editables aquí abajo
     var EVENTOS = [
       { dia: 'Viernes', emoji: '🛒', titulo: 'Feria libre de Pomaire',
         detalle: 'Rafael Morandé · 07:00–14:00', lugar: 'Pomaire', link: '/ferias' },
@@ -1124,40 +1246,67 @@ body { padding-top: 0 !important; }
         detalle: 'Merced · 07:00–14:00', lugar: 'Melipilla centro', link: '/ferias' }
     ];
 
-    grid.innerHTML = EVENTOS.map(function(e) {
+    function tarjeta(e, destacado) {
       return '' +
-        '<a class="finde-card" href="' + e.link + '"' + (e.link.indexOf('http') === 0 ? ' target="_blank" rel="noopener"' : '') + '>' +
+        '<a class="finde-card' + (destacado ? ' finde-card-destacada' : '') + '" href="' + e.link + '"' + ((e.link || '').indexOf('http') === 0 ? ' target="_blank" rel="noopener"' : '') + '>' +
+          (destacado ? '<div class="finde-badge">✨ Especial</div>' : '') +
           '<div class="finde-dia">' + e.emoji + ' ' + e.dia + '</div>' +
           '<div class="finde-titulo">' + e.titulo + '</div>' +
           '<div class="finde-detalle">' + e.detalle + '</div>' +
           '<div class="finde-lugar">📍 ' + e.lugar + '</div>' +
         '</a>';
-    }).join('');
+    }
+
+    function pintar(especiales) {
+      var htmlEsp = (especiales || []).map(function(e) { return tarjeta(e, true); }).join('');
+      var htmlBase = EVENTOS.map(function(e) { return tarjeta(e, false); }).join('');
+      grid.innerHTML = htmlEsp + htmlBase;
+    }
+
+    // Primero render inmediato con lo cíclico
+    pintar([]);
+
+    // Luego intentamos sumar eventos especiales editables (eventos.json)
+    fetch('/eventos.json?v=' + Math.floor(Date.now() / 3600000))
+      .then(function(r) { return r.ok ? r.json() : null; })
+      .then(function(data) {
+        if (!data || !Array.isArray(data.eventos)) return;
+        var lunes = new Date(viernes); lunes.setDate(viernes.getDate() - 4); lunes.setHours(0,0,0,0);
+        var finSemana = new Date(domingo); finSemana.setHours(23,59,59,999);
+        var especiales = data.eventos.filter(function(e) {
+          if (!e.fecha) return false;
+          var f = new Date(e.fecha + 'T12:00:00');
+          return f >= lunes && f <= finSemana;
+        });
+        if (especiales.length) pintar(especiales);
+      })
+      .catch(function(){});
   })();
 
   /* ═══════════════════════════════════════════════════════════
-     4) REPORTES VECINALES — localStorage (frontend puro)
+     4) REPORTES VECINALES — backend real (HM) + fallback local
      ═══════════════════════════════════════════════════════════ */
   (function reportes() {
-    var KEY = 'hm_reportes_v1';
-    var MAX_ITEMS = 20;
     var lista = document.getElementById('reportes-lista');
     var texto = document.getElementById('reporte-texto');
     var tipo  = document.getElementById('reporte-tipo');
     var sector= document.getElementById('reporte-sector');
     var btn   = document.getElementById('reporte-enviar');
     var counter = document.getElementById('reporte-counter');
-    if (!lista) return;
+    var nota  = document.getElementById('reportes-nota');
+    if (!lista || !window.HM) return;
+    var ONLINE = HM.online;
 
-    function leer() {
-      try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch(e) { return []; }
+    // Ajusta el texto de la nota según haya backend compartido o no
+    if (nota) {
+      nota.innerHTML = ONLINE
+        ? '🔒 Anónimo y compartido con todos los vecinos de Melipilla. Sé respetuoso.'
+        : '🔒 Anónimo. Por ahora se guarda solo en tu navegador (tablón local).';
     }
-    function guardar(arr) {
-      try { localStorage.setItem(KEY, JSON.stringify(arr.slice(0, MAX_ITEMS))); } catch(e) {}
-    }
+
     function timeAgo(ts) {
       var s = Math.floor((Date.now() - ts) / 1000);
-      if (s < 60) return 'hace ' + s + ' seg';
+      if (s < 60) return 'hace instantes';
       var m = Math.floor(s / 60);
       if (m < 60) return 'hace ' + m + ' min';
       var h = Math.floor(m / 60);
@@ -1167,14 +1316,12 @@ body { padding-top: 0 !important; }
     }
     function esc(s) { return (s||'').replace(/[<>&"']/g, function(c){ return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
-    function render() {
-      var items = leer();
+    function pintar(items) {
       if (!items.length) {
         lista.innerHTML = '<div class="reportes-vacio">Aún no hay reportes. ¡Sé el primero en avisar a los vecinos!</div>';
         return;
       }
       lista.innerHTML = items.map(function(r) {
-        var confirm = r.confirm || 0, deny = r.deny || 0;
         return '' +
           '<article class="reporte-item" data-id="' + r.id + '">' +
             '<div class="reporte-cabecera">' +
@@ -1183,127 +1330,120 @@ body { padding-top: 0 !important; }
                 '<div class="reporte-sector">' + esc(r.sector || 'Sin sector') + '</div>' +
                 '<div class="reporte-tiempo">' + timeAgo(r.ts) + '</div>' +
               '</div>' +
-              '<button class="reporte-borrar" data-id="' + r.id + '" aria-label="Borrar">✕</button>' +
+              (ONLINE ? '' : '<button class="reporte-borrar" data-id="' + r.id + '" aria-label="Borrar">✕</button>') +
             '</div>' +
             '<p class="reporte-texto">' + esc(r.texto) + '</p>' +
             '<div class="reporte-reacciones">' +
-              '<button class="reporte-react" data-id="' + r.id + '" data-tipo="confirm">👍 Confirmo <span>' + confirm + '</span></button>' +
-              '<button class="reporte-react" data-id="' + r.id + '" data-tipo="deny">👎 Ya se arregló <span>' + deny + '</span></button>' +
+              '<button class="reporte-react" data-id="' + r.id + '" data-tipo="confirm">👍 Confirmo <span>' + (r.confirm || 0) + '</span></button>' +
+              '<button class="reporte-react" data-id="' + r.id + '" data-tipo="deny">👎 Ya se arregló <span>' + (r.deny || 0) + '</span></button>' +
             '</div>' +
           '</article>';
       }).join('');
     }
 
+    function refrescar() {
+      HM.reportes.list().then(pintar).catch(function(){});
+    }
+
     btn.addEventListener('click', function() {
       var txt = (texto.value || '').trim();
       if (!txt) { texto.focus(); return; }
-      var items = leer();
-      items.unshift({
-        id: 'r_' + Date.now() + '_' + Math.random().toString(36).slice(2,6),
-        tipo: tipo.value,
-        sector: (sector.value || '').trim(),
-        texto: txt,
-        ts: Date.now(),
-        confirm: 0, deny: 0
-      });
-      guardar(items);
-      texto.value = ''; sector.value = ''; counter.textContent = '0 / 200';
-      render();
-      // Feedback visual
-      btn.textContent = '✓ Publicado';
-      setTimeout(function() { btn.textContent = 'Publicar reporte'; }, 1500);
+      btn.disabled = true;
+      HM.reportes.add({ tipo: tipo.value, sector: (sector.value || '').trim(), texto: txt })
+        .then(function() {
+          texto.value = ''; sector.value = ''; counter.textContent = '0 / 200';
+          btn.textContent = '✓ Publicado';
+          setTimeout(function() { btn.textContent = 'Publicar reporte'; btn.disabled = false; }, 1500);
+          refrescar();
+        })
+        .catch(function() {
+          btn.textContent = 'Error, reintenta';
+          setTimeout(function() { btn.textContent = 'Publicar reporte'; btn.disabled = false; }, 2000);
+        });
     });
 
     texto.addEventListener('input', function() {
       counter.textContent = texto.value.length + ' / 200';
     });
 
+    // Reacciones optimistas para que se sientan instantáneas
     lista.addEventListener('click', function(e) {
       var target = e.target.closest('button');
       if (!target) return;
       var id = target.dataset.id;
-      var items = leer();
-      var idx = items.findIndex(function(r) { return r.id === id; });
-      if (idx < 0) return;
 
       if (target.classList.contains('reporte-borrar')) {
-        items.splice(idx, 1);
-      } else if (target.classList.contains('reporte-react')) {
-        var tipoR = target.dataset.tipo;
-        items[idx][tipoR] = (items[idx][tipoR] || 0) + 1;
+        HM.reportes.remove(id).then(refrescar);
+        return;
       }
-      guardar(items);
-      render();
+      if (target.classList.contains('reporte-react')) {
+        var campo = target.dataset.tipo;
+        var span = target.querySelector('span');
+        if (span) span.textContent = (parseInt(span.textContent, 10) || 0) + 1;
+        target.disabled = true;
+        HM.reportes.react(id, campo).catch(function(){});
+      }
     });
 
-    render();
+    refrescar();
+    // En modo compartido, refrescamos cada 30s para que se sienta vivo
+    if (ONLINE) setInterval(refrescar, 30000);
   })();
 
   /* ═══════════════════════════════════════════════════════════
-     5) ENCUESTA DE LA SEMANA — localStorage
+     5) ENCUESTA DE LA SEMANA — backend real (HM) + fallback local
      ═══════════════════════════════════════════════════════════ */
   (function encuesta() {
-    var KEY = 'hm_encuesta_v1';
-    // Semana ISO como identificador de la encuesta
-    function getWeekId() {
-      var d = ahoraSantiago();
-      var yearStart = new Date(d.getFullYear(), 0, 1);
-      var week = Math.ceil(((d - yearStart) / 86400000 + yearStart.getDay() + 1) / 7);
-      return d.getFullYear() + '-W' + week;
-    }
-    function leer() {
-      try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e) { return {}; }
-    }
-    function guardar(o) {
-      try { localStorage.setItem(KEY, JSON.stringify(o)); } catch(e) {}
-    }
     var opts = document.querySelectorAll('.encuesta-opt');
     var resultsEl = document.getElementById('encuesta-resultados');
-    var weekId = getWeekId();
-    var data = leer();
-    if (data.weekId !== weekId) {
-      data = { weekId: weekId, votes: { pomaire: 0, centro: 0, empate: 0 }, voted: false };
-      guardar(data);
-    }
+    if (!resultsEl || !window.HM) return;
+    var wid = HM.encuesta.weekId(ahoraSantiago());
+    var yaVoto = false;
 
-    function mostrarResultados() {
-      var total = data.votes.pomaire + data.votes.centro + data.votes.empate;
-      // Pequeño baseline para que no se vea vacío
-      var baseline = { pomaire: 47, centro: 39, empate: 14 };
-      var display = {
-        pomaire: data.votes.pomaire + baseline.pomaire,
-        centro:  data.votes.centro  + baseline.centro,
-        empate:  data.votes.empate  + baseline.empate
-      };
-      var totalD = display.pomaire + display.centro + display.empate;
-      function pct(v) { return totalD ? Math.round(v / totalD * 100) : 0; }
-      resultsEl.innerHTML = '' +
-        '<div class="er-row"><span>🏺 Pomaire</span>'
-          + '<div class="er-bar"><div style="width:' + pct(display.pomaire) + '%;background:#F77F00"></div></div>'
-          + '<b>' + pct(display.pomaire) + '%</b></div>' +
-        '<div class="er-row"><span>🏙️ Centro</span>'
-          + '<div class="er-bar"><div style="width:' + pct(display.centro) + '%;background:#0D6EFD"></div></div>'
-          + '<b>' + pct(display.centro) + '%</b></div>' +
-        '<div class="er-row"><span>🤷 Da lo mismo</span>'
-          + '<div class="er-bar"><div style="width:' + pct(display.empate) + '%;background:#6C757D"></div></div>'
-          + '<b>' + pct(display.empate) + '%</b></div>' +
+    var META = {
+      pomaire: { label: '🏺 Pomaire', color: '#F77F00' },
+      centro:  { label: '🏙️ Centro',  color: '#0D6EFD' },
+      empate:  { label: '🤷 Da lo mismo', color: '#6C757D' }
+    };
+    var ORDEN = ['pomaire', 'centro', 'empate'];
+
+    function mostrarResultados(votos) {
+      var totalD = ORDEN.reduce(function(a, k) { return a + (votos[k] || 0); }, 0);
+      function pct(v) { return totalD ? Math.round((v || 0) / totalD * 100) : 0; }
+      resultsEl.innerHTML = ORDEN.map(function(k) {
+        return '<div class="er-row"><span>' + META[k].label + '</span>'
+          + '<div class="er-bar"><div style="width:' + pct(votos[k]) + '%;background:' + META[k].color + '"></div></div>'
+          + '<b>' + pct(votos[k]) + '%</b></div>';
+      }).join('') +
         '<div class="er-total">' + totalD + ' votos esta semana · <span class="er-gracias">¡Gracias por votar!</span></div>';
       resultsEl.hidden = false;
     }
 
-    if (data.voted) mostrarResultados();
+    function cargar() {
+      HM.encuesta.estado(wid).then(function(st) {
+        yaVoto = st.voted;
+        if (yaVoto) {
+          opts.forEach(function(b) { b.disabled = true; });
+          mostrarResultados(st.opciones);
+        }
+      }).catch(function(){});
+    }
 
     opts.forEach(function(btn) {
       btn.addEventListener('click', function() {
-        if (data.voted) return;
+        if (yaVoto) return;
+        yaVoto = true;
         var op = btn.dataset.op;
-        data.votes[op] = (data.votes[op] || 0) + 1;
-        data.voted = true;
-        guardar(data);
         opts.forEach(function(b) { b.disabled = true; if (b.dataset.op === op) b.classList.add('voted'); });
-        mostrarResultados();
+        HM.encuesta.votar(wid, op).then(function() {
+          return HM.encuesta.estado(wid);
+        }).then(function(st) {
+          mostrarResultados(st.opciones);
+        }).catch(function(){ mostrarResultados({}); });
       });
     });
+
+    cargar();
   })();
 
   /* ═══════════════════════════════════════════════════════════
@@ -1332,72 +1472,195 @@ body { padding-top: 0 !important; }
   })();
 
   /* ═══════════════════════════════════════════════════════════
-     7) PRUEBA SOCIAL — contador de visitas (localStorage)
+     7) PRUEBA SOCIAL — visitas reales (HM) + fallback local
      ═══════════════════════════════════════════════════════════ */
   (function pruebaSocial() {
-    var KEY = 'hm_visitas_v1';
     var el = document.getElementById('hsp-count');
-    if (!el) return;
-
-    var data;
-    try { data = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch(e) {}
-    if (!data) {
-      // Baseline razonable — arranca simulando una comunidad activa
-      data = { total: 2847, ultima: 0 };
-    }
-    var ahora = Date.now();
-    // Solo contamos una visita cada 30 min por navegador
-    if (ahora - (data.ultima || 0) > 30 * 60 * 1000) {
-      data.total = (data.total || 0) + 1;
-      data.ultima = ahora;
-      try { localStorage.setItem(KEY, JSON.stringify(data)); } catch(e) {}
-    }
-
-    var enLinea = 3 + Math.floor(Math.random() * 12); // 3–14
-    el.innerHTML = '<b>' + enLinea + '</b> vecinos viendo el sitio ahora · <b>' + data.total.toLocaleString('es-CL') + '</b> visitas totales';
+    if (!el || !window.HM) return;
+    HM.visitas.registrar().then(function(v) {
+      var total = (v.total || 0).toLocaleString('es-CL');
+      if (v.hoy && v.hoy > 1) {
+        el.innerHTML = '<b>' + v.hoy.toLocaleString('es-CL') + '</b> visitas hoy · <b>' + total + '</b> en total';
+      } else {
+        el.innerHTML = '<b>' + total + '</b> vecinos ya usaron esta guía';
+      }
+    }).catch(function() {
+      el.textContent = 'Guía de servicios de Melipilla';
+    });
   })();
 
   /* ═══════════════════════════════════════════════════════════
-     8) NOTIFICACIONES — solicitud (aviso local del turno)
+     8) NOTIFICACIONES PUSH — suscripción real + fallback local
      ═══════════════════════════════════════════════════════════ */
   (function notif() {
     var btn = document.getElementById('btn-notif');
     var txt = document.getElementById('btn-notif-txt');
-    if (!btn) return;
+    if (!btn || !window.HM) return;
 
     if (!('Notification' in window)) {
       btn.disabled = true; txt.textContent = 'Notif no soportada'; return;
     }
 
-    function refrescar() {
-      if (Notification.permission === 'granted') {
-        txt.textContent = 'Notificaciones activadas ✓';
-        btn.classList.add('fs-notif-on');
-      } else if (Notification.permission === 'denied') {
-        txt.textContent = 'Notif bloqueadas';
-        btn.disabled = true;
-      }
+    var PUSH_OK = HM.push.disponible(); // hay SW + PushManager + VAPID + backend
+
+    function marcarActivo() {
+      txt.textContent = 'Avisos activados ✓';
+      btn.classList.add('fs-notif-on');
     }
-    refrescar();
+    if (Notification.permission === 'granted') marcarActivo();
+    if (Notification.permission === 'denied') { txt.textContent = 'Avisos bloqueados'; btn.disabled = true; }
 
     btn.addEventListener('click', function() {
+      // Caso 1: push real configurado → pedir permiso y suscribir en backend
+      if (PUSH_OK) {
+        Notification.requestPermission().then(function(perm) {
+          if (perm !== 'granted') { txt.textContent = 'Avisos bloqueados'; return; }
+          txt.textContent = 'Activando…';
+          HM.push.suscribir().then(function() {
+            marcarActivo();
+            new Notification('¡Listo, vecino! 👋', {
+              body: 'Cada día te avisaremos qué farmacia está de turno en Melipilla.',
+              icon: '/icon-192.png'
+            });
+          }).catch(function() {
+            txt.textContent = 'No se pudo activar';
+          });
+        });
+        return;
+      }
+
+      // Caso 2: sin backend push → aviso local (demo honesta)
       if (Notification.permission === 'granted') {
-        // Mostrar aviso demo
         new Notification('📍 Hola Melipilla', {
-          body: 'Te avisaremos cuando cambie la farmacia de turno.',
+          body: 'Los avisos automáticos del turno estarán disponibles muy pronto.',
           icon: '/icon-192.png'
         });
         return;
       }
       Notification.requestPermission().then(function(perm) {
-        refrescar();
         if (perm === 'granted') {
-          new Notification('¡Listo, vecino! 👋', {
-            body: 'Te avisaremos del turno de farmacia y alertas importantes.',
+          marcarActivo();
+          new Notification('¡Gracias, vecino! 👋', {
+            body: 'Pronto activaremos el aviso diario del turno de farmacia.',
             icon: '/icon-192.png'
           });
+        } else if (perm === 'denied') {
+          txt.textContent = 'Avisos bloqueados'; btn.disabled = true;
         }
       });
+    });
+  })();
+
+  /* ═══════════════════════════════════════════════════════════
+     9) CAPTURA DE CONTACTOS — avisos por WhatsApp / correo
+     ═══════════════════════════════════════════════════════════ */
+  (function contactos() {
+    var form = document.getElementById('avisos-form');
+    if (!form || !window.HM) return;
+    var input = document.getElementById('avisos-input');
+    var btn   = document.getElementById('avisos-btn');
+    var msg   = document.getElementById('avisos-msg');
+
+    function esEmail(v) { return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v); }
+    function esFono(v)  { return /^\+?56?9?\d{7,9}$/.test(v.replace(/[\s-]/g, '')); }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var v = (input.value || '').trim();
+      if (!v) { input.focus(); return; }
+      var canal = esEmail(v) ? 'email' : (esFono(v) ? 'whatsapp' : null);
+      if (!canal) { msg.textContent = '👀 Escribe un correo o un número válido.'; msg.style.color = '#DC3545'; return; }
+      btn.disabled = true; msg.textContent = 'Guardando…'; msg.style.color = '';
+      HM.contactos.add(canal, v).then(function() {
+        form.reset();
+        msg.textContent = '✓ ¡Listo! Te avisaremos del turno y las novedades de Melipilla.';
+        msg.style.color = 'var(--primario)';
+        btn.disabled = false;
+      }).catch(function() {
+        msg.textContent = 'Hubo un error, reintenta en un momento.';
+        msg.style.color = '#DC3545';
+        btn.disabled = false;
+      });
+    });
+  })();
+
+  /* ═══════════════════════════════════════════════════════════
+     10) INSTALL PROMPT (PWA) — "Agregar a pantalla de inicio"
+     ═══════════════════════════════════════════════════════════ */
+  (function instalar() {
+    var deferido = null;
+    var barra = document.getElementById('install-banner');
+    var btnSi = document.getElementById('install-yes');
+    var btnNo = document.getElementById('install-no');
+    if (!barra) return;
+
+    // No molestar si ya la instaló o si ya la cerró antes
+    if (localStorage.getItem('hm_install_dismiss') === '1') return;
+    if (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) return;
+
+    window.addEventListener('beforeinstallprompt', function(e) {
+      e.preventDefault();
+      deferido = e;
+      barra.hidden = false;
+    });
+
+    if (btnSi) btnSi.addEventListener('click', function() {
+      barra.hidden = true;
+      if (!deferido) return;
+      deferido.prompt();
+      deferido.userChoice.finally(function() { deferido = null; });
+    });
+    if (btnNo) btnNo.addEventListener('click', function() {
+      barra.hidden = true;
+      try { localStorage.setItem('hm_install_dismiss', '1'); } catch(e) {}
+    });
+  })();
+
+  /* ═══════════════════════════════════════════════════════════
+     11) REDES SOCIALES — enlaza desde config y oculta las vacías
+     ═══════════════════════════════════════════════════════════ */
+  (function redes() {
+    var S = (window.HM_CONFIG && window.HM_CONFIG.SOCIAL) || {};
+    function set(id, url) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      if (url) { el.href = url; } else { el.style.display = 'none'; }
+    }
+    set('social-ig', S.instagram);
+    set('social-tt', S.tiktok);
+    set('social-wa', S.whatsappCanal);
+
+    // CTA de comunidad WhatsApp (solo si hay enlace)
+    var cta = document.getElementById('comunidad-cta');
+    if (cta) {
+      if (S.whatsappCanal) { cta.href = S.whatsappCanal; }
+      else { cta.style.display = 'none'; }
+    }
+  })();
+
+  /* ═══════════════════════════════════════════════════════════
+     12) COMPARTIR TURNO DE HOY — WhatsApp / Web Share
+     ═══════════════════════════════════════════════════════════ */
+  (function compartirTurno() {
+    var btn = document.getElementById('share-turno');
+    if (!btn) return;
+    btn.addEventListener('click', function() {
+      var nombreEl = document.querySelector('#mega-turno-body .mt-nombre');
+      var dirEl    = document.querySelector('#mega-turno-body .mt-linea');
+      var farmacia = nombreEl ? nombreEl.textContent.replace(/^🟢\s*/, '').replace(/\s*🌙.*/, '').trim() : '';
+      var texto;
+      if (farmacia) {
+        texto = '💊 Farmacia de turno HOY en Melipilla: ' + farmacia +
+                (dirEl ? ' (' + dirEl.textContent.replace(/^📍\s*/, '').trim() + ')' : '') +
+                '. Mira horarios y cómo llegar en → holamelipilla.cl';
+      } else {
+        texto = '💊 Mira qué farmacia está de turno hoy en Melipilla → holamelipilla.cl';
+      }
+      if (navigator.share) {
+        navigator.share({ title: 'Farmacia de turno en Melipilla', text: texto, url: 'https://holamelipilla.cl/' }).catch(function(){});
+      } else {
+        window.open('https://wa.me/?text=' + encodeURIComponent(texto), '_blank');
+      }
     });
   })();
 
