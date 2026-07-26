@@ -2802,3 +2802,40 @@ nav { padding-top: max(.75rem, env(safe-area-inset-top)); }
   .nav-card-icon-2025 { width: 42px; height: 42px; font-size: 1.35rem !important; }
   .nav-card-farmacia .nav-card-icon-2025 { width: 46px; height: 46px; font-size: 1.5rem !important; }
 }
+
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   v14 — PALETA 2026 (neutros cálidos, lo que se usa hoy)
+   Cambia el gris frío por un "bone" cálido, tinta profunda cálida y bordes
+   suaves. Da un aire moderno y cohesivo manteniendo la marca verde+naranja.
+   Solo modo claro (el oscuro conserva su paleta).
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
+  :root {
+    --fondo:        #F5F3EE;  /* bone cálido en vez de gris frío */
+    --fondo-card:   #FFFFFF;
+    --texto:        #232A25;  /* tinta cálida profunda (no negro puro) */
+    --texto-suave:  #6B7268;
+    --borde:        #E8E3DA;  /* borde cálido y suave */
+    --verde-suave:  #DCEFE1;
+    --azul-suave:   #E7F0FF;
+    --acento-suave: #FBEEE0;
+    --ambar-suave:  #FBF1DD;
+    --crema:        #F5F3EE;
+    --crema-oscura: #E8E3DA;
+    /* Sombras con leve calidez, coherentes con el fondo bone */
+    --sombra:       0 1px 3px rgba(44,38,28,.05), 0 8px 22px rgba(44,38,28,.07);
+    --sombra-hover: 0 6px 14px rgba(44,38,28,.08), 0 18px 44px rgba(44,38,28,.10);
+    --elev-1: 0 1px 2px rgba(44,38,28,.06), 0 3px 10px rgba(44,38,28,.06);
+    --elev-2: 0 2px 6px rgba(44,38,28,.07), 0 12px 28px rgba(44,38,28,.09);
+    --elev-3: 0 10px 22px rgba(44,38,28,.12), 0 26px 56px rgba(44,38,28,.14);
+  }
+  /* Fondo con halo cálido de marca (bone + verde/ámbar muy sutiles) */
+  body {
+    background:
+      radial-gradient(1100px 540px at 50% -6%, rgba(82,183,136,.12), transparent 60%),
+      radial-gradient(760px 460px at 100% 2%, rgba(247,127,0,.06), transparent 55%),
+      #F5F3EE;
+  }
+}
