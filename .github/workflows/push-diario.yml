@@ -1,0 +1,32 @@
+name: Aviso diario del turno de farmacia
+
+# Envía la notificación push del turno de farmacia cada mañana.
+# 12:00 UTC ≈ 08:00–09:00 en Chile continental (según horario de verano/invierno).
+on:
+  schedule:
+    - cron: '0 12 * * *'
+  workflow_dispatch:   # permite ejecutarlo a mano desde la pestaña Actions
+
+jobs:
+  enviar-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repo
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Instalar dependencias
+        run: pip install pywebpush
+
+      - name: Enviar notificaciones del turno
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          VAPID_PUBLIC_KEY: ${{ secrets.VAPID_PUBLIC_KEY }}
+          VAPID_PRIVATE_KEY: ${{ secrets.VAPID_PRIVATE_KEY }}
+          VAPID_SUBJECT: ${{ secrets.VAPID_SUBJECT }}
+        run: python enviar_push.py

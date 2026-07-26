@@ -1,10 +1,12 @@
-// sw.js — Hola Melipilla Service Worker v6
-// Bump del CACHE_NAME para descartar cache viejo con nuevo rediseño 2026
-const CACHE_NAME = 'holamelipilla-v6';
+// sw.js — Hola Melipilla Service Worker v7
+// v7: comunidad real (Supabase), push del turno, config.js y eventos.json
+const CACHE_NAME = 'holamelipilla-v7';
 
 const ARCHIVOS_CACHE = [
   '/',
   '/index.html',
+  '/config.js',
+  '/eventos.json',
   '/farmacias',
   '/salud',
   '/seguridad',
