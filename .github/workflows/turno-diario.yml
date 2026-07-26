@@ -8,6 +8,12 @@ on:
     - cron: '30 11 * * *'   # ~07:30–08:30 Chile
     - cron: '30 13 * * *'   # ~09:30–10:30 Chile (turno ya publicado)
     - cron: '30 20 * * *'   # ~16:30–17:30 Chile (respaldo)
+  # Se ejecuta solo al fusionar a main: así el turno.json se genera de inmediato
+  # tras el merge, sin pasos manuales. Ignora sus propios commits para no repetirse.
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'turno.json'
   workflow_dispatch:
 
 jobs:
