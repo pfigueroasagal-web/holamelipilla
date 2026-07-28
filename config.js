@@ -282,3 +282,48 @@ window.HM_CONFIG = {
     });
   }
 })();
+
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   Refinamiento 2027 — aparición suave al hacer scroll (progresivo).
+   Solo actúa si el navegador soporta IntersectionObserver. Si no, no se
+   oculta ningún contenido (degradación elegante). Incluye una red de
+   seguridad que revela todo tras unos segundos pase lo que pase.
+   ══════════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+  if (!('IntersectionObserver' in window)) return;
+  var docEl = document.documentElement;
+  docEl.classList.add('js'); // se ejecuta en <head>, antes del primer render
+
+  function start() {
+    var targets = document.querySelectorAll('main > section');
+    if (!targets.length) return;
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+
+    targets.forEach(function (el) {
+      el.classList.add('reveal-2027');
+      io.observe(el);
+    });
+
+    // Red de seguridad: nunca dejar contenido oculto
+    setTimeout(function () {
+      targets.forEach(function (el) { el.classList.add('is-visible'); });
+    }, 3000);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
+})();
