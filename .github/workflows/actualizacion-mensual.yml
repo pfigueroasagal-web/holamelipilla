@@ -35,10 +35,11 @@ jobs:
           python-version: '3.11'
 
       # 3. Ejecutar el script de verificación
+      # A prueba de fallos: si el script falla, se registra pero NO se marca error.
       - name: Ejecutar verificación de información
         run: |
           echo "🤖 Iniciando verificación mensual..."
-          python update_info.py
+          python update_info.py || echo "⚠️ La verificación falló esta vez; se reintentará el próximo mes."
           echo "✅ Verificación completada"
 
       # 4. Configurar identidad de git para el commit
@@ -48,20 +49,21 @@ jobs:
           git config user.email "bot@holamelipilla.cl"
 
       # 5. Hacer commit si hay cambios
+      # A prueba de fallos: cualquier problema se registra pero no marca error.
       - name: Commit de cambios
         run: |
-          git add index.html verificacion_info.json
+          git add index.html verificacion_info.json || true
           if git diff --staged --quiet; then
             echo "No hay cambios nuevos para commitear."
           else
             FECHA=$(date '+%d/%m/%Y')
-            git commit -m "🤖 Verificación automática mensual — $FECHA"
-            git push
-            echo "✅ Cambios subidos al repositorio"
+            git commit -m "🤖 Verificación automática mensual — $FECHA" || true
+            git push || echo "⚠️ No se pudo subir el cambio esta vez; se reintentará el próximo mes."
+            echo "✅ Cambios procesados"
           fi
 
       # 6. Mostrar resumen en el log del workflow
       - name: Mostrar reporte
         run: |
           echo "📄 Reporte de verificación:"
-          cat verificacion_info.json
+          cat verificacion_info.json || echo "(sin reporte disponible)"

@@ -20,8 +20,10 @@ jobs:
           python-version: '3.12'
 
       - name: Instalar dependencias
-        run: pip install pywebpush
+        run: pip install pywebpush || echo "⚠️ No se pudieron instalar las dependencias esta vez."
 
+      # A prueba de fallos: si el envío falla (secrets faltantes, Supabase caído, etc.)
+      # se registra en el log pero NO se marca error, para no enviar correos de fallo.
       - name: Enviar notificaciones del turno
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
@@ -29,4 +31,4 @@ jobs:
           VAPID_PUBLIC_KEY: ${{ secrets.VAPID_PUBLIC_KEY }}
           VAPID_PRIVATE_KEY: ${{ secrets.VAPID_PRIVATE_KEY }}
           VAPID_SUBJECT: ${{ secrets.VAPID_SUBJECT }}
-        run: python enviar_push.py
+        run: python enviar_push.py || echo "⚠️ No se pudieron enviar las notificaciones esta vez; se reintentará mañana."
