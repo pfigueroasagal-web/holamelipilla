@@ -427,74 +427,9 @@ body { padding-top: 0 !important; }
   </div>
   </section>
 
-  <!-- ═══ REPORTES VECINALES ═══ -->
-  <section id="reportes" aria-labelledby="titulo-reportes">
-  <div class="section-inner">
-    <div class="section-title">
-      <div class="section-icon ic-naranja">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      </div>
-      <div>
-        <h2 id="titulo-reportes">Reportes vecinales</h2>
-        <p>Cortes de luz, agua, calles cortadas · avisos entre vecinos</p>
-      </div>
-    </div>
-
-    <!-- Formulario -->
-    <div class="reportes-form">
-      <div class="reportes-form-row">
-        <select id="reporte-tipo" aria-label="Tipo de reporte">
-          <option value="⚡">⚡ Corte de luz</option>
-          <option value="💧">💧 Corte de agua</option>
-          <option value="🚧">🚧 Calle cortada</option>
-          <option value="🚌">🚌 Problema de tránsito</option>
-          <option value="🐕">🐕 Perrito perdido</option>
-          <option value="📢">📢 Otro aviso</option>
-        </select>
-        <input id="reporte-sector" type="text" placeholder="Sector o calle (ej: Villa Los Toros)" maxlength="60">
-      </div>
-      <textarea id="reporte-texto" placeholder="Describe brevemente… (ej: sin luz desde hace 1 hora)" maxlength="200" rows="2"></textarea>
-      <div class="reportes-form-foot">
-        <span id="reporte-counter" class="reporte-counter">0 / 200</span>
-        <button id="reporte-enviar" class="reporte-enviar-btn">Publicar reporte</button>
-      </div>
-      <p class="reportes-nota">🔒 Anónimo. Se guarda solo en tu navegador — es un tablón local hasta que tengamos servidor.</p>
-    </div>
-
-    <!-- Lista de reportes -->
-    <div id="reportes-lista" class="reportes-lista">
-      <div class="reportes-vacio">Aún no hay reportes. ¡Sé el primero en avisar a los vecinos!</div>
-    </div>
-  </div>
-  </section>
-
-  <!-- ═══ ENCUESTA + FRASE DEL DÍA ═══ -->
-  <section id="pulso" aria-labelledby="titulo-pulso">
-  <div class="section-inner pulso-inner">
-
-    <!-- Encuesta -->
-    <div class="pulso-card pulso-encuesta">
-      <div class="pulso-eyebrow">📊 Encuesta de la semana</div>
-      <h3 id="titulo-pulso" class="pulso-pregunta" id="encuesta-pregunta">
-        ¿Empanadas de Pomaire o del centro de Melipilla?
-      </h3>
-      <div class="encuesta-opciones" id="encuesta-opciones">
-        <button class="encuesta-opt" data-op="pomaire">🏺 Pomaire</button>
-        <button class="encuesta-opt" data-op="centro">🏙️ Centro</button>
-        <button class="encuesta-opt" data-op="empate">🤷 Da lo mismo</button>
-      </div>
-      <div class="encuesta-resultados" id="encuesta-resultados" hidden></div>
-    </div>
-
-    <!-- Frase del día -->
-    <div class="pulso-card pulso-frase">
-      <div class="pulso-eyebrow">💚 Melipilla en una frase</div>
-      <blockquote class="pulso-frase-texto" id="frase-texto">—</blockquote>
-      <div class="pulso-frase-autor" id="frase-autor">—</div>
-    </div>
-
-  </div>
-  </section>
+  <!-- Nota: "Reportes vecinales" y "Encuesta / frase del día" se retiraron del
+       inicio para mantenerlo simple y enfocado en encontrar servicios. El JS que
+       las manejaba queda inactivo automáticamente (sus elementos ya no existen). -->
 
   <!-- ═══ AVISOS + COMUNIDAD ═══ -->
   <section id="avisos" aria-labelledby="titulo-avisos">
