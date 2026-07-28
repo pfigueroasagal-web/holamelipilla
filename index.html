@@ -150,6 +150,26 @@ body { padding-top: 0 !important; }
 /* ── Evento especial destacado en el finde ── */
 .finde-card-destacada{position:relative;border:2px solid #F77F00;box-shadow:0 8px 24px rgba(247,127,0,.18)}
 .finde-badge{position:absolute;top:10px;right:10px;background:#F77F00;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:100px;letter-spacing:.02em}
+
+/* ── INICIO SIMPLE Y DIRECTO EN CELULAR ──
+   Encabezado simplificado y reordenado para acceder de inmediato a lo importante:
+   1) título + para qué sirve  2) iconos de menú  3) buscador  4) farmacia de turno + clima.
+   Solo aplica en móvil (≤760px); en escritorio el orden queda igual. */
+@media (max-width: 760px) {
+  .hero-2025 {
+    justify-content: flex-start;
+    min-height: auto;
+    padding-top: 2rem !important;
+    padding-bottom: 1.75rem !important;
+  }
+  .hero-top      { order: 1; margin-bottom: 1rem; }
+  .nav-grid-2025 { order: 2; }              /* menús (iconos) altiro, bajo el título */
+  .buscador-global-wrap { order: 3; margin-top: 1rem; }  /* buscador enseguida */
+  .hero-mega     { order: 4; margin-top: 1.35rem; }      /* farmacia de turno + clima */
+  /* Simplificar el encabezado: quitar ruido arriba */
+  .hero-social-proof { display: none; }     /* chip de visitas: fuera en móvil */
+  .hero-eyebrow-2025 { margin-bottom: .55rem; }
+}
 </style>
 <!-- build:2025-06-25T19:00 -->
 </head>
@@ -216,7 +236,7 @@ body { padding-top: 0 !important; }
       Región Metropolitana · Provincia de Melipilla
     </div>
     <h1 class="hero-title-2025">Hola,<br><em>Melipilla</em> 👋</h1>
-    <p class="hero-sub-2025">Tu guía de servicios esenciales</p>
+    <p class="hero-sub-2025">Todo lo esencial de Melipilla, en un solo lugar</p>
 
     <!-- Chip prueba social -->
     <div class="hero-social-proof" id="hero-social-proof" aria-live="polite">
