@@ -36,14 +36,99 @@ def sin_tildes(s):
                    if unicodedata.category(c) != "Mn")
 
 
-def obtener_datos():
+SITIO_API = "https://holamelipilla.cl/api/turno"
+PROXIES = [
+    "https://api.allorigins.win/raw?url={}",
+    "https://corsproxy.io/?url={}",
+]
+
+
+def _fetch_json(url, timeout=25):
     req = urllib.request.Request(
-        MINSAL_API,
-        headers={"User-Agent": "Mozilla/5.0 (HolaMelipilla-turno/1.0)"},
-    )
-    with urllib.request.urlopen(req, timeout=25) as r:
-        raw = r.read().decode("utf-8", errors="replace")
-    return json.loads(raw)
+        url, headers={"User-Agent": "Mozilla/5.0 (HolaMelipilla-turno/1.0)"})
+    with urllib.request.urlopen(req, timeout=timeout) as r:
+        return json.loads(r.read().decode("utf-8", errors="replace"))
+
+
+def _norm_desde_minsal(f):
+    return {
+        "nombre": (f.get("local_nombre") or "").strip().title(),
+        "direccion": (f.get("local_direccion") or "").strip(),
+        "telefono": (f.get("local_telefono") or "").strip(),
+        "apertura": (f.get("funcionamiento_hora_apertura") or "").strip(),
+        "cierre": (f.get("funcionamiento_hora_cierre") or "").strip(),
+    }
+
+
+def _norm_desde_api(f):
+    return {
+        "nombre": (f.get("nombre") or "").strip(),
+        "direccion": (f.get("direccion") or "").strip(),
+        "telefono": (f.get("telefono") or "").strip(),
+        "apertura": (f.get("apertura") or "").strip(),
+        "cierre": (f.get("cierre") or "").strip(),
+    }
+
+
+def _filtrar_melipilla(data):
+    if not isinstance(data, list):
+        return []
+    return [f for f in data
+            if "melipilla" in sin_tildes(f.get("comuna_nombre", ""))]
+
+
+def obtener_farmacias():
+    """Devuelve la lista de farmacias de turno de Melipilla ya normalizada,
+    probando varias fuentes (como el navegador) para máxima confiabilidad:
+      1) El propio endpoint /api/turno del sitio (corre en Vercel, ya filtrado).
+      2) El MINSAL directo.
+      3) Proxies CORS de respaldo (allorigins / corsproxy).
+    Si todo falla, devuelve [] y NO se sobreescribe nada."""
+
+    # 1) Endpoint propio del sitio (el que ya usa la portada y funciona)
+    try:
+        d = _fetch_json(SITIO_API, 15)
+        if isinstance(d, dict) and d.get("farmacias"):
+            print("  · Fuente: /api/turno del sitio")
+            return [_norm_desde_api(f) for f in d["farmacias"]]
+    except Exception as e:
+        print(f"  · /api/turno no disponible: {e}")
+
+    # 2) MINSAL directo
+    try:
+        mel = _filtrar_melipilla(_fetch_json(MINSAL_API, 25))
+        if mel:
+            print("  · Fuente: MINSAL directo")
+            return [_norm_desde_minsal(f) for f in mel]
+    except Exception as e:
+        print(f"  · MINSAL directo falló: {e}")
+
+    # 3) Proxies CORS de respaldo
+    for plantilla in PROXIES:
+        url = plantilla.format(quote(MINSAL_API, safe=""))
+        try:
+            mel = _filtrar_melipilla(_fetch_json(url, 25))
+            if mel:
+                print(f"  · Fuente: proxy {plantilla.split('/')[2]}")
+                return [_norm_desde_minsal(f) for f in mel]
+        except Exception as e:
+            print(f"  · Proxy {plantilla.split('/')[2]} falló: {e}")
+
+    # 4) allorigins /get (envuelve la respuesta en {contents})
+    try:
+        d = _fetch_json(
+            "https://api.allorigins.win/get?url=" + quote(MINSAL_API, safe=""), 25)
+        contents = d.get("contents") if isinstance(d, dict) else None
+        if contents:
+            data = json.loads(contents) if isinstance(contents, str) else contents
+            mel = _filtrar_melipilla(data)
+            if mel:
+                print("  · Fuente: proxy allorigins/get")
+                return [_norm_desde_minsal(f) for f in mel]
+    except Exception as e:
+        print(f"  · allorigins/get falló: {e}")
+
+    return []
 
 
 def _fecha_larga(dt):
@@ -129,33 +214,13 @@ def actualizar_index(bloque_html):
 
 
 def main():
-    try:
-        data = obtener_datos()
-    except Exception as e:
-        print(f"⚠ No se pudo consultar el MINSAL: {e}")
-        print("Se conserva el turno.json anterior (si existe).")
+    print("Buscando la farmacia de turno de Melipilla…")
+    farmacias = obtener_farmacias()
+
+    if not farmacias:
+        print("⚠ Ninguna fuente entregó el turno de Melipilla ahora. "
+              "No se sobreescribe (se conserva lo anterior si existe).")
         return 0
-
-    if not isinstance(data, list):
-        print("⚠ Respuesta inesperada del MINSAL. No se actualiza.")
-        return 0
-
-    melipilla = [f for f in data
-                 if "melipilla" in sin_tildes(f.get("comuna_nombre", ""))]
-
-    if not melipilla:
-        print("⚠ Sin farmacias de turno para Melipilla ahora. No se sobreescribe.")
-        return 0
-
-    farmacias = []
-    for f in melipilla:
-        farmacias.append({
-            "nombre": (f.get("local_nombre") or "").strip().title(),
-            "direccion": (f.get("local_direccion") or "").strip(),
-            "telefono": (f.get("local_telefono") or "").strip(),
-            "apertura": (f.get("funcionamiento_hora_apertura") or "").strip(),
-            "cierre": (f.get("funcionamiento_hora_cierre") or "").strip(),
-        })
 
     ahora = datetime.now(TZ)
     salida = {
