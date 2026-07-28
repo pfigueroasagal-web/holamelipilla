@@ -78,41 +78,50 @@ def _filtrar_melipilla(data):
 
 
 def obtener_farmacias():
-    """Devuelve la lista de farmacias de turno de Melipilla ya normalizada,
-    probando varias fuentes (como el navegador) para máxima confiabilidad:
+    """Devuelve (farmacias, diagnostico). Prueba varias fuentes (como el
+    navegador) para máxima confiabilidad:
       1) El propio endpoint /api/turno del sitio (corre en Vercel, ya filtrado).
       2) El MINSAL directo.
-      3) Proxies CORS de respaldo (allorigins / corsproxy).
-    Si todo falla, devuelve [] y NO se sobreescribe nada."""
+      3) Proxies CORS de respaldo (allorigins / corsproxy / allorigins-get).
+    diagnostico es una lista con el resultado de cada intento (para depurar)."""
+    diag = []
 
     # 1) Endpoint propio del sitio (el que ya usa la portada y funciona)
     try:
         d = _fetch_json(SITIO_API, 15)
-        if isinstance(d, dict) and d.get("farmacias"):
+        n = len(d.get("farmacias", [])) if isinstance(d, dict) else 0
+        if n:
+            diag.append(f"/api/turno OK ({n} farmacias)")
             print("  · Fuente: /api/turno del sitio")
-            return [_norm_desde_api(f) for f in d["farmacias"]]
+            return [_norm_desde_api(f) for f in d["farmacias"]], diag
+        diag.append("/api/turno respondió pero sin farmacias")
     except Exception as e:
-        print(f"  · /api/turno no disponible: {e}")
+        diag.append(f"/api/turno error: {e}")
 
     # 2) MINSAL directo
     try:
         mel = _filtrar_melipilla(_fetch_json(MINSAL_API, 25))
         if mel:
+            diag.append(f"MINSAL directo OK ({len(mel)})")
             print("  · Fuente: MINSAL directo")
-            return [_norm_desde_minsal(f) for f in mel]
+            return [_norm_desde_minsal(f) for f in mel], diag
+        diag.append("MINSAL directo: sin Melipilla")
     except Exception as e:
-        print(f"  · MINSAL directo falló: {e}")
+        diag.append(f"MINSAL directo error: {e}")
 
     # 3) Proxies CORS de respaldo
     for plantilla in PROXIES:
+        host = plantilla.split("/")[2]
         url = plantilla.format(quote(MINSAL_API, safe=""))
         try:
             mel = _filtrar_melipilla(_fetch_json(url, 25))
             if mel:
-                print(f"  · Fuente: proxy {plantilla.split('/')[2]}")
-                return [_norm_desde_minsal(f) for f in mel]
+                diag.append(f"proxy {host} OK ({len(mel)})")
+                print(f"  · Fuente: proxy {host}")
+                return [_norm_desde_minsal(f) for f in mel], diag
+            diag.append(f"proxy {host}: sin Melipilla")
         except Exception as e:
-            print(f"  · Proxy {plantilla.split('/')[2]} falló: {e}")
+            diag.append(f"proxy {host} error: {e}")
 
     # 4) allorigins /get (envuelve la respuesta en {contents})
     try:
@@ -123,12 +132,16 @@ def obtener_farmacias():
             data = json.loads(contents) if isinstance(contents, str) else contents
             mel = _filtrar_melipilla(data)
             if mel:
+                diag.append(f"allorigins/get OK ({len(mel)})")
                 print("  · Fuente: proxy allorigins/get")
-                return [_norm_desde_minsal(f) for f in mel]
+                return [_norm_desde_minsal(f) for f in mel], diag
+            diag.append("allorigins/get: sin Melipilla")
+        else:
+            diag.append("allorigins/get: sin contenido")
     except Exception as e:
-        print(f"  · allorigins/get falló: {e}")
+        diag.append(f"allorigins/get error: {e}")
 
-    return []
+    return [], diag
 
 
 def _fecha_larga(dt):
@@ -215,12 +228,10 @@ def actualizar_index(bloque_html):
 
 def main():
     print("Buscando la farmacia de turno de Melipilla…")
-    farmacias = obtener_farmacias()
-
-    if not farmacias:
-        print("⚠ Ninguna fuente entregó el turno de Melipilla ahora. "
-              "No se sobreescribe (se conserva lo anterior si existe).")
-        return 0
+    farmacias, diag = obtener_farmacias()
+    print("Diagnóstico de fuentes:")
+    for d in diag:
+        print("  ·", d)
 
     ahora = datetime.now(TZ)
     salida = {
@@ -228,22 +239,26 @@ def main():
         "actualizado_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "comuna": "Melipilla",
         "farmacias": farmacias,
+        "diagnostico": diag,
     }
 
+    # Siempre escribimos turno.json (aunque venga vacío) para dejar registro del
+    # diagnóstico en el repo. El sitio ignora un turno.json sin farmacias.
     with open(SALIDA, "w", encoding="utf-8") as fp:
         json.dump(salida, fp, ensure_ascii=False, indent=2)
+    print(f"✅ {SALIDA} escrito con {len(farmacias)} farmacia(s).")
 
-    print(f"✅ {SALIDA} actualizado: {len(farmacias)} farmacia(s) de turno "
-          f"para el {salida['fecha']}.")
-    for f in farmacias:
-        print(f"   • {f['nombre']} — {f['direccion']}")
-
-    # Inyecta el turno en index.html para que Google lo indexe y se vea al
-    # instante. Protegido: si algo falla, no interrumpe la actualización.
-    try:
-        actualizar_index(construir_html_turno(farmacias, ahora))
-    except Exception as e:
-        print(f"⚠ No se pudo actualizar el HTML del turno en index.html: {e}")
+    if farmacias:
+        for f in farmacias:
+            print(f"   • {f['nombre']} — {f['direccion']}")
+        # Inyecta el turno en index.html para SEO y carga instantánea.
+        try:
+            actualizar_index(construir_html_turno(farmacias, ahora))
+        except Exception as e:
+            print(f"⚠ No se pudo actualizar el HTML del turno en index.html: {e}")
+    else:
+        print("⚠ Ninguna fuente entregó el turno. Se guardó turno.json con el "
+              "diagnóstico; el HTML se mantiene como estaba.")
 
     return 0
 
