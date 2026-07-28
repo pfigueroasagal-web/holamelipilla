@@ -37,6 +37,8 @@ def sin_tildes(s):
 
 
 SITIO_API = "https://holamelipilla.cl/api/turno"
+FARMANET_API = "https://farmanet.minsal.cl/maps/index.php/ws/getLocalesTurnos"
+APIS = [MINSAL_API, FARMANET_API]  # midas (nuevo) y farmanet (clásico)
 PROXIES = [
     "https://api.allorigins.win/raw?url={}",
     "https://corsproxy.io/?url={}",
@@ -98,30 +100,33 @@ def obtener_farmacias():
     except Exception as e:
         diag.append(f"/api/turno error: {e}")
 
-    # 2) MINSAL directo
-    try:
-        mel = _filtrar_melipilla(_fetch_json(MINSAL_API, 25))
-        if mel:
-            diag.append(f"MINSAL directo OK ({len(mel)})")
-            print("  · Fuente: MINSAL directo")
-            return [_norm_desde_minsal(f) for f in mel], diag
-        diag.append("MINSAL directo: sin Melipilla")
-    except Exception as e:
-        diag.append(f"MINSAL directo error: {e}")
-
-    # 3) Proxies CORS de respaldo
-    for plantilla in PROXIES:
-        host = plantilla.split("/")[2]
-        url = plantilla.format(quote(MINSAL_API, safe=""))
+    # 2) APIs oficiales directas (midas y farmanet)
+    for api in APIS:
+        host = api.split("/")[2]
         try:
-            mel = _filtrar_melipilla(_fetch_json(url, 25))
+            mel = _filtrar_melipilla(_fetch_json(api, 25))
             if mel:
-                diag.append(f"proxy {host} OK ({len(mel)})")
-                print(f"  · Fuente: proxy {host}")
+                diag.append(f"{host} directo OK ({len(mel)})")
+                print(f"  · Fuente: {host} directo")
                 return [_norm_desde_minsal(f) for f in mel], diag
-            diag.append(f"proxy {host}: sin Melipilla")
+            diag.append(f"{host} directo: sin Melipilla")
         except Exception as e:
-            diag.append(f"proxy {host} error: {e}")
+            diag.append(f"{host} directo error: {e}")
+
+    # 3) Proxies CORS de respaldo, sobre cada API
+    for api in APIS:
+        for plantilla in PROXIES:
+            host = plantilla.split("/")[2]
+            url = plantilla.format(quote(api, safe=""))
+            try:
+                mel = _filtrar_melipilla(_fetch_json(url, 25))
+                if mel:
+                    diag.append(f"proxy {host} OK ({len(mel)})")
+                    print(f"  · Fuente: proxy {host}")
+                    return [_norm_desde_minsal(f) for f in mel], diag
+                diag.append(f"proxy {host} ({api.split('/')[2]}): sin Melipilla")
+            except Exception as e:
+                diag.append(f"proxy {host} ({api.split('/')[2]}) error: {e}")
 
     # 4) allorigins /get (envuelve la respuesta en {contents})
     try:
@@ -233,32 +238,31 @@ def main():
     for d in diag:
         print("  ·", d)
 
+    if not farmacias:
+        print("⚠ Ninguna fuente entregó el turno ahora (el MINSAL suele bloquear "
+              "servidores con 403). No se sobreescribe: el sitio lo carga en vivo "
+              "desde el navegador y el HTML conserva su texto informativo.")
+        return 0
+
     ahora = datetime.now(TZ)
     salida = {
         "fecha": ahora.strftime("%Y-%m-%d"),
         "actualizado_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "comuna": "Melipilla",
         "farmacias": farmacias,
-        "diagnostico": diag,
     }
 
-    # Siempre escribimos turno.json (aunque venga vacío) para dejar registro del
-    # diagnóstico en el repo. El sitio ignora un turno.json sin farmacias.
     with open(SALIDA, "w", encoding="utf-8") as fp:
         json.dump(salida, fp, ensure_ascii=False, indent=2)
-    print(f"✅ {SALIDA} escrito con {len(farmacias)} farmacia(s).")
+    print(f"✅ {SALIDA} actualizado: {len(farmacias)} farmacia(s) de turno.")
+    for f in farmacias:
+        print(f"   • {f['nombre']} — {f['direccion']}")
 
-    if farmacias:
-        for f in farmacias:
-            print(f"   • {f['nombre']} — {f['direccion']}")
-        # Inyecta el turno en index.html para SEO y carga instantánea.
-        try:
-            actualizar_index(construir_html_turno(farmacias, ahora))
-        except Exception as e:
-            print(f"⚠ No se pudo actualizar el HTML del turno en index.html: {e}")
-    else:
-        print("⚠ Ninguna fuente entregó el turno. Se guardó turno.json con el "
-              "diagnóstico; el HTML se mantiene como estaba.")
+    # Inyecta el turno en index.html para SEO y carga instantánea.
+    try:
+        actualizar_index(construir_html_turno(farmacias, ahora))
+    except Exception as e:
+        print(f"⚠ No se pudo actualizar el HTML del turno en index.html: {e}")
 
     return 0
 
