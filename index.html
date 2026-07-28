@@ -170,6 +170,9 @@ body { padding-top: 0 !important; }
   .hero-social-proof { display: none; }     /* chip de visitas: fuera en móvil */
   .hero-eyebrow-2025 { margin-bottom: .55rem; }
 }
+
+/* Se quitó el clima: la Farmacia de turno ocupa toda la mega-card, centrada */
+.hero-mega { grid-template-columns: 1fr; max-width: 620px; }
 </style>
 <!-- build:2025-06-25T19:00 -->
 </head>
@@ -269,32 +272,6 @@ body { padding-top: 0 !important; }
       </div>
     </article>
 
-    <!-- Clima + calidad del aire -->
-    <article class="mega-clima" aria-labelledby="mega-clima-titulo">
-      <div class="mega-clima-head">
-        <span id="mega-clima-emoji" aria-hidden="true">🌤️</span>
-        <div>
-          <div class="mega-clima-city">Melipilla ahora</div>
-          <div class="mega-clima-hora" id="mega-clima-hora">—</div>
-        </div>
-      </div>
-      <div class="mega-clima-temp" id="mega-clima-temp">--°</div>
-      <div class="mega-clima-desc" id="mega-clima-desc">Cargando clima…</div>
-      <div class="mega-clima-stats">
-        <div class="mcs-item">
-          <span class="mcs-label">Máx</span>
-          <span class="mcs-val" id="mega-clima-max">—</span>
-        </div>
-        <div class="mcs-item">
-          <span class="mcs-label">Mín</span>
-          <span class="mcs-val" id="mega-clima-min">—</span>
-        </div>
-        <div class="mcs-item mcs-air" id="mega-clima-air-wrap">
-          <span class="mcs-label">Aire</span>
-          <span class="mcs-val" id="mega-clima-air">—</span>
-        </div>
-      </div>
-    </article>
   </section>
 
   <!-- Buscador -->
