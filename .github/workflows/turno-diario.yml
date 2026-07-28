@@ -16,14 +16,17 @@ on:
       - 'turno.json'
   workflow_dispatch:
 
+# Permite que el GITHUB_TOKEN integrado pueda hacer commit/push del turno.json,
+# sin depender de un secret personalizado (GH_TOKEN) que no está configurado.
+permissions:
+  contents: write
+
 jobs:
   actualizar-turno:
     runs-on: ubuntu-latest
     steps:
       - name: Clonar repositorio
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GH_TOKEN }}
 
       - name: Configurar Python 3.11
         uses: actions/setup-python@v5

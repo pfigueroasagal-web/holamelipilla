@@ -13,6 +13,11 @@ on:
         required: false
         default: 'Verificación manual'
 
+# Permite que el GITHUB_TOKEN integrado pueda hacer commit/push de los cambios,
+# sin depender de un secret personalizado (GH_TOKEN) que no está configurado.
+permissions:
+  contents: write
+
 jobs:
   verificar-y-actualizar:
     name: Verificar información del sitio
@@ -22,8 +27,6 @@ jobs:
       # 1. Clonar el repositorio
       - name: Clonar repositorio
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GH_TOKEN }}
 
       # 2. Configurar Python
       - name: Configurar Python 3.11
