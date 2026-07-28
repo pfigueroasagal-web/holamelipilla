@@ -16,34 +16,41 @@ on:
       - 'turno.json'
   workflow_dispatch:
 
+# Permite que el GITHUB_TOKEN integrado pueda hacer commit/push del turno.json,
+# sin depender de un secret personalizado (GH_TOKEN) que no está configurado.
+permissions:
+  contents: write
+
 jobs:
   actualizar-turno:
     runs-on: ubuntu-latest
     steps:
       - name: Clonar repositorio
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GH_TOKEN }}
 
       - name: Configurar Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
+      # A prueba de fallos: si el script falla (MINSAL caído, sin datos, etc.)
+      # se registra en el log pero NO se marca error, para no enviar correos de fallo.
       - name: Generar turno.json
-        run: python actualizar_turno.py
+        run: python actualizar_turno.py || echo "⚠️ No se pudo generar el turno esta vez; se reintentará en la próxima ejecución."
 
       - name: Configurar git
         run: |
           git config user.name "HolaMelipilla Bot"
           git config user.email "bot@holamelipilla.cl"
 
+      # A prueba de fallos: cualquier problema al commitear/pushear se registra
+      # pero no marca error, para que el workflow siempre termine en verde.
       - name: Commit si hay cambios
         run: |
-          git add turno.json
+          git add turno.json || true
           if git diff --staged --quiet; then
             echo "Sin cambios en el turno."
           else
-            git commit -m "🤖 Turno de farmacia actualizado — $(date '+%d/%m/%Y %H:%M')"
-            git push
+            git commit -m "🤖 Turno de farmacia actualizado — $(date '+%d/%m/%Y %H:%M')" || true
+            git push || echo "⚠️ No se pudo subir el cambio esta vez; se reintentará en la próxima ejecución."
           fi
