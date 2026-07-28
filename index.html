@@ -258,10 +258,12 @@ body { padding-top: 0 !important; }
         <span id="mega-turno-badge-txt">EN VIVO · Farmacia de turno hoy</span>
       </div>
       <div id="mega-turno-body">
+        <!-- TURNO:INICIO — este bloque lo actualiza a diario actualizar_turno.py (GitHub Actions) para que Google indexe el turno real. El JS lo refresca en vivo al cargar. -->
         <div class="mega-turno-loading">
           <div class="spinner"></div>
           <div>Buscando la farmacia de turno de hoy en Melipilla…</div>
         </div>
+        <!-- TURNO:FIN -->
       </div>
       <div class="mega-turno-foot">
         <span>Datos oficiales <strong>MINSAL / FARMANET</strong> · se actualiza a diario</span>
