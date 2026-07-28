@@ -150,6 +150,26 @@ body { padding-top: 0 !important; }
 /* ── Evento especial destacado en el finde ── */
 .finde-card-destacada{position:relative;border:2px solid #F77F00;box-shadow:0 8px 24px rgba(247,127,0,.18)}
 .finde-badge{position:absolute;top:10px;right:10px;background:#F77F00;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:100px;letter-spacing:.02em}
+
+/* ── INICIO SIMPLE Y DIRECTO EN CELULAR ──
+   Encabezado simplificado y reordenado para acceder de inmediato a lo importante:
+   1) título + para qué sirve  2) iconos de menú  3) buscador  4) farmacia de turno + clima.
+   Solo aplica en móvil (≤760px); en escritorio el orden queda igual. */
+@media (max-width: 760px) {
+  .hero-2025 {
+    justify-content: flex-start;
+    min-height: auto;
+    padding-top: 2rem !important;
+    padding-bottom: 1.75rem !important;
+  }
+  .hero-top      { order: 1; margin-bottom: 1rem; }
+  .nav-grid-2025 { order: 2; }              /* menús (iconos) altiro, bajo el título */
+  .buscador-global-wrap { order: 3; margin-top: 1rem; }  /* buscador enseguida */
+  .hero-mega     { order: 4; margin-top: 1.35rem; }      /* farmacia de turno + clima */
+  /* Simplificar el encabezado: quitar ruido arriba */
+  .hero-social-proof { display: none; }     /* chip de visitas: fuera en móvil */
+  .hero-eyebrow-2025 { margin-bottom: .55rem; }
+}
 </style>
 <!-- build:2025-06-25T19:00 -->
 </head>
@@ -216,7 +236,7 @@ body { padding-top: 0 !important; }
       Región Metropolitana · Provincia de Melipilla
     </div>
     <h1 class="hero-title-2025">Hola,<br><em>Melipilla</em> 👋</h1>
-    <p class="hero-sub-2025">Tu guía de servicios esenciales</p>
+    <p class="hero-sub-2025">Todo lo esencial de Melipilla, en un solo lugar</p>
 
     <!-- Chip prueba social -->
     <div class="hero-social-proof" id="hero-social-proof" aria-live="polite">
@@ -407,74 +427,9 @@ body { padding-top: 0 !important; }
   </div>
   </section>
 
-  <!-- ═══ REPORTES VECINALES ═══ -->
-  <section id="reportes" aria-labelledby="titulo-reportes">
-  <div class="section-inner">
-    <div class="section-title">
-      <div class="section-icon ic-naranja">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      </div>
-      <div>
-        <h2 id="titulo-reportes">Reportes vecinales</h2>
-        <p>Cortes de luz, agua, calles cortadas · avisos entre vecinos</p>
-      </div>
-    </div>
-
-    <!-- Formulario -->
-    <div class="reportes-form">
-      <div class="reportes-form-row">
-        <select id="reporte-tipo" aria-label="Tipo de reporte">
-          <option value="⚡">⚡ Corte de luz</option>
-          <option value="💧">💧 Corte de agua</option>
-          <option value="🚧">🚧 Calle cortada</option>
-          <option value="🚌">🚌 Problema de tránsito</option>
-          <option value="🐕">🐕 Perrito perdido</option>
-          <option value="📢">📢 Otro aviso</option>
-        </select>
-        <input id="reporte-sector" type="text" placeholder="Sector o calle (ej: Villa Los Toros)" maxlength="60">
-      </div>
-      <textarea id="reporte-texto" placeholder="Describe brevemente… (ej: sin luz desde hace 1 hora)" maxlength="200" rows="2"></textarea>
-      <div class="reportes-form-foot">
-        <span id="reporte-counter" class="reporte-counter">0 / 200</span>
-        <button id="reporte-enviar" class="reporte-enviar-btn">Publicar reporte</button>
-      </div>
-      <p class="reportes-nota">🔒 Anónimo. Se guarda solo en tu navegador — es un tablón local hasta que tengamos servidor.</p>
-    </div>
-
-    <!-- Lista de reportes -->
-    <div id="reportes-lista" class="reportes-lista">
-      <div class="reportes-vacio">Aún no hay reportes. ¡Sé el primero en avisar a los vecinos!</div>
-    </div>
-  </div>
-  </section>
-
-  <!-- ═══ ENCUESTA + FRASE DEL DÍA ═══ -->
-  <section id="pulso" aria-labelledby="titulo-pulso">
-  <div class="section-inner pulso-inner">
-
-    <!-- Encuesta -->
-    <div class="pulso-card pulso-encuesta">
-      <div class="pulso-eyebrow">📊 Encuesta de la semana</div>
-      <h3 id="titulo-pulso" class="pulso-pregunta" id="encuesta-pregunta">
-        ¿Empanadas de Pomaire o del centro de Melipilla?
-      </h3>
-      <div class="encuesta-opciones" id="encuesta-opciones">
-        <button class="encuesta-opt" data-op="pomaire">🏺 Pomaire</button>
-        <button class="encuesta-opt" data-op="centro">🏙️ Centro</button>
-        <button class="encuesta-opt" data-op="empate">🤷 Da lo mismo</button>
-      </div>
-      <div class="encuesta-resultados" id="encuesta-resultados" hidden></div>
-    </div>
-
-    <!-- Frase del día -->
-    <div class="pulso-card pulso-frase">
-      <div class="pulso-eyebrow">💚 Melipilla en una frase</div>
-      <blockquote class="pulso-frase-texto" id="frase-texto">—</blockquote>
-      <div class="pulso-frase-autor" id="frase-autor">—</div>
-    </div>
-
-  </div>
-  </section>
+  <!-- Nota: "Reportes vecinales" y "Encuesta / frase del día" se retiraron del
+       inicio para mantenerlo simple y enfocado en encontrar servicios. El JS que
+       las manejaba queda inactivo automáticamente (sus elementos ya no existen). -->
 
   <!-- ═══ AVISOS + COMUNIDAD ═══ -->
   <section id="avisos" aria-labelledby="titulo-avisos">
