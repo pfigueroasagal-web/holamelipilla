@@ -21,6 +21,7 @@ const NAVEGADOR = {
   'Accept-Language': 'es-CL,es;q=0.9,en;q=0.8',
   'X-Requested-With': 'XMLHttpRequest',
   'Referer': 'https://farmanet.minsal.cl/',
+  'Connection': 'keep-alive',
 };
 
 function sinTildes(s) {
@@ -41,7 +42,7 @@ function comunaDe(f) {
 
 async function traer(url) {
   const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), 8000);
+  const timer = setTimeout(() => ctrl.abort(), 12000);
   try {
     const r = await fetch(url, { signal: ctrl.signal, headers: NAVEGADOR });
     clearTimeout(timer);
@@ -54,13 +55,23 @@ async function traer(url) {
   }
 }
 
+async function traerConRetry(url) {
+  try {
+    return await traer(url);
+  } catch (e) {
+    // Retry once after 1 second
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    return await traer(url);
+  }
+}
+
 module.exports = async function handler(req, res) {
   const diag = [];
 
   for (const url of ENDPOINTS) {
     const host = url.split('/')[2];
     try {
-      const data = await traer(url);
+      const data = await traerConRetry(url);
       const mel = data.filter(function (f) {
         return sinTildes(comunaDe(f)).indexOf('melipilla') >= 0;
       });
