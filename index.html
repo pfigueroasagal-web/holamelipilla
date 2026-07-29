@@ -1042,11 +1042,29 @@ body { padding-top: 0 !important; }
         '</div>';
     }
 
+    // Rol de turnos local (calendario mantenido por el equipo en rol-turnos.json).
+    // Fuente CONFIABLE que no depende del MINSAL. Busca la entrada de hoy.
+    async function desdeRol() {
+      try {
+        var d = await tryFetch('/rol-turnos.json?v=' + Math.floor(Date.now() / 3600000), 4000);
+        if (d && Array.isArray(d.turnos)) {
+          var h = hoyISO();
+          var hoyT = d.turnos.filter(function(t) { return t && t.fecha === h; });
+          if (hoyT.length) return { farmacias: hoyT.map(normalizar), fecha: h };
+        }
+      } catch (e) {}
+      return null;
+    }
+
     var hoy = hoyISO();
 
-    // 1) Función serverless: lo más confiable (servidor, sin CORS)
+    // 1) Función serverless: lo más confiable si el MINSAL respondiera (servidor, sin CORS)
     var servidor = await desdeServidor();
     if (servidor) { renderTurnos(servidor); return; }
+
+    // 1.5) Rol de turnos local (calendario del equipo): confiable, sin depender del MINSAL
+    var rol = await desdeRol();
+    if (rol) { renderTurnos(rol); return; }
 
     // 2) Archivo same-origin generado a diario
     var archivo = await desdeArchivo();

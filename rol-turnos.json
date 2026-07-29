@@ -1,0 +1,12 @@
+{
+  "_ayuda": "Rol de turnos de farmacias de Melipilla. El sitio muestra automaticamente la farmacia cuya 'fecha' coincida con el dia de hoy (hora de Chile). Para activarlo, copia el calendario oficial (Seremi de Salud RM / municipalidad / la propia farmacia) dentro de la lista 'turnos'. Mientras 'turnos' este vacio, la portada muestra la tarjeta con el turno oficial y el telefono de Salud Responde. Formato de fecha: AAAA-MM-DD. Puedes poner mas de una farmacia el mismo dia.",
+  "_ejemplo_de_una_entrada": {
+    "fecha": "2026-08-01",
+    "nombre": "Cruz Verde Serrano",
+    "direccion": "Serrano 501, Melipilla",
+    "telefono": "2 2831 1552",
+    "apertura": "00:00",
+    "cierre": "23:59"
+  },
+  "turnos": []
+}
