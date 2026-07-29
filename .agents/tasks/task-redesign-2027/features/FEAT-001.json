@@ -1,0 +1,50 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "Complete visual redesign of the landing page (index.html) and shared stylesheet (styles.css) to a modern 2027 aesthetic. The redesign prioritizes instant access to essential information for Melipilla residents (new and long-time): pharmacy on duty, health centers, security numbers, schools, and markets. Design philosophy: clean, airy, ultra-functional. Like a premium local services app.",
+  "status": "completed",
+  "steps": [
+    "STEP 1 - NEW COLOR PALETTE AND CSS VARIABLES: Replace the current green-forest palette in styles.css :root with a fresh 2027 palette. Use a deep navy/indigo (#1a1a2e or similar) as the primary dark, a vibrant teal/emerald accent (#10b981), warm coral for highlights (#f97316), and a clean off-white (#fafaf9) background. Keep the orange accent for farmacia-related elements since it is semantically meaningful. Update all CSS variable definitions in both light and dark mode sections.",
+    "STEP 2 - HERO SECTION REDESIGN in index.html: Replace the current mountain-silhouette SVG hero with a cleaner, more modern hero. Use a deep gradient background (navy to dark teal). Simplify the hero content: large bold greeting, concise subtitle, then IMMEDIATELY show the navigation grid (the service cards). Remove the social proof chip from mobile view (keep logic but hide). Keep the .hero-2025 class name for compatibility but completely restyle it. The farmacia de turno mega-card should remain prominent but with updated styling.",
+    "STEP 3 - NAVIGATION GRID REDESIGN: Redesign the .nav-grid-2025 cards to be larger, cleaner, with more whitespace. Use a bento-grid layout where Farmacia de turno takes a full-width prominent position (it is the #1 searched thing). Salud and Seguridad get the second row (50/50). Ferias and Colegios get the third row. Juegos, Noticias, Trabajos become a compact row at the bottom. Each card should have: emoji icon, clear title, subtle description. Use glassmorphism (frosted glass) cards with clean borders.",
+    "STEP 4 - MEGA-TURNO CARD UPDATE: Update the mega-turno article styling to match the new palette. Keep ALL element IDs intact (mega-turno-body, mega-turno-badge-txt). Keep the TURNO:INICIO and TURNO:FIN markers. Just update colors, border-radius, shadows. Make it feel like a live-data widget with a subtle pulsing indicator.",
+    "STEP 5 - SECTIONS BELOW THE FOLD: Update the main content sections (finde, avisos, primeros-pasos, mapa) with the new palette. Cleaner section titles, more whitespace, updated card styles. Keep all content and functionality intact.",
+    "STEP 6 - FOOTER REDESIGN: Update the footer to match the new dark navy palette. Keep all links and social icons functional.",
+    "STEP 7 - TYPOGRAPHY AND SPACING: Update font weights and sizes for a more modern feel. Increase whitespace between sections. Use larger border-radius values (20-24px for cards). Ensure all touch targets remain 44px+ on mobile.",
+    "STEP 8 - DARK MODE UPDATE: Update the dark mode variables and overrides to work with the new palette. Ensure good contrast ratios.",
+    "STEP 9 - INLINE STYLES UPDATE in index.html: Update the <style> block at the top of index.html to work with the new design. Update bubble/burbujas styles, avisos card styles, install banner styles, and any other inline CSS.",
+    "STEP 10 - BACKWARD COMPATIBILITY CHECK: Ensure that all classes used by subpages (farmacias.html, salud.html, etc.) still exist and work. Classes to preserve: .body-nav, nav, .nav-brand, .nav-links, .card, .card-head, .card-icon, .info-row, .btn-map, .btn-whatsapp, .section-title, .section-icon, .farmacia-card, .farmacias-grid, .cards, .cards-2, .filtro-btn, .hero-subpage, .page-header-2025, .site-footer, .footer-inner. All must remain styled and functional.",
+    "STEP 11 - FINAL INTEGRITY CHECK: Verify that all JavaScript element IDs still exist in index.html: mega-turno-body, mega-turno-badge-txt, share-turno, buscador-global, buscador-resultados, buscador-limpiar, finde-grid, finde-rango, avisos-form, avisos-input, avisos-btn, avisos-msg, comunidad-cta, hero-social-proof, hsp-count, btn-notif, btn-notif-txt, install-banner, install-yes, install-no, social-ig, social-tt, social-wa, mapa-general. Verify TURNO:INICIO and TURNO:FIN markers. Verify manifest.json link. Verify Vercel analytics script. Verify sw.js registration in any service worker code."
+  ],
+  "acceptance_criteria": [
+    "index.html loads as valid HTML with no broken structure",
+    "All navigation links to subpages are present and functional",
+    "The farmacia de turno section retains all IDs (mega-turno-body, mega-turno-badge-txt) and TURNO:INICIO/TURNO:FIN markers",
+    "The search functionality (buscador-global) remains intact with its IDs",
+    "Dark mode still works via prefers-color-scheme media queries",
+    "Mobile-first responsive design maintained with 44px+ touch targets",
+    "styles.css backward-compatible: subpage classes (.body-nav, .card, .nav-links, etc.) still exist and are styled",
+    "PWA manifest link and service worker references preserved",
+    "Vercel analytics script preserved",
+    "Visual design is noticeably refreshed: new color palette, cleaner layout, more whitespace, modern typography",
+    "The most important information (farmacia de turno, emergency numbers, health centers) is accessible within 1-2 taps from landing"
+  ],
+  "verification": [
+    "Run: grep -c 'TURNO:INICIO' index.html (should be 1)",
+    "Run: grep -c 'TURNO:FIN' index.html (should be 1)",
+    "Run: grep -c 'mega-turno-body' index.html (should be >= 1)",
+    "Run: grep -c 'mega-turno-badge-txt' index.html (should be >= 1)",
+    "Run: grep -c 'buscador-global' index.html (should be >= 2)",
+    "Run: grep -c 'vercel-insights' index.html (should be 1)",
+    "Run: grep -c 'manifest.json' index.html (should be >= 1)",
+    "Run: grep -c '/farmacias' index.html (should be >= 3)",
+    "Run: grep -c '/salud' index.html (should be >= 3)",
+    "Run: grep -c '/seguridad' index.html (should be >= 2)",
+    "Run: grep -c '.body-nav' styles.css (should be >= 1)",
+    "Run: grep -c '.nav-links' styles.css (should be >= 1)",
+    "Run: grep -c '.farmacia-card' styles.css (should be >= 1)",
+    "Run: grep -c 'prefers-color-scheme: dark' styles.css (should be >= 1)"
+  ],
+  "blocked_reason": null,
+  "findings": "Redesign completed successfully. Changed from green-forest palette (#1B4332/#2D6A4F/#52B788) to a modern navy/teal palette (#0f172a/#1e293b/#0f766e/#2dd4bf) with warm amber (#f59e0b) for farmacia/urgency semantic color. All 23 required JS element IDs verified present. All navigation links verified. All subpage-referenced CSS classes preserved. Dark mode updated with matching palette. SVG hero gradients updated. Both files maintain original line counts (index.html: 1652, styles.css: 3001). The install-banner IDs are dynamically created by JS in the script block, not in static HTML, which is the original behavior."
+}
