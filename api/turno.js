@@ -8,9 +8,20 @@
 // el endpoint. No requiere secrets. Vercel la detecta automáticamente.
 
 const ENDPOINTS = [
-  'https://farmanet.minsal.cl/maps/index.php/ws/getLocalesTurnos',
   'https://midas.minsal.cl/farmacia_v2/WS/getLocalesTurnos.php',
+  'https://farmanet.minsal.cl/maps/index.php/ws/getLocalesTurnos',
+  'http://farmanet.minsal.cl/maps/index.php/ws/getLocalesTurnos',
 ];
+
+// Cabeceras que imitan a un navegador real (Chrome). Muchos 403 del MINSAL se
+// deben a que el request "no parece" un navegador; esto suele evitarlo.
+const NAVEGADOR = {
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+  'Accept': 'application/json, text/javascript, */*; q=0.01',
+  'Accept-Language': 'es-CL,es;q=0.9,en;q=0.8',
+  'X-Requested-With': 'XMLHttpRequest',
+  'Referer': 'https://farmanet.minsal.cl/',
+};
 
 function sinTildes(s) {
   return (s || '').toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
@@ -32,10 +43,7 @@ async function traer(url) {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), 8000);
   try {
-    const r = await fetch(url, {
-      signal: ctrl.signal,
-      headers: { 'User-Agent': 'Mozilla/5.0 (HolaMelipilla/1.0)' },
-    });
+    const r = await fetch(url, { signal: ctrl.signal, headers: NAVEGADOR });
     clearTimeout(timer);
     if (!r.ok) throw new Error('HTTP ' + r.status);
     const data = await r.json();
