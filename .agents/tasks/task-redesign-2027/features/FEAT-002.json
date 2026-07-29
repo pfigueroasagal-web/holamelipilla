@@ -1,0 +1,23 @@
+{
+  "id": "FEAT-002",
+  "type": "fix",
+  "description": "Address code review findings: fix contrast issues on mega-turno badge and avisos button, eliminate duplicate nav declarations, and replace hardcoded hex colors with CSS variables in avisos-card and bienvenida inline styles.",
+  "status": "in_progress",
+  "steps": [
+    "STEP 1 - Fix #78350f contrast issues in mega-turno badge (styles.css) and avisos button + burbuja-farmacia (index.html inline styles) by changing to #451a03",
+    "STEP 2 - Fix duplicate nav declarations by adding a comment to the early nav block indicating it is overridden later",
+    "STEP 3 - Replace hardcoded #0f766e/#0d9488 in avisos-card inline style with var(--primario)/var(--primario-medio)",
+    "STEP 4 - Replace hardcoded colors in bienvenida inline style with CSS variables where feasible"
+  ],
+  "acceptance_criteria": [
+    "Mega-turno badge text color is #451a03 for WCAG AA compliance",
+    "Avisos button text color is #451a03 for WCAG AA compliance",
+    "Early nav block has a comment indicating the override",
+    "Avisos-card uses var(--primario) and var(--primario-medio) instead of hardcoded hex",
+    "All element IDs remain intact",
+    "TURNO:INICIO/TURNO:FIN markers remain intact",
+    "JavaScript block unchanged"
+  ],
+  "blocked_reason": null,
+  "findings": null
+}

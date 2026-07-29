@@ -1,0 +1,22 @@
+{
+  "project_type": "Static website (HTML/CSS/JS) deployed on Vercel, PWA-capable",
+  "language": "HTML, CSS, vanilla JavaScript",
+  "build_system": "None - static files served directly by Vercel",
+  "test_framework": "None - manual visual verification",
+  "build_command": "N/A - no build step",
+  "test_command": "N/A - static site, verify HTML validity and that JS references remain intact",
+  "verification_instructions": "1) Confirm index.html is valid HTML. 2) Confirm all JS element IDs (mega-turno-body, mega-turno-badge-txt, buscador-global, etc.) still exist. 3) Confirm TURNO:INICIO and TURNO:FIN markers remain. 4) Confirm all navigation links (farmacias, salud, seguridad, ferias, colegios, juegos, noticias, trabajos, apoyar, sugerencias) are present. 5) Confirm styles.css still contains base classes used by subpages (nav, .body-nav, .card, .card-head, .info-row, .btn-map, .section-title, .farmacia-card, .cards, etc.). 6) Confirm PWA manifest and service worker references intact. 7) Confirm Vercel analytics script present.",
+  "snapshot_or_generated_files": null,
+  "setup_instructions": "No setup needed - static site",
+  "environment_constraints": "INTEGRATIONS_ONLY network - cannot install packages, run npm, or fetch external resources. All changes are direct edits to HTML/CSS files.",
+  "contribution_requirements": "Keep farmacia de turno JS functionality intact. Keep TURNO:INICIO/TURNO:FIN markers. Keep all navigation links. Keep PWA references. Keep Vercel Analytics.",
+  "key_patterns": "CSS variables in :root for theming. Dark mode via @media (prefers-color-scheme: dark). Inline <style> in index.html for page-specific styles. Shared styles.css used by all subpages. Hero section uses .hero-2025 class. Navigation cards use .nav-card-2025 / .nav-grid-2025. Mega-turno card for live pharmacy data. Footer class .site-footer .footer-2026. Animations with fadeSlideUp/scaleIn keyframes. Glassmorphism on nav. Warm neutral palette (bone #F5F3EE).",
+  "relevant_files": [
+    "index.html",
+    "styles.css",
+    "manifest.json",
+    "farmacias.html",
+    "salud.html"
+  ],
+  "directory_structure": "Root-level flat structure. index.html is the main landing page (~1652 lines with inline JS at bottom). styles.css (~3000 lines) is the shared stylesheet. Subpages (farmacias.html, salud.html, etc.) use body class 'body-nav' and share styles.css. api/ directory has serverless functions. .github/ has workflows."
+}
