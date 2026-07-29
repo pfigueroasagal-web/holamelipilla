@@ -917,7 +917,13 @@ body { padding-top: 0 !important; }
   (async function farmaciaTurno() {
     var body = document.getElementById('mega-turno-body');
     if (!body) return;
+    var rendered = false;
     var API_URL = 'https://midas.minsal.cl/farmacia_v2/WS/getLocalesTurnos.php';
+
+    // Safety timeout: if nothing renders within 12 s, show fallback
+    setTimeout(function() {
+      if (!rendered) { renderFallback(); }
+    }, 12000);
 
     function quitarTildes(s) {
       return (s || '').toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
@@ -1008,6 +1014,10 @@ body { padding-top: 0 !important; }
     }
 
     function renderTurnos(res) {
+      if (rendered) return;
+      rendered = true;
+      var spinner = body.querySelector('.mega-turno-loading');
+      if (spinner) spinner.style.display = 'none';
       var turnos = res.farmacias;
       body.innerHTML = turnos.map(function(f) {
         var h24 = es24hrs(f.apertura, f.cierre);
@@ -1030,6 +1040,10 @@ body { padding-top: 0 !important; }
 
     // Tarjeta útil (no un "error"): el turno cambia a diario, la enviamos a la fuente
     function renderFallback() {
+      if (rendered) return;
+      rendered = true;
+      var spinner = body.querySelector('.mega-turno-loading');
+      if (spinner) spinner.style.display = 'none';
       body.innerHTML = '' +
         '<div class="mt-fallback">' +
           '<strong>💊 Farmacia de turno hoy en Melipilla</strong>' +
@@ -1058,6 +1072,7 @@ body { padding-top: 0 !important; }
 
     var hoy = hoyISO();
 
+    try {
     // 1) Función serverless: lo más confiable si el MINSAL respondiera (servidor, sin CORS)
     var servidor = await desdeServidor();
     if (servidor) { renderTurnos(servidor); return; }
@@ -1083,6 +1098,9 @@ body { padding-top: 0 !important; }
 
     // 4) Nada disponible: tarjeta útil (no un error)
     renderFallback();
+    } catch(e) {
+      renderFallback();
+    }
   })();
 
   /* ═══════════════════════════════════════════════════════════
