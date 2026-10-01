@@ -1,17 +1,17 @@
 {
-  "fecha_verificacion": "2026-09-01 15:22 UTC",
+  "fecha_verificacion": "2026-10-01 17:15 UTC",
   "cambios_detectados": 0,
   "detalle": [],
   "log": [
-    "[15:22:48] ============================================================",
-    "[15:22:48] 🤖 Bot de verificación holamelipilla.cl — 2026-09-01",
-    "[15:22:48] ============================================================",
-    "[15:22:48] 🔍 Verificando fuentes oficiales...",
-    "[15:22:48] \n→ Consultando CORPO Melipilla Salud (https://corpomelipilla.cl/salud/)",
-    "[15:22:49]   ⚠ No se pudo acceder a https://corpomelipilla.cl/salud/: HTTP Error 403: Forbidden",
-    "[15:22:49] \n→ Consultando Municipalidad Melipilla (https://www.municipalidadmelipilla.cl/)",
-    "[15:22:49]   ⚠ No se pudo acceder a https://www.municipalidadmelipilla.cl/: <urlopen error [Errno -2] Name or service not known>",
-    "[15:22:49] ✅ Fecha de verificación actualizada en index.html: 01/09/2026"
+    "[17:15:54] ============================================================",
+    "[17:15:54] 🤖 Bot de verificación holamelipilla.cl — 2026-10-01",
+    "[17:15:54] ============================================================",
+    "[17:15:54] 🔍 Verificando fuentes oficiales...",
+    "[17:15:54] \n→ Consultando CORPO Melipilla Salud (https://corpomelipilla.cl/salud/)",
+    "[17:15:54]   ⚠ No se pudo acceder a https://corpomelipilla.cl/salud/: HTTP Error 403: Forbidden",
+    "[17:15:54] \n→ Consultando Municipalidad Melipilla (https://www.municipalidadmelipilla.cl/)",
+    "[17:15:54]   ⚠ No se pudo acceder a https://www.municipalidadmelipilla.cl/: <urlopen error [Errno -2] Name or service not known>",
+    "[17:15:54] ✅ Fecha de verificación actualizada en index.html: 01/10/2026"
   ],
   "estado": "OK — sin cambios detectados"
 }
